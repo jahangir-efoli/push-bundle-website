@@ -39,3 +39,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# testing artifacts
+/test-results/
+/playwright-report/
+
+# local Claude Code config
+.claude/

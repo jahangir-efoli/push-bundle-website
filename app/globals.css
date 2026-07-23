@@ -1,26 +1,682 @@
 @import "tailwindcss";
 
+/*
+ * PushBundle design system
+ * ------------------------------------------------------------------
+ * TWO TOKEN LAYERS (see docs/PLAN.md §6):
+ *   1. PRIMITIVES  — the ONLY place raw hex values live. Rebrand here.
+ *   2. SEMANTIC    — roles mapped to primitives; components use these.
+ *
+ * Components must reference SEMANTIC tokens only (bg-primary,
+ * text-foreground, border-border) — never raw hex, never primitives.
+ * ------------------------------------------------------------------
+ */
+
+/* Dark mode is driven by a `.dark` class so the theme toggle can control it. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ==================================================================
+   LAYER 1 — PRIMITIVES (raw brand palette; edit here to rebrand)
+   ================================================================== */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand ramp — ELECTRIC VIOLET → CYAN (futuristic, sleek dark-first).
+     NOTE: the legacy `blue-*` names now hold the VIOLET ramp so the handful of
+     components that reference primitives directly rebrand automatically. */
+  --pb-indigo-900: #190f45; /* deep violet — emphasis band bg (white text) */
+  --pb-indigo-700: #6d28d9; /* violet-700 — readable on white (AA) */
+  --pb-blue-600: #6d28d9; /* primary hover (light) */
+  --pb-blue-500: #7c3aed; /* primary (light) — white text ~5.3:1 (AA) */
+  /* Lighter violets — `primary` in dark mode (AA on the near-black bg). */
+  --pb-blue-300: #a78bfa; /* violet-400 */
+  --pb-blue-200: #c4b5fd; /* violet-300 — primary hover (dark) */
+  --pb-blue-50: #f2ecfe; /* violet-50 tint — primary-subtle (light) */
+  --pb-sky-400: #6366f1; /* indigo-500 — gradient mid + info */
+  --pb-cyan-400: #22d3ee; /* electric cyan — accent / gradient end */
+  --pb-cyan-600: #0e7490; /* cyan-700 — readable cyan text on light (AA) */
+
+  /* Magenta accent (tri-tone with violet+cyan) — energy highlights. The legacy
+     `coral-*` names now hold the FUCHSIA ramp. -700 reads on white (AA). */
+  --pb-coral-500: #d946ef; /* fuchsia-500 — fills */
+  --pb-coral-400: #e879f9; /* fuchsia-400 — readable on dark */
+  --pb-coral-100: #fae8ff; /* fuchsia tint — subtle bg */
+  --pb-coral-700: #a21caf; /* fuchsia-700 — readable on light (AA) */
+
+  /* Neutrals — light (cool, slightly violet-tinted) */
+  --pb-ink-900: #0d1030;
+  --pb-slate-500: #565d78;
+  --pb-border-300: #e3e5f0;
+  --pb-surface-100: #f1f2fa;
+  --pb-page-50: #f6f7fd;
+  --pb-white: #ffffff;
+
+  /* Neutrals — dark (deep blue-violet black + subtle elevation) */
+  --pb-bg-950: #080a1c;
+  --pb-surface-900: #0f1330;
+  --pb-elevated-800: #171b3e;
+  --pb-border-800: #282d55;
+  --pb-text-100: #e9eafb;
+  --pb-muted-400: #9aa1c9;
+
+  /* Status */
+  --pb-success: #22c55e;
+  --pb-warning: #f5a524;
+  --pb-error: #ef4444;
+  /* Lighter red for dark surfaces (#ef4444 is only 4.4:1 on elevated-800) */
+  --pb-error-400: #f87171;
+
+  /* Dark status shades — verified ≥4.5:1 as text on their light tints (AA) */
+  --pb-success-700: #15803d; /* solid green that carries WHITE text at ~4.9:1 */
+  --pb-success-800: #166534;
+  --pb-warning-800: #854d0e;
+  --pb-error-800: #991b1b;
 }
 
+/* ==================================================================
+   LAYER 2 — SEMANTIC ROLES (light theme defaults)
+   ================================================================== */
+:root {
+  --background: var(--pb-page-50);
+  --surface: var(--pb-white);
+  --surface-subtle: var(--pb-surface-100);
+  --inverse: var(--pb-ink-900);
+  --inverse-foreground: var(--pb-white);
+
+  --foreground: var(--pb-ink-900);
+  --muted: var(--pb-slate-500);
+  --border: var(--pb-border-300);
+
+  --primary: var(--pb-blue-500);
+  --primary-hover: var(--pb-blue-600);
+  --primary-foreground: var(--pb-white);
+  --primary-subtle: var(--pb-blue-50);
+
+  --accent: var(--pb-cyan-400); /* graphics/large fills only */
+  --accent-foreground: var(--pb-cyan-600); /* readable cyan for text */
+
+  /* Warm accent roles */
+  --warm: var(--pb-coral-500); /* fills, icon tiles, large elements */
+  --warm-foreground: var(--pb-coral-700); /* readable warm text on light */
+  --warm-subtle: var(--pb-coral-100); /* tinted background */
+
+  --ring: var(--pb-blue-500);
+
+  --success: var(--pb-success);
+  --warning: var(--pb-warning);
+  --error: var(--pb-error);
+  --info: var(--pb-sky-400);
+
+  /* Readable status text on light tinted backgrounds (badges) */
+  --success-foreground: var(--pb-success-800);
+  --warning-foreground: var(--pb-warning-800);
+  --error-foreground: var(--pb-error-800);
+  --info-foreground: var(--pb-blue-600);
+
+  /* Signature brand gradient — electric violet → indigo → cyan (single source) */
+  --gradient-brand: linear-gradient(
+    135deg,
+    var(--pb-blue-500) 0%,
+    var(--pb-sky-400) 48%,
+    var(--pb-cyan-400) 100%
+  );
+
+  /* Elevation + glow (theme-aware; consumed by @theme below) */
+  --elevation-soft: 0 1px 2px rgb(13 16 48 / 0.05), 0 12px 30px rgb(13 16 48 / 0.07);
+  --elevation-lift: 0 2px 6px rgb(13 16 48 / 0.06), 0 20px 44px rgb(13 16 48 / 0.12);
+  --elevation-glow: 0 10px 30px color-mix(in oklab, var(--primary) 40%, transparent);
+}
+
+/* Dark theme — re-points SEMANTIC roles only; primitives unchanged. */
+.dark {
+  --background: var(--pb-bg-950);
+  --surface: var(--pb-surface-900);
+  --surface-subtle: var(--pb-elevated-800);
+  /* `inverse` is the deliberately-dark emphasis surface (footer, feature
+     bands) in BOTH themes — it must not flip to white here (§6 table). */
+  --inverse: var(--pb-bg-950);
+  --inverse-foreground: var(--pb-text-100);
+
+  --foreground: var(--pb-text-100);
+  --muted: var(--pb-muted-400);
+  --border: var(--pb-border-800);
+
+  /* Lifted for AA on dark: ~8:1 as text on bg-950, and ~8:1 for ink text on it */
+  --primary: var(--pb-blue-300);
+  --primary-hover: var(--pb-blue-200);
+  --primary-foreground: var(--pb-ink-900);
+  --primary-subtle: color-mix(in oklab, var(--pb-blue-300) 16%, transparent);
+
+  --accent: var(--pb-cyan-400);
+  --accent-foreground: var(--pb-cyan-400); /* bright cyan is readable on dark */
+
+  /* Lighter coral reads better on dark surfaces */
+  --warm: var(--pb-coral-500);
+  --warm-foreground: var(--pb-coral-400);
+  --warm-subtle: color-mix(in oklab, var(--pb-coral-500) 18%, transparent);
+
+  --ring: var(--pb-blue-300);
+
+  /* On dark surfaces the base (lighter) status colors read better than the 800s */
+  --success-foreground: var(--pb-success);
+  --warning-foreground: var(--pb-warning);
+  --error-foreground: var(--pb-error-400);
+  --info-foreground: var(--pb-blue-300);
+
+  /* Dark elevation: plain drop-shadows are invisible on near-black, so lift
+     surfaces with a hairline top highlight (glassy edge) + a deep ambient
+     shadow. This is what gives cards their sleek "floating glass" feel. */
+  --elevation-soft: inset 0 1px 0 rgb(255 255 255 / 0.05),
+    0 1px 2px rgb(0 0 0 / 0.4), 0 16px 36px rgb(0 0 0 / 0.45);
+  --elevation-lift: inset 0 1px 0 rgb(255 255 255 / 0.07),
+    0 2px 6px rgb(0 0 0 / 0.5), 0 24px 52px rgb(0 0 0 / 0.55);
+  --elevation-glow: 0 0 0 1px color-mix(in oklab, var(--primary) 35%, transparent),
+    0 12px 40px color-mix(in oklab, var(--primary) 45%, transparent);
+}
+
+/* ==================================================================
+   TAILWIND THEME — exposes semantic tokens as utilities
+   (bg-primary, text-foreground, border-border, font-display, …)
+   ================================================================== */
 @theme inline {
   --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-subtle: var(--surface-subtle);
+  --color-inverse: var(--inverse);
+  --color-inverse-foreground: var(--inverse-foreground);
+
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-subtle: var(--primary-subtle);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-warm: var(--warm);
+  --color-warm-foreground: var(--warm-foreground);
+  --color-warm-subtle: var(--warm-subtle);
+
+  /* Warm gradient — for occasional CTAs / highlights that need extra energy */
+  --gradient-warm: linear-gradient(
+    135deg,
+    var(--pb-coral-500) 0%,
+    #ff9a3d 100%
+  );
+
+  --color-ring: var(--ring);
+  --color-success: var(--success);
+  /* Solid success fill that carries white text (AA) — for "added" buttons */
+  --color-success-solid: var(--pb-success-700);
+  --color-warning: var(--warning);
+  --color-error: var(--error);
+  --color-info: var(--info);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-error-foreground: var(--error-foreground);
+  --color-info-foreground: var(--info-foreground);
+
+  /* Fonts (wired in app/layout.tsx) */
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif; /* single family — see app/layout.tsx */
+  --font-display: var(--font-jakarta), var(--font-inter), ui-sans-serif, sans-serif;
+
+  /* Fluid display type scale (§6 responsive: clamp, not just breakpoints) */
+  /* Capped at 3.5rem: 4.5rem wrapped the hero H1 to 5 lines in a two-column
+     layout and pushed the CTAs below the fold on 736–800px-tall viewports. */
+  --text-display-xl: clamp(2.125rem, 1.5rem + 2vw, 3rem);
+  --text-display-lg: clamp(2.25rem, 1.6rem + 2.8vw, 3.5rem);
+  --text-display-md: clamp(1.75rem, 1.35rem + 1.8vw, 2.5rem);
+  --text-display-sm: clamp(1.375rem, 1.2rem + 0.9vw, 1.75rem);
+
+  /* Layout rhythm */
+  --spacing-section: clamp(3.5rem, 2rem + 6vw, 7rem);
+  --spacing-gutter: clamp(1rem, 0.5rem + 2vw, 2rem);
+  /* Named `site` (not `max`) to avoid colliding with Tailwind's built-in max-w-max */
+  --container-site: 75rem; /* 1200px */
+
+  /* Radii */
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+
+  /* Soft layered shadows (§6 depth) — theme-aware via the elevation vars above.
+     In dark mode these carry a hairline top highlight for the glass edge. */
+  --shadow-soft: var(--elevation-soft);
+  --shadow-lift: var(--elevation-lift);
+  /* Brand glow — primary CTAs, hero focal points */
+  --shadow-glow: var(--elevation-glow);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ==================================================================
+   BASE STYLES
+   ================================================================== */
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* CJK locales (§8): prepend the Noto CJK family, keep Latin fallbacks. */
+.font-cjk,
+.font-cjk :is(h1, h2, h3, h4) {
+  font-family:
+    var(--font-cjk), var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+}
+
+/*
+ * Heading defaults live in `@layer base` so `leading-*` (and other) utilities
+ * can override them. Unlayered rules beat Tailwind's utility layer, which
+ * previously pinned every heading to line-height 1.1 and silently ignored
+ * `leading-snug` etc. (e.g. cramped blog-card titles).
+ */
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
   }
 }
 
-body {
-  background: var(--background);
+/*
+ * Lenis smooth-scroll required styles (components/providers/smooth-scroll.tsx).
+ * Without these — especially `html.lenis body { height: auto }` overriding the
+ * `h-full` / `min-h-full` on <html>/<body> — real browsers can fail to scroll
+ * even though headless works. These ship with the `lenis` package; inlined
+ * here so the setup can't drift.
+ */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: clip;
+}
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* Visible focus for keyboard users (§6 a11y) */
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/*
+ * Pointer cursor on interactive controls. Tailwind v4 no longer applies this
+ * to buttons by default, so set it once here for the whole site rather than
+ * per component.
+ */
+button:not(:disabled),
+[role="button"]:not([aria-disabled="true"]),
+[role="switch"],
+[role="tab"],
+[role="menuitem"],
+summary,
+label:has(> input),
+select {
+  cursor: pointer;
+}
+
+button:disabled,
+[aria-disabled="true"] {
+  cursor: not-allowed;
+}
+
+/*
+ * Long-form CMS content (blog posts, docs). Scoped styles for the trusted
+ * HTML rendered from the CMS — headings, paragraphs, lists, links, code.
+ */
+.prose-pb {
+  color: var(--muted);
+  line-height: 1.75;
+}
+.prose-pb > * + * {
+  margin-top: 1.25em;
+}
+.prose-pb h2 {
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.25;
+  margin-top: 2em;
+  scroll-margin-top: 6rem;
+}
+.prose-pb h3 {
+  color: var(--foreground);
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-top: 1.5em;
+  scroll-margin-top: 6rem;
+}
+.prose-pb a {
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.prose-pb strong {
+  color: var(--foreground);
+  font-weight: 600;
+}
+.prose-pb ul,
+.prose-pb ol {
+  padding-left: 1.5em;
+}
+.prose-pb ul {
+  list-style: disc;
+}
+.prose-pb ol {
+  list-style: decimal;
+}
+.prose-pb li + li {
+  margin-top: 0.5em;
+}
+.prose-pb code {
+  background: var(--surface-subtle);
+  border-radius: 0.375rem;
+  padding: 0.15em 0.4em;
+  font-size: 0.9em;
+}
+.prose-pb blockquote {
+  border-left: 3px solid var(--primary);
+  padding-left: 1rem;
+  color: var(--foreground);
+  font-style: italic;
+}
+
+/* Tables (docs/PLAN.md §5.7c) — CMS tables have no <thead>/<th>; the first row
+   is the header. Wrapped in `.prose-table` (lib/blog/toc.ts) so wide tables
+   scroll horizontally on narrow screens instead of overflowing the page. */
+.prose-pb .prose-table {
+  overflow-x: auto;
+  margin-top: 1.5em;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  background: var(--surface);
+}
+.prose-pb table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  color: var(--foreground);
+}
+.prose-pb :is(td, th) {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--border);
+}
+.prose-pb tr:last-child :is(td, th) {
+  border-bottom: 0;
+}
+/* First row = header (bold cells): tint it and keep it readable. */
+.prose-pb thead td,
+.prose-pb thead th,
+.prose-pb tr:first-child td:has(strong),
+.prose-pb tr:first-child th {
+  background: var(--surface-subtle);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.prose-pb tbody tr:nth-child(even) td {
+  background: color-mix(in oklab, var(--surface-subtle) 45%, transparent);
+}
+
+/* Utility: the brand gradient as a background or text fill */
+@utility bg-brand-gradient {
+  background-image: var(--gradient-brand);
+}
+
+@utility text-brand-gradient {
+  background-image: var(--gradient-brand);
+  background-clip: text;
+  color: transparent;
+}
+
+@utility bg-warm-gradient {
+  background-image: var(--gradient-warm);
+}
+
+/*
+ * Soft brand-tinted "wash" background for section variety (like the Shopify
+ * listing banner). Low-alpha blue/cyan radial glows over the page background.
+ * In light mode it's an airy blue wash; in dark mode the same glows lift the
+ * surface off pure black so it no longer reads as flat/too-dark.
+ */
+@utility section-wash {
+  background-color: var(--background);
+  background-image:
+    radial-gradient(
+      44rem 30rem at 10% -2%,
+      color-mix(in oklab, var(--pb-blue-500) 15%, transparent),
+      transparent 60%
+    ),
+    radial-gradient(
+      40rem 26rem at 94% 6%,
+      color-mix(in oklab, var(--pb-cyan-400) 13%, transparent),
+      transparent 58%
+    ),
+    radial-gradient(
+      40rem 26rem at 60% 110%,
+      color-mix(in oklab, var(--pb-coral-500) 10%, transparent),
+      transparent 60%
+    );
+}
+.dark .section-wash {
+  /* Stronger aurora on dark so surfaces lift off the near-black background. */
+  background-image:
+    radial-gradient(
+      46rem 32rem at 8% -4%,
+      color-mix(in oklab, var(--pb-blue-500) 30%, transparent),
+      transparent 62%
+    ),
+    radial-gradient(
+      42rem 28rem at 96% 4%,
+      color-mix(in oklab, var(--pb-cyan-400) 20%, transparent),
+      transparent 60%
+    ),
+    radial-gradient(
+      42rem 28rem at 58% 112%,
+      color-mix(in oklab, var(--pb-coral-500) 22%, transparent),
+      transparent 62%
+    );
+}
+
+/* ==================================================================
+   FUTURISTIC SURFACE TREATMENTS — glass panels, glow, gradient hairline
+   ================================================================== */
+
+/*
+ * Glass panel — a translucent, blurred surface with a hairline top highlight.
+ * The base surface stays opaque enough that text contrast is deterministic
+ * (axe reads the declared colour, not the blur), while the blur + highlight
+ * read as "frosted glass". Used by the Card component.
+ */
+@utility glass {
+  background-color: color-mix(in oklab, var(--surface) 82%, transparent);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  backdrop-filter: blur(14px) saturate(1.4);
+}
+
+/* Brand glow shadow (pairs with primary CTAs / focal cards). */
+@utility glow {
+  box-shadow: var(--shadow-glow);
+}
+
+/*
+ * Gradient hairline border. A 1px brand-gradient frame via a masked overlay —
+ * gives cards/CTAs a lit edge without a heavy border. Add `.gradient-border`
+ * to a `position:relative` element.
+ */
+@utility gradient-border {
+  position: relative;
+}
+.gradient-border::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: var(--gradient-brand);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/*
+ * Ambient page backdrop — a fixed, low-alpha aurora painted over the body's
+ * base colour so the whole site sits in a subtle violet/cyan field (strongest
+ * in dark). `background-attachment: fixed` anchors it to the viewport. Default
+ * (transparent) sections let it show through; solid panels sit on top.
+ *
+ * Alpha is intentionally tiny, so text contrast is still governed by the solid
+ * `--background` beneath it (axe ignores background-image, so AA is unaffected).
+ */
+body {
+  background-image:
+    radial-gradient(
+      50rem 34rem at 0% 0%,
+      color-mix(in oklab, var(--pb-blue-500) 8%, transparent),
+      transparent 55%
+    ),
+    radial-gradient(
+      46rem 32rem at 100% 10%,
+      color-mix(in oklab, var(--pb-cyan-400) 7%, transparent),
+      transparent 55%
+    );
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+.dark body {
+  background-image:
+    radial-gradient(
+      54rem 38rem at -4% -6%,
+      color-mix(in oklab, var(--pb-blue-500) 18%, transparent),
+      transparent 55%
+    ),
+    radial-gradient(
+      50rem 34rem at 104% 6%,
+      color-mix(in oklab, var(--pb-cyan-400) 14%, transparent),
+      transparent 55%
+    ),
+    radial-gradient(
+      48rem 34rem at 50% 116%,
+      color-mix(in oklab, var(--pb-coral-500) 12%, transparent),
+      transparent 60%
+    );
+}
+
+/* ==================================================================
+   SCROLL REVEALS (see components/motion/animate-in.tsx)
+   Gated on `.js` so content is fully visible without JavaScript.
+   Only transform + opacity animate (§6 guardrail 2).
+   ================================================================== */
+.js .reveal[data-reveal]:not([data-revealed="true"]) {
+  opacity: 0;
+}
+.js .reveal[data-reveal="up"]:not([data-revealed="true"]) {
+  transform: translateY(1.5rem);
+}
+.js .reveal[data-reveal="down"]:not([data-revealed="true"]) {
+  transform: translateY(-1.5rem);
+}
+.js .reveal[data-reveal="left"]:not([data-revealed="true"]) {
+  transform: translateX(1.5rem);
+}
+.js .reveal[data-reveal="right"]:not([data-revealed="true"]) {
+  transform: translateX(-1.5rem);
+}
+.js .reveal {
+  transition:
+    opacity 0.5s ease-out,
+    transform 0.5s cubic-bezier(0.21, 0.47, 0.32, 0.98);
+}
+
+/* ==================================================================
+   REVIEWS MARQUEE (components/sections/reviews.tsx)
+   Smooth, continuous auto-scroll. Cards are duplicated once, so a -50%
+   translate loops seamlessly. Pauses on hover/focus so a card can be read +
+   zoomed; disabled (and made scrollable) under reduced-motion.
+   ================================================================== */
+@keyframes pb-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 6%,
+    #000 94%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 6%,
+    #000 94%,
+    transparent
+  );
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: pb-marquee 45s linear infinite;
+}
+.marquee:hover .marquee-track,
+.marquee:focus-within .marquee-track {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee {
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  .marquee-track {
+    animation-name: none;
+  }
+}
+
+/* ==================================================================
+   MOTION SAFETY (§6 guardrail 1) — honor prefers-reduced-motion
+   ================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
