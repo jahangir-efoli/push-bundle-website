@@ -19,29 +19,29 @@
    LAYER 1 — PRIMITIVES (raw brand palette; edit here to rebrand)
    ================================================================== */
 :root {
-  /* Brand ramp — ELECTRIC VIOLET → CYAN (futuristic, sleek dark-first).
-     NOTE: the legacy `blue-*` names now hold the VIOLET ramp so the handful of
-     components that reference primitives directly rebrand automatically. */
-  --pb-indigo-900: #190f45; /* deep violet — emphasis band bg (white text) */
-  --pb-indigo-700: #6d28d9; /* violet-700 — readable on white (AA) */
-  --pb-blue-600: #6d28d9; /* primary hover (light) */
-  --pb-blue-500: #7c3aed; /* primary (light) — white text ~5.3:1 (AA) */
-  /* Lighter violets — `primary` in dark mode (AA on the near-black bg). */
-  --pb-blue-300: #a78bfa; /* violet-400 */
-  --pb-blue-200: #c4b5fd; /* violet-300 — primary hover (dark) */
-  --pb-blue-50: #f2ecfe; /* violet-50 tint — primary-subtle (light) */
-  --pb-sky-400: #6366f1; /* indigo-500 — gradient mid + info */
-  --pb-cyan-400: #22d3ee; /* electric cyan — accent / gradient end */
+  /* Brand ramp — BLUE + CYAN, matched to the logo. Signature gradient is
+     cyan → teal → deep blue (#4DE8E9 → #50B2B3 → #1738B7). */
+  --pb-indigo-900: #0f1f66; /* deep blue — emphasis band bg (white text) */
+  --pb-indigo-700: #1738b7; /* deep blue — gradient end; readable on white (AA) */
+  --pb-blue-600: #1a44c4; /* primary hover (light) */
+  --pb-blue-500: #1e50e0; /* primary (light) — white text ~7:1 (AA) */
+  /* Lighter blues — `primary` in dark mode (AA on the near-black bg). */
+  --pb-blue-300: #6f9bff; /* primary (dark) */
+  --pb-blue-200: #9dbaff; /* primary hover (dark) */
+  --pb-blue-50: #e9eefe; /* pale blue tint — primary-subtle (light) */
+  --pb-sky-400: #2f6bd8; /* mid blue — info */
+  --pb-teal-500: #50b2b3; /* teal — gradient middle */
+  --pb-cyan-400: #4de8e9; /* bright cyan — accent / gradient start */
   --pb-cyan-600: #0e7490; /* cyan-700 — readable cyan text on light (AA) */
 
-  /* Magenta accent (tri-tone with violet+cyan) — energy highlights. The legacy
-     `coral-*` names now hold the FUCHSIA ramp. -700 reads on white (AA). */
-  --pb-coral-500: #d946ef; /* fuchsia-500 — fills */
-  --pb-coral-400: #e879f9; /* fuchsia-400 — readable on dark */
-  --pb-coral-100: #fae8ff; /* fuchsia tint — subtle bg */
-  --pb-coral-700: #a21caf; /* fuchsia-700 — readable on light (AA) */
+  /* Warm accent (coral) — complementary pop against the cool blue brand.
+     -700 reads on white (AA), -400 reads on dark surfaces. */
+  --pb-coral-500: #ff6b4a; /* coral — fills */
+  --pb-coral-400: #ff8a6b; /* coral — readable on dark */
+  --pb-coral-100: #ffe9e2; /* coral tint — subtle bg */
+  --pb-coral-700: #b23c0c; /* coral-700 — readable on light (AA) */
 
-  /* Neutrals — light (cool, slightly violet-tinted) */
+  /* Neutrals — light (cool) */
   --pb-ink-900: #0d1030;
   --pb-slate-500: #565d78;
   --pb-border-300: #e3e5f0;
@@ -111,12 +111,12 @@
   --error-foreground: var(--pb-error-800);
   --info-foreground: var(--pb-blue-600);
 
-  /* Signature brand gradient — electric violet → indigo → cyan (single source) */
+  /* Signature brand gradient — cyan → teal → deep blue (matches the logo) */
   --gradient-brand: linear-gradient(
     135deg,
-    var(--pb-blue-500) 0%,
-    var(--pb-sky-400) 48%,
-    var(--pb-cyan-400) 100%
+    var(--pb-cyan-400) 0%,
+    var(--pb-teal-500) 48%,
+    var(--pb-indigo-700) 100%
   );
 
   /* Elevation + glow (theme-aware; consumed by @theme below) */
