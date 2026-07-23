@@ -1,9 +1,16 @@
 import { Container } from "@/components/ui/container";
 import { buttonStyles } from "@/components/ui/button";
-import { BundleDemo } from "@/components/visuals/bundle-demo";
+import { HeroSlider } from "@/components/sections/hero-slider";
 import { site } from "@/lib/site-config";
 import { hero } from "@/lib/content/home";
 import type { AggregateRating } from "@/lib/cms";
+
+/** Feature previews shown in the hero slider (4:5, in public/images/features). */
+const HERO_SLIDES = [
+  { src: "/images/features/feature-1.png", alt: "PushBundle bundle builder preview" },
+  { src: "/images/features/feature-2.png", alt: "PushBundle bundle builder preview" },
+  { src: "/images/features/feature-3.png", alt: "PushBundle bundle builder preview" },
+];
 
 /**
  * Hero (docs/PLAN.md §5.1 §2) — the LCP section.
@@ -124,14 +131,10 @@ export function Hero({ rating }: { rating: AggregateRating }) {
           </div>
         </div>
 
-        {/* Live Build-a-Box demo — loops add-variant → add-to-cart */}
+        {/* Feature preview slider (public/images/features) */}
         <div className="relative mx-auto w-full max-w-sm lg:ml-auto lg:max-w-md">
-          {/*
-            No floating stat chip here: it covered the demo's "Choose a pack"
-            row, and the figure was illustrative rather than measured.
-          */}
           <div className="rounded-[1.25rem] bg-brand-gradient p-1.5 shadow-lift">
-            <BundleDemo />
+            <HeroSlider slides={HERO_SLIDES} />
           </div>
         </div>
       </Container>

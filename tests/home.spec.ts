@@ -250,19 +250,21 @@ test("View Demo opens the live storefront in a new tab", async ({ page }) => {
   await expect(demo).toHaveAttribute("rel", /noopener/);
 });
 
-test("hero bundle demo loops through the full build-a-box flow", async ({
+test("hero slider shows the feature previews and dots switch slides", async ({
   page,
 }) => {
   await page.goto("/");
 
-  const panel = page.locator("main").getByText("Selected Products").locator("..");
+  const carousel = page.getByRole("group", {
+    name: "PushBundle feature previews",
+  });
+  await expect(carousel).toBeVisible();
+  await expect(carousel.locator("img")).toHaveCount(3);
 
-  // Pack size and completion must agree: a Pack of 3 checks out at 3 items.
-  await expect(panel).toContainText("/3");
+  const dots = carousel.getByRole("button", { name: /Show slide/ });
+  await expect(dots).toHaveCount(3);
 
-  // Wait for the loop to reach a full pack, then the added state.
-  await expect(panel).toContainText("3/3", { timeout: 8000 });
-  // Scoped to the panel — "Save $12" also appears on the pack chip.
-  await expect(panel.getByText("Save $12")).toBeVisible();
-  await expect(page.getByText(/Added to cart/)).toBeVisible({ timeout: 8000 });
+  // Clicking a dot makes that slide the current one.
+  await dots.nth(2).click();
+  await expect(dots.nth(2)).toHaveAttribute("aria-current", "true");
 });
