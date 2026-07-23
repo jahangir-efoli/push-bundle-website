@@ -6,6 +6,7 @@ import { Eyebrow } from "@/components/ui/eyebrow";
 import { Icon, IconTile, type IconName } from "@/components/ui/icon";
 import { buttonStyles } from "@/components/ui/button";
 import { VolumeBundleDemo } from "@/components/demos/volume-bundle-demo";
+import { MixMatchSingleDemo } from "@/components/demos/mix-match-single-demo";
 import { site } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 import { showcase } from "@/lib/content/showcase";
@@ -13,6 +14,7 @@ import { showcase } from "@/lib/content/showcase";
 /** Interactive demos keyed by feature id (others show a placeholder for now). */
 const DEMOS: Record<string, React.ComponentType> = {
   volume: VolumeBundleDemo,
+  "mix-single": MixMatchSingleDemo,
 };
 
 /**
@@ -134,7 +136,7 @@ export function FeatureShowcase() {
               // Lenis hijacking the wheel for the whole page.
               <div
                 data-lenis-prevent
-                className="scrollbar-brand max-h-[32rem] overflow-y-auto p-4 sm:p-5"
+                className="scrollbar-brand max-h-128 overflow-y-auto p-4 sm:p-5"
               >
                 <Demo />
               </div>
