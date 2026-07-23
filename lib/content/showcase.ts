@@ -29,9 +29,9 @@ export const showcase = {
       icon: "gauge",
       title: "Volume Bundle",
       description:
-        "Craft a personalized bundle by selecting favorite products, variants, and quantities — and reward bigger carts with tiered volume discounts that lift AOV automatically.",
+        "Reward shoppers for buying more. Offer tiered quantity discounts — the bigger the pack, the bigger the % off — and let customers fill the pack with any mix of variants.",
       howItWorks:
-        "Set quantity tiers (e.g. buy 2 / 4 / 8) with a discount for each, and shoppers see the savings update as they add more.",
+        "Set tiers like Buy 5 / 10 / 15, each with its own discount. The shopper picks a tier, chooses variants to fill the pack, and the total + savings update live before adding to cart.",
       cta: "Create Volume Bundle",
     },
     {

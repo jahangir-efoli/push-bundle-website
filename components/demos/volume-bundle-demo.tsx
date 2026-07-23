@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { buttonStyles } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -57,7 +57,8 @@ export function VolumeBundleDemo({
   const [items, setItems] = useState<Array<{ variant: string; qty: number }>>(
     [],
   );
-  const [added, setAdded] = useState(false);
+  const [notice, setNotice] = useState<string | null>(null);
+  const noticeTimer = useRef<number | undefined>(undefined);
 
   const tier = tiers[selected];
   const target = tier.qty;
@@ -71,12 +72,10 @@ export function VolumeBundleDemo({
   const selectTier = (i: number) => {
     setSelected(i);
     setItems([]);
-    setAdded(false);
   };
 
   const addVariant = (v: string) => {
     if (!v || full) return;
-    setAdded(false);
     setItems((prev) => {
       const idx = prev.findIndex((it) => it.variant === v);
       if (idx >= 0) {
@@ -89,7 +88,6 @@ export function VolumeBundleDemo({
   };
 
   const changeQty = (i: number, delta: number) => {
-    setAdded(false);
     setItems((prev) => {
       const next = [...prev];
       const others = next.reduce((s, it, idx) => (idx === i ? s : s + it.qty), 0);
@@ -104,9 +102,19 @@ export function VolumeBundleDemo({
   };
 
   const remove = (i: number) => {
-    setAdded(false);
     setItems((prev) => prev.filter((_, idx) => idx !== i));
   };
+
+  const addToCart = () => {
+    if (!full) return;
+    setNotice(`Added ${target} × ${productName} to cart · ${usd(price(tier))}`);
+    setItems([]); // reset so the pack can be built again
+    window.clearTimeout(noticeTimer.current);
+    noticeTimer.current = window.setTimeout(() => setNotice(null), 2800);
+  };
+
+  // Clear the auto-dismiss timer on unmount.
+  useEffect(() => () => window.clearTimeout(noticeTimer.current), []);
 
   return (
     <div className={cn("w-full text-foreground", className)}>
@@ -126,8 +134,8 @@ export function VolumeBundleDemo({
           anywhere without disturbing the page's heading outline. */}
       <p className="mt-5 font-display text-base font-bold">{heading}</p>
 
-      {/* Tiers */}
-      <div className="mt-3 space-y-2.5">
+      {/* Tiers (space-y-4 leaves room for the "Most popular" badge overhang) */}
+      <div className="mt-3 space-y-4">
         {tiers.map((t, i) => {
           const isSel = i === selected;
           const popular = t.qty === popularQty;
@@ -182,22 +190,37 @@ export function VolumeBundleDemo({
                   <label className="sr-only" htmlFor={`vb-select-${t.qty}`}>
                     Select options
                   </label>
-                  <select
-                    id={`vb-select-${t.qty}`}
-                    value=""
-                    onChange={(e) => addVariant(e.target.value)}
-                    disabled={full}
-                    className="h-11 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus-visible:border-primary disabled:opacity-60"
-                  >
-                    <option value="" disabled>
-                      {full ? "Pack complete" : "Select options"}
-                    </option>
-                    {variants.map((v) => (
-                      <option key={v} value={v}>
-                        {v}
+                  <div className="relative">
+                    <select
+                      id={`vb-select-${t.qty}`}
+                      value=""
+                      onChange={(e) => addVariant(e.target.value)}
+                      disabled={full}
+                      className="h-11 w-full appearance-none rounded-lg border border-border bg-surface pl-3 pr-10 text-sm text-foreground focus-visible:border-primary disabled:opacity-60"
+                    >
+                      <option value="" disabled>
+                        {full ? "Pack complete" : "Select options"}
                       </option>
-                    ))}
-                  </select>
+                      {variants.map((v) => (
+                        <option key={v} value={v}>
+                          {v}
+                        </option>
+                      ))}
+                    </select>
+                    {/* Custom chevron — the native one ignores padding-right. */}
+                    <svg
+                      aria-hidden="true"
+                      viewBox="0 0 24 24"
+                      className="pointer-events-none absolute right-3 top-1/2 size-4 -translate-y-1/2 text-muted"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
+                  </div>
 
                   {items.length > 0 && (
                     <ul className="mt-3 space-y-2">
@@ -275,18 +298,29 @@ export function VolumeBundleDemo({
         })}
       </div>
 
+      {/* Success notification — auto-dismisses; the pack resets on add. */}
+      {notice && (
+        <div
+          role="status"
+          className="mt-4 flex items-center gap-2 rounded-lg border border-success/30 bg-success/10 px-3 py-2.5 text-sm font-medium text-success-foreground"
+        >
+          <svg viewBox="0 0 24 24" className="size-4 shrink-0" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="m5 13 4 4L19 7" />
+          </svg>
+          {notice}
+        </div>
+      )}
+
       {/* Add to cart */}
       <button
         type="button"
-        onClick={() => full && setAdded(true)}
+        onClick={addToCart}
         disabled={!full}
         className={cn(buttonStyles({ variant: "gradient" }), "mt-4 w-full")}
       >
-        {added
-          ? "Added to cart ✓"
-          : full
-            ? `Add to cart — ${usd(price(tier))}`
-            : `Add ${remaining} more item${remaining === 1 ? "" : "s"}`}
+        {full
+          ? `Add to cart — ${usd(price(tier))}`
+          : `Add ${remaining} more item${remaining === 1 ? "" : "s"}`}
       </button>
     </div>
   );
