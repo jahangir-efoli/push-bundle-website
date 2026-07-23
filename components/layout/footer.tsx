@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
 import { site, socialLinks, whenlabApps } from "@/lib/site-config";
@@ -40,7 +41,16 @@ export function Footer({
       <Container className="py-16">
         <div className="grid gap-12 lg:grid-cols-[1.5fr_1fr_1fr_1.5fr]">
           <div>
-            <p className="font-display text-xl font-extrabold">PushBundle</p>
+            <p className="flex items-center gap-2 font-display text-xl font-extrabold">
+              <Image
+                src="/images/pb-logo.webp"
+                alt=""
+                width={32}
+                height={32}
+                className="size-8 rounded-lg"
+              />
+              PushBundle
+            </p>
             <p className="mt-4 max-w-xs text-sm opacity-70">{site.tagline}</p>
             <p className="mt-6 text-sm opacity-70">
               <a href={`mailto:${site.email}`} className="underline">

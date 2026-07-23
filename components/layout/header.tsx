@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Container } from "@/components/ui/container";
 import { Dropdown } from "@/components/ui/dropdown";
@@ -76,9 +77,19 @@ export function Header({
       <Container className="flex h-20 items-center gap-4">
         <Link
           href={homeHref}
-          className="font-display text-xl font-extrabold tracking-tight text-foreground"
+          className="flex items-center gap-2 font-display text-xl font-extrabold tracking-tight text-foreground"
         >
-          Push<span className="text-brand-gradient">Bundle</span>
+          <Image
+            src="/images/pb-logo.webp"
+            alt=""
+            width={32}
+            height={32}
+            priority
+            className="size-8 rounded-lg"
+          />
+          <span>
+            Push<span className="text-brand-gradient">Bundle</span>
+          </span>
         </Link>
 
         <nav aria-label="Main" className="ml-4 hidden items-center gap-1 lg:flex">
