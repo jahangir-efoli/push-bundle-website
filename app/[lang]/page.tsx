@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { cms, DEFAULT_LOCALE } from "@/lib/cms";
 import { Hero } from "@/components/sections/hero";
+import { FeatureShowcase } from "@/components/sections/feature-showcase";
 import { FeatureTrio } from "@/components/sections/feature-trio";
 import { BiggerOrders } from "@/components/sections/bigger-orders";
 import { StorefrontPersonalization } from "@/components/sections/storefront-personalization";
@@ -46,6 +47,7 @@ export default async function Home() {
       <JsonLd data={faqPageLd(faqItems)} />
 
       <Hero rating={rating} />
+      <FeatureShowcase />
       <FeatureTrio />
       <BiggerOrders />
       <StorefrontPersonalization />
