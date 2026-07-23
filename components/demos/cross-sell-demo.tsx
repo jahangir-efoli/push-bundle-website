@@ -39,7 +39,7 @@ const DEFAULT_PRODUCTS: CrossProduct[] = [
 export function CrossSellDemo({
   products = DEFAULT_PRODUCTS,
   discount = 15,
-  heading = "Frequently bought together",
+  heading = "Complete the set",
   className,
 }: {
   products?: CrossProduct[];
