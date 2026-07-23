@@ -7,6 +7,7 @@ import { Icon, IconTile, type IconName } from "@/components/ui/icon";
 import { buttonStyles } from "@/components/ui/button";
 import { VolumeBundleDemo } from "@/components/demos/volume-bundle-demo";
 import { MixMatchSingleDemo } from "@/components/demos/mix-match-single-demo";
+import { CrossSellDemo } from "@/components/demos/cross-sell-demo";
 import { site } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 import { showcase } from "@/lib/content/showcase";
@@ -14,6 +15,7 @@ import { showcase } from "@/lib/content/showcase";
 /** Interactive demos keyed by feature id (others show a placeholder for now). */
 const DEMOS: Record<string, React.ComponentType> = {
   volume: VolumeBundleDemo,
+  "cross-sell": CrossSellDemo,
   "mix-single": MixMatchSingleDemo,
 };
 
