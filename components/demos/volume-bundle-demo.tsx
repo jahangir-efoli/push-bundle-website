@@ -122,7 +122,9 @@ export function VolumeBundleDemo({
         </div>
       </div>
 
-      <h4 className="mt-5 font-display text-base font-bold">{heading}</h4>
+      {/* A widget label, not a document heading — keeps the demo embeddable
+          anywhere without disturbing the page's heading outline. */}
+      <p className="mt-5 font-display text-base font-bold">{heading}</p>
 
       {/* Tiers */}
       <div className="mt-3 space-y-2.5">
