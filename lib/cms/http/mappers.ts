@@ -1,4 +1,4 @@
-import DOMPurify from "isomorphic-dompurify";
+import sanitizeHtmlLib from "sanitize-html";
 import type {
   ChangelogCategory,
   ChangelogEntry,
@@ -16,9 +16,41 @@ import type {
  * The API's `content` HTML was migrated from previously-compromised WordPress
  * sites — sanitise before it reaches a page (the brief requires this).
  */
+/**
+ * Sanitize trusted-but-migrated CMS HTML. Uses `sanitize-html` (pure JS) rather
+ * than DOMPurify/jsdom, which fails to run in Vercel's serverless runtime and
+ * 500'd the blog/docs single pages. Preserves what our article rendering needs:
+ * heading `id`s + `#` anchors (the Table of Contents), tables, lists, nav,
+ * images, and inline formatting. Scripts/styles and their contents are dropped.
+ */
+const SANITIZE_OPTIONS: sanitizeHtmlLib.IOptions = {
+  allowedTags: [
+    "h1", "h2", "h3", "h4", "h5", "h6",
+    "p", "a", "ul", "ol", "li", "nav", "blockquote",
+    "b", "i", "strong", "em", "u", "s", "code", "pre", "kbd", "mark",
+    "small", "sub", "sup", "abbr",
+    "span", "div", "br", "hr", "figure", "figcaption",
+    "table", "thead", "tbody", "tfoot", "tr", "td", "th", "caption",
+    "colgroup", "col",
+    "img", "picture", "source",
+  ],
+  allowedAttributes: {
+    "*": ["id", "class"],
+    a: ["href", "name", "target", "rel", "title"],
+    img: ["src", "alt", "title", "width", "height", "loading", "srcset", "sizes"],
+    source: ["src", "srcset", "type", "media", "sizes"],
+    td: ["colspan", "rowspan"],
+    th: ["colspan", "rowspan", "scope"],
+    col: ["span"],
+  },
+  // `#anchor` and relative hrefs have no scheme and are kept automatically.
+  allowedSchemes: ["http", "https", "mailto", "tel"],
+  allowProtocolRelative: false,
+};
+
 export function sanitizeHtml(html: string | undefined | null): string {
   if (!html) return "";
-  return DOMPurify.sanitize(html, { USE_PROFILES: { html: true } });
+  return sanitizeHtmlLib(html, SANITIZE_OPTIONS);
 }
 
 /**

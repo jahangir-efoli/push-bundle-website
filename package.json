@@ -12,12 +12,12 @@
     "test:ui": "playwright test --ui"
   },
   "dependencies": {
-    "isomorphic-dompurify": "^3.19.0",
     "lenis": "^1.3.25",
     "motion": "^12.42.2",
     "next": "16.2.10",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "sanitize-html": "^2.17.6"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.12.1",
@@ -26,6 +26,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/sanitize-html": "^2.16.1",
     "eslint": "^9",
     "eslint-config-next": "16.2.10",
     "tailwindcss": "^4",
