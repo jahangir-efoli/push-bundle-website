@@ -64,15 +64,16 @@ export function Header({
     bare === "/" ? barePath === "/" : barePath.startsWith(bare);
 
   return (
-    <header
-      className={cn(
-        // Only paint properties transition — the header height stays constant
-        // (animating it shifted the document and caused a scroll shake).
-        "sticky top-0 z-40 border-b transition-[background-color,border-color,box-shadow] duration-200",
-        scrolled
-          ? "border-border bg-background/85 shadow-soft backdrop-blur-md"
-          : "border-transparent bg-background",
-      )}
+    <>
+      <header
+        className={cn(
+          // Only paint properties transition — the header height stays constant
+          // (animating it shifted the document and caused a scroll shake).
+          "sticky top-0 z-40 border-b transition-[background-color,border-color,box-shadow] duration-200",
+          scrolled
+            ? "border-border bg-background/85 shadow-soft backdrop-blur-md"
+            : "border-transparent bg-background",
+        )}
     >
       <Container className="flex h-20 items-center gap-4">
         <Link
@@ -157,8 +158,13 @@ export function Header({
             </svg>
           </button>
         </div>
-      </Container>
+        </Container>
+      </header>
 
+      {/* Rendered OUTSIDE <header>: the header's `backdrop-filter` (when
+          scrolled) would otherwise become the containing block for this
+          `position: fixed` drawer, pinning it to the header instead of the
+          viewport — so it only opened at the very top of the page. */}
       <MobileNav
         open={menuOpen}
         onClose={() => setMenuOpen(false)}
@@ -166,6 +172,6 @@ export function Header({
         locale={locale}
         dict={dict}
       />
-    </header>
+    </>
   );
 }
