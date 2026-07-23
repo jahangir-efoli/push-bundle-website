@@ -33,6 +33,7 @@ test("all marketing sections are present in order", async ({ page }) => {
 
   const headings = await page.locator("main h2").allTextContents();
   const expected = [
+    "Your all-in-one bundle builder",
     "A complete bundling toolkit",
     "Bigger Orders with Smart Bundling",
     "Next-Level Bundling",
