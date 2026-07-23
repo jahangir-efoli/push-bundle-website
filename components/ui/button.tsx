@@ -50,7 +50,7 @@ export function buttonStyles({
   className?: string;
 } = {}) {
   return cn(
-    "inline-flex items-center justify-center gap-2 rounded-lg font-semibold",
+    "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg font-semibold",
     "transition-[background-color,transform,box-shadow] duration-200",
     "disabled:pointer-events-none disabled:border disabled:border-border",
     "disabled:bg-transparent disabled:text-muted disabled:shadow-none",

@@ -92,14 +92,14 @@ export function Header({
           </span>
         </Link>
 
-        <nav aria-label="Main" className="ml-4 hidden items-center gap-1 lg:flex">
+        <nav aria-label="Main" className="ml-4 hidden items-center gap-1 xl:flex">
           {mainNav.map((item) => (
             <Link
               key={item.href}
               href={item.href}
               aria-current={isActive(item.bare) ? "page" : undefined}
               className={cn(
-                "flex h-11 items-center rounded-lg px-3 font-medium transition-colors",
+                "flex h-11 shrink-0 items-center whitespace-nowrap rounded-lg px-3 font-medium transition-colors",
                 isActive(item.bare)
                   ? "text-primary"
                   : "text-foreground hover:bg-surface-subtle",
@@ -120,7 +120,7 @@ export function Header({
         </nav>
 
         <div className="ml-auto flex items-center gap-2">
-          <span className="hidden lg:block">
+          <span className="hidden xl:block">
             <LocaleSwitcher current={locale} label={dict.langSwitcher.label} />
           </span>
           <ThemeToggle />
@@ -142,7 +142,7 @@ export function Header({
             onClick={() => setMenuOpen(true)}
             aria-label={dict.common.openMenu}
             aria-expanded={menuOpen}
-            className="grid size-11 place-items-center rounded-lg text-foreground transition-colors hover:bg-surface-subtle lg:hidden"
+            className="grid size-11 place-items-center rounded-lg text-foreground transition-colors hover:bg-surface-subtle xl:hidden"
           >
             <svg
               aria-hidden="true"

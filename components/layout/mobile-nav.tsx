@@ -98,7 +98,7 @@ export function MobileNav({
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-50 md:hidden">
+    <div className="fixed inset-0 z-50 xl:hidden">
       <div
         className="absolute inset-0 bg-black/40"
         onClick={onClose}
