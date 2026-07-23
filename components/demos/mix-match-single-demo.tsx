@@ -154,8 +154,8 @@ export function MixMatchSingleDemo({
           const qty = picks[v.name] ?? 0;
           return (
             <div key={v.name} className="rounded-lg border border-border p-2.5">
-              <span className="grid aspect-5/4 w-full place-items-center rounded-md bg-surface-subtle ring-1 ring-black/5">
-                <ColorTee color={v.color} />
+              <span className="grid h-20 w-full place-items-center rounded-md bg-surface-subtle ring-1 ring-black/5">
+                <ColorTee color={v.color} className="size-12" />
               </span>
               <p className="mt-2 truncate text-sm font-semibold">
                 {v.name} {productName}
