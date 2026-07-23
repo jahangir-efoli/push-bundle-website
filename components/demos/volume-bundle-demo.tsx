@@ -40,6 +40,7 @@ export function VolumeBundleDemo({
   ],
   popularQty = 10,
   heading = "Save more on bulk purchases",
+  icon,
   className,
 }: {
   productName?: string;
@@ -48,6 +49,8 @@ export function VolumeBundleDemo({
   variants?: string[];
   popularQty?: number;
   heading?: string;
+  /** Product thumbnail — a custom node/image; defaults to a t-shirt icon. */
+  icon?: React.ReactNode;
   className?: string;
 }) {
   const [selected, setSelected] = useState(() => {
@@ -122,8 +125,22 @@ export function VolumeBundleDemo({
       <div className="flex items-center gap-3">
         <span
           aria-hidden="true"
-          className="size-12 shrink-0 rounded-lg bg-brand-gradient shadow-soft"
-        />
+          className="grid size-12 shrink-0 place-items-center rounded-lg bg-brand-gradient text-white shadow-soft"
+        >
+          {icon ?? (
+            <svg
+              viewBox="0 0 24 24"
+              className="size-6"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.75"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23Z" />
+            </svg>
+          )}
+        </span>
         <div className="min-w-0">
           <p className="truncate font-semibold">{productName}</p>
           <p className="text-sm text-muted">{usd(basePrice)} / item</p>
