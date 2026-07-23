@@ -5,9 +5,15 @@ import { Section } from "@/components/ui/section";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { Icon, IconTile, type IconName } from "@/components/ui/icon";
 import { buttonStyles } from "@/components/ui/button";
+import { VolumeBundleDemo } from "@/components/demos/volume-bundle-demo";
 import { site } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 import { showcase } from "@/lib/content/showcase";
+
+/** Interactive demos keyed by feature id (others show a placeholder for now). */
+const DEMOS: Record<string, React.ComponentType> = {
+  volume: VolumeBundleDemo,
+};
 
 /**
  * Interactive feature showcase (docs/PLAN.md §5.1) — a WAI-ARIA tabbed section
@@ -21,6 +27,7 @@ export function FeatureShowcase() {
   const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const features = showcase.features;
   const feature = features[active];
+  const Demo = DEMOS[feature.id];
 
   const focusTab = (index: number) => {
     const next = (index + features.length) % features.length;
@@ -121,26 +128,34 @@ export function FeatureShowcase() {
               </span>
             </div>
 
-            {/* Body placeholder */}
-            <div className="relative flex aspect-[16/10] flex-col items-center justify-center gap-5 overflow-hidden p-8 text-center">
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-0 opacity-[0.5]"
-                style={{
-                  backgroundImage:
-                    "linear-gradient(color-mix(in oklab, var(--foreground) 6%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in oklab, var(--foreground) 6%, transparent) 1px, transparent 1px)",
-                  backgroundSize: "30px 30px",
-                }}
-              />
-              <div className="relative flex flex-col items-center gap-5">
-                <IconTile name={feature.icon as IconName} className="size-16" />
-                <p className="font-display text-xl font-bold">{feature.title}</p>
-                <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 text-xs font-semibold text-muted">
-                  <span className="size-1.5 animate-pulse rounded-full bg-primary" />
-                  Interactive preview
-                </span>
+            {/* Body — interactive demo when available, else a placeholder. */}
+            {Demo ? (
+              <div className="max-h-[32rem] overflow-y-auto p-4 sm:p-5">
+                <Demo />
               </div>
-            </div>
+            ) : (
+              <div className="relative flex aspect-16/10 flex-col items-center justify-center gap-5 overflow-hidden p-8 text-center">
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0 opacity-[0.5]"
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(color-mix(in oklab, var(--foreground) 6%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in oklab, var(--foreground) 6%, transparent) 1px, transparent 1px)",
+                    backgroundSize: "30px 30px",
+                  }}
+                />
+                <div className="relative flex flex-col items-center gap-5">
+                  <IconTile name={feature.icon as IconName} className="size-16" />
+                  <p className="font-display text-xl font-bold">
+                    {feature.title}
+                  </p>
+                  <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 text-xs font-semibold text-muted">
+                    <span className="size-1.5 animate-pulse rounded-full bg-primary" />
+                    Interactive preview
+                  </span>
+                </div>
+              </div>
+            )}
           </div>
         </div>
 
