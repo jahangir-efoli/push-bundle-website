@@ -459,6 +459,26 @@ button:disabled,
   background-image: var(--gradient-button);
 }
 
+/* Brand-gradient scrollbar for in-page scroll containers (e.g. demo windows).
+   Pair with `data-lenis-prevent` so Lenis lets the container scroll natively. */
+.scrollbar-brand {
+  scrollbar-width: thin;
+  scrollbar-color: var(--pb-teal-500) transparent; /* Firefox (no gradient) */
+}
+.scrollbar-brand::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+.scrollbar-brand::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollbar-brand::-webkit-scrollbar-thumb {
+  background-image: var(--gradient-brand);
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
 @utility text-brand-gradient {
   background-image: var(--gradient-brand);
   background-clip: text;

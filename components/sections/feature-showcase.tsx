@@ -130,7 +130,12 @@ export function FeatureShowcase() {
 
             {/* Body — interactive demo when available, else a placeholder. */}
             {Demo ? (
-              <div className="max-h-[32rem] overflow-y-auto p-4 sm:p-5">
+              // data-lenis-prevent: let this box scroll natively instead of
+              // Lenis hijacking the wheel for the whole page.
+              <div
+                data-lenis-prevent
+                className="scrollbar-brand max-h-[32rem] overflow-y-auto p-4 sm:p-5"
+              >
                 <Demo />
               </div>
             ) : (
