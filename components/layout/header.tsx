@@ -85,7 +85,7 @@ export function Header({
             width={32}
             height={32}
             priority
-            className="size-8 rounded-lg"
+            className="size-8 rounded-md"
           />
           <span>
             Push<span className="text-brand-gradient">Bundle</span>

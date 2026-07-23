@@ -47,7 +47,7 @@ export function Footer({
                 alt=""
                 width={32}
                 height={32}
-                className="size-8 rounded-lg"
+                className="size-8 rounded-md"
               />
               PushBundle
             </p>
