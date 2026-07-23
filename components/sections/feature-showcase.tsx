@@ -3,7 +3,7 @@
 import { useId, useRef, useState } from "react";
 import { Section } from "@/components/ui/section";
 import { Eyebrow } from "@/components/ui/eyebrow";
-import { IconTile, type IconName } from "@/components/ui/icon";
+import { Icon, IconTile, type IconName } from "@/components/ui/icon";
 import { buttonStyles } from "@/components/ui/button";
 import { site } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
@@ -11,9 +11,9 @@ import { showcase } from "@/lib/content/showcase";
 
 /**
  * Interactive feature showcase (docs/PLAN.md §5.1) — a WAI-ARIA tabbed section
- * below the hero. Tab pills switch the panel; the LEFT panel is a placeholder
- * that each feature's live, interactive preview will replace later. Roving
- * tabindex + Arrow/Home/End keyboard nav.
+ * below the hero. Icon tab pills switch the panel; the LEFT panel is a large
+ * app-window placeholder that each feature's live interactive preview replaces
+ * later. Roving tabindex + Arrow/Home/End keyboard nav.
  */
 export function FeatureShowcase() {
   const baseId = useId();
@@ -57,12 +57,12 @@ export function FeatureShowcase() {
         <p className="mt-4 text-lg text-muted">{showcase.subtitle}</p>
       </div>
 
-      {/* Tabs */}
+      {/* Tabs — icon pills */}
       <div
         role="tablist"
         aria-label="Bundle types"
         onKeyDown={onKeyDown}
-        className="mt-10 flex flex-wrap justify-center gap-2"
+        className="mt-10 flex flex-wrap justify-center gap-2.5"
       >
         {features.map((f, i) => {
           const selected = i === active;
@@ -80,67 +80,88 @@ export function FeatureShowcase() {
               tabIndex={selected ? 0 : -1}
               onClick={() => setActive(i)}
               className={cn(
-                "flex h-10 items-center rounded-full border px-4 text-sm font-semibold transition-colors",
+                "flex items-center gap-2 rounded-full border px-4 py-2.5 text-sm font-semibold transition-[color,background-color,border-color,box-shadow,transform] duration-200",
                 selected
-                  ? "border-primary bg-primary text-primary-foreground shadow-glow"
-                  : "border-border text-muted hover:border-foreground/30 hover:text-foreground",
+                  ? "-translate-y-px border-transparent bg-primary text-primary-foreground shadow-glow"
+                  : "border-border bg-surface text-muted hover:border-primary/40 hover:text-foreground hover:shadow-soft",
               )}
             >
+              <Icon
+                name={f.icon as IconName}
+                className={cn(
+                  "size-4 shrink-0",
+                  selected ? "text-primary-foreground" : "text-primary",
+                )}
+              />
               {f.tab}
             </button>
           );
         })}
       </div>
 
-      {/* Panel */}
+      {/* Panel — preview is the star; copy is the supporting column. */}
       <div
         id={`${baseId}-panel`}
         role="tabpanel"
         aria-labelledby={`${baseId}-tab-${active}`}
-        className="mt-10 grid items-center gap-8 lg:grid-cols-2 lg:gap-14"
+        className="mt-12 grid items-center gap-8 lg:grid-cols-[1.6fr_1fr] lg:gap-12"
       >
-        {/* LEFT — live interactive preview goes here (built per feature later). */}
-        <div className="relative overflow-hidden rounded-2xl bg-brand-gradient p-1.5 shadow-lift">
-          <div className="relative flex aspect-[4/3] flex-col items-center justify-center gap-4 overflow-hidden rounded-[0.85rem] bg-surface p-8 text-center">
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-0 opacity-[0.5]"
-              style={{
-                backgroundImage:
-                  "linear-gradient(color-mix(in oklab, var(--foreground) 6%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in oklab, var(--foreground) 6%, transparent) 1px, transparent 1px)",
-                backgroundSize: "28px 28px",
-              }}
-            />
-            <div className="relative flex flex-col items-center gap-4">
-              <IconTile name={feature.icon as IconName} className="size-14" />
-              <p className="font-display text-lg font-bold">{feature.title}</p>
-              <span className="rounded-full border border-border bg-surface px-3 py-1 text-xs font-semibold text-muted">
-                Interactive preview
+        {/* LEFT — large app-window placeholder (live preview goes here later). */}
+        <div className="rounded-2xl bg-brand-gradient p-1.5 shadow-lift">
+          <div className="overflow-hidden rounded-[0.9rem] bg-surface">
+            {/* Faux app chrome */}
+            <div className="flex items-center gap-2 border-b border-border px-4 py-3">
+              <span className="flex gap-1.5" aria-hidden="true">
+                <span className="size-2.5 rounded-full bg-warm/70" />
+                <span className="size-2.5 rounded-full bg-warning/70" />
+                <span className="size-2.5 rounded-full bg-success/70" />
               </span>
+              <span className="ml-2 truncate text-xs text-muted">
+                {feature.title} — live preview
+              </span>
+            </div>
+
+            {/* Body placeholder */}
+            <div className="relative flex aspect-[16/10] flex-col items-center justify-center gap-5 overflow-hidden p-8 text-center">
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 opacity-[0.5]"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(color-mix(in oklab, var(--foreground) 6%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in oklab, var(--foreground) 6%, transparent) 1px, transparent 1px)",
+                  backgroundSize: "30px 30px",
+                }}
+              />
+              <div className="relative flex flex-col items-center gap-5">
+                <IconTile name={feature.icon as IconName} className="size-16" />
+                <p className="font-display text-xl font-bold">{feature.title}</p>
+                <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 text-xs font-semibold text-muted">
+                  <span className="size-1.5 animate-pulse rounded-full bg-primary" />
+                  Interactive preview
+                </span>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* RIGHT — feature copy */}
+        {/* RIGHT — compact feature copy */}
         <div>
-          <div className="flex items-center gap-3">
-            <IconTile name={feature.icon as IconName} className="size-11" />
-            <p className="text-sm font-semibold uppercase tracking-wide text-accent-foreground">
-              {feature.tab}
-            </p>
-          </div>
+          <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 text-xs font-semibold uppercase tracking-wide text-accent-foreground">
+            <Icon name={feature.icon as IconName} className="size-4" />
+            {feature.tab}
+          </span>
           <h3 className="mt-4 text-display-sm text-balance">{feature.title}</h3>
-          <p className="mt-4 text-lg text-muted">{feature.description}</p>
+          <p className="mt-3 text-muted">{feature.description}</p>
 
-          <div className="mt-6 rounded-xl border border-border bg-surface-subtle p-5">
+          <div className="mt-5 rounded-xl border border-border bg-surface-subtle p-4">
             <p className="text-sm font-semibold text-foreground">How it works</p>
-            <p className="mt-2 text-muted">{feature.howItWorks}</p>
+            <p className="mt-1 text-sm text-muted">{feature.howItWorks}</p>
           </div>
 
-          <div className="mt-8">
+          <div className="mt-6">
             <a
               href={site.shopifyAppUrl}
-              className={buttonStyles({ variant: "gradient", size: "lg" })}
+              className={buttonStyles({ variant: "gradient" })}
             >
               {feature.cta}
             </a>
