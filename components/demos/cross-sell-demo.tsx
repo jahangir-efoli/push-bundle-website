@@ -6,17 +6,20 @@ import { cn } from "@/lib/utils";
 
 /**
  * Cross-Sell / "frequently bought together" interactive demo — models the live
- * PushBundle widget: a curated set of complementary products, each with a
- * variant + quantity, joined by "+", with a bundle discount on the total.
- * Toggle items in/out, change variants/qty, and the total updates live.
- * Reusable + prop-driven for the showcase, Features page, etc.
+ * PushBundle widget: an admin-curated set of complementary products, each with
+ * an admin-FIXED quantity (varied on purpose, to show it's configurable) and a
+ * customer-selectable variant. The bundle total gets a % discount. Add-bundle
+ * shows a notice and resets. Reusable + prop-driven.
  */
 export type CrossProduct = {
   name: string;
   price: number;
+  /** Admin-fixed quantity (not customer-editable). */
+  qty: number;
+  /** Product icon (emoji). */
+  icon: string;
+  /** Customer-selectable options. */
   variants: string[];
-  /** Swatch/avatar colour. */
-  color: string;
 };
 
 const usd = (n: number) =>
@@ -27,13 +30,11 @@ const usd = (n: number) =>
   }).format(n);
 
 const DEFAULT_PRODUCTS: CrossProduct[] = [
-  { name: "Coffee Beans", price: 18, variants: ["250g", "500g", "1kg"], color: "#7c4a2d" },
-  { name: "Ceramic Mug", price: 14, variants: ["Cream", "Charcoal", "Sage"], color: "#0ea5e9" },
-  { name: "Milk Frother", price: 29, variants: ["Matte Black", "Steel"], color: "#64748b" },
-  { name: "Paper Filters", price: 8, variants: ["Natural", "Bleached"], color: "#f59e0b" },
+  { name: "Coffee Beans", price: 18, qty: 2, icon: "☕", variants: ["250g", "500g", "1kg"] },
+  { name: "Ceramic Mug", price: 14, qty: 1, icon: "🍵", variants: ["Cream", "Charcoal", "Sage"] },
+  { name: "Milk Frother", price: 29, qty: 1, icon: "🥛", variants: ["Matte Black", "Steel"] },
+  { name: "Biscotti Pack", price: 8, qty: 3, icon: "🍪", variants: ["Almond", "Chocolate"] },
 ];
-
-type Row = { on: boolean; variant: string; qty: number };
 
 export function CrossSellDemo({
   products = DEFAULT_PRODUCTS,
@@ -46,26 +47,21 @@ export function CrossSellDemo({
   heading?: string;
   className?: string;
 }) {
-  const initial = (): Row[] =>
-    products.map((p) => ({ on: true, variant: p.variants[0], qty: 1 }));
-  const [rows, setRows] = useState<Row[]>(initial);
+  const initial = () => products.map((p) => p.variants[0]);
+  const [picked, setPicked] = useState<string[]>(initial);
   const [notice, setNotice] = useState<string | null>(null);
   const noticeTimer = useRef<number | undefined>(undefined);
 
-  const setRow = (i: number, patch: Partial<Row>) =>
-    setRows((prev) => prev.map((r, idx) => (idx === i ? { ...r, ...patch } : r)));
-
-  const original = products.reduce(
-    (s, p, i) => (rows[i].on ? s + p.price * rows[i].qty : s),
-    0,
-  );
+  const original = products.reduce((s, p) => s + p.price * p.qty, 0);
   const total = original * (1 - discount / 100);
-  const count = rows.filter((r) => r.on).length;
+  const units = products.reduce((s, p) => s + p.qty, 0);
+
+  const setVariant = (i: number, v: string) =>
+    setPicked((prev) => prev.map((x, idx) => (idx === i ? v : x)));
 
   const addToCart = () => {
-    if (count === 0) return;
     setNotice(`Bundle added to cart · ${usd(total)} (saved ${discount}%)`);
-    setRows(initial());
+    setPicked(initial());
     window.clearTimeout(noticeTimer.current);
     noticeTimer.current = window.setTimeout(() => setNotice(null), 2800);
   };
@@ -77,105 +73,72 @@ export function CrossSellDemo({
       <p className="text-sm font-semibold">{heading}</p>
 
       <div className="mt-3">
-        {products.map((p, i) => {
-          const row = rows[i];
-          return (
-            <div key={p.name}>
-              <div
-                className={cn(
-                  "flex gap-3 rounded-lg border p-3 transition-colors",
-                  row.on ? "border-border" : "border-border/60 opacity-55",
-                )}
+        {products.map((p, i) => (
+          <div key={p.name}>
+            <div className="flex gap-3 rounded-lg border border-border p-3">
+              <span
+                aria-hidden="true"
+                className="grid size-11 shrink-0 place-items-center rounded-md bg-surface-subtle text-2xl ring-1 ring-black/5"
               >
-                <input
-                  type="checkbox"
-                  checked={row.on}
-                  onChange={(e) => setRow(i, { on: e.target.checked })}
-                  aria-label={`Include ${p.name}`}
-                  className="mt-1 size-4 shrink-0 accent-[var(--color-primary)]"
-                />
-                <span
-                  aria-hidden="true"
-                  className="grid size-11 shrink-0 place-items-center rounded-md text-sm font-bold text-white"
-                  style={{ background: p.color }}
-                >
-                  {p.name[0]}
-                </span>
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-start justify-between gap-2">
-                    <p className="truncate text-sm font-semibold">{p.name}</p>
-                    <p className="whitespace-nowrap text-sm font-semibold">
-                      {usd(p.price * row.qty)}
-                    </p>
-                  </div>
+                {p.icon}
+              </span>
+              <div className="min-w-0 flex-1">
+                <div className="flex items-start justify-between gap-2">
+                  <p className="truncate text-sm font-semibold">{p.name}</p>
+                  <p className="whitespace-nowrap text-sm font-semibold">
+                    {usd(p.price * p.qty)}
+                  </p>
+                </div>
 
-                  <div className="mt-2 flex items-center gap-2">
-                    <span className="flex items-center rounded-md border border-border">
-                      <button
-                        type="button"
-                        onClick={() => setRow(i, { qty: Math.max(1, row.qty - 1) })}
-                        disabled={!row.on}
-                        aria-label={`Decrease ${p.name}`}
-                        className="grid size-7 place-items-center text-muted hover:text-foreground disabled:opacity-40"
-                      >
-                        −
-                      </button>
-                      <span className="w-6 text-center text-sm tabular-nums">
-                        {row.qty}
-                      </span>
-                      <button
-                        type="button"
-                        onClick={() => setRow(i, { qty: row.qty + 1 })}
-                        disabled={!row.on}
-                        aria-label={`Increase ${p.name}`}
-                        className="grid size-7 place-items-center text-muted hover:text-foreground disabled:opacity-40"
-                      >
-                        +
-                      </button>
-                    </span>
+                <div className="mt-2 flex items-center gap-2">
+                  {/* Admin-fixed quantity — read-only for the customer. */}
+                  <span
+                    title="Quantity is set by the store"
+                    className="shrink-0 rounded-md bg-surface-subtle px-2.5 py-1 text-xs font-semibold text-muted"
+                  >
+                    × {p.qty}
+                  </span>
 
-                    <div className="relative min-w-0 flex-1">
-                      <label className="sr-only" htmlFor={`cs-${i}`}>
-                        {p.name} option
-                      </label>
-                      <select
-                        id={`cs-${i}`}
-                        value={row.variant}
-                        onChange={(e) => setRow(i, { variant: e.target.value })}
-                        disabled={!row.on}
-                        className="h-8 w-full appearance-none rounded-md border border-border bg-surface pl-2.5 pr-8 text-xs text-foreground focus-visible:border-primary disabled:opacity-50"
-                      >
-                        {p.variants.map((v) => (
-                          <option key={v} value={v}>
-                            {v}
-                          </option>
-                        ))}
-                      </select>
-                      <svg
-                        aria-hidden="true"
-                        viewBox="0 0 24 24"
-                        className="pointer-events-none absolute right-2.5 top-1/2 size-3.5 -translate-y-1/2 text-muted"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <path d="m6 9 6 6 6-6" />
-                      </svg>
-                    </div>
+                  <div className="relative min-w-0 flex-1">
+                    <label className="sr-only" htmlFor={`cs-${i}`}>
+                      {p.name} option
+                    </label>
+                    <select
+                      id={`cs-${i}`}
+                      value={picked[i]}
+                      onChange={(e) => setVariant(i, e.target.value)}
+                      className="h-8 w-full appearance-none rounded-md border border-border bg-surface pl-2.5 pr-8 text-xs text-foreground focus-visible:border-primary"
+                    >
+                      {p.variants.map((v) => (
+                        <option key={v} value={v}>
+                          {v}
+                        </option>
+                      ))}
+                    </select>
+                    <svg
+                      aria-hidden="true"
+                      viewBox="0 0 24 24"
+                      className="pointer-events-none absolute right-2.5 top-1/2 size-3.5 -translate-y-1/2 text-muted"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
                   </div>
                 </div>
               </div>
-
-              {i < products.length - 1 && (
-                <div className="flex justify-center py-1.5 text-lg font-bold text-primary/60">
-                  +
-                </div>
-              )}
             </div>
-          );
-        })}
+
+            {i < products.length - 1 && (
+              <div className="flex justify-center py-1.5 text-lg font-bold text-primary/60">
+                +
+              </div>
+            )}
+          </div>
+        ))}
       </div>
 
       {/* Total + add bundle (flush bottom) */}
@@ -194,28 +157,19 @@ export function CrossSellDemo({
         <div className="flex items-center justify-between gap-3">
           <span className="text-sm font-semibold">
             Total{" "}
-            <span className="font-normal text-muted">
-              ({count} item{count === 1 ? "" : "s"})
-            </span>
+            <span className="font-normal text-muted">({units} items)</span>
           </span>
           <span className="whitespace-nowrap text-sm">
-            {count > 0 && (
-              <span className="mr-1.5 text-muted line-through">
-                {usd(original)}
-              </span>
-            )}
+            <span className="mr-1.5 text-muted line-through">{usd(original)}</span>
             <span className="font-semibold">{usd(total)}</span>
           </span>
         </div>
         <button
           type="button"
           onClick={addToCart}
-          disabled={count === 0}
           className={cn(buttonStyles({ variant: "gradient" }), "mt-2.5 w-full")}
         >
-          {count === 0
-            ? "Select at least one item"
-            : `Add bundle & save ${discount}%`}
+          Add bundle &amp; save {discount}%
         </button>
       </div>
     </div>
