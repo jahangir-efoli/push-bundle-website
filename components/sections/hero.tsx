@@ -7,9 +7,9 @@ import type { AggregateRating } from "@/lib/cms";
 
 /** Feature previews shown in the hero slider (4:5, in public/images/features). */
 const HERO_SLIDES = [
-  { src: "/images/features/feature-1.png", alt: "PushBundle bundle builder preview" },
-  { src: "/images/features/feature-2.png", alt: "PushBundle bundle builder preview" },
-  { src: "/images/features/feature-3.png", alt: "PushBundle bundle builder preview" },
+  { src: "/images/features/feature-1.webp", alt: "PushBundle bundle builder preview" },
+  { src: "/images/features/feature-2.webp", alt: "PushBundle bundle builder preview" },
+  { src: "/images/features/feature-3.webp", alt: "PushBundle bundle builder preview" },
 ];
 
 /**

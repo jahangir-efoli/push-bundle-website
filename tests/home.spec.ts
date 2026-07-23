@@ -150,7 +150,10 @@ test("home has no accessibility violations (light and dark)", async ({
 test("no horizontal scroll across the responsive matrix", async ({ page }) => {
   for (const width of [320, 375, 768, 1024, 1440, 1920]) {
     await page.setViewportSize({ width, height: 900 });
-    await page.goto("/");
+    // Layout-only check: the hero slider reserves space via a fixed aspect
+    // ratio, so scrollWidth is valid at DOMContentLoaded — no need to wait on
+    // image bytes (the on-demand optimizer is slow under the parallel suite).
+    await page.goto("/", { waitUntil: "domcontentloaded" });
 
     const overflows = await page.evaluate(
       () => document.documentElement.scrollWidth > window.innerWidth + 1,
