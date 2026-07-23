@@ -7,6 +7,7 @@ import { Icon, IconTile, type IconName } from "@/components/ui/icon";
 import { buttonStyles } from "@/components/ui/button";
 import { VolumeBundleDemo } from "@/components/demos/volume-bundle-demo";
 import { MixMatchSingleDemo } from "@/components/demos/mix-match-single-demo";
+import { MixMatchMultiDemo } from "@/components/demos/mix-match-multi-demo";
 import { CrossSellDemo } from "@/components/demos/cross-sell-demo";
 import { site } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
@@ -17,6 +18,7 @@ const DEMOS: Record<string, React.ComponentType> = {
   volume: VolumeBundleDemo,
   "cross-sell": CrossSellDemo,
   "mix-single": MixMatchSingleDemo,
+  "mix-multi": MixMatchMultiDemo,
 };
 
 /**
