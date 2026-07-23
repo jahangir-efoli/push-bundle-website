@@ -21,7 +21,7 @@ const VARIANT: Record<ButtonVariant, string> = {
   primary:
     "bg-primary text-primary-foreground hover:bg-primary-hover shadow-glow hover:-translate-y-0.5",
   gradient:
-    "bg-brand-gradient text-white shadow-glow hover:-translate-y-0.5 hover:shadow-lift",
+    "bg-button-gradient text-white shadow-glow hover:-translate-y-0.5 hover:shadow-lift",
   secondary:
     "border border-primary text-primary bg-transparent hover:bg-primary-subtle",
   tertiary: "text-foreground bg-transparent hover:bg-surface-subtle",

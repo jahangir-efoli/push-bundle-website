@@ -119,6 +119,14 @@
     var(--pb-indigo-700) 100%
   );
 
+  /* CTA button gradient (blue → cyan) — used only by the gradient button variant. */
+  --gradient-button: linear-gradient(
+    231deg,
+    #5766fa 20.06%,
+    #3ff8fd 99.36%,
+    #339ce8 99.37%
+  );
+
   /* Elevation + glow (theme-aware; consumed by @theme below) */
   --elevation-soft: 0 1px 2px rgb(13 16 48 / 0.05), 0 12px 30px rgb(13 16 48 / 0.07);
   --elevation-lift: 0 2px 6px rgb(13 16 48 / 0.06), 0 20px 44px rgb(13 16 48 / 0.12);
@@ -445,6 +453,10 @@ button:disabled,
 /* Utility: the brand gradient as a background or text fill */
 @utility bg-brand-gradient {
   background-image: var(--gradient-brand);
+}
+
+@utility bg-button-gradient {
+  background-image: var(--gradient-button);
 }
 
 @utility text-brand-gradient {
