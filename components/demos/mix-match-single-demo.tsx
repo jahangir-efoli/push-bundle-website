@@ -7,8 +7,8 @@ import { cn } from "@/lib/utils";
 /**
  * Mix & Match (Single Product) interactive demo — models the live PushBundle
  * widget: choose a pack size (with a % discount), then fill it by adding colour
- * variants of one product from the grid. Reusable + prop-driven so it can be
- * dropped into the homepage showcase, the Features page, or anywhere.
+ * variants of one product from the grid. The cart summary sticks to the bottom
+ * of the box. Reusable + prop-driven for the showcase, Features page, etc.
  */
 export type MixPack = { qty: number; discount: number };
 export type MixVariant = { name: string; color: string };
@@ -19,6 +19,22 @@ const usd = (n: number) =>
     currency: "USD",
     maximumFractionDigits: 2,
   }).format(n);
+
+/** A t-shirt silhouette filled with the variant colour. */
+function ColorTee({ color, className }: { color: string; className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className={cn("size-11", className)}
+      fill={color}
+      stroke="rgba(0,0,0,0.16)"
+      strokeWidth="0.75"
+      strokeLinejoin="round"
+    >
+      <path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23Z" />
+    </svg>
+  );
+}
 
 export function MixMatchSingleDemo({
   productName = "Everyday Tee",
@@ -60,6 +76,10 @@ export function MixMatchSingleDemo({
   const full = remaining <= 0;
   const total = selectedCount * unitPrice;
   const originalTotal = selectedCount * basePrice;
+  // Selected units flattened in add-order, for the footer slots.
+  const flatUnits = Object.entries(picks).flatMap(([name, qty]) =>
+    Array<string>(qty).fill(name),
+  );
 
   const selectPack = (i: number) => {
     setPackIndex(i);
@@ -92,16 +112,10 @@ export function MixMatchSingleDemo({
 
   useEffect(() => () => window.clearTimeout(noticeTimer.current), []);
 
-  const swatch = (color: string, size = "size-3") => (
-    <span
-      aria-hidden="true"
-      className={cn("shrink-0 rounded-full ring-1 ring-black/15", size)}
-      style={{ background: color }}
-    />
-  );
-
   return (
-    <div className={cn("w-full text-foreground", className)}>
+    <div
+      className={cn("w-full px-4 pt-4 text-foreground sm:px-5 sm:pt-5", className)}
+    >
       {/* Choose a pack */}
       <p className="text-sm font-semibold">Choose a pack</p>
       <div className="mt-2 flex flex-wrap gap-2">
@@ -134,90 +148,15 @@ export function MixMatchSingleDemo({
         })}
       </div>
 
-      {/* Selected summary + add to cart */}
-      <div className="mt-4 rounded-xl border border-border bg-surface-subtle p-4">
-        <div className="flex items-center justify-between gap-3">
-          <p className="text-sm font-semibold">
-            Selected products {selectedCount}/{target}
-          </p>
-          <p className="whitespace-nowrap text-sm">
-            <span className="font-semibold">{usd(total)}</span>{" "}
-            {selectedCount > 0 && (
-              <span className="text-muted line-through">
-                {usd(originalTotal)}
-              </span>
-            )}
-          </p>
-        </div>
-
-        <div className="mt-3 flex gap-1">
-          {Array.from({ length: target }).map((_, s) => (
-            <span
-              key={s}
-              className={cn(
-                "h-1.5 flex-1 rounded-full transition-colors",
-                s < selectedCount ? "bg-primary" : "bg-border",
-              )}
-            />
-          ))}
-        </div>
-
-        {selectedCount > 0 ? (
-          <div className="mt-3 flex flex-wrap gap-1.5">
-            {Object.entries(picks).map(([name, qty]) => {
-              const v = variants.find((x) => x.name === name);
-              return (
-                <span
-                  key={name}
-                  className="flex items-center gap-1.5 rounded-full border border-border bg-surface px-2 py-1 text-xs"
-                >
-                  {v && swatch(v.color)}
-                  {name} ×{qty}
-                </span>
-              );
-            })}
-          </div>
-        ) : (
-          <p className="mt-3 text-xs text-muted">
-            Nothing yet — add {target} from the grid below.
-          </p>
-        )}
-
-        {notice && (
-          <div
-            role="status"
-            className="mt-3 flex items-center gap-2 rounded-lg border border-success/30 bg-success/10 px-3 py-2 text-sm font-medium text-success-foreground"
-          >
-            <svg viewBox="0 0 24 24" className="size-4 shrink-0" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="m5 13 4 4L19 7" />
-            </svg>
-            {notice}
-          </div>
-        )}
-
-        <button
-          type="button"
-          onClick={addToCart}
-          disabled={!full}
-          className={cn(buttonStyles({ variant: "gradient" }), "mt-3 w-full")}
-        >
-          {full
-            ? `Add to cart — ${usd(total)}`
-            : `Add ${remaining} more item${remaining === 1 ? "" : "s"}`}
-        </button>
-      </div>
-
-      {/* Variant grid */}
+      {/* Variant grid — compact colour-tee cards */}
       <div className="mt-4 grid grid-cols-2 gap-3">
         {variants.map((v) => {
           const qty = picks[v.name] ?? 0;
           return (
-            <div key={v.name} className="rounded-lg border border-border p-3">
-              <span
-                aria-hidden="true"
-                className="block aspect-square w-full rounded-md ring-1 ring-black/10"
-                style={{ background: v.color }}
-              />
+            <div key={v.name} className="rounded-lg border border-border p-2.5">
+              <span className="grid aspect-5/4 w-full place-items-center rounded-md bg-surface-subtle ring-1 ring-black/5">
+                <ColorTee color={v.color} />
+              </span>
               <p className="mt-2 truncate text-sm font-semibold">
                 {v.name} {productName}
               </p>
@@ -228,7 +167,6 @@ export function MixMatchSingleDemo({
                   {pack.discount}% off
                 </span>
               </p>
-
               <div className="mt-2">
                 {qty > 0 ? (
                   <div className="flex items-center justify-between rounded-md border border-border">
@@ -236,7 +174,7 @@ export function MixMatchSingleDemo({
                       type="button"
                       onClick={() => changeQty(v.name, -1)}
                       aria-label={`Decrease ${v.name}`}
-                      className="grid size-8 place-items-center text-muted hover:text-foreground"
+                      className="grid size-7 place-items-center text-muted hover:text-foreground"
                     >
                       −
                     </button>
@@ -246,7 +184,7 @@ export function MixMatchSingleDemo({
                       onClick={() => changeQty(v.name, 1)}
                       disabled={full}
                       aria-label={`Increase ${v.name}`}
-                      className="grid size-8 place-items-center text-muted hover:text-foreground disabled:opacity-40"
+                      className="grid size-7 place-items-center text-muted hover:text-foreground disabled:opacity-40"
                     >
                       +
                     </button>
@@ -265,6 +203,64 @@ export function MixMatchSingleDemo({
             </div>
           );
         })}
+      </div>
+
+      {/* Cart summary — sticks flush to the bottom of the demo box */}
+      <div className="sticky bottom-0 -mx-4 mt-4 border-t border-border bg-surface/95 px-4 py-3 backdrop-blur sm:-mx-5 sm:px-5">
+        {notice && (
+          <div
+            role="status"
+            className="mb-2.5 flex items-center gap-2 rounded-lg border border-success/30 bg-success/10 px-3 py-2 text-sm font-medium text-success-foreground"
+          >
+            <svg viewBox="0 0 24 24" className="size-4 shrink-0" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="m5 13 4 4L19 7" />
+            </svg>
+            {notice}
+          </div>
+        )}
+        <div className="flex items-center justify-between gap-3">
+          <span className="text-sm font-semibold">
+            Selected products {selectedCount}/{target}
+          </span>
+          {selectedCount > 0 && (
+            <span className="whitespace-nowrap text-xs text-muted line-through">
+              {usd(originalTotal)}
+            </span>
+          )}
+        </div>
+
+        {/* Slots — one per unit; filled show the picked tee, empty are placeholders */}
+        <div className="mt-2.5 flex gap-2 overflow-x-auto pb-1">
+          {Array.from({ length: target }).map((_, s) => {
+            const name = flatUnits[s];
+            const v = name ? variants.find((x) => x.name === name) : undefined;
+            return v ? (
+              <span
+                key={s}
+                className="grid size-10 shrink-0 place-items-center rounded-md bg-surface-subtle ring-1 ring-border"
+              >
+                <ColorTee color={v.color} className="size-6" />
+              </span>
+            ) : (
+              <span
+                key={s}
+                className="size-10 shrink-0 rounded-md border border-dashed border-border bg-surface-subtle/40"
+              />
+            );
+          })}
+        </div>
+
+        <button
+          type="button"
+          onClick={addToCart}
+          disabled={!full}
+          className={cn(buttonStyles({ variant: "gradient" }), "mt-2.5 w-full")}
+        >
+          <span className="flex w-full items-center justify-between">
+            <span>{full ? "Add to cart" : `Add ${remaining} more`}</span>
+            <span>{usd(total)}</span>
+          </span>
+        </button>
       </div>
     </div>
   );

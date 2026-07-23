@@ -136,8 +136,9 @@ export function FeatureShowcase() {
               // Lenis hijacking the wheel for the whole page.
               <div
                 data-lenis-prevent
-                className="scrollbar-brand max-h-128 overflow-y-auto p-4 sm:p-5"
+                className="scrollbar-brand max-h-128 overflow-y-auto"
               >
+                {/* Demos pad themselves so a sticky footer can sit flush. */}
                 <Demo />
               </div>
             ) : (

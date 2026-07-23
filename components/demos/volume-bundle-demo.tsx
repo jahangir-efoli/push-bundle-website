@@ -120,7 +120,7 @@ export function VolumeBundleDemo({
   useEffect(() => () => window.clearTimeout(noticeTimer.current), []);
 
   return (
-    <div className={cn("w-full text-foreground", className)}>
+    <div className={cn("w-full p-4 text-foreground sm:p-5", className)}>
       {/* Product header */}
       <div className="flex items-center gap-3">
         <span
