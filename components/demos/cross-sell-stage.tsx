@@ -12,9 +12,9 @@ import { CrossSellDemo } from "@/components/demos/cross-sell-demo";
 export function CrossSellStage() {
   return (
     <ProductStage
-      image="/images/products/volume.png"
-      imageAlt="Walnut finish dresser — product photo"
-      title="Walnut finish dresser"
+      image="/images/products/cross-sell.png"
+      imageAlt="Teal accent dresser — product photo"
+      title="Teal accent dresser"
       price={180}
     >
       {/* Bundle card — berry accent + legend header, like the reference. */}
