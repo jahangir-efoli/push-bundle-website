@@ -8,7 +8,7 @@ import { buttonStyles } from "@/components/ui/button";
 import { VolumeBundleStage } from "@/components/demos/volume-bundle-stage";
 import { MixMatchSingleDemo } from "@/components/demos/mix-match-single-demo";
 import { MixMatchMultiDemo } from "@/components/demos/mix-match-multi-demo";
-import { CrossSellDemo } from "@/components/demos/cross-sell-demo";
+import { CrossSellStage } from "@/components/demos/cross-sell-stage";
 import { ByobDemo } from "@/components/demos/byob-demo";
 import { site } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
@@ -17,7 +17,7 @@ import { showcase } from "@/lib/content/showcase";
 /** Interactive demos keyed by feature id (others show a placeholder for now). */
 const DEMOS: Record<string, React.ComponentType> = {
   volume: VolumeBundleStage,
-  "cross-sell": CrossSellDemo,
+  "cross-sell": CrossSellStage,
   "mix-single": MixMatchSingleDemo,
   "mix-multi": MixMatchMultiDemo,
   byob: ByobDemo,

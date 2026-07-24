@@ -40,11 +40,15 @@ export function CrossSellDemo({
   products = DEFAULT_PRODUCTS,
   discount = 15,
   heading = "Complete the set",
+  /** Embedded in a ProductStage: drop outer padding + heading, and the footer
+      sits inline (not sticky) since the host card isn't a scroll container. */
+  embedded = false,
   className,
 }: {
   products?: CrossProduct[];
   discount?: number;
   heading?: string;
+  embedded?: boolean;
   className?: string;
 }) {
   const initial = () => products.map((p) => p.variants[0]);
@@ -69,10 +73,16 @@ export function CrossSellDemo({
   useEffect(() => () => window.clearTimeout(noticeTimer.current), []);
 
   return (
-    <div className={cn("w-full px-4 pt-4 text-foreground sm:px-5 sm:pt-5", className)}>
-      <p className="text-sm font-semibold">{heading}</p>
+    <div
+      className={cn(
+        "w-full text-foreground",
+        !embedded && "px-4 pt-4 sm:px-5 sm:pt-5",
+        className,
+      )}
+    >
+      {heading && <p className="text-sm font-semibold">{heading}</p>}
 
-      <div className="mt-3">
+      <div className={cn(!embedded && "mt-3")}>
         {products.map((p, i) => (
           <div key={p.name}>
             <div className="flex gap-3 rounded-lg border border-border p-3">
@@ -141,8 +151,16 @@ export function CrossSellDemo({
         ))}
       </div>
 
-      {/* Total + add bundle (flush bottom) */}
-      <div className="sticky bottom-0 -mx-4 mt-4 border-t border-border bg-surface/95 px-4 py-3 backdrop-blur sm:-mx-5 sm:px-5">
+      {/* Total + add bundle — flush sticky footer when standalone; inline when
+          embedded in a product-page card (which isn't a scroll container). */}
+      <div
+        className={cn(
+          "mt-4",
+          embedded
+            ? "border-t border-border pt-3"
+            : "sticky bottom-0 -mx-4 border-t border-border bg-surface/95 px-4 py-3 backdrop-blur sm:-mx-5 sm:px-5",
+        )}
+      >
         {notice && (
           <div
             role="status"
@@ -167,7 +185,10 @@ export function CrossSellDemo({
         <button
           type="button"
           onClick={addToCart}
-          className={cn(buttonStyles({ variant: "gradient" }), "mt-2.5 w-full")}
+          className={cn(
+            buttonStyles({ variant: embedded ? "primary" : "gradient" }),
+            "mt-2.5 w-full",
+          )}
         >
           Add bundle &amp; save {discount}%
         </button>
