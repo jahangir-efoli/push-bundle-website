@@ -41,6 +41,9 @@ export function VolumeBundleDemo({
   popularQty = 10,
   heading = "Save more on bulk purchases",
   icon,
+  /** Embedded in a ProductStage: hide the product header + drop outer padding
+      (the stage already shows the product identity and provides spacing). */
+  embedded = false,
   className,
 }: {
   productName?: string;
@@ -51,6 +54,7 @@ export function VolumeBundleDemo({
   heading?: string;
   /** Product thumbnail — a custom node/image; defaults to a t-shirt icon. */
   icon?: React.ReactNode;
+  embedded?: boolean;
   className?: string;
 }) {
   const [selected, setSelected] = useState(() => {
@@ -120,8 +124,15 @@ export function VolumeBundleDemo({
   useEffect(() => () => window.clearTimeout(noticeTimer.current), []);
 
   return (
-    <div className={cn("w-full p-4 text-foreground sm:p-5", className)}>
+    <div
+      className={cn(
+        "w-full text-foreground",
+        !embedded && "p-4 sm:p-5",
+        className,
+      )}
+    >
       {/* Product header */}
+      {!embedded && (
       <div className="flex items-center gap-3">
         <span
           aria-hidden="true"
@@ -146,10 +157,18 @@ export function VolumeBundleDemo({
           <p className="text-sm text-muted">{usd(basePrice)} / item</p>
         </div>
       </div>
+      )}
 
       {/* A widget label, not a document heading — keeps the demo embeddable
           anywhere without disturbing the page's heading outline. */}
-      <p className="mt-5 font-display text-base font-bold">{heading}</p>
+      <p
+        className={cn(
+          "font-display text-base font-bold",
+          !embedded && "mt-5",
+        )}
+      >
+        {heading}
+      </p>
 
       {/* Tiers (space-y-4 leaves room for the "Most popular" badge overhang) */}
       <div className="mt-3 space-y-4">

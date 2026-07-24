@@ -5,7 +5,7 @@ import { Section } from "@/components/ui/section";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { Icon, IconTile, type IconName } from "@/components/ui/icon";
 import { buttonStyles } from "@/components/ui/button";
-import { VolumeBundleDemo } from "@/components/demos/volume-bundle-demo";
+import { VolumeBundleStage } from "@/components/demos/volume-bundle-stage";
 import { MixMatchSingleDemo } from "@/components/demos/mix-match-single-demo";
 import { MixMatchMultiDemo } from "@/components/demos/mix-match-multi-demo";
 import { CrossSellDemo } from "@/components/demos/cross-sell-demo";
@@ -16,7 +16,7 @@ import { showcase } from "@/lib/content/showcase";
 
 /** Interactive demos keyed by feature id (others show a placeholder for now). */
 const DEMOS: Record<string, React.ComponentType> = {
-  volume: VolumeBundleDemo,
+  volume: VolumeBundleStage,
   "cross-sell": CrossSellDemo,
   "mix-single": MixMatchSingleDemo,
   "mix-multi": MixMatchMultiDemo,
