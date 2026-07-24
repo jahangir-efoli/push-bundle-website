@@ -9,7 +9,7 @@ import { VolumeBundleStage } from "@/components/demos/volume-bundle-stage";
 import { MixMatchSingleStage } from "@/components/demos/mix-match-single-stage";
 import { MixMatchMultiStage } from "@/components/demos/mix-match-multi-stage";
 import { CrossSellStage } from "@/components/demos/cross-sell-stage";
-import { ByobDemo } from "@/components/demos/byob-demo";
+import { ByobStage } from "@/components/demos/byob-stage";
 import { site } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 import { showcase } from "@/lib/content/showcase";
@@ -20,7 +20,7 @@ const DEMOS: Record<string, React.ComponentType> = {
   "cross-sell": CrossSellStage,
   "mix-single": MixMatchSingleStage,
   "mix-multi": MixMatchMultiStage,
-  byob: ByobDemo,
+  byob: ByobStage,
 };
 
 /**

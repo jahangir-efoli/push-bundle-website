@@ -61,8 +61,8 @@ const DEFAULT_FIELDS: ByobField[] = [
 const STEP_LABEL: Record<ByobStep, string> = {
   box: "Select Box",
   products: "Choose Products",
-  card: "Add a Card",
-  form: "Add Details",
+  card: "Select Card",
+  form: "Form Submission",
 };
 
 type Line = {
@@ -75,8 +75,8 @@ type Line = {
 };
 
 export function ByobDemo({
-  title = "Create a Gift Box",
-  subtitle = "Build your own box in a few simple steps",
+  title = "Create Your Own Gift Box",
+  subtitle = "Create your very own box in just a few simple steps with a personalised message.",
   steps = ["box", "products", "card", "form"],
   boxes = DEFAULT_BOXES,
   products = DEFAULT_PRODUCTS,
@@ -231,50 +231,50 @@ export function ByobDemo({
   );
 
   return (
-    <div className={cn("w-full px-4 pt-4 text-foreground sm:px-5 sm:pt-5", className)}>
+    <div className={cn("@container w-full px-4 pt-4 text-foreground sm:px-5 sm:pt-5", className)}>
       {/* Header */}
       <div className="text-center">
-        <p className="font-display text-base font-bold">{title}</p>
-        <p className="text-xs text-muted">{subtitle}</p>
+        <p className="font-display text-lg font-bold">{title}</p>
+        <p className="mx-auto mt-1 max-w-md text-xs text-muted">{subtitle}</p>
+        <p className="mt-2.5 inline-flex items-center gap-1.5 rounded-full bg-primary-subtle px-3 py-1 text-xs font-semibold text-primary">
+          <svg viewBox="0 0 24 24" className="size-3.5" fill="currentColor" aria-hidden="true">
+            <path d="M13 2 3 14h7l-1 8 10-12h-7z" />
+          </svg>
+          Build your own box and save an additional {discount}% off
+        </p>
       </div>
 
       {/* Stepper */}
-      <ol className="mt-4 flex items-center">
+      <ol className="mt-5 flex items-center">
         {steps.map((s, i) => {
           const done = i < step;
           const current = i === step;
+          const reached = done || current;
           return (
             <li key={s} className="flex flex-1 items-center last:flex-none">
               <div className="flex flex-col items-center">
                 <span
                   className={cn(
-                    "grid size-7 place-items-center rounded-full text-xs font-bold transition-colors",
-                    current
-                      ? "bg-primary text-primary-foreground shadow-glow"
-                      : done
-                        ? "bg-primary/85 text-primary-foreground"
-                        : "bg-surface-subtle text-muted ring-1 ring-border",
+                    "grid size-8 place-items-center rounded-full text-sm font-bold transition-colors",
+                    reached
+                      ? "bg-primary text-primary-foreground"
+                      : "bg-surface-subtle text-muted ring-1 ring-border",
+                    current && "shadow-glow",
                   )}
                 >
-                  {done ? (
-                    <svg viewBox="0 0 24 24" className="size-3.5" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="m5 13 4 4L19 7" />
-                    </svg>
-                  ) : (
-                    i + 1
-                  )}
+                  {i + 1}
                 </span>
                 <span
                   className={cn(
-                    "mt-1 whitespace-nowrap text-[10px] font-medium",
-                    current ? "text-foreground" : "text-muted",
+                    "mt-1.5 whitespace-nowrap text-[11px] font-medium",
+                    reached ? "text-foreground" : "text-muted",
                   )}
                 >
                   {STEP_LABEL[s]}
                 </span>
               </div>
               {i < steps.length - 1 && (
-                <span className={cn("mx-1.5 h-px flex-1", done ? "bg-primary/60" : "bg-border")} />
+                <span className={cn("mx-1.5 h-0.5 flex-1 rounded-full", done ? "bg-primary" : "bg-border")} />
               )}
             </li>
           );
@@ -329,7 +329,7 @@ export function ByobDemo({
                 Select {productMin}–{productMax} • {productCount} selected
               </p>
             </div>
-            <div className="mt-3 grid grid-cols-2 gap-3">
+            <div className="mt-3 grid grid-cols-2 gap-3 @md:grid-cols-3">
               {products.map((p, i) => {
                 const hasOptions = !!p.options?.length;
                 const isOpen = openIdx === i;
@@ -365,7 +365,7 @@ export function ByobDemo({
                           type="button"
                           onClick={() => (isOpen ? setOpenIdx(null) : openOptions(i))}
                           disabled={productsRemaining <= 0 && inBox === 0}
-                          className="w-full rounded-md border border-primary py-1.5 text-xs font-semibold text-primary transition-colors hover:bg-primary-subtle disabled:opacity-40"
+                          className="w-full rounded-md bg-primary-subtle py-1.5 text-[11px] font-bold uppercase tracking-wide text-primary transition-colors hover:bg-primary/15 disabled:opacity-40"
                         >
                           {isOpen ? "Close" : inBox > 0 ? "Add another" : "See options"}
                         </button>
@@ -374,9 +374,9 @@ export function ByobDemo({
                           type="button"
                           onClick={() => addLine(p.name, p.icon, p.price, "", 1)}
                           disabled={productsRemaining <= 0}
-                          className="w-full rounded-md border border-primary py-1.5 text-xs font-semibold text-primary transition-colors hover:bg-primary-subtle disabled:opacity-40"
+                          className="w-full rounded-md bg-primary-subtle py-1.5 text-[11px] font-bold uppercase tracking-wide text-primary transition-colors hover:bg-primary/15 disabled:opacity-40"
                         >
-                          Add to box
+                          Add to bundle
                         </button>
                       )}
                     </div>
@@ -410,7 +410,7 @@ export function ByobDemo({
                           type="button"
                           onClick={() => addConfigured(i)}
                           disabled={productsRemaining <= 0}
-                          className="h-8 w-full rounded-md bg-button-gradient text-xs font-semibold text-white shadow-glow disabled:opacity-40"
+                          className="h-8 w-full rounded-md bg-primary text-xs font-semibold text-primary-foreground shadow-glow disabled:opacity-40"
                         >
                           Add to box
                         </button>
@@ -507,26 +507,37 @@ export function ByobDemo({
           </div>
         )}
         <div className="flex items-center gap-3">
-          {/* Selected thumbnails */}
-          <div className="flex min-w-0 flex-1 items-center gap-1.5 overflow-hidden">
-            {flatUnits.slice(0, 5).map((l, i) => (
-              <span key={i} className="grid size-8 shrink-0 place-items-center rounded-md bg-surface-subtle text-base ring-1 ring-border">
-                {l.icon}
+          {/* Selected thumbnails — each removable */}
+          <div className="flex min-w-0 flex-1 flex-wrap items-center gap-2">
+            {flatUnits.slice(0, 6).map((l, i) => (
+              <span key={i} className="relative shrink-0">
+                <span className="grid size-9 place-items-center rounded-md bg-surface-subtle text-lg ring-1 ring-border">
+                  {l.icon}
+                </span>
+                <button
+                  type="button"
+                  onClick={() => changeLineQty(l.key, -1)}
+                  aria-label={`Remove ${l.name}`}
+                  className="absolute -right-1.5 -top-1.5 grid size-4 place-items-center rounded-full bg-error text-white ring-2 ring-white"
+                >
+                  <svg viewBox="0 0 24 24" className="size-2.5" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round"><path d="M18 6 6 18M6 6l12 12" /></svg>
+                </button>
               </span>
             ))}
-            {flatUnits.length > 5 && (
-              <span className="text-xs font-semibold text-muted">+{flatUnits.length - 5}</span>
+            {flatUnits.length > 6 && (
+              <span className="text-xs font-semibold text-muted">+{flatUnits.length - 6}</span>
             )}
             {flatUnits.length === 0 && (
               <span className="text-xs text-muted">Your box is empty</span>
             )}
           </div>
           <span className="whitespace-nowrap text-sm">
-            <span className="mr-1 text-[11px] text-muted">Total</span>
+            <span className="mr-1 text-[11px] text-muted">Total:</span>
             {discount > 0 && subtotal > 0 && (
               <span className="mr-1.5 text-muted line-through">{usd(subtotal)}</span>
             )}
-            <span className="font-semibold">{usd(total)}</span>
+            <span className="font-bold">{usd(total)}</span>
+            <span className="ml-1 text-[11px] text-muted">USD</span>
           </span>
         </div>
 
@@ -535,7 +546,7 @@ export function ByobDemo({
             type="button"
             onClick={back}
             disabled={step === 0}
-            className="h-11 rounded-lg border border-border px-4 text-sm font-semibold text-foreground transition-colors hover:bg-surface-subtle disabled:opacity-40"
+            className="h-11 rounded-lg bg-surface-subtle px-5 text-sm font-semibold text-foreground transition-colors hover:bg-border/60 disabled:opacity-40"
           >
             Back
           </button>
@@ -543,7 +554,13 @@ export function ByobDemo({
             type="button"
             onClick={next}
             disabled={!canAdvance}
-            className="h-11 flex-1 rounded-lg bg-button-gradient text-sm font-semibold text-white shadow-glow transition-transform hover:-translate-y-0.5 disabled:translate-y-0 disabled:opacity-40"
+            aria-disabled={!canAdvance}
+            className={cn(
+              "h-11 flex-1 rounded-lg text-sm font-semibold transition-colors",
+              canAdvance
+                ? "bg-foreground text-background hover:opacity-90"
+                : "cursor-not-allowed bg-surface-subtle text-muted",
+            )}
           >
             {isLast ? "Finish — Add to cart" : "Next"}
           </button>
