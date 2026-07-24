@@ -60,7 +60,7 @@ export function ProductStage({
               fill
               quality={90}
               sizes="(min-width: 1024px) 340px, 90vw"
-              className="object-contain"
+              className="object-cover"
               onError={() => setImgOk(false)}
             />
           ) : (

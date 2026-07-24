@@ -119,7 +119,7 @@ export function FeatureShowcase() {
         id={`${baseId}-panel`}
         role="tabpanel"
         aria-labelledby={`${baseId}-tab-${active}`}
-        className="mt-12 grid items-center gap-8 lg:grid-cols-[1.6fr_1fr] lg:gap-12"
+        className="mt-12 grid items-start gap-8 lg:grid-cols-[1.6fr_1fr] lg:gap-12"
       >
         {/* LEFT — large app-window placeholder (live preview goes here later).
             `pb-light` pins the preview to the light token set so it always reads
@@ -182,14 +182,23 @@ export function FeatureShowcase() {
             {feature.tab}
           </span>
           <h3 className="mt-4 text-display-sm text-balance">{feature.title}</h3>
-          <p className="mt-3 text-muted">{feature.description}</p>
 
-          <div className="mt-5 rounded-xl border border-border bg-surface-subtle p-4">
-            <p className="text-sm font-semibold text-foreground">How it works</p>
-            <p className="mt-1 text-sm text-muted">{feature.howItWorks}</p>
+          <div className="mt-5 space-y-5">
+            {[
+              { label: "How it Works", body: feature.howItWorks },
+              { label: "Benefits", body: feature.benefits },
+              { label: "Flexibility", body: feature.flexibility },
+            ].map((s) => (
+              <div key={s.label}>
+                <h4 className="text-base font-bold text-foreground">{s.label}</h4>
+                <p className="mt-1.5 text-sm leading-relaxed text-muted">
+                  {s.body}
+                </p>
+              </div>
+            ))}
           </div>
 
-          <div className="mt-6">
+          <div className="mt-7">
             <a
               href={site.shopifyAppUrl}
               className={buttonStyles({ variant: "gradient" })}
