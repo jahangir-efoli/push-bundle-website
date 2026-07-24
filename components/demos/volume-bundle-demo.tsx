@@ -160,15 +160,18 @@ export function VolumeBundleDemo({
       )}
 
       {/* A widget label, not a document heading — keeps the demo embeddable
-          anywhere without disturbing the page's heading outline. */}
-      <p
-        className={cn(
-          "font-display text-base font-bold",
-          !embedded && "mt-5",
-        )}
-      >
-        {heading}
-      </p>
+          anywhere without disturbing the page's heading outline. Omitted when
+          the host (e.g. ProductStage) already supplies a section header. */}
+      {heading && (
+        <p
+          className={cn(
+            "font-display text-base font-bold",
+            !embedded && "mt-5",
+          )}
+        >
+          {heading}
+        </p>
+      )}
 
       {/* Tiers (space-y-4 leaves room for the "Most popular" badge overhang) */}
       <div className="mt-3 space-y-4">
@@ -195,9 +198,9 @@ export function VolumeBundleDemo({
                 type="button"
                 onClick={() => selectTier(i)}
                 aria-pressed={isSel}
-                className="flex w-full items-center justify-between gap-3 px-3.5 py-3.5 text-left"
+                className="flex w-full items-center justify-between gap-2 px-3 py-3 text-left"
               >
-                <span className="flex items-center gap-3">
+                <span className="flex min-w-0 items-center gap-2">
                   <span
                     className={cn(
                       "grid size-5 shrink-0 place-items-center rounded-full border-2 transition-colors",
@@ -208,8 +211,11 @@ export function VolumeBundleDemo({
                       <span className="size-2.5 rounded-full bg-primary" />
                     )}
                   </span>
-                  <span className="font-semibold">
-                    Buy {t.qty} get {t.discount}% off
+                  <span className="font-semibold whitespace-nowrap">
+                    Buy {t.qty}
+                  </span>
+                  <span className="rounded bg-primary-subtle px-1.5 py-0.5 text-[11px] font-semibold whitespace-nowrap text-primary">
+                    {t.discount}% off
                   </span>
                 </span>
                 <span className="whitespace-nowrap text-sm">
@@ -347,12 +353,16 @@ export function VolumeBundleDemo({
         </div>
       )}
 
-      {/* Add to cart */}
+      {/* Add to cart — solid (primary) when embedded so it follows the host's
+          accent (e.g. the berry bundle card); gradient when standalone. */}
       <button
         type="button"
         onClick={addToCart}
         disabled={!full}
-        className={cn(buttonStyles({ variant: "gradient" }), "mt-4 w-full")}
+        className={cn(
+          buttonStyles({ variant: embedded ? "primary" : "gradient" }),
+          "mt-4 w-full",
+        )}
       >
         {full
           ? `Add to cart — ${usd(price(tier))}`

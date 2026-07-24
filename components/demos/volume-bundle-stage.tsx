@@ -6,19 +6,41 @@ import { VolumeBundleDemo } from "@/components/demos/volume-bundle-demo";
 /**
  * Volume Bundle presented as a Shopify product page: the ProductStage supplies
  * the product image + default details (title / price / qty / Add to Cart), and
- * the volume tier selector sits below as the PushBundle "buy more, save more"
- * section. Swap the title / price / tiers here if the product image differs.
+ * the volume tier selector sits below inside a berry-accented bundle card that
+ * mirrors the live PushBundle widget. Product identity matches the product image.
  */
 export function VolumeBundleStage() {
   return (
     <ProductStage
       image="/images/products/volume.png"
-      imageAlt="Everyday Tee — product photo"
-      title="Everyday Tee"
-      price={24}
+      imageAlt="Walnut finish dresser — product photo"
+      title="Walnut finish dresser"
+      price={180}
     >
-      <div className="rounded-xl border border-primary/25 bg-primary-subtle/30 p-3.5">
-        <VolumeBundleDemo embedded />
+      {/* Bundle card — berry accent + legend-style header, like the reference. */}
+      <div className="pb-berry relative rounded-xl border-2 border-primary/35 bg-white p-4 pt-5">
+        <span className="absolute -top-2.5 left-4 bg-white px-1.5 text-sm font-bold text-primary">
+          Buy more &amp; save up to 15%
+        </span>
+        <p className="text-xs text-muted">
+          Order more units of this product in one go and unlock a bigger discount
+          on every piece.
+        </p>
+        <div className="mt-3">
+          <VolumeBundleDemo
+            embedded
+            heading=""
+            productName="Walnut finish dresser"
+            basePrice={180}
+            tiers={[
+              { qty: 2, discount: 5 },
+              { qty: 4, discount: 10 },
+              { qty: 6, discount: 15 },
+            ]}
+            popularQty={4}
+            variants={["Walnut", "Oak", "Espresso", "Natural Ash"]}
+          />
+        </div>
       </div>
     </ProductStage>
   );

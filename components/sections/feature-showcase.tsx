@@ -121,9 +121,11 @@ export function FeatureShowcase() {
         aria-labelledby={`${baseId}-tab-${active}`}
         className="mt-12 grid items-center gap-8 lg:grid-cols-[1.6fr_1fr] lg:gap-12"
       >
-        {/* LEFT — large app-window placeholder (live preview goes here later). */}
+        {/* LEFT — large app-window placeholder (live preview goes here later).
+            `pb-light` pins the preview to the light token set so it always reads
+            as a real (white) storefront, even when the site is in dark mode. */}
         <div className="rounded-2xl bg-brand-gradient p-1.5 shadow-lift">
-          <div className="overflow-hidden rounded-[0.9rem] bg-surface">
+          <div className="pb-light overflow-hidden rounded-[0.9rem] bg-surface text-foreground">
             {/* Faux app chrome */}
             <div className="flex items-center gap-2 border-b border-border px-4 py-3">
               <span className="flex gap-1.5" aria-hidden="true">

@@ -50,9 +50,9 @@ export function ProductStage({
 
   return (
     <div className={cn("@container w-full text-foreground", className)}>
-      <div className="grid gap-5 p-4 @lg:grid-cols-2 @lg:items-start sm:p-5">
+      <div className="grid gap-5 p-4 @lg:grid-cols-[0.85fr_1.15fr] @lg:items-start sm:p-5">
         {/* Product image (falls back to a neutral tile until the photo exists) */}
-        <div className="relative aspect-square overflow-hidden rounded-xl bg-surface-subtle ring-1 ring-black/5 @lg:sticky @lg:top-0">
+        <div className="relative aspect-square overflow-hidden rounded-xl bg-white ring-1 ring-black/5 @lg:sticky @lg:top-0">
           {imgOk ? (
             <Image
               src={image}
@@ -60,7 +60,7 @@ export function ProductStage({
               fill
               quality={90}
               sizes="(min-width: 1024px) 340px, 90vw"
-              className="object-cover"
+              className="object-contain"
               onError={() => setImgOk(false)}
             />
           ) : (

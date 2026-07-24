@@ -74,7 +74,10 @@
 /* ==================================================================
    LAYER 2 — SEMANTIC ROLES (light theme defaults)
    ================================================================== */
-:root {
+/* `.pb-light` re-applies the light token set inside a subtree, so a storefront
+   preview stays white even when the site is in dark mode. */
+:root,
+.pb-light {
   --background: var(--pb-page-50);
   --surface: var(--pb-white);
   --surface-subtle: var(--pb-surface-100);
@@ -131,6 +134,17 @@
   --elevation-soft: 0 1px 2px rgb(13 16 48 / 0.05), 0 12px 30px rgb(13 16 48 / 0.07);
   --elevation-lift: 0 2px 6px rgb(13 16 48 / 0.06), 0 20px 44px rgb(13 16 48 / 0.12);
   --elevation-glow: 0 10px 30px color-mix(in oklab, var(--primary) 40%, transparent);
+}
+
+/* `.pb-berry` re-points the PRIMARY role to the live PushBundle widget's berry
+   accent, so any primary-driven UI inside (tiers, badges, buttons) recolors to
+   match the merchant-facing bundle design without touching component code. */
+.pb-berry {
+  --primary: #a51d5b;
+  --primary-hover: #8c1850;
+  --primary-foreground: #ffffff;
+  --primary-subtle: #fbe8f0;
+  --ring: #a51d5b;
 }
 
 /* Dark theme — re-points SEMANTIC roles only; primitives unchanged. */
