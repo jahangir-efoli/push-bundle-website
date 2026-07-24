@@ -292,4 +292,14 @@ test("hero slider opens an enlarged lightbox preview on click", async ({
   // The close button dismisses it.
   await page.getByRole("button", { name: "Close enlarged preview" }).click();
   await expect(lightbox).toBeHidden();
+
+  // Regression: portal event-bubbling once left the carousel stuck paused after
+  // the lightbox closed. Auto-advance must resume (the current slide changes).
+  const currentDot = () =>
+    carousel
+      .getByRole("button", { name: /Show slide/ })
+      .and(page.locator('[aria-current="true"]'))
+      .getAttribute("aria-label");
+  const before = await currentDot();
+  await expect.poll(currentDot, { timeout: 8000 }).not.toBe(before);
 });

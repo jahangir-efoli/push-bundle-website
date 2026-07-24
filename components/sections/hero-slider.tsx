@@ -9,8 +9,9 @@ export type HeroSlide = { src: string; alt: string };
 
 /**
  * Hero image slider (docs/PLAN.md §5.1) — a smooth auto-advancing crossfade of
- * the feature previews. Pauses on hover/focus, dots jump to a slide, and it
- * respects reduced-motion (no auto-advance / no fade). Images are 4:5.
+ * the feature previews that loops forever. Pauses on keyboard focus and while
+ * the lightbox is open (not on hover — a portal-covered hover could leave it
+ * stuck paused). Dots jump to a slide; respects reduced-motion. Images are 4:5.
  *
  * Clicking/tapping the slider opens the current preview enlarged in a dimmed
  * lightbox (portaled to <body>) so the small UI mockups are readable; it closes
@@ -18,7 +19,7 @@ export type HeroSlide = { src: string; alt: string };
  */
 export function HeroSlider({
   slides,
-  interval = 4500,
+  interval = 3200,
 }: {
   slides: HeroSlide[];
   interval?: number;
@@ -54,77 +55,83 @@ export function HeroSlider({
       role="group"
       aria-roledescription="carousel"
       aria-label="PushBundle feature previews"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onFocusCapture={() => setPaused(true)}
-      onBlurCapture={() => setPaused(false)}
-      onClick={() => setZoom(true)}
-      className="relative aspect-4/5 cursor-zoom-in overflow-hidden rounded-[0.9rem] bg-surface"
+      className="relative aspect-4/5 overflow-hidden rounded-[0.9rem] bg-surface"
     >
-      {slides.map((slide, i) => (
-        <Image
-          key={slide.src}
-          src={slide.src}
-          alt={i === index ? slide.alt : ""}
-          aria-hidden={i !== index}
-          fill
-          priority={i === 0}
-          quality={90}
-          sizes="(min-width: 1024px) 28rem, (min-width: 640px) 24rem, 85vw"
-          className={cn(
-            "object-cover transition-opacity duration-700 ease-out motion-reduce:transition-none",
-            i === index ? "opacity-100" : "opacity-0",
-          )}
-        />
-      ))}
-
-      {/* Hint that the preview is zoomable. */}
-      <span
-        aria-hidden="true"
-        className="absolute right-3 top-3 grid size-8 place-items-center rounded-full bg-black/45 text-white backdrop-blur-sm"
+      {/* Trigger layer — holds the slides, hint and dots plus the open/pause
+          handlers. The lightbox portal is a SIBLING of this (not a child), so
+          React portal event-bubbling can't route the portal's clicks/focus back
+          into these handlers and leave the carousel stuck paused/reopening. */}
+      <div
+        onFocusCapture={() => setPaused(true)}
+        onBlurCapture={() => setPaused(false)}
+        onClick={() => setZoom(true)}
+        className="absolute inset-0 cursor-zoom-in"
       >
-        <svg
-          viewBox="0 0 24 24"
-          className="size-4"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <circle cx="11" cy="11" r="7" />
-          <path d="m21 21-4.3-4.3M11 8v6M8 11h6" />
-        </svg>
-      </span>
-
-      {count > 1 && (
-        <>
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-linear-to-t from-black/30 to-transparent"
+        {slides.map((slide, i) => (
+          <Image
+            key={slide.src}
+            src={slide.src}
+            alt={i === index ? slide.alt : ""}
+            aria-hidden={i !== index}
+            fill
+            priority={i === 0}
+            quality={90}
+            sizes="(min-width: 1024px) 28rem, (min-width: 640px) 24rem, 85vw"
+            className={cn(
+              "object-cover transition-opacity duration-700 ease-out motion-reduce:transition-none",
+              i === index ? "opacity-100" : "opacity-0",
+            )}
           />
-          <div className="absolute inset-x-0 bottom-3.5 z-10 flex justify-center gap-2">
-            {slides.map((slide, i) => (
-              <button
-                key={slide.src}
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setIndex(i);
-                }}
-                aria-label={`Show slide ${i + 1} of ${count}`}
-                aria-current={i === index}
-                className={cn(
-                  "h-2 rounded-full ring-1 ring-black/10 transition-all duration-300",
-                  i === index
-                    ? "w-6 bg-white"
-                    : "w-2 bg-white/60 hover:bg-white/85",
-                )}
-              />
-            ))}
-          </div>
-        </>
-      )}
+        ))}
+
+        {/* Hint that the preview is zoomable. */}
+        <span
+          aria-hidden="true"
+          className="absolute right-3 top-3 grid size-8 place-items-center rounded-full bg-black/45 text-white backdrop-blur-sm"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            className="size-4"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <circle cx="11" cy="11" r="7" />
+            <path d="m21 21-4.3-4.3M11 8v6M8 11h6" />
+          </svg>
+        </span>
+
+        {count > 1 && (
+          <>
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-linear-to-t from-black/30 to-transparent"
+            />
+            <div className="absolute inset-x-0 bottom-3.5 z-10 flex justify-center gap-2">
+              {slides.map((slide, i) => (
+                <button
+                  key={slide.src}
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIndex(i);
+                  }}
+                  aria-label={`Show slide ${i + 1} of ${count}`}
+                  aria-current={i === index}
+                  className={cn(
+                    "h-2 rounded-full ring-1 ring-black/10 transition-all duration-300",
+                    i === index
+                      ? "w-6 bg-white"
+                      : "w-2 bg-white/60 hover:bg-white/85",
+                  )}
+                />
+              ))}
+            </div>
+          </>
+        )}
+      </div>
 
       {/* Lightbox — full image enlarged. Portaled to <body> so it escapes the
           Lenis transform wrapper (a transformed ancestor would otherwise trap
