@@ -271,3 +271,25 @@ test("hero slider shows the feature previews and dots switch slides", async ({
   await dots.nth(4).click();
   await expect(dots.nth(4)).toHaveAttribute("aria-current", "true");
 });
+
+test("hero slider opens an enlarged lightbox preview on click", async ({
+  page,
+}) => {
+  await page.goto("/");
+
+  const carousel = page.getByRole("group", {
+    name: "PushBundle feature previews",
+  });
+  await carousel.scrollIntoViewIfNeeded();
+  const lightbox = page.getByRole("dialog", { name: /enlarged/ });
+
+  await expect(lightbox).toBeHidden();
+
+  // Clicking/tapping the slider opens the full-image lightbox (portaled to body).
+  await carousel.click();
+  await expect(lightbox).toBeVisible();
+
+  // The close button dismisses it.
+  await page.getByRole("button", { name: "Close enlarged preview" }).click();
+  await expect(lightbox).toBeHidden();
+});

@@ -662,6 +662,16 @@ body {
     transform: translateX(-50%);
   }
 }
+
+/* Hero lightbox fade-in. */
+@keyframes pb-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 .marquee {
   overflow: hidden;
   -webkit-mask-image: linear-gradient(
