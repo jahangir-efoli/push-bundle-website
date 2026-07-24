@@ -145,6 +145,11 @@
   --primary-foreground: #ffffff;
   --primary-subtle: #fbe8f0;
   --ring: #a51d5b;
+  /* Re-declare so the glow re-resolves `var(--primary)` to berry here — a
+     custom property that references another resolves it where it's declared,
+     so without this the glow keeps the root (blue) primary. */
+  --elevation-glow: 0 10px 30px
+    color-mix(in oklab, var(--primary) 32%, transparent);
 }
 
 /* Dark theme — re-points SEMANTIC roles only; primitives unchanged. */

@@ -291,7 +291,7 @@ export function MixMatchSingleDemo({
             "mt-2.5 w-full",
             embedded
               ? cn(
-                  "rounded-lg py-3 text-sm font-semibold transition-colors",
+                  "rounded-lg px-4 py-3 text-sm font-semibold transition-colors",
                   full
                     ? "bg-primary text-primary-foreground shadow-glow hover:bg-primary-hover"
                     : "cursor-not-allowed bg-surface-subtle text-muted",
@@ -299,7 +299,7 @@ export function MixMatchSingleDemo({
               : buttonStyles({ variant: "gradient" }),
           )}
         >
-          <span className="flex w-full items-center justify-between px-1">
+          <span className="flex w-full items-center justify-between">
             <span>{full ? "Add to cart" : `Add ${remaining} more`}</span>
             <span>{usd(total)}</span>
           </span>
