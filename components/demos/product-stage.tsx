@@ -50,7 +50,7 @@ export function ProductStage({
 
   return (
     <div className={cn("@container w-full text-foreground", className)}>
-      <div className="grid gap-5 p-4 @lg:grid-cols-[0.85fr_1.15fr] @lg:items-start sm:p-5">
+      <div className="grid gap-5 p-4 @lg:grid-cols-[1.05fr_1fr] @lg:items-start sm:p-5">
         {/* Product image (falls back to a neutral tile until the photo exists) */}
         <div className="relative aspect-square overflow-hidden rounded-xl bg-white ring-1 ring-black/5 @lg:sticky @lg:top-0">
           {imgOk ? (
@@ -79,40 +79,40 @@ export function ProductStage({
 
         {/* Product details + our bundle section */}
         <div>
-          <h3 className="text-lg font-bold leading-tight text-balance">{title}</h3>
-          <p className="mt-1.5 text-base font-semibold">
+          <h3 className="text-base font-bold leading-tight text-balance">{title}</h3>
+          <p className="mt-1 text-sm font-semibold">
             {usd(price)} <span className="text-xs font-normal text-muted">USD</span>
           </p>
 
           {/* Quantity */}
-          <div className="mt-4">
+          <div className="mt-3.5">
             <p className="text-xs font-medium text-muted">Quantity</p>
             <div className="mt-1 inline-flex items-center rounded-md border border-border">
               <button
                 type="button"
                 onClick={() => setQty((q) => Math.max(1, q - 1))}
                 aria-label="Decrease quantity"
-                className="grid size-9 place-items-center text-muted hover:text-foreground"
+                className="grid size-8 place-items-center text-muted hover:text-foreground"
               >
                 −
               </button>
-              <span className="w-10 text-center text-sm tabular-nums">{qty}</span>
+              <span className="w-9 text-center text-sm tabular-nums">{qty}</span>
               <button
                 type="button"
                 onClick={() => setQty((q) => q + 1)}
                 aria-label="Increase quantity"
-                className="grid size-9 place-items-center text-muted hover:text-foreground"
+                className="grid size-8 place-items-center text-muted hover:text-foreground"
               >
                 +
               </button>
             </div>
           </div>
 
-          {/* Default Add to Cart — outlined, to contrast the bundle's gradient CTA */}
+          {/* Default Add to Cart — outlined, to contrast the bundle's solid CTA */}
           <button
             type="button"
             onClick={addToCart}
-            className="mt-4 w-full rounded-lg border border-foreground/75 bg-surface py-3 text-sm font-semibold text-foreground transition-colors hover:bg-surface-subtle"
+            className="mt-3.5 w-full rounded-lg border border-foreground/75 bg-surface py-2.5 text-sm font-semibold text-foreground transition-colors hover:bg-surface-subtle"
           >
             Add to Cart
           </button>

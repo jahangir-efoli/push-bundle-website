@@ -227,14 +227,14 @@ export function MixMatchSingleDemo({
         })}
       </div>
 
-      {/* Cart summary — flush sticky footer when standalone; inline when embedded
-          in a product-page card (which isn't a scroll container). */}
+      {/* Cart summary — sticks to the bottom of the scroll box in both modes.
+          Embedded, it breaks out of the host card's padding to span its width. */}
       <div
         className={cn(
-          "mt-4",
+          "sticky bottom-0 mt-4 border-t",
           embedded
-            ? "border-t border-border pt-3"
-            : "sticky bottom-0 -mx-4 border-t border-border bg-surface/95 px-4 py-3 backdrop-blur sm:-mx-5 sm:px-5",
+            ? "-mx-4 -mb-4 rounded-b-[10px] border-primary/20 bg-white px-4 py-3"
+            : "-mx-4 border-border bg-surface/95 px-4 py-3 backdrop-blur sm:-mx-5 sm:px-5",
         )}
       >
         {notice && (
@@ -280,16 +280,26 @@ export function MixMatchSingleDemo({
           })}
         </div>
 
+        {/* Clearly disabled (grey) until the pack is full, then a solid, tappable
+            accent button. */}
         <button
           type="button"
           onClick={addToCart}
           disabled={!full}
+          aria-disabled={!full}
           className={cn(
-            buttonStyles({ variant: embedded ? "primary" : "gradient" }),
             "mt-2.5 w-full",
+            embedded
+              ? cn(
+                  "rounded-lg py-3 text-sm font-semibold transition-colors",
+                  full
+                    ? "bg-primary text-primary-foreground shadow-glow hover:bg-primary-hover"
+                    : "cursor-not-allowed bg-surface-subtle text-muted",
+                )
+              : buttonStyles({ variant: "gradient" }),
           )}
         >
-          <span className="flex w-full items-center justify-between">
+          <span className="flex w-full items-center justify-between px-1">
             <span>{full ? "Add to cart" : `Add ${remaining} more`}</span>
             <span>{usd(total)}</span>
           </span>
