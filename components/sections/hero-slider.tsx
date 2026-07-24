@@ -159,7 +159,7 @@ export function HeroSlider({
                 setZoom(false);
               }}
               aria-label="Close enlarged preview"
-              className="absolute right-4 top-4 grid size-10 place-items-center rounded-full bg-white/95 text-foreground shadow-lift transition-transform hover:scale-105"
+              className="absolute right-4 top-4 grid size-10 place-items-center rounded-full bg-white/95 text-black shadow-lift transition-transform hover:scale-105"
             >
               <svg
                 viewBox="0 0 24 24"
