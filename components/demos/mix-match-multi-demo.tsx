@@ -1,24 +1,21 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { buttonStyles } from "@/components/ui/button";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
 /**
  * Mix & Match (Multiple Products) interactive demo — models the live PushBundle
- * widget: choose a pack size (with % off), then fill it from a grid of DIFFERENT
- * products. Products with variants open an inline "See options" panel to pick a
- * variant + quantity; others "Add to box" directly. Reusable + prop-driven.
+ * "build a box from a catalog" widget: choose a box size (with a % discount),
+ * browse products by category, and fill the box from any mix of products. A
+ * "My Pack" tray tracks progress + the discounted total. Reusable + prop-driven.
  */
-export type MultiOption = { name: string; values: string[] };
-export type MultiProduct = {
+export type MultiBox = { qty: number; discount: number };
+export type CatalogProduct = {
   name: string;
   price: number;
   icon: string;
-  options?: MultiOption[];
-  outOfStock?: boolean;
+  category: string;
 };
-export type MixPack = { qty: number; discount: number };
 
 const usd = (n: number) =>
   new Intl.NumberFormat("en-US", {
@@ -27,123 +24,89 @@ const usd = (n: number) =>
     maximumFractionDigits: 2,
   }).format(n);
 
-const DEFAULT_PRODUCTS: MultiProduct[] = [
-  {
-    name: "Everyday Tee",
-    price: 24,
-    icon: "👕",
-    options: [
-      { name: "Color", values: ["White", "Black", "Navy"] },
-      { name: "Size", values: ["S", "M", "L"] },
-    ],
-  },
-  { name: "Canvas Tote", price: 18, icon: "👜" },
-  { name: "Ceramic Mug", price: 14, icon: "☕", options: [{ name: "Color", values: ["Cream", "Charcoal", "Sage"] }] },
-  { name: "Scented Candle", price: 22, icon: "🕯️" },
-  { name: "Water Bottle", price: 16, icon: "🍶", options: [{ name: "Size", values: ["500ml", "750ml"] }] },
-  { name: "Wireless Earbuds", price: 89, icon: "🎧", outOfStock: true },
+const DEFAULT_BOXES: MultiBox[] = [
+  { qty: 4, discount: 0 },
+  { qty: 6, discount: 10 },
+  { qty: 8, discount: 12 },
+  { qty: 10, discount: 15 },
 ];
 
-type Line = {
-  key: string;
-  name: string;
-  icon: string;
-  price: number;
-  variant: string;
-  qty: number;
-};
+const DEFAULT_PRODUCTS: CatalogProduct[] = [
+  { name: "Accent Chair — Blush", price: 75, icon: "🪑", category: "Furniture" },
+  { name: "Accent Chair — Grey", price: 80, icon: "🪑", category: "Furniture" },
+  { name: "Accent Chair — Check", price: 78, icon: "🪑", category: "Furniture" },
+  { name: "Texture Table Lamp", price: 42, icon: "🪔", category: "Home Decor" },
+  { name: "Wave Table Lamp", price: 45, icon: "🪔", category: "Home Decor" },
+  { name: "Ceramic Flower Vase", price: 35, icon: "🏺", category: "Home Decor" },
+  { name: "Woven Basket", price: 28, icon: "🧺", category: "Accessories" },
+  { name: "Scented Candle", price: 22, icon: "🕯️", category: "Accessories" },
+  { name: "Photo Frame", price: 18, icon: "🖼️", category: "Accessories" },
+];
 
 export function MixMatchMultiDemo({
+  boxes = DEFAULT_BOXES,
   products = DEFAULT_PRODUCTS,
-  packs = [
-    { qty: 4, discount: 5 },
-    { qty: 8, discount: 10 },
-    { qty: 12, discount: 15 },
-  ],
   className,
 }: {
-  products?: MultiProduct[];
-  packs?: MixPack[];
+  boxes?: MultiBox[];
+  products?: CatalogProduct[];
   className?: string;
 }) {
-  const [packIndex, setPackIndex] = useState(0);
-  const [lines, setLines] = useState<Line[]>([]);
-  const [openIdx, setOpenIdx] = useState<number | null>(null);
-  const [draft, setDraft] = useState<{ values: string[]; qty: number }>({
-    values: [],
-    qty: 1,
-  });
+  const categories = useMemo(
+    () => [...new Set(products.map((p) => p.category))],
+    [products],
+  );
+  const [boxIndex, setBoxIndex] = useState(() =>
+    Math.min(1, boxes.length - 1),
+  );
+  const [activeCat, setActiveCat] = useState(categories[0]);
+  const [qty, setQty] = useState<Record<string, number>>({});
   const [notice, setNotice] = useState<string | null>(null);
   const noticeTimer = useRef<number | undefined>(undefined);
 
-  const pack = packs[packIndex];
-  const target = pack.qty;
-  const factor = 1 - pack.discount / 100;
-  const selectedCount = lines.reduce((s, l) => s + l.qty, 0);
+  const box = boxes[boxIndex];
+  const target = box.qty;
+  const discount = box.discount;
+  const factor = 1 - discount / 100;
+  const selectedCount = Object.values(qty).reduce((s, q) => s + q, 0);
   const remaining = target - selectedCount;
   const full = remaining <= 0;
-  const original = lines.reduce((s, l) => s + l.price * l.qty, 0);
+
+  const find = (name: string) => products.find((p) => p.name === name);
+  const original = Object.entries(qty).reduce(
+    (s, [n, q]) => s + (find(n)?.price ?? 0) * q,
+    0,
+  );
   const total = original * factor;
+  const selectedItems = Object.entries(qty).filter(([, q]) => q > 0);
+  const shown = products.filter((p) => p.category === activeCat);
 
-  const reset = () => {
-    setLines([]);
-    setOpenIdx(null);
+  const selectBox = (i: number) => {
+    setBoxIndex(i);
+    setQty({}); // fresh box
   };
 
-  const selectPack = (i: number) => {
-    setPackIndex(i);
-    reset();
-  };
-
-  const addLine = (name: string, icon: string, price: number, variant: string, qty: number) => {
-    const key = `${name}|${variant}`;
-    setLines((prev) => {
-      const capped = Math.min(qty, remaining);
-      if (capped <= 0) return prev;
-      const idx = prev.findIndex((l) => l.key === key);
-      if (idx >= 0) {
-        const next = [...prev];
-        next[idx] = { ...next[idx], qty: next[idx].qty + capped };
-        return next;
-      }
-      return [...prev, { key, name, icon, price, variant, qty: capped }];
-    });
-  };
-
-  const openOptions = (i: number) => {
-    const p = products[i];
-    setOpenIdx(i);
-    setDraft({ values: (p.options ?? []).map((o) => o.values[0]), qty: 1 });
-  };
-
-  const addConfigured = (i: number) => {
-    const p = products[i];
-    const variant = draft.values.join(" · ");
-    addLine(p.name, p.icon, p.price, variant, draft.qty);
-    setOpenIdx(null);
-  };
-
-  const changeLineQty = (key: string, delta: number) =>
-    setLines((prev) => {
-      const others = selectedCount - (prev.find((l) => l.key === key)?.qty ?? 0);
-      return prev.flatMap((l) => {
-        if (l.key !== key) return [l];
-        const q = Math.min(l.qty + delta, target - others);
-        return q <= 0 ? [] : [{ ...l, qty: q }];
-      });
+  const changeQty = (name: string, delta: number) =>
+    setQty((prev) => {
+      const others = selectedCount - (prev[name] ?? 0);
+      const q = Math.max(0, Math.min((prev[name] ?? 0) + delta, target - others));
+      const next = { ...prev };
+      if (q <= 0) delete next[name];
+      else next[name] = q;
+      return next;
     });
 
   const addToCart = () => {
     if (!full) return;
-    setNotice(`Bundle of ${target} added to cart · ${usd(total)}`);
-    reset();
+    setNotice(`Box of ${target} added to cart · ${usd(total)}`);
+    setQty({});
     window.clearTimeout(noticeTimer.current);
     noticeTimer.current = window.setTimeout(() => setNotice(null), 2800);
   };
 
   useEffect(() => () => window.clearTimeout(noticeTimer.current), []);
 
-  const iconTile = (icon: string, size = "size-10 text-xl") => (
+  const tile = (icon: string, size: string) => (
     <span
       aria-hidden="true"
       className={cn(
@@ -156,196 +119,177 @@ export function MixMatchMultiDemo({
   );
 
   return (
-    <div className={cn("w-full px-4 pt-4 text-foreground sm:px-5 sm:pt-5", className)}>
-      {/* Choose a pack */}
-      <p className="text-sm font-semibold">Choose a pack</p>
-      <div className="mt-2 flex flex-wrap gap-2">
-        {packs.map((pk, i) => {
-          const sel = i === packIndex;
+    <div className={cn("@container w-full p-4 text-foreground sm:p-5", className)}>
+      {/* Box tiers */}
+      <div className="grid grid-cols-2 gap-2 @sm:grid-cols-4">
+        {boxes.map((bx, i) => {
+          const sel = i === boxIndex;
           return (
             <button
-              key={pk.qty}
+              key={bx.qty}
               type="button"
               aria-pressed={sel}
-              onClick={() => selectPack(i)}
+              onClick={() => selectBox(i)}
               className={cn(
-                "flex flex-col items-start rounded-lg border px-3 py-2 text-left transition-colors",
+                "rounded-lg border px-2 py-2 text-center transition-colors",
                 sel
-                  ? "border-primary bg-primary text-primary-foreground shadow-glow"
+                  ? "border-transparent bg-foreground text-background shadow-soft"
                   : "border-border hover:border-primary/40",
               )}
             >
-              <span className="text-sm font-bold">Pack {pk.qty}</span>
-              <span className={cn("text-xs", sel ? "text-primary-foreground/80" : "text-muted")}>
-                Save {pk.discount}%
+              <span
+                className={cn(
+                  "block text-[10px] font-semibold uppercase tracking-wide",
+                  sel ? "text-background/70" : "text-muted",
+                )}
+              >
+                Box of {bx.qty} items
               </span>
+              {bx.discount > 0 ? (
+                <span className="mt-1 inline-block rounded bg-primary px-2 py-0.5 text-xs font-bold text-primary-foreground">
+                  {bx.discount}% OFF
+                </span>
+              ) : (
+                <span className="mt-1 block text-sm font-bold">Regular</span>
+              )}
             </button>
           );
         })}
       </div>
 
-      {/* Selected items tray */}
-      <div className="mt-4 rounded-xl border border-border bg-surface-subtle p-3">
-        <p className="text-sm font-semibold">
-          Selected products {selectedCount}/{target}
-        </p>
-        {lines.length > 0 ? (
-          <ul className="mt-2 space-y-2">
-            {lines.map((l) => (
-              <li key={l.key} className="flex items-center gap-2.5">
-                {iconTile(l.icon, "size-8 text-base")}
-                <span className="min-w-0 flex-1">
-                  <span className="block truncate text-xs font-semibold">{l.name}</span>
-                  {l.variant && (
-                    <span className="block truncate text-[11px] text-muted">{l.variant}</span>
-                  )}
-                </span>
-                <span className="flex items-center rounded-md border border-border">
-                  <button type="button" onClick={() => changeLineQty(l.key, -1)} aria-label={`Decrease ${l.name}`} className="grid size-6 place-items-center text-muted hover:text-foreground">−</button>
-                  <span className="w-5 text-center text-xs tabular-nums">{l.qty}</span>
-                  <button type="button" onClick={() => changeLineQty(l.key, 1)} disabled={full} aria-label={`Increase ${l.name}`} className="grid size-6 place-items-center text-muted hover:text-foreground disabled:opacity-40">+</button>
-                </span>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p className="mt-2 text-xs text-muted">
-            Nothing yet — add {target} items from the products below.
-          </p>
-        )}
-      </div>
-
-      {/* Product grid */}
-      <div className="mt-4 grid grid-cols-2 gap-3">
-        {products.map((p, i) => {
-          const hasOptions = !!p.options?.length;
-          const isOpen = openIdx === i;
+      {/* Category tabs */}
+      <div className="mt-4 flex gap-4 overflow-x-auto border-b border-border">
+        {categories.map((cat) => {
+          const on = cat === activeCat;
           return (
-            <div key={p.name} className="flex flex-col rounded-lg border border-border p-2.5">
-              {iconTile(p.icon, "h-16 w-full text-3xl")}
-              <p className="mt-2 truncate text-sm font-semibold">{p.name}</p>
-              <p className="mt-0.5 text-xs">
-                <span className="text-muted line-through">{usd(p.price)}</span>{" "}
-                <span className="font-semibold">{usd(p.price * factor)}</span>
-                <span className="ml-1 rounded bg-primary-subtle px-1 py-0.5 text-[10px] font-semibold text-primary">
-                  {pack.discount}% off
-                </span>
-              </p>
-
-              <div className="mt-2">
-                {p.outOfStock ? (
-                  <button type="button" disabled className="w-full cursor-not-allowed rounded-md border border-border py-1.5 text-xs font-semibold text-muted opacity-70">
-                    Out of stock
-                  </button>
-                ) : hasOptions ? (
-                  <button
-                    type="button"
-                    onClick={() => (isOpen ? setOpenIdx(null) : openOptions(i))}
-                    disabled={full}
-                    className="w-full rounded-md border border-primary py-1.5 text-xs font-semibold text-primary transition-colors hover:bg-primary-subtle disabled:opacity-40"
-                  >
-                    {isOpen ? "Close" : "See options"}
-                  </button>
-                ) : (
-                  <button
-                    type="button"
-                    onClick={() => addLine(p.name, p.icon, p.price, "", 1)}
-                    disabled={full}
-                    className="w-full rounded-md border border-primary py-1.5 text-xs font-semibold text-primary transition-colors hover:bg-primary-subtle disabled:opacity-40"
-                  >
-                    Add to box
-                  </button>
-                )}
-              </div>
-
-              {/* Inline options panel */}
-              {isOpen && hasOptions && (
-                <div className="mt-2 space-y-2 rounded-md bg-surface-subtle p-2.5">
-                  {p.options!.map((opt, oi) => (
-                    <div key={opt.name}>
-                      <p className="text-[11px] font-semibold text-muted">{opt.name}</p>
-                      <div className="mt-1 flex flex-wrap gap-1">
-                        {opt.values.map((val) => {
-                          const on = draft.values[oi] === val;
-                          return (
-                            <button
-                              key={val}
-                              type="button"
-                              onClick={() =>
-                                setDraft((d) => ({
-                                  ...d,
-                                  values: d.values.map((x, xi) => (xi === oi ? val : x)),
-                                }))
-                              }
-                              className={cn(
-                                "rounded-md border px-2 py-0.5 text-[11px] font-medium transition-colors",
-                                on
-                                  ? "border-primary bg-primary text-primary-foreground"
-                                  : "border-border hover:border-primary/40",
-                              )}
-                            >
-                              {val}
-                            </button>
-                          );
-                        })}
-                      </div>
-                    </div>
-                  ))}
-                  <div className="flex items-center gap-2 pt-0.5">
-                    <span className="flex items-center rounded-md border border-border bg-surface">
-                      <button type="button" onClick={() => setDraft((d) => ({ ...d, qty: Math.max(1, d.qty - 1) }))} aria-label="Decrease quantity" className="grid size-6 place-items-center text-muted hover:text-foreground">−</button>
-                      <span className="w-5 text-center text-xs tabular-nums">{draft.qty}</span>
-                      <button type="button" onClick={() => setDraft((d) => ({ ...d, qty: d.qty + 1 }))} aria-label="Increase quantity" className="grid size-6 place-items-center text-muted hover:text-foreground">+</button>
-                    </span>
-                    <button
-                      type="button"
-                      onClick={() => addConfigured(i)}
-                      className="h-8 flex-1 rounded-md bg-button-gradient px-2 text-xs font-semibold text-white shadow-glow"
-                    >
-                      Add to box
-                    </button>
-                  </div>
-                </div>
+            <button
+              key={cat}
+              type="button"
+              onClick={() => setActiveCat(cat)}
+              className={cn(
+                "-mb-px whitespace-nowrap border-b-2 pb-2 text-sm font-semibold transition-colors",
+                on
+                  ? "border-primary text-primary"
+                  : "border-transparent text-muted hover:text-foreground",
               )}
-            </div>
+            >
+              {cat}
+            </button>
           );
         })}
       </div>
 
-      {/* Total + add to cart (flush bottom) */}
-      <div className="sticky bottom-0 -mx-4 mt-4 border-t border-border bg-surface/95 px-4 py-3 backdrop-blur sm:-mx-5 sm:px-5">
-        {notice && (
-          <div role="status" className="mb-2.5 flex items-center gap-2 rounded-lg border border-success/30 bg-success/10 px-3 py-2 text-sm font-medium text-success-foreground">
-            <svg viewBox="0 0 24 24" className="size-4 shrink-0" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="m5 13 4 4L19 7" />
-            </svg>
-            {notice}
+      {/* Products + My Pack */}
+      <div className="mt-4 grid gap-4 @md:grid-cols-[1.5fr_1fr]">
+        {/* Product grid (filtered by category) */}
+        <div>
+          <div className="grid grid-cols-2 gap-3">
+            {shown.map((p) => {
+              const q = qty[p.name] ?? 0;
+              return (
+                <div key={p.name} className="rounded-lg border border-border p-2.5">
+                  {tile(p.icon, "h-16 w-full text-3xl")}
+                  <p className="mt-2 truncate text-sm font-semibold">{p.name}</p>
+                  <p className="text-xs text-muted">{usd(p.price)}</p>
+                  <div className="mt-2 flex items-center justify-between rounded-md border border-border">
+                    <button
+                      type="button"
+                      onClick={() => changeQty(p.name, -1)}
+                      disabled={q <= 0}
+                      aria-label={`Decrease ${p.name}`}
+                      className="grid size-7 place-items-center text-muted hover:text-foreground disabled:opacity-40"
+                    >
+                      −
+                    </button>
+                    <span className="text-sm tabular-nums">{q}</span>
+                    <button
+                      type="button"
+                      onClick={() => changeQty(p.name, 1)}
+                      disabled={full}
+                      aria-label={`Increase ${p.name}`}
+                      className="grid size-7 place-items-center text-muted hover:text-foreground disabled:opacity-40"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
           </div>
-        )}
-        <div className="flex items-center justify-between gap-3">
-          <span className="text-sm font-semibold">
-            Total{" "}
-            <span className="font-normal text-muted">
-              ({selectedCount}/{target})
-            </span>
-          </span>
-          <span className="whitespace-nowrap text-sm">
-            {selectedCount > 0 && (
-              <span className="mr-1.5 text-muted line-through">{usd(original)}</span>
-            )}
-            <span className="font-semibold">{usd(total)}</span>
-          </span>
         </div>
-        <button
-          type="button"
-          onClick={addToCart}
-          disabled={!full}
-          className={cn(buttonStyles({ variant: "gradient" }), "mt-2.5 w-full")}
-        >
-          {full
-            ? "Add to cart"
-            : `Add ${remaining} more item${remaining === 1 ? "" : "s"}`}
-        </button>
+
+        {/* My Pack tray */}
+        <div className="rounded-xl border border-border bg-surface-subtle/50 p-3">
+          <div className="flex items-center justify-between gap-2">
+            <p className="flex items-center gap-1.5 text-sm font-bold">
+              My Pack
+              <span className="rounded bg-primary px-1.5 py-0.5 text-[11px] font-bold text-primary-foreground tabular-nums">
+                {selectedCount}/{target}
+              </span>
+            </p>
+            {selectedCount > 0 && (
+              <span className="whitespace-nowrap text-sm">
+                {discount > 0 && (
+                  <span className="mr-1 text-xs text-muted line-through">
+                    {usd(original)}
+                  </span>
+                )}
+                <span className="font-bold">{usd(total)}</span>
+              </span>
+            )}
+          </div>
+
+          <ul className="mt-2.5 space-y-2">
+            {selectedItems.map(([name, q]) => (
+              <li key={name} className="flex items-center gap-2">
+                {tile(find(name)?.icon ?? "", "size-8 text-base")}
+                <span className="min-w-0 flex-1 truncate text-xs font-medium">
+                  {name}
+                </span>
+                <span className="flex items-center rounded-md border border-border">
+                  <button type="button" onClick={() => changeQty(name, -1)} aria-label={`Decrease ${name}`} className="grid size-6 place-items-center text-muted hover:text-foreground">−</button>
+                  <span className="w-5 text-center text-xs tabular-nums">{q}</span>
+                  <button type="button" onClick={() => changeQty(name, 1)} disabled={full} aria-label={`Increase ${name}`} className="grid size-6 place-items-center text-muted hover:text-foreground disabled:opacity-40">+</button>
+                </span>
+              </li>
+            ))}
+            {!full && (
+              <li className="flex items-center gap-2 rounded-md border border-dashed border-border px-2 py-2 text-xs text-muted">
+                <span className="grid size-8 shrink-0 place-items-center rounded-md text-lg text-muted">
+                  +
+                </span>
+                Add {remaining} more {remaining === 1 ? "product" : "products"} to fill your box
+              </li>
+            )}
+          </ul>
+
+          {notice && (
+            <div role="status" className="mt-2.5 flex items-center gap-2 rounded-lg border border-success/30 bg-success/10 px-2.5 py-2 text-xs font-medium text-success-foreground">
+              <svg viewBox="0 0 24 24" className="size-3.5 shrink-0" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="m5 13 4 4L19 7" />
+              </svg>
+              {notice}
+            </div>
+          )}
+
+          <button
+            type="button"
+            onClick={addToCart}
+            disabled={!full}
+            aria-disabled={!full}
+            className={cn(
+              "mt-3 w-full rounded-lg px-4 py-2.5 text-sm font-semibold transition-colors",
+              full
+                ? "bg-primary text-primary-foreground shadow-glow hover:bg-primary-hover"
+                : "cursor-not-allowed bg-surface-subtle text-muted",
+            )}
+          >
+            <span className="flex w-full items-center justify-between">
+              <span>Add to Cart</span>
+              <span>{usd(total)}</span>
+            </span>
+          </button>
+        </div>
       </div>
     </div>
   );

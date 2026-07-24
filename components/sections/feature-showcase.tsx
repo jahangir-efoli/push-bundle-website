@@ -7,7 +7,7 @@ import { Icon, IconTile, type IconName } from "@/components/ui/icon";
 import { buttonStyles } from "@/components/ui/button";
 import { VolumeBundleStage } from "@/components/demos/volume-bundle-stage";
 import { MixMatchSingleStage } from "@/components/demos/mix-match-single-stage";
-import { MixMatchMultiDemo } from "@/components/demos/mix-match-multi-demo";
+import { MixMatchMultiStage } from "@/components/demos/mix-match-multi-stage";
 import { CrossSellStage } from "@/components/demos/cross-sell-stage";
 import { ByobDemo } from "@/components/demos/byob-demo";
 import { site } from "@/lib/site-config";
@@ -19,7 +19,7 @@ const DEMOS: Record<string, React.ComponentType> = {
   volume: VolumeBundleStage,
   "cross-sell": CrossSellStage,
   "mix-single": MixMatchSingleStage,
-  "mix-multi": MixMatchMultiDemo,
+  "mix-multi": MixMatchMultiStage,
   byob: ByobDemo,
 };
 
