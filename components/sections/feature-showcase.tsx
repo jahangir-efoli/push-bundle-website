@@ -6,7 +6,7 @@ import { Eyebrow } from "@/components/ui/eyebrow";
 import { Icon, IconTile, type IconName } from "@/components/ui/icon";
 import { buttonStyles } from "@/components/ui/button";
 import { VolumeBundleStage } from "@/components/demos/volume-bundle-stage";
-import { MixMatchSingleDemo } from "@/components/demos/mix-match-single-demo";
+import { MixMatchSingleStage } from "@/components/demos/mix-match-single-stage";
 import { MixMatchMultiDemo } from "@/components/demos/mix-match-multi-demo";
 import { CrossSellStage } from "@/components/demos/cross-sell-stage";
 import { ByobDemo } from "@/components/demos/byob-demo";
@@ -18,7 +18,7 @@ import { showcase } from "@/lib/content/showcase";
 const DEMOS: Record<string, React.ComponentType> = {
   volume: VolumeBundleStage,
   "cross-sell": CrossSellStage,
-  "mix-single": MixMatchSingleDemo,
+  "mix-single": MixMatchSingleStage,
   "mix-multi": MixMatchMultiDemo,
   byob: ByobDemo,
 };

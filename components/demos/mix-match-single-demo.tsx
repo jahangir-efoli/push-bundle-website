@@ -10,7 +10,12 @@ import { cn } from "@/lib/utils";
  * variants of one product from the grid. The cart summary sticks to the bottom
  * of the box. Reusable + prop-driven for the showcase, Features page, etc.
  */
-export type MixPack = { qty: number; discount: number };
+export type MixPack = {
+  qty: number;
+  discount: number;
+  /** Optional explicit per-unit price; overrides `discount` for pricing. */
+  pricePerUnit?: number;
+};
 export type MixVariant = { name: string; color: string };
 
 const usd = (n: number) =>
@@ -55,12 +60,18 @@ export function MixMatchSingleDemo({
     { name: "Slate", color: "#64748b" },
     { name: "Plum", color: "#a855f7" },
   ],
+  /** Noun shown in the per-pack unit price, e.g. "$22.00 / shirt". */
+  unitNoun = "item",
+  /** Embedded in a ProductStage: drop outer padding + inline (non-sticky) cart. */
+  embedded = false,
   className,
 }: {
   productName?: string;
   basePrice?: number;
   packs?: MixPack[];
   variants?: MixVariant[];
+  unitNoun?: string;
+  embedded?: boolean;
   className?: string;
 }) {
   const [packIndex, setPackIndex] = useState(0);
@@ -68,9 +79,12 @@ export function MixMatchSingleDemo({
   const [notice, setNotice] = useState<string | null>(null);
   const noticeTimer = useRef<number | undefined>(undefined);
 
+  const unitOf = (pk: MixPack) =>
+    pk.pricePerUnit ?? basePrice * (1 - pk.discount / 100);
   const pack = packs[packIndex];
   const target = pack.qty;
-  const unitPrice = basePrice * (1 - pack.discount / 100);
+  const unitPrice = unitOf(pack);
+  const discountPct = Math.round((1 - unitPrice / basePrice) * 100);
   const selectedCount = Object.values(picks).reduce((s, q) => s + q, 0);
   const remaining = target - selectedCount;
   const full = remaining <= 0;
@@ -114,7 +128,11 @@ export function MixMatchSingleDemo({
 
   return (
     <div
-      className={cn("w-full px-4 pt-4 text-foreground sm:px-5 sm:pt-5", className)}
+      className={cn(
+        "w-full text-foreground",
+        !embedded && "px-4 pt-4 sm:px-5 sm:pt-5",
+        className,
+      )}
     >
       {/* Choose a pack */}
       <p className="text-sm font-semibold">Choose a pack</p>
@@ -141,7 +159,7 @@ export function MixMatchSingleDemo({
                   sel ? "text-primary-foreground/80" : "text-muted",
                 )}
               >
-                Save {pk.discount}%
+                {usd(unitOf(pk))} / {unitNoun}
               </span>
             </button>
           );
@@ -161,11 +179,15 @@ export function MixMatchSingleDemo({
                 {v.name} {productName}
               </p>
               <p className="mt-0.5 text-xs">
-                <span className="text-muted line-through">{usd(basePrice)}</span>{" "}
+                {unitPrice < basePrice && (
+                  <span className="text-muted line-through">{usd(basePrice)}</span>
+                )}{" "}
                 <span className="font-semibold">{usd(unitPrice)}</span>
-                <span className="ml-1 rounded bg-primary-subtle px-1 py-0.5 text-[10px] font-semibold text-primary">
-                  {pack.discount}% off
-                </span>
+                {discountPct > 0 && (
+                  <span className="ml-1 rounded bg-primary-subtle px-1 py-0.5 text-[10px] font-semibold text-primary">
+                    {discountPct}% off
+                  </span>
+                )}
               </p>
               <div className="mt-2">
                 {qty > 0 ? (
@@ -205,8 +227,16 @@ export function MixMatchSingleDemo({
         })}
       </div>
 
-      {/* Cart summary — sticks flush to the bottom of the demo box */}
-      <div className="sticky bottom-0 -mx-4 mt-4 border-t border-border bg-surface/95 px-4 py-3 backdrop-blur sm:-mx-5 sm:px-5">
+      {/* Cart summary — flush sticky footer when standalone; inline when embedded
+          in a product-page card (which isn't a scroll container). */}
+      <div
+        className={cn(
+          "mt-4",
+          embedded
+            ? "border-t border-border pt-3"
+            : "sticky bottom-0 -mx-4 border-t border-border bg-surface/95 px-4 py-3 backdrop-blur sm:-mx-5 sm:px-5",
+        )}
+      >
         {notice && (
           <div
             role="status"
@@ -254,7 +284,10 @@ export function MixMatchSingleDemo({
           type="button"
           onClick={addToCart}
           disabled={!full}
-          className={cn(buttonStyles({ variant: "gradient" }), "mt-2.5 w-full")}
+          className={cn(
+            buttonStyles({ variant: embedded ? "primary" : "gradient" }),
+            "mt-2.5 w-full",
+          )}
         >
           <span className="flex w-full items-center justify-between">
             <span>{full ? "Add to cart" : `Add ${remaining} more`}</span>
