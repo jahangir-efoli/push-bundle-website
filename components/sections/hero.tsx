@@ -7,9 +7,26 @@ import type { AggregateRating } from "@/lib/cms";
 
 /** Feature previews shown in the hero slider (4:5, in public/images/features). */
 const HERO_SLIDES = [
-  { src: "/images/features/feature-1.webp", alt: "PushBundle bundle builder preview" },
-  { src: "/images/features/feature-2.webp", alt: "PushBundle bundle builder preview" },
-  { src: "/images/features/feature-3.webp", alt: "PushBundle bundle builder preview" },
+  {
+    src: "/images/features/feature-1.png",
+    alt: "PushBundle mix-and-match single-product bundle builder with tiered box discounts",
+  },
+  {
+    src: "/images/features/feature-2.png",
+    alt: "PushBundle mix-and-match multi-product bundle builder across product categories",
+  },
+  {
+    src: "/images/features/feature-3.png",
+    alt: "PushBundle build-your-own gift box flow with step-by-step product selection",
+  },
+  {
+    src: "/images/features/feature-4.png",
+    alt: "PushBundle cross-sell bundle pairing complementary products at a set discount",
+  },
+  {
+    src: "/images/features/feature-5.png",
+    alt: "PushBundle volume bundle offering buy-more-save-more quantity discounts",
+  },
 ];
 
 /**

@@ -262,12 +262,12 @@ test("hero slider shows the feature previews and dots switch slides", async ({
     name: "PushBundle feature previews",
   });
   await expect(carousel).toBeVisible();
-  await expect(carousel.locator("img")).toHaveCount(3);
+  await expect(carousel.locator("img")).toHaveCount(5);
 
   const dots = carousel.getByRole("button", { name: /Show slide/ });
-  await expect(dots).toHaveCount(3);
+  await expect(dots).toHaveCount(5);
 
   // Clicking a dot makes that slide the current one.
-  await dots.nth(2).click();
-  await expect(dots.nth(2)).toHaveAttribute("aria-current", "true");
+  await dots.nth(4).click();
+  await expect(dots.nth(4)).toHaveAttribute("aria-current", "true");
 });

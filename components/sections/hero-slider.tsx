@@ -56,6 +56,7 @@ export function HeroSlider({
           aria-hidden={i !== index}
           fill
           priority={i === 0}
+          quality={90}
           sizes="(min-width: 1024px) 28rem, (min-width: 640px) 24rem, 85vw"
           className={cn(
             "object-cover transition-opacity duration-700 ease-out motion-reduce:transition-none",
@@ -68,7 +69,7 @@ export function HeroSlider({
         <>
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/30 to-transparent"
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-linear-to-t from-black/30 to-transparent"
           />
           <div className="absolute inset-x-0 bottom-3.5 flex justify-center gap-2">
             {slides.map((slide, i) => (
