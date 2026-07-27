@@ -43,7 +43,7 @@ export default async function ChangelogPage() {
         subtitle="New features, improvements, and fixes — shipped regularly."
       />
 
-      <Container className="py-16">
+      <Container className="pb-16 pt-8">
         <ChangelogTimeline entries={entries} />
       </Container>
 

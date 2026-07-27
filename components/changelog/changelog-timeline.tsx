@@ -7,8 +7,13 @@ import { AnimateIn } from "@/components/motion/animate-in";
 import { cn } from "@/lib/utils";
 import type { ChangelogEntry } from "@/lib/cms";
 
-const CATEGORIES = [
-  "All",
+/**
+ * Category display order. The filter tabs are DERIVED from the entries actually
+ * returned by the CMS (see `categories` below) and shown in this order — so an
+ * empty category never renders a dead tab. Each entry's category value comes
+ * from the CMS; the adapter normalizes it into this known set.
+ */
+const CATEGORY_ORDER = [
   "New Feature",
   "Improved",
   "Fixed",
@@ -17,7 +22,7 @@ const CATEGORIES = [
 ] as const;
 
 /** Entries per page before pagination kicks in. */
-const PAGE_SIZE = 8;
+const PAGE_SIZE = 15;
 
 function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString("en-US", {
@@ -29,15 +34,22 @@ function formatDate(iso: string) {
 }
 
 /**
- * Changelog timeline + badge filter + pagination (docs/PLAN.md §5.9).
+ * Changelog timeline + category filter + pagination (docs/PLAN.md §5.9).
  * Client component for the filter/paging; entries come from the server.
  *
  * `body` is sanitized CMS HTML (headings, lists, images, tables) — rendered via
  * `prose-pb`, not printed as text. Filtering or paging resets to page 1.
  */
 export function ChangelogTimeline({ entries }: { entries: ChangelogEntry[] }) {
-  const [filter, setFilter] = useState<(typeof CATEGORIES)[number]>("All");
+  const [filter, setFilter] = useState<string>("All");
   const [page, setPage] = useState(1);
+
+  // Tabs reflect the CMS data: "All" + only the categories actually present,
+  // in the canonical order.
+  const categories = useMemo(() => {
+    const present = new Set(entries.map((e) => e.category));
+    return ["All", ...CATEGORY_ORDER.filter((c) => present.has(c))];
+  }, [entries]);
 
   const visible = useMemo(
     () => (filter === "All" ? entries : entries.filter((e) => e.category === filter)),
@@ -55,7 +67,7 @@ export function ChangelogTimeline({ entries }: { entries: ChangelogEntry[] }) {
     [visible, current],
   );
 
-  const selectFilter = (cat: (typeof CATEGORIES)[number]) => {
+  const selectFilter = (cat: string) => {
     setFilter(cat);
     setPage(1);
   };
@@ -64,7 +76,7 @@ export function ChangelogTimeline({ entries }: { entries: ChangelogEntry[] }) {
     <div>
       {/* Filter */}
       <div role="group" aria-label="Filter by type" className="flex flex-wrap gap-2">
-        {CATEGORIES.map((cat) => (
+        {categories.map((cat) => (
           <button
             key={cat}
             type="button"
@@ -74,7 +86,7 @@ export function ChangelogTimeline({ entries }: { entries: ChangelogEntry[] }) {
               "flex h-9 items-center rounded-full px-4 text-sm font-semibold transition-colors",
               filter === cat
                 ? "bg-primary text-primary-foreground"
-                : "border border-border hover:bg-surface-subtle",
+                : "border border-border text-muted hover:bg-surface-subtle hover:text-foreground",
             )}
           >
             {cat}
@@ -82,42 +94,63 @@ export function ChangelogTimeline({ entries }: { entries: ChangelogEntry[] }) {
         ))}
       </div>
 
-      {/* Timeline */}
-      <ol className="mt-10 space-y-10 border-l border-border pl-6">
-        {paged.map((entry) => (
-          <li key={entry.slug} id={entry.slug} className="relative scroll-mt-24">
-            <span
-              aria-hidden="true"
-              className="absolute -left-[1.6rem] top-1.5 size-3 rounded-full border-2 border-background bg-primary"
-            />
-            <AnimateIn direction="none">
-              <div className="flex flex-wrap items-center gap-3">
-                <Badge tone={CHANGELOG_TONE[entry.category]}>{entry.category}</Badge>
-                <time dateTime={entry.date} className="text-sm text-muted">
-                  {formatDate(entry.date)}
-                </time>
-              </div>
-              <h2 className="mt-2 font-display text-lg font-bold wrap-break-word">
-                {entry.title}
-              </h2>
-
-              {entry.image && (
-                <MediaHolder
-                  src={entry.image}
-                  alt={entry.title}
-                  ratio="aspect-video"
-                  className="mt-4 max-w-2xl rounded-2xl border border-border"
+      {/* Timeline — a connected rail of dots with a card per release. */}
+      <ol className="mt-10 space-y-6">
+        {paged.map((entry, i) => {
+          const last = i === paged.length - 1;
+          return (
+            <li
+              key={entry.slug}
+              id={entry.slug}
+              className="relative scroll-mt-28 pl-8 sm:pl-10"
+            >
+              {/* Connector line to the next release (bridges the space-y gap). */}
+              {!last && (
+                <span
+                  aria-hidden="true"
+                  className="absolute left-[7px] top-6 h-[calc(100%+1.5rem)] w-px bg-border"
                 />
               )}
-
-              {/* CMS body is sanitized HTML — render it, don't print the tags. */}
-              <div
-                className="prose-pb mt-3 max-w-2xl text-base"
-                dangerouslySetInnerHTML={{ __html: entry.body }}
+              {/* Dot, aligned to the card's badge row; the ring punches it
+                  cleanly through the connector line. */}
+              <span
+                aria-hidden="true"
+                className="absolute left-0 top-[1.4rem] size-3.5 rounded-full bg-primary ring-4 ring-background"
               />
-            </AnimateIn>
-          </li>
-        ))}
+
+              <AnimateIn direction="none">
+                <div className="rounded-2xl border border-border bg-surface p-5 shadow-soft sm:p-6">
+                  <div className="flex flex-wrap items-center gap-3">
+                    <Badge tone={CHANGELOG_TONE[entry.category]}>
+                      {entry.category}
+                    </Badge>
+                    <time dateTime={entry.date} className="text-sm text-muted">
+                      {formatDate(entry.date)}
+                    </time>
+                  </div>
+                  <h2 className="mt-3 font-display text-lg font-bold wrap-break-word">
+                    {entry.title}
+                  </h2>
+
+                  {entry.image && (
+                    <MediaHolder
+                      src={entry.image}
+                      alt={entry.title}
+                      ratio="aspect-video"
+                      className="mt-4 max-w-xl rounded-xl border border-border"
+                    />
+                  )}
+
+                  {/* CMS body is sanitized HTML — render it, don't print tags. */}
+                  <div
+                    className="prose-pb mt-3 max-w-none text-[15px]"
+                    dangerouslySetInnerHTML={{ __html: entry.body }}
+                  />
+                </div>
+              </AnimateIn>
+            </li>
+          );
+        })}
       </ol>
 
       {visible.length === 0 && (
