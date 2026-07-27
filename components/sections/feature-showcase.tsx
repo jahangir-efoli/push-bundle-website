@@ -95,10 +95,10 @@ export function FeatureShowcase() {
               tabIndex={selected ? 0 : -1}
               onClick={() => setActive(i)}
               className={cn(
-                "flex items-center gap-2 rounded-lg border px-4 py-2.5 text-sm font-semibold transition-[color,background-color,border-color,box-shadow,transform] duration-200",
+                "flex cursor-pointer items-center gap-2 rounded-lg border px-4 py-2.5 text-sm font-semibold transition-[color,background-color,border-color,box-shadow,transform] duration-200",
                 selected
                   ? "-translate-y-px border-transparent bg-primary text-primary-foreground shadow-glow"
-                  : "border-border bg-surface text-muted hover:border-primary/40 hover:text-foreground hover:shadow-soft",
+                  : "border-border bg-surface text-foreground shadow-soft hover:-translate-y-px hover:border-primary/50 hover:bg-primary-subtle hover:text-primary hover:shadow-lift",
               )}
             >
               <Icon
