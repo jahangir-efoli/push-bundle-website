@@ -119,7 +119,7 @@ export function FeatureShowcase() {
         id={`${baseId}-panel`}
         role="tabpanel"
         aria-labelledby={`${baseId}-tab-${active}`}
-        className="mt-12 grid items-start gap-8 lg:grid-cols-[1.6fr_1fr] lg:gap-12"
+        className="mt-12 grid grid-cols-1 items-start gap-8 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)] lg:gap-12"
       >
         {/* LEFT — large app-window placeholder (live preview goes here later).
             `pb-light` pins the preview to the light token set so it always reads

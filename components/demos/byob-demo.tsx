@@ -266,7 +266,7 @@ export function ByobDemo({
                 </span>
                 <span
                   className={cn(
-                    "mt-1.5 whitespace-nowrap text-[11px] font-medium",
+                    "mt-1.5 max-w-16 text-center text-[10px] font-medium leading-tight @sm:max-w-none @sm:text-[11px]",
                     reached ? "text-foreground" : "text-muted",
                   )}
                 >
