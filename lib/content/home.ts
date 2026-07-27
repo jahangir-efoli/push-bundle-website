@@ -42,26 +42,61 @@ export const featureTrio = {
   ],
 } as const;
 
-export const biggerOrders = {
-  title: "Bigger Orders with Smart Bundling",
+/**
+ * "Why choose PushBundle" — an interactive section: a vertical list of reasons
+ * on the right (each expands to a feature list), synced to a rotating image on
+ * the left. Drop per-item images at the `image` paths (see WhyPushbundle).
+ */
+export const whyPushbundle = {
+  eyebrow: "Why PushBundle",
+  title: "Why merchants choose PushBundle",
+  subtitle:
+    "Every bundle type, native Shopify checkout, and no code required — one app that's built to grow average order value.",
   items: [
     {
-      title: "Personalized Bundles That Grow Your AOV & Revenue",
-      description:
-        "Let customers build custom packs with their favorite variants, unlocking exclusive deals that drive repeat sales and bigger orders.",
-      href: "/docs/mix-and-match-single-product",
+      title: "Every bundle type in one app",
+      image: "/images/why/why-1.png",
+      features: [
+        "Mix & match, volume, cross-sell, fixed packs, and build-your-own box",
+        "One dashboard — no juggling several bundle apps",
+        "Switch between bundle styles without re-learning anything",
+      ],
     },
     {
-      title: "Mix and Match Bundles to Boost AOV on Your B2B Shopify Store",
-      description:
-        "PushBundle's customizable product packs let your customers mix and match across variants or products, unlocking exclusive volume discounts and encouraging larger orders.",
-      href: "/docs/discount-for-mix-and-match-bundle",
+      title: "Native Shopify checkout",
+      image: "/images/why/why-2.png",
+      features: [
+        "Discounts flow through Shopify's own checkout — no workarounds",
+        "Works with Shopify Plus, POS, and Markets",
+        "No broken discount codes and no theme-code hacks",
+      ],
     },
     {
-      title: "Fixed Product Bundles with Bulk Discounts",
-      description:
-        "Create simple, irresistible deals by setting custom product packs at fixed prices. Ideal for B2B stores looking to boost AOV and conversions with no-code bundle builder ease.",
-      href: "/docs/how-to-setup-volume-bundle",
+      title: "No-code and fully customizable",
+      image: "/images/why/why-3.png",
+      features: [
+        "Live preview that matches your theme as you build",
+        "Style it with simple controls or your own custom CSS",
+        "Launch your first bundle in minutes — no developer needed",
+      ],
+    },
+    {
+      title: "Built to grow AOV",
+      image: "/images/why/why-4.png",
+      features: [
+        "High-converting, mobile-first bundle displays",
+        "One-click add-to-cart for the whole bundle",
+        "Tiered and volume discounts that reward bigger carts",
+      ],
+    },
+    {
+      title: "Fast, global, and supported",
+      image: "/images/why/why-5.png",
+      features: [
+        "Lightweight — loads fast and won't slow your storefront",
+        "Multi-language and multi-currency ready",
+        "Responsive support with optional white-glove setup",
+      ],
     },
   ],
 } as const;

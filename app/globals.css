@@ -667,6 +667,16 @@ body {
     transform 0.5s cubic-bezier(0.21, 0.47, 0.32, 0.98);
 }
 
+/* WhyPushbundle accordion (components/sections/why-pushbundle.tsx): panels are
+   open by default so every feature list is visible without JS; once JS drives
+   the selection, only the active panel stays expanded. */
+.why-panel {
+  grid-template-rows: 1fr;
+}
+.js .why-panel[data-open="false"] {
+  grid-template-rows: 0fr;
+}
+
 /* ==================================================================
    REVIEWS MARQUEE (components/sections/reviews.tsx)
    Smooth, continuous auto-scroll. Cards are duplicated once, so a -50%

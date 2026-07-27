@@ -3,7 +3,7 @@ import { cms, DEFAULT_LOCALE } from "@/lib/cms";
 import { Hero } from "@/components/sections/hero";
 import { FeatureShowcase } from "@/components/sections/feature-showcase";
 import { FeatureTrio } from "@/components/sections/feature-trio";
-import { BiggerOrders } from "@/components/sections/bigger-orders";
+import { WhyPushbundle } from "@/components/sections/why-pushbundle";
 import { StorefrontPersonalization } from "@/components/sections/storefront-personalization";
 import { MobileExperience } from "@/components/sections/mobile-experience";
 import { ComingSoon } from "@/components/sections/coming-soon";
@@ -49,7 +49,7 @@ export default async function Home() {
       <Hero rating={rating} />
       <FeatureShowcase />
       <FeatureTrio />
-      <BiggerOrders />
+      <WhyPushbundle />
       <StorefrontPersonalization />
       <MobileExperience />
       <ComingSoon />

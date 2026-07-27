@@ -35,7 +35,7 @@ test("all marketing sections are present in order", async ({ page }) => {
   const expected = [
     "Your all-in-one bundle builder",
     "A complete bundling toolkit",
-    "Bigger Orders with Smart Bundling",
+    "Why merchants choose PushBundle",
     "Next-Level Bundling",
     "Seamless Mobile Bundling Experience",
     "Features Coming Soon",
@@ -172,7 +172,7 @@ test("scroll reveals degrade gracefully without JavaScript", async ({
   await page.goto("/");
 
   await expect(
-    page.getByRole("heading", { name: "Bigger Orders with Smart Bundling" }),
+    page.getByRole("heading", { name: "Why merchants choose PushBundle" }),
   ).toBeVisible();
 
   const hidden = await page.evaluate(() =>
