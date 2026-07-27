@@ -56,8 +56,8 @@ export default async function Home() {
       <ComingSoon />
       <Reviews reviews={reviews} rating={rating} />
       <BlogTeaser posts={latestPosts.items} categories={categories} />
-      <TrialCta />
       <FaqTeaser items={faqItems} />
+      <TrialCta />
     </>
   );
 }

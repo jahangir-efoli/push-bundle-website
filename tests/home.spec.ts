@@ -42,8 +42,8 @@ test("all marketing sections are present in order", async ({ page }) => {
     "Features Coming Soon",
     "Loved by Shopify merchants",
     "Expert Reads",
-    "Unlock PushBundle's Full Potential",
     "Have you got any questions?",
+    "Unlock PushBundle's Full Potential",
   ];
 
   for (const [i, label] of expected.entries()) {
