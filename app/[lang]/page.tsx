@@ -6,7 +6,6 @@ import { FeatureTrio } from "@/components/sections/feature-trio";
 import { WhyPushbundle } from "@/components/sections/why-pushbundle";
 import { StorefrontPersonalization } from "@/components/sections/storefront-personalization";
 import { MobileExperience } from "@/components/sections/mobile-experience";
-import { ComingSoon } from "@/components/sections/coming-soon";
 import { Reviews } from "@/components/sections/reviews";
 import { BlogTeaser } from "@/components/sections/blog-teaser";
 import { TrialCta } from "@/components/sections/trial-cta";
@@ -53,7 +52,6 @@ export default async function Home() {
       <WhyPushbundle content={whyBeyond} reverse tone="alt" />
       <StorefrontPersonalization />
       <MobileExperience />
-      <ComingSoon />
       <Reviews reviews={reviews} rating={rating} />
       <BlogTeaser posts={latestPosts.items} categories={categories} />
       <FaqTeaser items={faqItems} />

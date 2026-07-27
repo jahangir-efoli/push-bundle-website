@@ -39,7 +39,6 @@ test("all marketing sections are present in order", async ({ page }) => {
     "Everything you need to scale",
     "Next-Level Bundling",
     "Seamless Mobile Bundling Experience",
-    "Features Coming Soon",
     "Loved by Shopify merchants",
     "Expert Reads",
     "Have you got any questions?",
