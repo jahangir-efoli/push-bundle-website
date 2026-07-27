@@ -27,7 +27,7 @@ function ReviewCard({
     >
       <div className="group/card relative flex h-full flex-col rounded-xl border border-border bg-surface p-6 shadow-soft transition-[transform,box-shadow,border-color] duration-300 hover:z-10 hover:scale-[1.04] hover:border-primary/40 hover:shadow-lift">
         {/* aria-label is prohibited on <p>; use visually-hidden text. */}
-        <p className="text-warning-foreground">
+        <p className="text-warning">
           <span aria-hidden="true">{"★".repeat(review.rating)}</span>
           <span className="sr-only">Rated {review.rating} out of 5</span>
         </p>
@@ -75,8 +75,10 @@ export function Reviews({
 
       {/* Auto-scrolling marquee. Cards are rendered twice (the copy is
           aria-hidden) so the -50% loop is seamless. */}
-      <div className="marquee mt-12">
-        <ul className="marquee-track py-4">
+      {/* py-10 so each card's soft shadow fades fully inside the marquee's clip
+          box — otherwise `overflow:hidden` cuts the shadow into a hard band. */}
+      <div className="marquee mt-8">
+        <ul className="marquee-track py-10">
           {reviews.map((review) => (
             <ReviewCard key={review.slug} review={review} />
           ))}

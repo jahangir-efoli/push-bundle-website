@@ -62,16 +62,27 @@ export default async function AboutPage() {
         subtitle={aboutCopy.subtitle}
       />
 
-      {/* Who we are */}
+      {/* Who we are — heading + image (drop a photo at /images/about/who-we-are.*) */}
       <Section>
-        <div className="grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:items-start">
+        <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
           <div>
             <Eyebrow>{whoWeAre.eyebrow}</Eyebrow>
             <h2 className="mt-3 text-display-md text-balance">
               {whoWeAre.title}
             </h2>
           </div>
-          <p className="text-lg leading-relaxed text-muted">{whoWeAre.body}</p>
+          <div className="rounded-2xl bg-brand-gradient p-1.5 shadow-lift">
+            <div className="relative grid aspect-16/10 place-items-center overflow-hidden rounded-[0.9rem] bg-surface-subtle">
+              <span className="flex flex-col items-center gap-2 text-sm text-muted">
+                <svg viewBox="0 0 24 24" className="size-9 text-muted/50" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="3" y="3" width="18" height="18" rx="2" />
+                  <circle cx="9" cy="9" r="2" />
+                  <path d="m21 15-3.6-3.6a2 2 0 0 0-2.8 0L6 20" />
+                </svg>
+                Who we are
+              </span>
+            </div>
+          </div>
         </div>
       </Section>
 

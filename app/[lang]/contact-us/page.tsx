@@ -74,7 +74,8 @@ export default async function ContactPage() {
         subtitle={contactCopy.subtitle}
       />
 
-      <Section>
+      {/* pt-0: the PageHero already provides the top gap — avoid a double one. */}
+      <Section className="pt-0!">
         <div className="grid gap-10 lg:grid-cols-[1.3fr_1fr] lg:items-start">
           <ContactForm />
 

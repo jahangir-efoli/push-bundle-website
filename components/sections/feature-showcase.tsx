@@ -77,7 +77,7 @@ export function FeatureShowcase() {
         role="tablist"
         aria-label="Bundle types"
         onKeyDown={onKeyDown}
-        className="mt-10 flex flex-wrap justify-center gap-2.5"
+        className="mt-14 flex flex-wrap justify-center gap-2.5"
       >
         {features.map((f, i) => {
           const selected = i === active;

@@ -35,8 +35,11 @@ export function LocaleSwitcher({
       trigger={
         <span className="flex items-center gap-1.5">
           <span aria-hidden="true">{localeMeta[current].flag}</span>
-          <span className="sr-only">{label}: </span>
-          {localeMeta[current].name}
+          <span className="sr-only">
+            {label}: {localeMeta[current].name}
+          </span>
+          {/* Compact code (EN/DE/FR…) — full names stay in the menu. */}
+          <span aria-hidden="true">{current.toUpperCase()}</span>
         </span>
       }
       items={locales.map((locale) => ({

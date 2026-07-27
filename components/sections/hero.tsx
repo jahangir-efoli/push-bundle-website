@@ -93,13 +93,14 @@ export function Hero({ rating }: { rating: AggregateRating }) {
             </span>
             <span aria-hidden="true" className="h-4 w-px bg-border" />
             <span className="text-muted">
-              {rating.score} ★ · {rating.count} reviews
+              {rating.score} <span className="text-warning">★</span> ·{" "}
+              {rating.count} reviews
             </span>
           </div>
 
           <h1 className="mt-4 max-w-[19ch] text-display-xl">{hero.title}</h1>
 
-          <p className="mt-3 max-w-xl text-lg text-muted">{hero.subtitle}</p>
+          <p className="mt-6 max-w-xl text-lg text-muted">{hero.subtitle}</p>
 
           <div className="mt-6 flex flex-wrap gap-3">
             <a
@@ -132,20 +133,10 @@ export function Hero({ rating }: { rating: AggregateRating }) {
             </a>
           </div>
 
-          {/* Microcopy + compatibility on one row so the hero stays short */}
-          <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-muted">
-            <span>Free plan available · 14-day trial · No credit card</span>
-            <ul className="flex flex-wrap items-center gap-2">
-              {hero.compatibility.map((item) => (
-                <li
-                  key={item}
-                  className="rounded-md border border-border bg-surface px-2 py-0.5 text-xs font-medium"
-                >
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* Microcopy */}
+          <p className="mt-4 text-sm text-muted">
+            Free plan available · 14-day trial · No credit card
+          </p>
         </div>
 
         {/* Feature preview slider (public/images/features) */}
