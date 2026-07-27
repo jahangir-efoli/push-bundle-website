@@ -1,52 +1,74 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { Section } from "@/components/ui/section";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { cn } from "@/lib/utils";
-import { whyPushbundle } from "@/lib/content/home";
 
-const INTERVAL = 4200;
+/** How long each item stays active before auto-advancing (ms). */
+const DURATION = 4500;
+
+export type WhyItem = {
+  title: string;
+  image: string;
+  features: readonly string[];
+};
+export type WhyContent = {
+  eyebrow: string;
+  title: string;
+  subtitle: string;
+  items: readonly WhyItem[];
+};
 
 /**
- * "Why choose PushBundle" — a vertical list of reasons on the right, each
- * expanding to a feature list, synced to a rotating image on the left. Auto-
- * advances, pauses on hover/focus, respects reduced-motion, and lets you click
- * a reason to jump to it. Add per-item images at `whyPushbundle.items[].image`.
+ * "Why choose PushBundle" — a large rotating image synced to a vertical list of
+ * reasons; the active reason is highlighted (brand blue), shows a progress bar,
+ * and expands to its feature list. The progress bar's animation drives the
+ * auto-advance, so timing stays in sync; it pauses on hover/focus and stops
+ * under reduced-motion. Panels stay open without JS (`.js`-gated). Pass
+ * `reverse` to mirror the layout (image on the right).
  */
-export function WhyPushbundle() {
-  const { eyebrow, title, subtitle, items } = whyPushbundle;
+export function WhyPushbundle({
+  content,
+  reverse = false,
+  tone = "default",
+}: {
+  content: WhyContent;
+  reverse?: boolean;
+  tone?: "default" | "alt";
+}) {
+  const { eyebrow, title, subtitle, items } = content;
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
   const [imgOk, setImgOk] = useState<boolean[]>(() => items.map(() => true));
   const count = items.length;
 
-  useEffect(() => {
-    if (paused) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const id = window.setInterval(
-      () => setActive((v) => (v + 1) % count),
-      INTERVAL,
-    );
-    return () => window.clearInterval(id);
-  }, [paused, count]);
-
   return (
-    <Section>
+    <Section tone={tone}>
       <Eyebrow>{eyebrow}</Eyebrow>
       <h2 className="mt-3 max-w-2xl text-display-md text-balance">{title}</h2>
       <p className="mt-4 max-w-2xl text-lg text-muted">{subtitle}</p>
 
       <div
-        className="mt-12 grid items-center gap-10 lg:grid-cols-2 lg:gap-16"
+        className={cn(
+          "mt-12 grid items-center gap-10 lg:gap-16",
+          reverse
+            ? "lg:grid-cols-[minmax(0,1fr)_1.35fr]"
+            : "lg:grid-cols-[1.35fr_minmax(0,1fr)]",
+        )}
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
         onFocusCapture={() => setPaused(true)}
         onBlurCapture={() => setPaused(false)}
       >
         {/* Synced image — crossfades to the active item */}
-        <div className="min-w-0 rounded-2xl bg-brand-gradient p-1.5 shadow-lift">
+        <div
+          className={cn(
+            "min-w-0 rounded-2xl bg-brand-gradient p-1.5 shadow-lift",
+            reverse && "lg:order-2",
+          )}
+        >
           <div className="relative aspect-4/3 overflow-hidden rounded-[0.9rem] bg-surface-subtle">
             {items.map((item, i) => {
               const on = i === active;
@@ -57,7 +79,7 @@ export function WhyPushbundle() {
                   alt={on ? item.title : ""}
                   aria-hidden={!on}
                   fill
-                  sizes="(min-width: 1024px) 40rem, 92vw"
+                  sizes="(min-width: 1024px) 44rem, 92vw"
                   className={cn(
                     "object-cover transition-opacity duration-500 ease-out motion-reduce:transition-none",
                     on ? "opacity-100" : "opacity-0",
@@ -88,7 +110,7 @@ export function WhyPushbundle() {
         </div>
 
         {/* Reasons — an accordion synced to the image */}
-        <ul className="min-w-0">
+        <ul className={cn("min-w-0", reverse && "lg:order-1")}>
           {items.map((item, i) => {
             const on = i === active;
             return (
@@ -113,7 +135,23 @@ export function WhyPushbundle() {
                     {item.title}
                   </button>
                 </h3>
-                {/* Feature list — expands when active (grid-rows height trick) */}
+
+                {/* Progress bar (active only) — its animationend advances. */}
+                {on && (
+                  <div className="mb-3 ml-4 h-1 overflow-hidden rounded-full bg-primary/15 motion-reduce:hidden">
+                    <div
+                      key={active}
+                      onAnimationEnd={() => setActive((v) => (v + 1) % count)}
+                      style={{
+                        animationDuration: `${DURATION}ms`,
+                        animationPlayState: paused ? "paused" : "running",
+                      }}
+                      className="why-progress-fill h-full w-full rounded-full bg-primary"
+                    />
+                  </div>
+                )}
+
+                {/* Feature list — expands when active; open without JS (.js-gated) */}
                 <div
                   data-open={on}
                   className="why-panel grid transition-[grid-template-rows] duration-300 ease-out motion-reduce:transition-none"

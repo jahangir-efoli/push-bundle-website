@@ -36,6 +36,7 @@ test("all marketing sections are present in order", async ({ page }) => {
     "Your all-in-one bundle builder",
     "A complete bundling toolkit",
     "Why merchants choose PushBundle",
+    "Everything you need to scale",
     "Next-Level Bundling",
     "Seamless Mobile Bundling Experience",
     "Features Coming Soon",

@@ -17,7 +17,7 @@ import {
   organizationLd,
   softwareApplicationLd,
 } from "@/lib/seo/structured-data";
-import { hero } from "@/lib/content/home";
+import { hero, whyPushbundle, whyBeyond } from "@/lib/content/home";
 
 export const metadata: Metadata = {
   title: "PushBundle — Boost Your AOV with the Best Shopify Bundle App",
@@ -49,7 +49,8 @@ export default async function Home() {
       <Hero rating={rating} />
       <FeatureShowcase />
       <FeatureTrio />
-      <WhyPushbundle />
+      <WhyPushbundle content={whyPushbundle} />
+      <WhyPushbundle content={whyBeyond} reverse tone="alt" />
       <StorefrontPersonalization />
       <MobileExperience />
       <ComingSoon />

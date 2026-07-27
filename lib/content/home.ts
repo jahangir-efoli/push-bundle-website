@@ -101,6 +101,61 @@ export const whyPushbundle = {
   ],
 } as const;
 
+/** Second "why" section — reversed layout (image on the right). */
+export const whyBeyond = {
+  eyebrow: "Features beyond basics",
+  title: "Everything you need to scale",
+  subtitle:
+    "A powerful discount engine, deep insights, and developer-friendly tooling — so your bundles keep converting as you grow.",
+  items: [
+    {
+      title: "Insight-driven analytics",
+      image: "/images/why/beyond-1.png",
+      features: [
+        "See bundle revenue and the AOV lift each one drives",
+        "Spot your top-performing bundles at a glance",
+        "Export reports to share with your team",
+      ],
+    },
+    {
+      title: "Advanced discount engine",
+      image: "/images/why/beyond-2.png",
+      features: [
+        "Stack, schedule, and cap discounts with clear rules",
+        "Set min/max quantities and per-variant limits",
+        "Target offers by customer group or market",
+      ],
+    },
+    {
+      title: "Global-ready selling",
+      image: "/images/why/beyond-3.png",
+      features: [
+        "Multi-language bundles that auto-translate",
+        "Multi-currency and Shopify Markets ready",
+        "Layouts that adapt to every locale",
+      ],
+    },
+    {
+      title: "Developer-friendly",
+      image: "/images/why/beyond-4.png",
+      features: [
+        "REST API and webhooks for custom workflows",
+        "Theme app extensions — no theme-code edits",
+        "Custom CSS and events for full control",
+      ],
+    },
+    {
+      title: "White-glove onboarding",
+      image: "/images/why/beyond-5.png",
+      features: [
+        "Free migration from other bundle apps",
+        "Custom design help to match your brand",
+        "Fast, responsive support whenever you need it",
+      ],
+    },
+  ],
+} as const;
+
 export const storefront = {
   title: "Next-Level Bundling: Dynamic Storefront Personalization",
   subtitle: "Maximize Profits with Smart Bundle Displays",
