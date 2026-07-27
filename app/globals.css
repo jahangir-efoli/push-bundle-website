@@ -133,7 +133,7 @@
   /* Elevation + glow (theme-aware; consumed by @theme below) */
   --elevation-soft: 0 1px 2px rgb(13 16 48 / 0.05), 0 12px 30px rgb(13 16 48 / 0.07);
   --elevation-lift: 0 2px 6px rgb(13 16 48 / 0.06), 0 20px 44px rgb(13 16 48 / 0.12);
-  --elevation-glow: 0 10px 30px color-mix(in oklab, var(--primary) 40%, transparent);
+  --elevation-glow: 0 6px 16px color-mix(in oklab, var(--primary) 22%, transparent);
 }
 
 /* `.pb-berry` re-points the PRIMARY role to the live PushBundle widget's berry
@@ -148,8 +148,8 @@
   /* Re-declare so the glow re-resolves `var(--primary)` to berry here — a
      custom property that references another resolves it where it's declared,
      so without this the glow keeps the root (blue) primary. */
-  --elevation-glow: 0 10px 30px
-    color-mix(in oklab, var(--primary) 32%, transparent);
+  --elevation-glow: 0 6px 16px
+    color-mix(in oklab, var(--primary) 20%, transparent);
 }
 
 /* Dark theme — re-points SEMANTIC roles only; primitives unchanged. */
@@ -195,8 +195,8 @@
     0 1px 2px rgb(0 0 0 / 0.4), 0 16px 36px rgb(0 0 0 / 0.45);
   --elevation-lift: inset 0 1px 0 rgb(255 255 255 / 0.07),
     0 2px 6px rgb(0 0 0 / 0.5), 0 24px 52px rgb(0 0 0 / 0.55);
-  --elevation-glow: 0 0 0 1px color-mix(in oklab, var(--primary) 35%, transparent),
-    0 12px 40px color-mix(in oklab, var(--primary) 45%, transparent);
+  --elevation-glow: 0 0 0 1px color-mix(in oklab, var(--primary) 25%, transparent),
+    0 8px 22px color-mix(in oklab, var(--primary) 30%, transparent);
 }
 
 /* ==================================================================

@@ -177,11 +177,7 @@ export function FeatureShowcase() {
 
         {/* RIGHT — compact feature copy */}
         <div>
-          <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 text-xs font-semibold uppercase tracking-wide text-accent-foreground">
-            <Icon name={feature.icon as IconName} className="size-4" />
-            {feature.tab}
-          </span>
-          <h3 className="mt-4 text-display-sm text-balance">{feature.title}</h3>
+          <h3 className="text-display-sm text-balance">{feature.title}</h3>
 
           <div className="mt-5 space-y-5">
             {[

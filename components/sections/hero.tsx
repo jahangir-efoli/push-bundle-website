@@ -77,7 +77,7 @@ export function Hero({ rating }: { rating: AggregateRating }) {
         }}
       />
 
-      <Container className="relative grid items-center gap-8 py-8 lg:grid-cols-[1.05fr_0.95fr] lg:py-10">
+      <Container className="relative grid items-center gap-8 pt-8 pb-16 lg:grid-cols-[1.05fr_0.95fr] lg:pt-10 lg:pb-20">
         <div>
           {/* Trust pill: badge + live rating */}
           <div className="inline-flex flex-wrap items-center gap-x-3 gap-y-1 rounded-full border border-border bg-surface px-4 py-2 text-sm font-semibold shadow-soft">

@@ -122,7 +122,7 @@ export function Dropdown({
         aria-controls={`${baseId}-menu`}
         onClick={() => setOpen((v) => !v)}
         onKeyDown={onTriggerKeyDown}
-        className="inline-flex h-11 items-center gap-1.5 rounded-lg px-3 font-medium text-foreground transition-colors hover:bg-surface-subtle"
+        className="inline-flex h-11 items-center gap-1.5 rounded-lg px-2.5 text-[15px] font-medium text-foreground transition-colors hover:bg-surface-subtle"
       >
         {trigger}
         <span aria-hidden="true" className={cn("transition-transform", open && "rotate-180")}>

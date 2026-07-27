@@ -63,7 +63,7 @@ export default async function AboutPage() {
       />
 
       {/* Who we are — heading + image (drop a photo at /images/about/who-we-are.*) */}
-      <Section>
+      <Section tone="wash">
         <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
           <div>
             <Eyebrow>{whoWeAre.eyebrow}</Eyebrow>

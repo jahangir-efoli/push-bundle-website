@@ -12,7 +12,9 @@ import { trialCta } from "@/lib/content/home";
  */
 export function TrialCta() {
   return (
-    <section className="px-gutter py-section">
+    // pt-0: the preceding section already contributes its bottom padding, so the
+    // band doesn't need its own top gap (that stacking left a large empty band).
+    <section className="px-gutter pb-section pt-0">
       <div className="relative mx-auto max-w-site overflow-hidden rounded-3xl bg-brand-gradient px-6 py-16 text-center text-white shadow-lift sm:px-12 sm:py-20">
         {/* Depth: slight overall deepen + bottom vignette + top sheen. */}
         <div

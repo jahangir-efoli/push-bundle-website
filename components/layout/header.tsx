@@ -93,14 +93,14 @@ export function Header({
           </span>
         </Link>
 
-        <nav aria-label="Main" className="ml-4 hidden items-center gap-1 xl:flex">
+        <nav aria-label="Main" className="ml-6 hidden items-center gap-0.5 xl:flex">
           {mainNav.map((item) => (
             <Link
               key={item.href}
               href={item.href}
               aria-current={isActive(item.bare) ? "page" : undefined}
               className={cn(
-                "flex h-11 shrink-0 items-center whitespace-nowrap rounded-lg px-3 font-medium transition-colors",
+                "flex h-11 shrink-0 items-center whitespace-nowrap rounded-lg px-2.5 text-[15px] font-medium transition-colors",
                 isActive(item.bare)
                   ? "text-primary"
                   : "text-foreground hover:bg-surface-subtle",

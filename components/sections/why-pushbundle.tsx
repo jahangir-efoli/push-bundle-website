@@ -121,17 +121,10 @@ export function WhyPushbundle({
                     onClick={() => setActive(i)}
                     aria-expanded={on}
                     className={cn(
-                      "flex w-full items-center gap-3 py-4 text-left text-lg font-semibold transition-colors",
+                      "flex w-full items-center py-4 pl-4 text-left text-lg font-semibold transition-colors",
                       on ? "text-primary" : "text-foreground hover:text-primary",
                     )}
                   >
-                    <span
-                      aria-hidden="true"
-                      className={cn(
-                        "h-6 w-1 shrink-0 rounded-full transition-colors",
-                        on ? "bg-primary" : "bg-transparent",
-                      )}
-                    />
                     {item.title}
                   </button>
                 </h3>
