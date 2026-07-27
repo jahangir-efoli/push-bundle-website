@@ -284,6 +284,11 @@ type ApiChangelog = {
   date?: string;
   labels?: string[];
   category?: string;
+  /** Optional featured image — field name varies across CMS deployments. */
+  image?: unknown;
+  coverImage?: unknown;
+  featuredImage?: unknown;
+  thumbnail?: unknown;
 };
 
 const CHANGELOG_LABELS = new Set<ChangelogCategory>([
@@ -308,6 +313,7 @@ export function mapChangelog(c: ApiChangelog): ChangelogEntry {
     body: sanitizeHtml(c.content ?? c.description ?? ""),
     category: toChangelogCategory(c.category ?? c.labels?.[0]),
     date: (c.publishedAt ?? c.date ?? "").slice(0, 10),
+    image: pickImage(c.image, c.coverImage, c.featuredImage, c.thumbnail),
     locale: "en",
   };
 }

@@ -203,7 +203,9 @@ export const httpAdapter: CmsAdapter = {
   // ---- Changelog ----------------------------------------------------------
   async listChangelog({ locale }): Promise<ChangelogEntry[]> {
     try {
-      const raw = await cmsFetch<unknown>("/api/public/changelogs");
+      // Fetch the full history — the page paginates client-side, so the API
+      // default page size would otherwise truncate older entries.
+      const raw = await cmsFetch<unknown>("/api/public/changelogs", { limit: 100 });
       const { items } = readListEnvelope(raw, "changelogs");
       const entries = items.map((c) =>
         mapChangelog(c as Parameters<typeof mapChangelog>[0]),

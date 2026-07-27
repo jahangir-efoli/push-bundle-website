@@ -468,6 +468,21 @@ button:disabled,
 .prose-pb tbody tr:nth-child(even) td {
   background: color-mix(in oklab, var(--surface-subtle) 45%, transparent);
 }
+.prose-pb :is(img, video) {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border);
+}
+.prose-pb figure {
+  margin-top: 1.5em;
+}
+.prose-pb figcaption {
+  margin-top: 0.5em;
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-align: center;
+}
 
 /* Utility: the brand gradient as a background or text fill */
 @utility bg-brand-gradient {

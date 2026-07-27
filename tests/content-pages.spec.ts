@@ -92,6 +92,22 @@ test("changelog filter narrows entries", async ({ page }) => {
   expect(launch).toBeLessThan(all);
 });
 
+test("changelog paginates and renders HTML bodies", async ({ page }) => {
+  await page.goto("/changelog");
+
+  const nav = page.getByRole("navigation", { name: "Changelog pages" });
+  await expect(nav).toBeVisible();
+
+  // Page 1 caps at 8 entries; bodies are rendered HTML, not escaped tags.
+  const firstBefore = await page.locator("ol > li h2").first().textContent();
+  expect(await page.locator("ol > li").count()).toBeLessThanOrEqual(8);
+  await expect(page.locator("ol > li .prose-pb").first()).toBeVisible();
+
+  await nav.getByRole("button", { name: "Next" }).click();
+  const firstAfter = await page.locator("ol > li h2").first().textContent();
+  expect(firstAfter).not.toBe(firstBefore);
+});
+
 test("faq search filters questions and keeps full FAQPage JSON-LD", async ({
   page,
 }) => {
