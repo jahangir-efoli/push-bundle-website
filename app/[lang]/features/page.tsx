@@ -11,6 +11,7 @@ import { Eyebrow } from "@/components/ui/eyebrow";
 import { Badge } from "@/components/ui/badge";
 import { AnimateIn } from "@/components/motion/animate-in";
 import { buttonStyles } from "@/components/ui/button";
+import { FeatureShowcase } from "@/components/sections/feature-showcase";
 import { Reviews } from "@/components/sections/reviews";
 import { TrialCta } from "@/components/sections/trial-cta";
 import { FaqSection } from "@/components/sections/faq-section";
@@ -130,6 +131,9 @@ export default async function FeaturesPage() {
           ))}
         </ul>
       </Section>
+
+      {/* Interactive demos — the five bundle types, live */}
+      <FeatureShowcase />
 
       {/* Spotlights — alternating text + checklist panel */}
       {featureSpotlights.map((s, i) => (

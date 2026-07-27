@@ -50,7 +50,7 @@ export function ProductStage({
 
   return (
     <div className={cn("@container w-full text-foreground", className)}>
-      <div className="grid grid-cols-1 gap-5 p-4 @lg:grid-cols-[1.05fr_minmax(0,1fr)] @lg:items-start sm:p-5">
+      <div className="grid grid-cols-1 gap-5 p-4 @lg:grid-cols-[1fr_minmax(0,1fr)] @lg:items-start sm:p-5">
         {/* Product image (falls back to a neutral tile until the photo exists) */}
         <div className="relative aspect-square overflow-hidden rounded-xl bg-white ring-1 ring-black/5 @lg:sticky @lg:top-0">
           {imgOk ? (

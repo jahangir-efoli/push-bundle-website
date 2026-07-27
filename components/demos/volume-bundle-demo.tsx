@@ -200,7 +200,7 @@ export function VolumeBundleDemo({
                 aria-pressed={isSel}
                 className="flex w-full items-center justify-between gap-2 px-3 py-3 text-left"
               >
-                <span className="flex min-w-0 items-center gap-2">
+                <span className="flex min-w-0 items-center gap-1.5">
                   <span
                     className={cn(
                       "grid size-5 shrink-0 place-items-center rounded-full border-2 transition-colors",
@@ -214,13 +214,13 @@ export function VolumeBundleDemo({
                   <span className="font-semibold whitespace-nowrap">
                     Buy {t.qty}
                   </span>
-                  <span className="rounded bg-primary-subtle px-1.5 py-0.5 text-[11px] font-semibold whitespace-nowrap text-primary">
+                  <span className="rounded bg-primary-subtle px-1 py-0.5 text-[10px] font-semibold whitespace-nowrap text-primary">
                     {t.discount}% off
                   </span>
                 </span>
-                <span className="whitespace-nowrap text-sm">
+                <span className="whitespace-nowrap text-right text-sm">
                   <span className="font-semibold">{usd(price(t))}</span>{" "}
-                  <span className="text-muted line-through">
+                  <span className="text-[11px] text-muted line-through">
                     {usd(original(t))}
                   </span>
                 </span>
