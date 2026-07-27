@@ -81,13 +81,21 @@ export function Hero({ rating }: { rating: AggregateRating }) {
           {/* Trust pill: badge + live rating */}
           <div className="inline-flex flex-wrap items-center gap-x-3 gap-y-1 rounded-full border border-border bg-surface px-4 py-2 text-sm font-semibold shadow-soft">
             <span className="flex items-center gap-1.5">
+              {/* Shopify shopping-bag mark (swap for the official "Built for
+                  Shopify" badge asset when available). */}
               <svg
                 aria-hidden="true"
-                viewBox="0 0 20 20"
-                className="size-4 text-accent-foreground"
-                fill="currentColor"
+                viewBox="0 0 24 24"
+                className="size-4 text-[#5e8e3e]"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               >
-                <path d="M10 1.5 12.4 7l6 .5-4.6 4 1.4 5.9L10 14.3 4.8 17.4 6.2 11.5 1.6 7.5l6-.5L10 1.5Z" />
+                <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" />
+                <path d="M3 6h18" />
+                <path d="M16 10a4 4 0 0 1-8 0" />
               </svg>
               Built for Shopify
             </span>

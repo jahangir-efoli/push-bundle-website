@@ -88,19 +88,33 @@ export function ContactForm() {
 
       <div className="grid gap-5">
         <div className="grid gap-5 sm:grid-cols-2">
-          <Input label="Full Name" name="name" error={errors.name} required />
+          <Input
+            label="Full Name"
+            name="name"
+            placeholder="Enter your name"
+            error={errors.name}
+            required
+          />
           <Input
             label="Email"
             name="email"
             type="email"
+            placeholder="Enter your email"
             error={errors.email}
             required
           />
         </div>
-        <Input label="Subject" name="subject" error={errors.subject} required />
+        <Input
+          label="Subject"
+          name="subject"
+          placeholder="Enter a subject"
+          error={errors.subject}
+          required
+        />
         <Textarea
           label="Your Message"
           name="message"
+          placeholder="Enter your message"
           error={errors.message}
           required
         />

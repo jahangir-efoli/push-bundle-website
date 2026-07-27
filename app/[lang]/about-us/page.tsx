@@ -70,6 +70,9 @@ export default async function AboutPage() {
             <h2 className="mt-3 text-display-md text-balance">
               {whoWeAre.title}
             </h2>
+            <p className="mt-5 text-lg leading-relaxed text-muted">
+              {whoWeAre.body}
+            </p>
           </div>
           <div className="rounded-2xl bg-brand-gradient p-1.5 shadow-lift">
             <div className="relative grid aspect-16/10 place-items-center overflow-hidden rounded-[0.9rem] bg-surface-subtle">

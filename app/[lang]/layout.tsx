@@ -4,6 +4,7 @@ import { Plus_Jakarta_Sans, Noto_Sans_JP, Noto_Sans_SC } from "next/font/google"
 import "../globals.css";
 import { SmoothScroll } from "@/components/providers/smooth-scroll";
 import { ThemeScript } from "@/components/layout/theme-script";
+import { ThemeSync } from "@/components/layout/theme-sync";
 import { SkipLink } from "@/components/layout/skip-link";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
@@ -102,6 +103,7 @@ export default async function LocaleLayout({
         <JsonLd data={rootGraph()} />
       </head>
       <body className={cn("flex min-h-full flex-col", cjk && "font-cjk")}>
+        <ThemeSync />
         <SmoothScroll>
           <SkipLink label={dict.common.skipToContent} />
           <Header locale={locale} dict={dict} />
