@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { buttonStyles } from "@/components/ui/button";
+import { ProductThumb } from "@/components/demos/product-thumb";
 import { cn } from "@/lib/utils";
 
 /**
@@ -16,7 +17,13 @@ export type MixPack = {
   /** Optional explicit per-unit price; overrides `discount` for pricing. */
   pricePerUnit?: number;
 };
-export type MixVariant = { name: string; color: string };
+export type MixVariant = {
+  name: string;
+  /** Tints the fallback tee until a real image is uploaded. */
+  color: string;
+  /** Real product photo; falls back to the colour tee when missing. */
+  image?: string;
+};
 
 const usd = (n: number) =>
   new Intl.NumberFormat("en-US", {
@@ -172,8 +179,12 @@ export function MixMatchSingleDemo({
           const qty = picks[v.name] ?? 0;
           return (
             <div key={v.name} className="rounded-lg border border-border p-2.5">
-              <span className="grid h-20 w-full place-items-center rounded-md bg-surface-subtle ring-1 ring-black/5">
-                <ColorTee color={v.color} className="size-12" />
+              <span className="grid h-20 w-full place-items-center overflow-hidden rounded-md bg-surface-subtle ring-1 ring-black/5">
+                <ProductThumb
+                  src={v.image}
+                  alt={`${v.name} ${productName}`}
+                  fallback={<ColorTee color={v.color} className="size-12" />}
+                />
               </span>
               <p className="mt-2 truncate text-sm font-semibold">
                 {v.name} {productName}
@@ -267,9 +278,13 @@ export function MixMatchSingleDemo({
             return v ? (
               <span
                 key={s}
-                className="grid size-10 shrink-0 place-items-center rounded-md bg-surface-subtle ring-1 ring-border"
+                className="grid size-10 shrink-0 place-items-center overflow-hidden rounded-md bg-surface-subtle ring-1 ring-border"
               >
-                <ColorTee color={v.color} className="size-6" />
+                <ProductThumb
+                  src={v.image}
+                  alt={v.name}
+                  fallback={<ColorTee color={v.color} className="size-6" />}
+                />
               </span>
             ) : (
               <span

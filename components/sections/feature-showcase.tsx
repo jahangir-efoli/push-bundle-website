@@ -197,9 +197,24 @@ export function FeatureShowcase() {
           <div className="mt-7">
             <a
               href={site.shopifyAppUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className={buttonStyles({ variant: "gradient" })}
             >
               {feature.cta}
+              <span className="sr-only"> (opens in a new tab)</span>
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 24 24"
+                className="size-4"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M14 4h6v6M20 4l-8 8M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" />
+              </svg>
             </a>
           </div>
         </div>

@@ -40,7 +40,7 @@ export const showcase = {
         "Lift average order value with quantity breaks that reward bigger carts — ideal for wholesale, multipacks, and stock-up staples — while you keep full control over every tier and discount.",
       flexibility:
         "Show tiers as a compact list or cards, on the product page or a dedicated bundle page, in portrait or horizontal layouts — all styled to match your theme.",
-      cta: "Create Volume Bundle",
+      cta: "Experience Volume Bundle",
     },
     {
       id: "cross-sell",
@@ -55,7 +55,7 @@ export const showcase = {
         "Increase AOV by pairing complementary products at a bundled price — a proven upsell that turns one purchase into a complete set without extra clicks.",
       flexibility:
         "Curate the exact set, fix or expose quantities, and let shoppers choose variants — shown right on the product page or as a 'frequently bought together' block.",
-      cta: "Create Cross-Sell Bundle",
+      cta: "Experience Cross-Sell Bundle",
     },
     {
       id: "mix-single",
@@ -70,7 +70,7 @@ export const showcase = {
         "Boost engagement and AOV by letting shoppers build their own pack from one product's variants — perfect for colour packs, sample sets, and subscription-style boxes.",
       flexibility:
         "Set pack sizes and tiered pricing, cap quantities per variant, and display it as a compact grid or a full page — portrait or horizontal to fit any theme.",
-      cta: "Create Mix & Match Bundle",
+      cta: "Experience Mix & Match Bundle",
     },
     {
       id: "mix-multi",
@@ -85,7 +85,7 @@ export const showcase = {
         "Grow basket size with fully customizable multi-product sets — great for curated collections and custom kits — while you keep control over rules and limits.",
       flexibility:
         "Curate the catalog, set min/max and per-variant limits, and offer variant options inline — as an embedded widget or a standalone bundle page.",
-      cta: "Create Mix & Match Bundle",
+      cta: "Experience Mix & Match Bundle",
     },
     {
       id: "byob",
@@ -100,7 +100,7 @@ export const showcase = {
         "Turn gifting into a premium experience that lifts AOV — shoppers assemble a personalized box, add a card, and leave a message, all in one guided flow.",
       flexibility:
         "Configure each step — boxes, products, cards, and custom form fields — then reorder or drop steps to fit any gifting or subscription flow.",
-      cta: "Create BYOB Bundle",
+      cta: "Experience BYOB Bundle",
     },
   ] satisfies ShowcaseFeature[],
 } as const;

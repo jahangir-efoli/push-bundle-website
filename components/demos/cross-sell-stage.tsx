@@ -37,6 +37,7 @@ export function CrossSellStage() {
                 price: 45,
                 qty: 1,
                 icon: "🪔",
+                image: "/images/demos/cross-sell/ceramic-table-lamp.png",
                 variants: ["Brass", "Matte Black", "Chrome"],
               },
               {
@@ -44,6 +45,7 @@ export function CrossSellStage() {
                 price: 28,
                 qty: 1,
                 icon: "🏺",
+                image: "/images/demos/cross-sell/stoneware-vase.png",
                 variants: ["Terracotta", "Sage", "Cream"],
               },
               {
@@ -51,6 +53,7 @@ export function CrossSellStage() {
                 price: 24,
                 qty: 1,
                 icon: "🧺",
+                image: "/images/demos/cross-sell/woven-storage-basket.png",
                 variants: ["Natural", "Charcoal"],
               },
             ]}

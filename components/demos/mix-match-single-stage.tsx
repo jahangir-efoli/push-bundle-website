@@ -29,12 +29,12 @@ export function MixMatchSingleStage() {
             { qty: 16, discount: 17, pricePerUnit: 20 },
           ]}
           variants={[
-            { name: "Maroon", color: "#7f1d3a" },
-            { name: "Blue", color: "#2547a3" },
-            { name: "Olive", color: "#556b2f" },
-            { name: "Tan", color: "#cbb393" },
-            { name: "Charcoal", color: "#3f4653" },
-            { name: "Forest", color: "#1f6b3b" },
+            { name: "Maroon", color: "#7f1d3a", image: "/images/demos/mix-single/maroon.png" },
+            { name: "Blue", color: "#2547a3", image: "/images/demos/mix-single/blue.png" },
+            { name: "Olive", color: "#556b2f", image: "/images/demos/mix-single/olive.png" },
+            { name: "Tan", color: "#cbb393", image: "/images/demos/mix-single/tan.png" },
+            { name: "Charcoal", color: "#3f4653", image: "/images/demos/mix-single/charcoal.png" },
+            { name: "Forest", color: "#1f6b3b", image: "/images/demos/mix-single/forest.png" },
           ]}
         />
       </div>

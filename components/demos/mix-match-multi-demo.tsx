@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { ProductThumb } from "@/components/demos/product-thumb";
 import { cn } from "@/lib/utils";
 
 /**
@@ -13,7 +14,10 @@ export type MultiBox = { qty: number; discount: number };
 export type CatalogProduct = {
   name: string;
   price: number;
+  /** Emoji fallback until a real image is uploaded. */
   icon: string;
+  /** Real product photo; falls back to `icon` when missing. */
+  image?: string;
   category: string;
 };
 
@@ -32,15 +36,15 @@ const DEFAULT_BOXES: MultiBox[] = [
 ];
 
 const DEFAULT_PRODUCTS: CatalogProduct[] = [
-  { name: "Accent Chair — Blush", price: 75, icon: "🪑", category: "Furniture" },
-  { name: "Accent Chair — Grey", price: 80, icon: "🪑", category: "Furniture" },
-  { name: "Accent Chair — Check", price: 78, icon: "🪑", category: "Furniture" },
-  { name: "Texture Table Lamp", price: 42, icon: "🪔", category: "Home Decor" },
-  { name: "Wave Table Lamp", price: 45, icon: "🪔", category: "Home Decor" },
-  { name: "Ceramic Flower Vase", price: 35, icon: "🏺", category: "Home Decor" },
-  { name: "Woven Basket", price: 28, icon: "🧺", category: "Accessories" },
-  { name: "Scented Candle", price: 22, icon: "🕯️", category: "Accessories" },
-  { name: "Photo Frame", price: 18, icon: "🖼️", category: "Accessories" },
+  { name: "Accent Chair — Blush", price: 75, icon: "🪑", image: "/images/demos/mix-multi/accent-chair-blush.png", category: "Furniture" },
+  { name: "Accent Chair — Grey", price: 80, icon: "🪑", image: "/images/demos/mix-multi/accent-chair-grey.png", category: "Furniture" },
+  { name: "Accent Chair — Check", price: 78, icon: "🪑", image: "/images/demos/mix-multi/accent-chair-check.png", category: "Furniture" },
+  { name: "Texture Table Lamp", price: 42, icon: "🪔", image: "/images/demos/mix-multi/texture-table-lamp.png", category: "Home Decor" },
+  { name: "Wave Table Lamp", price: 45, icon: "🪔", image: "/images/demos/mix-multi/wave-table-lamp.png", category: "Home Decor" },
+  { name: "Ceramic Flower Vase", price: 35, icon: "🏺", image: "/images/demos/mix-multi/ceramic-flower-vase.png", category: "Home Decor" },
+  { name: "Woven Basket", price: 28, icon: "🧺", image: "/images/demos/mix-multi/woven-basket.png", category: "Accessories" },
+  { name: "Scented Candle", price: 22, icon: "🕯️", image: "/images/demos/mix-multi/scented-candle.png", category: "Accessories" },
+  { name: "Photo Frame", price: 18, icon: "🖼️", image: "/images/demos/mix-multi/photo-frame.png", category: "Accessories" },
 ];
 
 export function MixMatchMultiDemo({
@@ -106,15 +110,18 @@ export function MixMatchMultiDemo({
 
   useEffect(() => () => window.clearTimeout(noticeTimer.current), []);
 
-  const tile = (icon: string, size: string) => (
+  const tile = (icon: string, size: string, image?: string, alt = "") => (
     <span
-      aria-hidden="true"
       className={cn(
-        "grid shrink-0 place-items-center rounded-md bg-surface-subtle ring-1 ring-black/5",
+        "grid shrink-0 place-items-center overflow-hidden rounded-md bg-surface-subtle ring-1 ring-black/5",
         size,
       )}
     >
-      {icon}
+      <ProductThumb
+        src={image}
+        alt={alt}
+        fallback={<span aria-hidden="true">{icon}</span>}
+      />
     </span>
   );
 
@@ -188,7 +195,7 @@ export function MixMatchMultiDemo({
               const q = qty[p.name] ?? 0;
               return (
                 <div key={p.name} className="rounded-lg border border-border p-2.5">
-                  {tile(p.icon, "h-16 w-full text-3xl")}
+                  {tile(p.icon, "h-16 w-full text-3xl", p.image, p.name)}
                   <p className="mt-2 truncate text-sm font-semibold">{p.name}</p>
                   <p className="text-xs text-muted">{usd(p.price)}</p>
                   <div className="mt-2 flex items-center justify-between rounded-md border border-border">
@@ -242,7 +249,7 @@ export function MixMatchMultiDemo({
           <ul className="mt-2.5 space-y-2">
             {selectedItems.map(([name, q]) => (
               <li key={name} className="flex items-center gap-2">
-                {tile(find(name)?.icon ?? "", "size-8 text-base")}
+                {tile(find(name)?.icon ?? "", "size-8 text-base", find(name)?.image, name)}
                 <span className="min-w-0 flex-1 truncate text-xs font-medium">
                   {name}
                 </span>

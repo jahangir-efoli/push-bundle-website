@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { ProductThumb } from "@/components/demos/product-thumb";
 import { cn } from "@/lib/utils";
 
 /**
@@ -13,14 +14,16 @@ import { cn } from "@/lib/utils";
  * configuration. Reusable + prop-driven for the showcase and Features page.
  */
 export type ByobOption = { name: string; values: string[] };
-export type ByobBox = { name: string; price: number; icon: string };
+/** `icon` is the emoji fallback; `image` is the real photo (falls back to icon). */
+export type ByobBox = { name: string; price: number; icon: string; image?: string };
 export type ByobProduct = {
   name: string;
   price: number;
   icon: string;
+  image?: string;
   options?: ByobOption[];
 };
-export type ByobCard = { name: string; price: number; icon: string };
+export type ByobCard = { name: string; price: number; icon: string; image?: string };
 export type ByobField = { label: string; type?: "text" | "email" | "textarea" };
 export type ByobStep = "box" | "products" | "card" | "form";
 
@@ -32,23 +35,23 @@ const usd = (n: number) =>
   }).format(n);
 
 const DEFAULT_BOXES: ByobBox[] = [
-  { name: "Kraft Gift Box", price: 12, icon: "📦" },
-  { name: "Signature Gift Box", price: 18, icon: "🎁" },
+  { name: "Kraft Gift Box", price: 12, icon: "📦", image: "/images/demos/byob/kraft-gift-box.png" },
+  { name: "Signature Gift Box", price: 18, icon: "🎁", image: "/images/demos/byob/signature-gift-box.png" },
 ];
 
 const DEFAULT_PRODUCTS: ByobProduct[] = [
-  { name: "Scented Candle", price: 22, icon: "🕯️", options: [{ name: "Scent", values: ["Vanilla", "Cedar", "Citrus"] }] },
-  { name: "Artisan Chocolate", price: 16, icon: "🍫" },
-  { name: "Ceramic Mug", price: 14, icon: "☕", options: [{ name: "Color", values: ["Cream", "Charcoal"] }] },
-  { name: "Bath Bomb Set", price: 18, icon: "🛁" },
-  { name: "Tea Sampler", price: 15, icon: "🍵", options: [{ name: "Blend", values: ["Green", "Herbal", "Black"] }] },
-  { name: "Mini Succulent", price: 10, icon: "🪴" },
+  { name: "Scented Candle", price: 22, icon: "🕯️", image: "/images/demos/byob/scented-candle.png", options: [{ name: "Scent", values: ["Vanilla", "Cedar", "Citrus"] }] },
+  { name: "Artisan Chocolate", price: 16, icon: "🍫", image: "/images/demos/byob/artisan-chocolate.png" },
+  { name: "Ceramic Mug", price: 14, icon: "☕", image: "/images/demos/byob/ceramic-mug.png", options: [{ name: "Color", values: ["Cream", "Charcoal"] }] },
+  { name: "Bath Bomb Set", price: 18, icon: "🛁", image: "/images/demos/byob/bath-bomb-set.png" },
+  { name: "Tea Sampler", price: 15, icon: "🍵", image: "/images/demos/byob/tea-sampler.png", options: [{ name: "Blend", values: ["Green", "Herbal", "Black"] }] },
+  { name: "Mini Succulent", price: 10, icon: "🪴", image: "/images/demos/byob/mini-succulent.png" },
 ];
 
 const DEFAULT_CARDS: ByobCard[] = [
-  { name: "Thank You Card", price: 5, icon: "💌" },
-  { name: "Birthday Card", price: 5, icon: "🎂" },
-  { name: "Just Because Card", price: 5, icon: "💐" },
+  { name: "Thank You Card", price: 5, icon: "💌", image: "/images/demos/byob/thank-you-card.png" },
+  { name: "Birthday Card", price: 5, icon: "🎂", image: "/images/demos/byob/birthday-card.png" },
+  { name: "Just Because Card", price: 5, icon: "💐", image: "/images/demos/byob/just-because-card.png" },
 ];
 
 const DEFAULT_FIELDS: ByobField[] = [
@@ -69,6 +72,7 @@ type Line = {
   key: string;
   name: string;
   icon: string;
+  image?: string;
   price: number;
   variant: string;
   qty: number;
@@ -141,7 +145,14 @@ export function ByobDemo({
   };
 
   // ---- products (step 2) ----
-  const addLine = (name: string, icon: string, price: number, variant: string, qty: number) => {
+  const addLine = (
+    name: string,
+    icon: string,
+    price: number,
+    variant: string,
+    qty: number,
+    image?: string,
+  ) => {
     setLines((prev) => {
       const k = `${name}|${variant}`;
       const capped = Math.min(qty, productMax - productCount);
@@ -152,7 +163,7 @@ export function ByobDemo({
         next[idx] = { ...next[idx], qty: next[idx].qty + capped };
         return next;
       }
-      return [...prev, { key: k, name, icon, price, variant, qty: capped }];
+      return [...prev, { key: k, name, icon, image, price, variant, qty: capped }];
     });
   };
   const lineQtyForBase = (name: string) =>
@@ -164,7 +175,7 @@ export function ByobDemo({
   };
   const addConfigured = (i: number) => {
     const p = products[i];
-    addLine(p.name, p.icon, p.price, draft.values.join(" · "), draft.qty);
+    addLine(p.name, p.icon, p.price, draft.values.join(" · "), draft.qty, p.image);
     setOpenIdx(null);
   };
   const changeLineQty = (k: string, delta: number) =>
@@ -218,15 +229,18 @@ export function ByobDemo({
 
   useEffect(() => () => window.clearTimeout(noticeTimer.current), []);
 
-  const iconTile = (icon: string, size: string) => (
+  const iconTile = (icon: string, size: string, image?: string, alt = "") => (
     <span
-      aria-hidden="true"
       className={cn(
-        "grid shrink-0 place-items-center rounded-md bg-surface-subtle ring-1 ring-black/5",
+        "grid shrink-0 place-items-center overflow-hidden rounded-md bg-surface-subtle ring-1 ring-black/5",
         size,
       )}
     >
-      {icon}
+      <ProductThumb
+        src={image}
+        alt={alt}
+        fallback={<span aria-hidden="true">{icon}</span>}
+      />
     </span>
   );
 
@@ -302,7 +316,7 @@ export function ByobDemo({
                     )}
                   >
                     <span className="relative">
-                      {iconTile(b.icon, "h-20 w-full text-4xl")}
+                      {iconTile(b.icon, "h-20 w-full text-4xl", b.image, b.name)}
                       {sel && (
                         <span className="absolute right-1.5 top-1.5 grid size-5 place-items-center rounded-full bg-primary text-primary-foreground">
                           <svg viewBox="0 0 24 24" className="size-3" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m5 13 4 4L19 7" /></svg>
@@ -343,7 +357,7 @@ export function ByobDemo({
                     )}
                   >
                     <span className="relative">
-                      {iconTile(p.icon, "h-16 w-full text-3xl")}
+                      {iconTile(p.icon, "h-16 w-full text-3xl", p.image, p.name)}
                       {inBox > 0 && (
                         <span className="absolute right-1.5 top-1.5 grid size-5 place-items-center rounded-full bg-primary text-primary-foreground">
                           <svg viewBox="0 0 24 24" className="size-3" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m5 13 4 4L19 7" /></svg>
@@ -358,7 +372,7 @@ export function ByobDemo({
                         <div className="flex items-center justify-between rounded-md border border-border">
                           <button type="button" onClick={() => changeLineQty(`${p.name}|`, -1)} aria-label={`Decrease ${p.name}`} className="grid size-7 place-items-center text-muted hover:text-foreground">−</button>
                           <span className="text-sm tabular-nums">{inBox}</span>
-                          <button type="button" onClick={() => addLine(p.name, p.icon, p.price, "", 1)} disabled={productsRemaining <= 0} aria-label={`Increase ${p.name}`} className="grid size-7 place-items-center text-muted hover:text-foreground disabled:opacity-40">+</button>
+                          <button type="button" onClick={() => addLine(p.name, p.icon, p.price, "", 1, p.image)} disabled={productsRemaining <= 0} aria-label={`Increase ${p.name}`} className="grid size-7 place-items-center text-muted hover:text-foreground disabled:opacity-40">+</button>
                         </div>
                       ) : hasOptions ? (
                         <button
@@ -372,7 +386,7 @@ export function ByobDemo({
                       ) : (
                         <button
                           type="button"
-                          onClick={() => addLine(p.name, p.icon, p.price, "", 1)}
+                          onClick={() => addLine(p.name, p.icon, p.price, "", 1, p.image)}
                           disabled={productsRemaining <= 0}
                           className="w-full rounded-md bg-primary-subtle py-1.5 text-[11px] font-bold uppercase tracking-wide text-primary transition-colors hover:bg-primary/15 disabled:opacity-40"
                         >
@@ -449,7 +463,7 @@ export function ByobDemo({
                     )}
                   >
                     <span className="relative">
-                      {iconTile(c.icon, "h-16 w-full text-3xl")}
+                      {iconTile(c.icon, "h-16 w-full text-3xl", c.image, c.name)}
                       {sel && (
                         <span className="absolute right-1.5 top-1.5 grid size-5 place-items-center rounded-full bg-primary text-primary-foreground">
                           <svg viewBox="0 0 24 24" className="size-3" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m5 13 4 4L19 7" /></svg>
@@ -511,8 +525,12 @@ export function ByobDemo({
           <div className="flex min-w-0 flex-1 flex-wrap items-center gap-2">
             {flatUnits.slice(0, 6).map((l, i) => (
               <span key={i} className="relative shrink-0">
-                <span className="grid size-9 place-items-center rounded-md bg-surface-subtle text-lg ring-1 ring-border">
-                  {l.icon}
+                <span className="grid size-9 place-items-center overflow-hidden rounded-md bg-surface-subtle text-lg ring-1 ring-border">
+                  <ProductThumb
+                    src={l.image}
+                    alt={l.name}
+                    fallback={<span aria-hidden="true">{l.icon}</span>}
+                  />
                 </span>
                 <button
                   type="button"

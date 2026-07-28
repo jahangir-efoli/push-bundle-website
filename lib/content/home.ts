@@ -173,7 +173,7 @@ export const storefront = {
       icon: "shield",
       title: "Frictionless Checkout Integration",
       points: [
-        "Advanced discount logic via Shopify Scripts",
+        "Advanced discount logic via Shopify Functions",
         "No manual adjustments needed",
         "Works seamlessly with Shopify Plus",
       ],

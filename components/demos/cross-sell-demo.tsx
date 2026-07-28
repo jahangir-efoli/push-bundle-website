@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { buttonStyles } from "@/components/ui/button";
+import { ProductThumb } from "@/components/demos/product-thumb";
 import { cn } from "@/lib/utils";
 
 /**
@@ -16,8 +17,10 @@ export type CrossProduct = {
   price: number;
   /** Admin-fixed quantity (not customer-editable). */
   qty: number;
-  /** Product icon (emoji). */
+  /** Product icon (emoji) — fallback until a real image is uploaded. */
   icon: string;
+  /** Real product photo; falls back to `icon` when missing. */
+  image?: string;
   /** Customer-selectable options. */
   variants: string[];
 };
@@ -86,11 +89,12 @@ export function CrossSellDemo({
         {products.map((p, i) => (
           <div key={p.name}>
             <div className="flex gap-3 rounded-lg border border-border p-3">
-              <span
-                aria-hidden="true"
-                className="grid size-11 shrink-0 place-items-center rounded-md bg-surface-subtle text-2xl ring-1 ring-black/5"
-              >
-                {p.icon}
+              <span className="grid size-11 shrink-0 place-items-center overflow-hidden rounded-md bg-surface-subtle text-2xl ring-1 ring-black/5">
+                <ProductThumb
+                  src={p.image}
+                  alt={p.name}
+                  fallback={<span aria-hidden="true">{p.icon}</span>}
+                />
               </span>
               <div className="min-w-0 flex-1">
                 <div className="flex items-start justify-between gap-2">
