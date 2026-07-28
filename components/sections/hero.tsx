@@ -1,4 +1,3 @@
-import { Container } from "@/components/ui/container";
 import { buttonStyles } from "@/components/ui/button";
 import { HeroSlider } from "@/components/sections/hero-slider";
 import { ShopifyMark } from "@/components/ui/shopify-mark";
@@ -6,26 +5,30 @@ import { site } from "@/lib/site-config";
 import { hero } from "@/lib/content/home";
 import type { AggregateRating } from "@/lib/cms";
 
-/** Feature previews shown in the hero slider (4:5, in public/images/features). */
+/**
+ * Feature previews shown in the hero slider — LANDSCAPE (16:10) screenshots at
+ * /images/hero/hero-1..5.png. Until those assets are added, each slide shows a
+ * branded placeholder (see HeroSlider). Recommended size: 1600×1000 (16:10).
+ */
 const HERO_SLIDES = [
   {
-    src: "/images/features/feature-1.png",
+    src: "/images/hero/hero-1.png",
     alt: "PushBundle mix-and-match single-product bundle builder with tiered box discounts",
   },
   {
-    src: "/images/features/feature-2.png",
+    src: "/images/hero/hero-2.png",
     alt: "PushBundle mix-and-match multi-product bundle builder across product categories",
   },
   {
-    src: "/images/features/feature-3.png",
+    src: "/images/hero/hero-3.png",
     alt: "PushBundle build-your-own gift box flow with step-by-step product selection",
   },
   {
-    src: "/images/features/feature-4.png",
+    src: "/images/hero/hero-4.png",
     alt: "PushBundle cross-sell bundle pairing complementary products at a set discount",
   },
   {
-    src: "/images/features/feature-5.png",
+    src: "/images/hero/hero-5.png",
     alt: "PushBundle volume bundle offering buy-more-save-more quantity discounts",
   },
 ];
@@ -77,7 +80,9 @@ export function Hero({ rating }: { rating: AggregateRating }) {
         }}
       />
 
-      <Container className="relative grid items-center gap-8 pt-8 pb-16 lg:grid-cols-[1fr_1.15fr] lg:gap-12 lg:pt-10 lg:pb-20">
+      {/* Wider than the standard 1200px container so the hero spans more of the
+          screen horizontally and the demo has room to grow wide (not tall). */}
+      <div className="relative mx-auto grid w-full max-w-[86rem] items-center gap-8 px-gutter pt-8 pb-16 lg:grid-cols-[0.85fr_1.15fr] lg:gap-10 lg:pt-10 lg:pb-20">
         <div>
           {/* Trust pill: badge + live rating */}
           <div className="inline-flex flex-wrap items-center gap-x-3 gap-y-1 rounded-full border border-border bg-surface px-4 py-2 text-sm font-semibold shadow-soft">
@@ -133,13 +138,13 @@ export function Hero({ rating }: { rating: AggregateRating }) {
           </p>
         </div>
 
-        {/* Feature preview slider (public/images/features) */}
-        <div className="relative mx-auto w-full max-w-md lg:ml-auto lg:max-w-xl">
+        {/* Feature preview slider — landscape, fills its column */}
+        <div className="relative mx-auto w-full max-w-2xl lg:mx-0 lg:max-w-none">
           <div className="rounded-[1.25rem] bg-brand-gradient p-1.5 shadow-lift">
             <HeroSlider slides={HERO_SLIDES} />
           </div>
         </div>
-      </Container>
+      </div>
     </section>
   );
 }
