@@ -65,7 +65,7 @@ export function WhyPushbundle({
         {/* Synced image — crossfades to the active item */}
         <div
           className={cn(
-            "min-w-0 rounded-2xl bg-brand-gradient p-1.5 shadow-lift",
+            "min-w-0 rounded-2xl bg-gradient-border p-1.5 shadow-lift",
             reverse && "lg:order-2",
           )}
         >

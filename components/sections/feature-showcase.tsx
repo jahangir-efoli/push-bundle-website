@@ -124,7 +124,7 @@ export function FeatureShowcase() {
         {/* LEFT — large app-window placeholder (live preview goes here later).
             `pb-light` pins the preview to the light token set so it always reads
             as a real (white) storefront, even when the site is in dark mode. */}
-        <div className="rounded-2xl bg-brand-gradient p-1.5 shadow-lift">
+        <div className="rounded-2xl bg-gradient-border p-1.5 shadow-lift">
           <div className="pb-light overflow-hidden rounded-[0.9rem] bg-surface text-foreground">
             {/* Faux app chrome */}
             <div className="flex items-center gap-2 border-b border-border px-4 py-3">

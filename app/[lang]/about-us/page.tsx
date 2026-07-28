@@ -74,7 +74,7 @@ export default async function AboutPage() {
               {whoWeAre.body}
             </p>
           </div>
-          <div className="rounded-2xl bg-brand-gradient p-1.5 shadow-lift">
+          <div className="rounded-2xl bg-gradient-border p-1.5 shadow-lift">
             <div className="relative grid aspect-16/10 place-items-center overflow-hidden rounded-[0.9rem] bg-surface-subtle">
               <span className="flex flex-col items-center gap-2 text-sm text-muted">
                 <svg viewBox="0 0 24 24" className="size-9 text-muted/50" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">

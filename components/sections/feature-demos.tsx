@@ -49,7 +49,7 @@ export function FeatureDemos() {
             >
               {/* Live demo in an app-window frame */}
               <div className={cn("min-w-0", reverse && "lg:order-2")}>
-                <div className="rounded-2xl bg-brand-gradient p-1.5 shadow-lift">
+                <div className="rounded-2xl bg-gradient-border p-1.5 shadow-lift">
                   <div className="pb-light overflow-hidden rounded-[0.9rem] bg-surface text-foreground">
                     <div className="flex items-center gap-2 border-b border-border px-4 py-3">
                       <span className="flex gap-1.5" aria-hidden="true">
