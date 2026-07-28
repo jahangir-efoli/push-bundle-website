@@ -77,7 +77,7 @@ export function Hero({ rating }: { rating: AggregateRating }) {
         }}
       />
 
-      <Container className="relative grid items-center gap-8 pt-8 pb-16 lg:grid-cols-[1.05fr_0.95fr] lg:pt-10 lg:pb-20">
+      <Container className="relative grid items-center gap-8 pt-8 pb-16 lg:grid-cols-[1fr_1.15fr] lg:gap-12 lg:pt-10 lg:pb-20">
         <div>
           {/* Trust pill: badge + live rating */}
           <div className="inline-flex flex-wrap items-center gap-x-3 gap-y-1 rounded-full border border-border bg-surface px-4 py-2 text-sm font-semibold shadow-soft">
@@ -134,7 +134,7 @@ export function Hero({ rating }: { rating: AggregateRating }) {
         </div>
 
         {/* Feature preview slider (public/images/features) */}
-        <div className="relative mx-auto w-full max-w-sm lg:ml-auto lg:max-w-md">
+        <div className="relative mx-auto w-full max-w-md lg:ml-auto lg:max-w-xl">
           <div className="rounded-[1.25rem] bg-brand-gradient p-1.5 shadow-lift">
             <HeroSlider slides={HERO_SLIDES} />
           </div>

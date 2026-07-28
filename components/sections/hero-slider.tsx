@@ -76,7 +76,7 @@ export function HeroSlider({
             fill
             priority={i === 0}
             quality={90}
-            sizes="(min-width: 1024px) 28rem, (min-width: 640px) 24rem, 85vw"
+            sizes="(min-width: 1024px) 36rem, (min-width: 640px) 28rem, 90vw"
             className={cn(
               "object-cover transition-opacity duration-700 ease-out motion-reduce:transition-none",
               i === index ? "opacity-100" : "opacity-0",
