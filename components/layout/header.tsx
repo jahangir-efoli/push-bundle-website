@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Container } from "@/components/ui/container";
 import { Dropdown } from "@/components/ui/dropdown";
 import { buttonStyles } from "@/components/ui/button";
 import { ThemeToggle } from "./theme-toggle";
@@ -75,25 +74,29 @@ export function Header({
             : "border-transparent bg-background",
         )}
     >
-      <Container className="flex h-20 items-center gap-4">
-        <Link
-          href={homeHref}
-          className="flex items-center gap-2 font-display text-xl font-extrabold tracking-tight text-foreground"
-        >
-          <Image
-            src="/images/pb-logo.webp"
-            alt=""
-            width={32}
-            height={32}
-            priority
-            className="size-8 rounded-md"
-          />
-          <span>
-            Push<span className="text-brand-gradient">Bundle</span>
-          </span>
-        </Link>
+      {/* Same 86rem width as the hero so the logo/actions line up with the hero
+          edges. Three parts: logo (left) · nav (centered) · actions (right). */}
+      <div className="mx-auto flex h-20 w-full max-w-[86rem] items-center gap-4 px-gutter">
+        <div className="flex flex-1 items-center">
+          <Link
+            href={homeHref}
+            className="flex items-center gap-2 font-display text-xl font-extrabold tracking-tight text-foreground"
+          >
+            <Image
+              src="/images/pb-logo.webp"
+              alt=""
+              width={32}
+              height={32}
+              priority
+              className="size-8 rounded-md"
+            />
+            <span>
+              Push<span className="text-brand-gradient">Bundle</span>
+            </span>
+          </Link>
+        </div>
 
-        <nav aria-label="Main" className="ml-6 hidden items-center gap-0.5 xl:flex">
+        <nav aria-label="Main" className="hidden items-center gap-0.5 xl:flex">
           {mainNav.map((item) => (
             <Link
               key={item.href}
@@ -120,7 +123,7 @@ export function Header({
           />
         </nav>
 
-        <div className="ml-auto flex items-center gap-2">
+        <div className="flex flex-1 items-center justify-end gap-2">
           <span className="hidden xl:block">
             <LocaleSwitcher current={locale} label={dict.langSwitcher.label} />
           </span>
@@ -158,7 +161,7 @@ export function Header({
             </svg>
           </button>
         </div>
-        </Container>
+        </div>
       </header>
 
       {/* Rendered OUTSIDE <header>: the header's `backdrop-filter` (when

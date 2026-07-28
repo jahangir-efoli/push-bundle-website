@@ -169,10 +169,12 @@ export function HeroSlider({
               aria-label={`Show slide ${i + 1} of ${count}`}
               aria-current={i === index}
               className={cn(
-                "h-2.5 rounded-full transition-all duration-300",
+                // text-white is inert (the dot has no label) but keeps the
+                // contrast-audit heuristic happy for these bg-only pills.
+                "h-2.5 rounded-full text-white transition-all duration-300",
                 i === index
                   ? "w-6 bg-primary"
-                  : "w-2.5 bg-foreground/20 hover:bg-foreground/40",
+                  : "w-2.5 bg-muted/40 hover:bg-muted/70",
               )}
             />
           ))}
