@@ -278,7 +278,10 @@ export function MixMatchSingleDemo({
             return v ? (
               <span
                 key={s}
-                className="grid size-10 shrink-0 place-items-center overflow-hidden rounded-md bg-surface-subtle ring-1 ring-border"
+                className={cn(
+                  "grid size-10 shrink-0 place-items-center overflow-hidden rounded-md ring-1 ring-border",
+                  v.image ? "bg-white" : "bg-surface-subtle",
+                )}
               >
                 <ProductThumb
                   src={v.image}

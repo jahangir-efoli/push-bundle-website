@@ -89,7 +89,10 @@ export function CrossSellDemo({
         {products.map((p, i) => (
           <div key={p.name}>
             <div className="flex gap-3 rounded-lg border border-border p-3">
-              <span className="grid size-11 shrink-0 place-items-center overflow-hidden rounded-md bg-surface-subtle text-2xl ring-1 ring-black/5">
+              <span className={cn(
+                "grid size-11 shrink-0 place-items-center overflow-hidden rounded-md text-2xl ring-1 ring-black/5",
+                p.image ? "bg-white" : "bg-surface-subtle",
+              )}>
                 <ProductThumb
                   src={p.image}
                   alt={p.name}

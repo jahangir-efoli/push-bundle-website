@@ -526,7 +526,10 @@ export function ByobDemo({
           <div className="flex min-w-0 flex-1 flex-wrap items-center gap-2">
             {flatUnits.slice(0, 6).map((l, i) => (
               <span key={i} className="relative shrink-0">
-                <span className="grid size-9 place-items-center overflow-hidden rounded-md bg-surface-subtle text-lg ring-1 ring-border">
+                <span className={cn(
+                  "grid size-9 place-items-center overflow-hidden rounded-md text-lg ring-1 ring-border",
+                  l.image ? "bg-white" : "bg-surface-subtle",
+                )}>
                   <ProductThumb
                     src={l.image}
                     alt={l.name}

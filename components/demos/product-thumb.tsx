@@ -10,7 +10,9 @@ import { cn } from "@/lib/utils";
  * before the real product images are uploaded, and swaps to the photo the moment
  * a file lands at the path.
  *
- * The image fills its container and inherits the container's border-radius, so
+ * The image is `object-contain` so product photos of any aspect ratio show in
+ * full (never cropped); pair it with a white tile so the letterbox is seamless
+ * for images shot on white. It inherits the container's border-radius, so
  * callers keep their existing box (size, ring, rounding) unchanged.
  */
 export function ProductThumb({
@@ -34,7 +36,7 @@ export function ProductThumb({
         alt={alt}
         loading="lazy"
         onError={() => setOk(false)}
-        className={cn("h-full w-full rounded-[inherit] object-cover", className)}
+        className={cn("h-full w-full rounded-[inherit] object-contain", className)}
       />
     );
   }
