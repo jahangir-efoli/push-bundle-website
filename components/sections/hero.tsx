@@ -80,9 +80,9 @@ export function Hero({ rating }: { rating: AggregateRating }) {
         }}
       />
 
-      {/* Wider than the standard 1200px container so the hero spans more of the
-          screen horizontally and the demo has room to grow wide (not tall). */}
-      <div className="relative mx-auto grid w-full max-w-[86rem] items-center gap-8 px-gutter pt-8 pb-16 lg:grid-cols-[0.85fr_1.15fr] lg:gap-10 lg:pt-10 lg:pb-20">
+      {/* Uses the shared site width (max-w-site) so the hero, header and every
+          page section line up on the same edges. */}
+      <div className="relative mx-auto grid w-full max-w-site items-center gap-8 px-gutter pt-8 pb-16 lg:grid-cols-[0.85fr_1.15fr] lg:gap-10 lg:pt-10 lg:pb-20">
         <div>
           {/* Trust pill: badge + live rating */}
           <div className="inline-flex flex-wrap items-center gap-x-3 gap-y-1 rounded-full border border-border bg-surface px-4 py-2 text-sm font-semibold shadow-soft">

@@ -259,8 +259,10 @@
   /* Layout rhythm */
   --spacing-section: clamp(3.5rem, 2rem + 6vw, 7rem);
   --spacing-gutter: clamp(1rem, 0.5rem + 2vw, 2rem);
-  /* Named `site` (not `max`) to avoid colliding with Tailwind's built-in max-w-max */
-  --container-site: 75rem; /* 1200px */
+  /* Named `site` (not `max`) to avoid colliding with Tailwind's built-in max-w-max.
+     Single source of truth for page width — header, hero and every Container
+     read this via `max-w-site`, so changing it here rewidths the whole site. */
+  --container-site: 86rem; /* 1376px */
 
   /* Radii */
   --radius-md: 0.5rem;

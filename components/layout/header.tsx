@@ -74,9 +74,9 @@ export function Header({
             : "border-transparent bg-background",
         )}
     >
-      {/* Same 86rem width as the hero so the logo/actions line up with the hero
-          edges. Three parts: logo (left) · nav (centered) · actions (right). */}
-      <div className="mx-auto flex h-20 w-full max-w-[86rem] items-center gap-4 px-gutter">
+      {/* Shared site width (max-w-site) so the logo/actions line up with the
+          page content. Three parts: logo (left) · nav (centered) · actions (right). */}
+      <div className="mx-auto flex h-20 w-full max-w-site items-center gap-4 px-gutter">
         <div className="flex flex-1 items-center">
           <Link
             href={homeHref}
