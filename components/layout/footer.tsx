@@ -1,14 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Container } from "@/components/ui/container";
-import { Button } from "@/components/ui/button";
 import { site, socialLinks, whenlabApps } from "@/lib/site-config";
 import { localizePath, type Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries";
 
 /**
  * Site footer (docs/PLAN.md §4.2, §8).
- * Server Component. Newsletter posts to a real handler in Phase 9.
+ * Server Component.
  */
 
 const SOCIAL_PATH: Record<string, string> = {
@@ -35,11 +34,16 @@ export function Footer({
     { label: dict.nav.privacy, href: localizePath("/privacy-policy", locale) },
     { label: dict.nav.changelog, href: localizePath("/changelog", locale) },
   ];
+  const resourceLinks = [
+    { label: dict.nav.docs, href: localizePath("/docs", locale) },
+    { label: dict.nav.blog, href: localizePath("/blog", locale) },
+    { label: dict.nav.partners, href: localizePath("/partner", locale) },
+  ];
 
   return (
     <footer className="border-t border-border bg-inverse text-inverse-foreground">
       <Container className="py-16">
-        <div className="grid gap-12 lg:grid-cols-[1.5fr_1fr_1fr_1.5fr]">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1fr]">
           <div>
             <p className="flex items-center gap-2 font-display text-xl font-extrabold">
               <Image
@@ -77,6 +81,24 @@ export function Footer({
             </ul>
           </nav>
 
+          <nav aria-label={dict.nav.resources}>
+            <h2 className="text-sm font-semibold uppercase tracking-wider opacity-60">
+              {dict.nav.resources}
+            </h2>
+            <ul className="mt-4 space-y-1">
+              {resourceLinks.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className="flex min-h-11 items-center text-sm opacity-80 transition-opacity hover:opacity-100 hover:underline"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
           <nav aria-label={dict.common.ourApps}>
             <h2 className="text-sm font-semibold uppercase tracking-wider opacity-60">
               {dict.common.ourApps}
@@ -94,38 +116,6 @@ export function Footer({
               ))}
             </ul>
           </nav>
-
-          <div>
-            <h2 className="text-sm font-semibold uppercase tracking-wider opacity-60">
-              {dict.common.newsletterTitle}
-            </h2>
-            <p className="mt-4 text-sm opacity-70">
-              {dict.common.newsletterBody}
-            </p>
-            {/*
-              Uses inverse-aware styling rather than the shared <Input>, whose
-              page-surface colours are unreadable on the always-dark footer.
-              Wired to a real backend in Phase 9 (docs/PLAN.md §9 #12).
-            */}
-            <form className="mt-4 flex flex-col gap-3">
-              <label
-                htmlFor="footer-newsletter-email"
-                className="text-sm font-semibold text-inverse-foreground"
-              >
-                Email address
-              </label>
-              <input
-                id="footer-newsletter-email"
-                type="email"
-                name="email"
-                placeholder="you@store.com"
-                className="h-12 w-full rounded-lg border border-white/20 bg-white/10 px-4 text-inverse-foreground placeholder:text-inverse-foreground/60 transition-colors focus-visible:border-white/50"
-              />
-              <Button type="submit" variant="primary" size="sm">
-                {dict.common.subscribe}
-              </Button>
-            </form>
-          </div>
         </div>
 
         <div className="mt-12 flex flex-col gap-6 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
