@@ -63,6 +63,10 @@ export function PricingPlans() {
           const free = plan.monthly === 0;
           const price = yearly && plan.yearly !== null ? plan.yearly : plan.monthly;
           const period = free ? "" : yearly ? "/year" : "/month";
+          // Undiscounted yearly total (12× monthly) — struck through to show the
+          // yearly saving. Only when a real discount exists.
+          const fullYearly = plan.monthly * 12;
+          const showStrike = yearly && !free && plan.yearly !== null && fullYearly > price;
 
           return (
             <div
@@ -83,7 +87,12 @@ export function PricingPlans() {
               <h2 className="font-display text-xl font-bold">{plan.name}</h2>
               <p className="mt-1 text-sm text-muted">{plan.tagline}</p>
 
-              <p className="mt-6 flex items-baseline gap-1">
+              <p className="mt-6 flex flex-wrap items-baseline gap-x-2 gap-y-1">
+                {showStrike && (
+                  <span className="font-display text-2xl font-bold text-muted line-through decoration-2">
+                    ${fullYearly.toFixed(2)}
+                  </span>
+                )}
                 <span className="font-display text-4xl font-extrabold">
                   {free ? "Free" : `$${price % 1 === 0 ? price : price.toFixed(2)}`}
                 </span>
