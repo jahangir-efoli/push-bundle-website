@@ -5,6 +5,7 @@ import type { Locale } from "@/i18n/config";
 import { cms, DEFAULT_LOCALE } from "@/lib/cms";
 import { PageHero } from "@/components/sections/page-hero";
 import { Container } from "@/components/ui/container";
+import { Icon } from "@/components/ui/icon";
 import { DocsBrowser } from "@/components/docs/docs-browser";
 import { JsonLd } from "@/components/seo/json-ld";
 import { breadcrumbLd } from "@/lib/seo/structured-data";
@@ -48,9 +49,13 @@ export default async function DocsPage() {
           </p>
           <Link
             href="/contact-us"
-            className="mt-4 inline-flex min-h-11 items-center font-semibold text-primary underline underline-offset-4"
+            className="group mt-4 inline-flex min-h-11 items-center gap-1.5 font-semibold text-primary"
           >
-            Contact support →
+            Contact support
+            <Icon
+              name="arrow-right"
+              className="size-4 transition-transform duration-200 group-hover:translate-x-1"
+            />
           </Link>
         </div>
       </Container>

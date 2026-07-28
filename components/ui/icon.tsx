@@ -16,7 +16,9 @@ export type IconName =
   | "gauge"
   | "globe"
   | "sparkles"
-  | "shield";
+  | "shield"
+  | "arrow-right"
+  | "file-text";
 
 const PATHS: Record<IconName, React.ReactNode> = {
   // Multiple bundling options — stacked packs
@@ -73,6 +75,20 @@ const PATHS: Record<IconName, React.ReactNode> = {
     <>
       <path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3Z" />
       <path d="m9 12 2 2 4-4" />
+    </>
+  ),
+  "arrow-right": (
+    <>
+      <path d="M5 12h14" />
+      <path d="m13 6 6 6-6 6" />
+    </>
+  ),
+  // Document / help article
+  "file-text": (
+    <>
+      <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z" />
+      <path d="M14 3v5h5" />
+      <path d="M9 13h6M9 17h4" />
     </>
   ),
 };
