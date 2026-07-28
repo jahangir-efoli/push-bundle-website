@@ -24,9 +24,9 @@ export function MixMatchSingleStage() {
           basePrice={24}
           unitNoun="shirt"
           packs={[
-            { qty: 8, discount: 0, pricePerUnit: 24 },
-            { qty: 12, discount: 8, pricePerUnit: 22 },
-            { qty: 16, discount: 17, pricePerUnit: 20 },
+            { qty: 4, discount: 0, pricePerUnit: 24 },
+            { qty: 6, discount: 8, pricePerUnit: 22 },
+            { qty: 8, discount: 17, pricePerUnit: 20 },
           ]}
           variants={[
             { name: "Maroon", color: "#7f1d3a", image: "/images/demos/mix-single/maroon.png" },

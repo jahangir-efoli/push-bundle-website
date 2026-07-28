@@ -40,7 +40,7 @@ const DEFAULT_BOXES: ByobBox[] = [
 ];
 
 const DEFAULT_PRODUCTS: ByobProduct[] = [
-  { name: "Scented Candle", price: 22, icon: "🕯️", image: "/images/demos/byob/scented-candle.png", options: [{ name: "Scent", values: ["Vanilla", "Cedar", "Citrus"] }] },
+  { name: "Scented Candle", price: 22, icon: "🕯️", image: "/images/demos/mix-multi/scented-candle.png", options: [{ name: "Scent", values: ["Vanilla", "Cedar", "Citrus"] }] },
   { name: "Artisan Chocolate", price: 16, icon: "🍫", image: "/images/demos/byob/artisan-chocolate.png" },
   { name: "Ceramic Mug", price: 14, icon: "☕", image: "/images/demos/byob/ceramic-mug.png", options: [{ name: "Color", values: ["Cream", "Charcoal"] }] },
   { name: "Bath Bomb Set", price: 18, icon: "🛁", image: "/images/demos/byob/bath-bomb-set.png" },
@@ -232,7 +232,8 @@ export function ByobDemo({
   const iconTile = (icon: string, size: string, image?: string, alt = "") => (
     <span
       className={cn(
-        "grid shrink-0 place-items-center overflow-hidden rounded-md bg-surface-subtle ring-1 ring-black/5",
+        "grid shrink-0 place-items-center overflow-hidden rounded-md ring-1 ring-black/5",
+        image ? "bg-white" : "bg-surface-subtle",
         size,
       )}
     >
@@ -316,7 +317,7 @@ export function ByobDemo({
                     )}
                   >
                     <span className="relative">
-                      {iconTile(b.icon, "h-20 w-full text-4xl", b.image, b.name)}
+                      {iconTile(b.icon, "aspect-square w-full text-4xl", b.image, b.name)}
                       {sel && (
                         <span className="absolute right-1.5 top-1.5 grid size-5 place-items-center rounded-full bg-primary text-primary-foreground">
                           <svg viewBox="0 0 24 24" className="size-3" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m5 13 4 4L19 7" /></svg>
@@ -357,7 +358,7 @@ export function ByobDemo({
                     )}
                   >
                     <span className="relative">
-                      {iconTile(p.icon, "h-16 w-full text-3xl", p.image, p.name)}
+                      {iconTile(p.icon, "aspect-square w-full text-3xl", p.image, p.name)}
                       {inBox > 0 && (
                         <span className="absolute right-1.5 top-1.5 grid size-5 place-items-center rounded-full bg-primary text-primary-foreground">
                           <svg viewBox="0 0 24 24" className="size-3" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m5 13 4 4L19 7" /></svg>
@@ -463,7 +464,7 @@ export function ByobDemo({
                     )}
                   >
                     <span className="relative">
-                      {iconTile(c.icon, "h-16 w-full text-3xl", c.image, c.name)}
+                      {iconTile(c.icon, "aspect-square w-full text-3xl", c.image, c.name)}
                       {sel && (
                         <span className="absolute right-1.5 top-1.5 grid size-5 place-items-center rounded-full bg-primary text-primary-foreground">
                           <svg viewBox="0 0 24 24" className="size-3" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m5 13 4 4L19 7" /></svg>

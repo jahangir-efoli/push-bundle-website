@@ -179,7 +179,7 @@ export function MixMatchSingleDemo({
           const qty = picks[v.name] ?? 0;
           return (
             <div key={v.name} className="rounded-lg border border-border p-2.5">
-              <span className="grid h-20 w-full place-items-center overflow-hidden rounded-md bg-surface-subtle ring-1 ring-black/5">
+              <span className="grid aspect-square w-full place-items-center overflow-hidden rounded-md bg-white ring-1 ring-black/5">
                 <ProductThumb
                   src={v.image}
                   alt={`${v.name} ${productName}`}

@@ -33,28 +33,28 @@ export function CrossSellStage() {
             discount={10}
             products={[
               {
-                name: "Ceramic Table Lamp",
-                price: 45,
-                qty: 1,
-                icon: "🪔",
-                image: "/images/demos/cross-sell/ceramic-table-lamp.png",
-                variants: ["Brass", "Matte Black", "Chrome"],
-              },
-              {
-                name: "Stoneware Vase",
+                name: "Terracotta Bud Vase",
                 price: 28,
                 qty: 1,
                 icon: "🏺",
-                image: "/images/demos/cross-sell/stoneware-vase.png",
-                variants: ["Terracotta", "Sage", "Cream"],
+                image: "/images/demos/cross-sell/terracotta-bud-vase.png",
+                variants: ["Small", "Large"],
               },
               {
-                name: "Woven Storage Basket",
-                price: 24,
+                name: "Teal Table Lamp",
+                price: 45,
                 qty: 1,
-                icon: "🧺",
-                image: "/images/demos/cross-sell/woven-storage-basket.png",
-                variants: ["Natural", "Charcoal"],
+                icon: "🪔",
+                image: "/images/demos/cross-sell/teal-table-lamp.png",
+                variants: ["Teal", "Cream"],
+              },
+              {
+                name: "Emerald Ceramic Vase",
+                price: 32,
+                qty: 1,
+                icon: "🏺",
+                image: "/images/demos/cross-sell/emerald-ceramic-vase.png",
+                variants: ["Emerald", "Sage"],
               },
             ]}
           />

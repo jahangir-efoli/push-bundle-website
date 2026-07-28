@@ -113,7 +113,8 @@ export function MixMatchMultiDemo({
   const tile = (icon: string, size: string, image?: string, alt = "") => (
     <span
       className={cn(
-        "grid shrink-0 place-items-center overflow-hidden rounded-md bg-surface-subtle ring-1 ring-black/5",
+        "grid shrink-0 place-items-center overflow-hidden rounded-md ring-1 ring-black/5",
+        image ? "bg-white" : "bg-surface-subtle",
         size,
       )}
     >
@@ -195,7 +196,7 @@ export function MixMatchMultiDemo({
               const q = qty[p.name] ?? 0;
               return (
                 <div key={p.name} className="rounded-lg border border-border p-2.5">
-                  {tile(p.icon, "h-16 w-full text-3xl", p.image, p.name)}
+                  {tile(p.icon, "aspect-square w-full text-3xl", p.image, p.name)}
                   <p className="mt-2 truncate text-sm font-semibold">{p.name}</p>
                   <p className="text-xs text-muted">{usd(p.price)}</p>
                   <div className="mt-2 flex items-center justify-between rounded-md border border-border">
