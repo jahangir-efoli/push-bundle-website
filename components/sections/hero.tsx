@@ -6,9 +6,9 @@ import { hero } from "@/lib/content/home";
 import type { AggregateRating } from "@/lib/cms";
 
 /**
- * Feature previews shown in the hero slider — LANDSCAPE (16:10) screenshots at
+ * Feature previews shown in the hero slider — LANDSCAPE (4:3) screenshots at
  * /images/hero/hero-1..5.png. Until those assets are added, each slide shows a
- * branded placeholder (see HeroSlider). Recommended size: 1600×1000 (16:10).
+ * branded placeholder (see HeroSlider). Recommended size: 1600×1200 (4:3).
  */
 const HERO_SLIDES = [
   {
@@ -138,11 +138,11 @@ export function Hero({ rating }: { rating: AggregateRating }) {
           </p>
         </div>
 
-        {/* Feature preview slider — landscape, fills its column */}
+        {/* Feature preview slider — landscape, fills its column. The slider
+            frames itself (subtle border) so the bright gradient edge no longer
+            pulls focus off the image. */}
         <div className="relative mx-auto w-full max-w-2xl lg:mx-0 lg:max-w-none">
-          <div className="rounded-[1.25rem] bg-brand-gradient p-1.5 shadow-lift">
-            <HeroSlider slides={HERO_SLIDES} />
-          </div>
+          <HeroSlider slides={HERO_SLIDES} />
         </div>
       </div>
     </section>

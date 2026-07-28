@@ -13,7 +13,7 @@ export type HeroSlide = { src: string; alt: string };
  * the lightbox is open (not on hover — a portal-covered hover could leave it
  * stuck paused). Dots jump to a slide; respects reduced-motion.
  *
- * Landscape (16:10) frames. Until the real screenshots land at each `src`, a
+ * Landscape (4:3) frames. Until the real screenshots land at each `src`, a
  * branded placeholder is shown so the hero never looks broken. Clicking a slide
  * (when its image is present) opens it enlarged in a dimmed lightbox.
  */
@@ -83,104 +83,101 @@ export function HeroSlider({
       role="group"
       aria-roledescription="carousel"
       aria-label="PushBundle feature previews"
-      className="relative aspect-16/10 overflow-hidden rounded-[0.9rem] bg-surface"
     >
-      {/* Trigger layer — holds the slides, hint and dots plus the open/pause
-          handlers. The lightbox portal is a SIBLING of this (not a child), so
-          React portal event-bubbling can't route the portal's clicks/focus back
-          into these handlers and leave the carousel stuck paused/reopening. */}
-      <div
-        onFocusCapture={() => setPaused(true)}
-        onBlurCapture={() => setPaused(false)}
-        onClick={() => currentOk && setZoom(true)}
-        className={cn(
-          "absolute inset-0",
-          currentOk ? "cursor-zoom-in" : "cursor-default",
-        )}
-      >
-        {slides.map((slide, i) =>
-          imgOk[i] ? (
-            <Image
-              key={slide.src}
-              src={slide.src}
-              alt={i === index ? slide.alt : ""}
-              aria-hidden={i !== index}
-              fill
-              priority={i === 0}
-              quality={90}
-              sizes="(min-width: 1024px) 48rem, (min-width: 640px) 40rem, 92vw"
-              onError={() =>
-                setImgOk((prev) => prev.map((v, idx) => (idx === i ? false : v)))
-              }
-              className={cn(
-                "object-cover transition-opacity duration-700 ease-out motion-reduce:transition-none",
-                i === index ? "opacity-100" : "opacity-0",
-              )}
-            />
-          ) : (
-            <div
-              key={slide.src}
-              aria-hidden={i !== index}
-              className={cn(
-                "transition-opacity duration-700 ease-out motion-reduce:transition-none",
-                i === index ? "opacity-100" : "opacity-0",
-              )}
-            >
-              <SlidePlaceholder label={slide.alt} />
-            </div>
-          ),
-        )}
+      {/* Frame — a soft, low-key border/shadow so attention stays on the image,
+          not a bright gradient edge. */}
+      <div className="relative aspect-4/3 overflow-hidden rounded-2xl border border-border bg-surface shadow-lift">
+        {/* Trigger layer — holds the slides + hint plus the open/pause handlers.
+            The lightbox portal is a SIBLING of this (not a child), so React
+            portal event-bubbling can't route the portal's clicks/focus back into
+            these handlers and leave the carousel stuck paused/reopening. */}
+        <div
+          onFocusCapture={() => setPaused(true)}
+          onBlurCapture={() => setPaused(false)}
+          onClick={() => currentOk && setZoom(true)}
+          className={cn(
+            "absolute inset-0",
+            currentOk ? "cursor-zoom-in" : "cursor-default",
+          )}
+        >
+          {slides.map((slide, i) =>
+            imgOk[i] ? (
+              <Image
+                key={slide.src}
+                src={slide.src}
+                alt={i === index ? slide.alt : ""}
+                aria-hidden={i !== index}
+                fill
+                priority={i === 0}
+                quality={90}
+                sizes="(min-width: 1024px) 48rem, (min-width: 640px) 40rem, 92vw"
+                onError={() =>
+                  setImgOk((prev) =>
+                    prev.map((v, idx) => (idx === i ? false : v)),
+                  )
+                }
+                className={cn(
+                  "object-cover transition-opacity duration-700 ease-out motion-reduce:transition-none",
+                  i === index ? "opacity-100" : "opacity-0",
+                )}
+              />
+            ) : (
+              <div
+                key={slide.src}
+                aria-hidden={i !== index}
+                className={cn(
+                  "transition-opacity duration-700 ease-out motion-reduce:transition-none",
+                  i === index ? "opacity-100" : "opacity-0",
+                )}
+              >
+                <SlidePlaceholder label={slide.alt} />
+              </div>
+            ),
+          )}
 
-        {/* Hint that the preview is zoomable (only when there's a real image). */}
-        {currentOk && (
-          <span
-            aria-hidden="true"
-            className="absolute right-3 top-3 grid size-8 place-items-center rounded-full bg-black/45 text-white backdrop-blur-sm"
-          >
-            <svg
-              viewBox="0 0 24 24"
-              className="size-4"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <circle cx="11" cy="11" r="7" />
-              <path d="m21 21-4.3-4.3M11 8v6M8 11h6" />
-            </svg>
-          </span>
-        )}
-
-        {count > 1 && (
-          <>
-            <div
+          {/* Hint that the preview is zoomable (only when there's a real image). */}
+          {currentOk && (
+            <span
               aria-hidden="true"
-              className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-linear-to-t from-black/30 to-transparent"
-            />
-            <div className="absolute inset-x-0 bottom-3.5 z-10 flex justify-center gap-2">
-              {slides.map((slide, i) => (
-                <button
-                  key={slide.src}
-                  type="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setIndex(i);
-                  }}
-                  aria-label={`Show slide ${i + 1} of ${count}`}
-                  aria-current={i === index}
-                  className={cn(
-                    "h-2 rounded-full ring-1 ring-black/10 transition-all duration-300",
-                    i === index
-                      ? "w-6 bg-white"
-                      : "w-2 bg-white/60 hover:bg-white/85",
-                  )}
-                />
-              ))}
-            </div>
-          </>
-        )}
+              className="absolute right-3 top-3 grid size-8 place-items-center rounded-full bg-black/45 text-white backdrop-blur-sm"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                className="size-4"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <circle cx="11" cy="11" r="7" />
+                <path d="m21 21-4.3-4.3M11 8v6M8 11h6" />
+              </svg>
+            </span>
+          )}
+        </div>
       </div>
+
+      {/* Dots — UNDER the slider (not overlaid on the image). */}
+      {count > 1 && (
+        <div className="mt-4 flex justify-center gap-2">
+          {slides.map((slide, i) => (
+            <button
+              key={slide.src}
+              type="button"
+              onClick={() => setIndex(i)}
+              aria-label={`Show slide ${i + 1} of ${count}`}
+              aria-current={i === index}
+              className={cn(
+                "h-2.5 rounded-full transition-all duration-300",
+                i === index
+                  ? "w-6 bg-primary"
+                  : "w-2.5 bg-foreground/20 hover:bg-foreground/40",
+              )}
+            />
+          ))}
+        </div>
+      )}
 
       {/* Lightbox — full image enlarged. Portaled to <body> so it escapes the
           Lenis transform wrapper (a transformed ancestor would otherwise trap
@@ -198,7 +195,7 @@ export function HeroSlider({
           >
             <div
               onClick={(e) => e.stopPropagation()}
-              className="relative aspect-16/10 max-h-[86vh] w-[92vw] max-w-[80rem] cursor-default"
+              className="relative aspect-4/3 max-h-[86vh] w-[92vw] max-w-6xl cursor-default"
             >
               <Image
                 src={current.src}
