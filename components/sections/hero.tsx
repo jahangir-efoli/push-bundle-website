@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { buttonStyles } from "@/components/ui/button";
 import { HeroSlider } from "@/components/sections/hero-slider";
 import { ShopifyMark } from "@/components/ui/shopify-mark";
@@ -84,7 +85,7 @@ export function Hero({ rating }: { rating: AggregateRating }) {
           is uncapped — every other section stays at max-w-site). Larger
           responsive side padding than the standard gutter so the content
           breathes against the screen edges. */}
-      <div className="relative grid w-full items-center gap-8 px-6 pt-8 pb-16 sm:px-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-10 lg:px-20 lg:pt-10 lg:pb-20 xl:px-28">
+      <div className="relative grid w-full items-center gap-8 px-6 pt-8 pb-16 sm:px-10 lg:grid-cols-[1fr_1fr] lg:gap-10 lg:px-12 lg:pt-10 lg:pb-20 xl:px-16">
         <div>
           {/* Trust pill: badge + live rating */}
           <div className="inline-flex flex-wrap items-center gap-x-3 gap-y-1 rounded-full border border-border bg-surface px-4 py-2 text-sm font-semibold shadow-soft">
@@ -99,8 +100,39 @@ export function Hero({ rating }: { rating: AggregateRating }) {
             </span>
           </div>
 
-          <h1 className="pb-title-shine mt-4 max-w-[24ch] text-balance leading-[1.05] text-[clamp(2.5rem,1.2rem+2.8vw,3.375rem)]">
-            {hero.title}
+          {/* Title reveals character-by-character once on load (pb-write-char),
+              split server-side into per-word / per-char spans (no client JS).
+              aria-label gives assistive tech the clean title; the fragmented
+              visual spans are aria-hidden so they aren't read as "T u r n …". */}
+          <h1
+            aria-label={hero.title}
+            className="mt-4 max-w-[24ch] pb-[0.08em] leading-[1.12] text-[clamp(2.125rem,2.125rem+0.95vw,3.25rem)]"
+          >
+            <span aria-hidden="true">
+              {(() => {
+                const words = hero.title.split(" ");
+                let ci = 0;
+                return words.map((word, wi) => (
+                  <Fragment key={wi}>
+                    {wi > 0 ? " " : null}
+                    <span className="inline-block">
+                      {Array.from(word).map((ch, chi) => {
+                        const delay = (ci++ * 0.03).toFixed(2);
+                        return (
+                          <span
+                            key={chi}
+                            className="pb-write-char"
+                            style={{ animationDelay: `${delay}s` }}
+                          >
+                            {ch}
+                          </span>
+                        );
+                      })}
+                    </span>
+                  </Fragment>
+                ));
+              })()}
+            </span>
           </h1>
 
           <p className="mt-6 max-w-xl text-lg text-muted">{hero.subtitle}</p>

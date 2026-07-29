@@ -777,38 +777,29 @@ body {
   }
 }
 
-/* Animated gradient "shine" that sweeps across the hero H1 forever, so its
-   colour shifts through the text character by character. The text stays real
-   (screen-reader friendly); off under reduced-motion. */
-.pb-title-shine {
-  background-image: linear-gradient(
-    100deg,
-    var(--foreground) 0%,
-    var(--foreground) 32%,
-    var(--pb-blue-500) 46%,
-    var(--pb-cyan-400) 54%,
-    var(--foreground) 68%,
-    var(--foreground) 100%
-  );
-  background-size: 250% 100%;
-  background-position: 120% 0;
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
-  animation: pb-title-shine 5s linear infinite;
+/* One-time "write-on" reveal for the hero H1 (hero.tsx): each character fades
+   and rises into place, left to right, once on load. Per-character delays are
+   set inline. Under reduced-motion everything is shown immediately. */
+.pb-write-char {
+  display: inline-block;
+  opacity: 0;
+  animation: pb-write 0.5s ease-out both;
 }
-@keyframes pb-title-shine {
+@keyframes pb-write {
+  from {
+    opacity: 0;
+    transform: translateY(0.4em);
+  }
   to {
-    background-position: -120% 0;
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .pb-title-shine {
+  .pb-write-char {
+    opacity: 1;
+    transform: none;
     animation: none;
-    background-image: none;
-    color: var(--foreground);
-    -webkit-text-fill-color: var(--foreground);
   }
 }
 .marquee {
