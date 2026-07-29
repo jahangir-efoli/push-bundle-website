@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
-import { cms, DEFAULT_LOCALE } from "@/lib/cms";
+import { cms } from "@/lib/cms";
 import { pageMetadata } from "@/lib/seo/metadata";
-import type { Locale } from "@/i18n/config";
+import { isLocale, type Locale } from "@/i18n/config";
 import { BlogListing } from "@/components/blog/blog-listing";
 import { JsonLd } from "@/components/seo/json-ld";
 import { breadcrumbLd } from "@/lib/seo/structured-data";
+
+const toLocale = (lang: string): Locale => (isLocale(lang) ? lang : "en");
 
 export async function generateMetadata({
   params,
@@ -25,8 +27,13 @@ const INTRO =
   "We're committed to empowering Shopify merchants with actionable insights. Dive into our expert-curated articles filled with bundling strategies, AOV-boosting tips, and the latest e-commerce trends.";
 
 /** Blog index (docs/PLAN.md §5.7a). */
-export default async function BlogPage() {
-  const locale = DEFAULT_LOCALE;
+export default async function BlogPage({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang } = await params;
+  const locale = toLocale(lang);
   const [result, all, categories] = await Promise.all([
     cms.listPosts({ locale, page: 1 }),
     cms.listPosts({ locale, perPage: 100 }),

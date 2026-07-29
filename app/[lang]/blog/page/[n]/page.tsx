@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
-import { cms, DEFAULT_LOCALE } from "@/lib/cms";
+import { cms } from "@/lib/cms";
 import { BlogListing } from "@/components/blog/blog-listing";
+import { isLocale, type Locale } from "@/i18n/config";
 
-type Props = { params: Promise<{ n: string }> };
+type Props = { params: Promise<{ lang: string; n: string }> };
+
+const toLocale = (lang: string): Locale => (isLocale(lang) ? lang : "en");
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { n } = await params;
@@ -15,14 +18,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 /** Numbered blog pagination (docs/PLAN.md §5.7a). `params` is async (Next 16). */
 export default async function BlogPaginatedPage({ params }: Props) {
-  const { n } = await params;
+  const { lang, n } = await params;
   const page = Number(n);
 
   // Page 1 is /blog — redirect to keep one canonical URL.
   if (!Number.isInteger(page) || page < 1) notFound();
   if (page === 1) redirect("/blog");
 
-  const locale = DEFAULT_LOCALE;
+  const locale = toLocale(lang);
   const [result, all, categories] = await Promise.all([
     cms.listPosts({ locale, page }),
     cms.listPosts({ locale, perPage: 100 }),
