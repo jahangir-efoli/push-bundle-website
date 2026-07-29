@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import { cms, DEFAULT_LOCALE } from "@/lib/cms";
 import { Hero } from "@/components/sections/hero";
 import { FeatureShowcase } from "@/components/sections/feature-showcase";
-import { FeatureTrio } from "@/components/sections/feature-trio";
+// Hidden on the home page (kept for easy re-enable):
+// import { FeatureTrio } from "@/components/sections/feature-trio";
 import { WhyPushbundle } from "@/components/sections/why-pushbundle";
-import { StorefrontPersonalization } from "@/components/sections/storefront-personalization";
+// import { StorefrontPersonalization } from "@/components/sections/storefront-personalization";
 import { MobileExperience } from "@/components/sections/mobile-experience";
 import { Reviews } from "@/components/sections/reviews";
 import { BlogTeaser } from "@/components/sections/blog-teaser";
@@ -47,10 +48,10 @@ export default async function Home() {
 
       <Hero rating={rating} />
       <FeatureShowcase />
-      <FeatureTrio />
+      {/* <FeatureTrio /> — hidden per request */}
       <WhyPushbundle content={whyPushbundle} />
       <WhyPushbundle content={whyBeyond} reverse tone="alt" />
-      <StorefrontPersonalization />
+      {/* <StorefrontPersonalization /> — hidden per request */}
       <MobileExperience />
       <Reviews reviews={reviews} rating={rating} />
       <BlogTeaser posts={latestPosts.items} categories={categories} />
