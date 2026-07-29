@@ -764,14 +764,16 @@ body {
     opacity: 1;
   }
 }
-/* Slow "Ken Burns" zoom for the active hero slide (hero-slider.tsx). Applied
-   only to the visible slide; disabled under reduced-motion. */
-@keyframes pb-kenburns {
-  from {
-    transform: scale(1);
+/* Gentle vertical float for the hero preview (hero-slider.tsx) — the whole
+   image box bobs up and down on a loop, like the fastbundle.co hero. Off under
+   reduced-motion. */
+@keyframes pb-float {
+  0%,
+  100% {
+    transform: translateY(0);
   }
-  to {
-    transform: scale(1.08);
+  50% {
+    transform: translateY(-16px);
   }
 }
 .marquee {
