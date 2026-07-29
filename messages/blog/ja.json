@@ -1,0 +1,24 @@
+{
+  "meta": {
+    "title": "Blog — Shopify Bundling Tips & Best Practices",
+    "description": "Bundling strategies, AOV-boosting tips, and the latest e-commerce trends to help Shopify merchants scale."
+  },
+  "eyebrow": "Blog",
+  "title": "Articles",
+  "intro": "We're committed to empowering Shopify merchants with actionable insights. Dive into our expert-curated articles filled with bundling strategies, AOV-boosting tips, and the latest e-commerce trends.",
+  "pageTitleTemplate": "Articles — Page {n}",
+  "categoryIntroPrefix": "Articles about",
+  "ui": {
+    "searchLabel": "Search articles",
+    "searchPlaceholder": "Search articles…",
+    "filterByCategory": "Filter by category",
+    "all": "All",
+    "resultOne": "result",
+    "resultOther": "results",
+    "found": "found",
+    "onThisPage": "on this page",
+    "noMatch": "No articles match your search. Try a different search.",
+    "noneYet": "No articles yet — check back soon.",
+    "minRead": "min read"
+  }
+}

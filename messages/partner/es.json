@@ -1,0 +1,21 @@
+{
+  "meta": {
+    "title": "Partners — Ecosistema de la app de paquetes de Shopify",
+    "description": "Las aplicaciones y servicios de Shopify con los que colaboramos para ofrecer soluciones de creación de paquetes potentes y escalables."
+  },
+  "eyebrow": "Explora nuestros partners",
+  "title": "Nuestros partners",
+  "subtitle": "Nos encanta trabajar con los mejores del ecosistema de Shopify. Al asociarnos con aplicaciones y servicios líderes, ofrecemos soluciones de creación de paquetes potentes y escalables que mantienen tu tienda a la vanguardia a medida que creces.",
+  "becomePartner": {
+    "title": "¿Quieres asociarte con nosotros?",
+    "body": "¿Estás creando algo para el ecosistema de Shopify? Nos encantaría saber de ti.",
+    "cta": "Ponte en contacto"
+  },
+  "ui": {
+    "visit": "Visitar",
+    "opensNewTab": "(se abre en una pestaña nueva)",
+    "prev": "Anterior",
+    "next": "Siguiente",
+    "paginationAria": "Paginación de partners"
+  }
+}

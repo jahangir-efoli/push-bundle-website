@@ -1,0 +1,21 @@
+{
+  "meta": {
+    "title": "Partner — Das Ökosystem der Shopify-Bundle-App",
+    "description": "Die Shopify-Apps und -Dienste, mit denen wir zusammenarbeiten, um leistungsstarke, skalierbare Bündelungslösungen bereitzustellen."
+  },
+  "eyebrow": "Entdecken Sie unsere Partner",
+  "title": "Unsere Partner",
+  "subtitle": "Wir arbeiten gern mit den Besten im Shopify-Ökosystem zusammen. Durch Partnerschaften mit führenden Apps und Diensten bieten wir leistungsstarke, skalierbare Bündelungslösungen, die Ihren Shop im Wachstum an der Spitze halten.",
+  "becomePartner": {
+    "title": "Möchten Sie mit uns zusammenarbeiten?",
+    "body": "Entwickeln Sie etwas für das Shopify-Ökosystem? Wir würden gern von Ihnen hören.",
+    "cta": "Kontakt aufnehmen"
+  },
+  "ui": {
+    "visit": "Besuchen",
+    "opensNewTab": "(wird in einem neuen Tab geöffnet)",
+    "prev": "Zurück",
+    "next": "Weiter",
+    "paginationAria": "Partner-Seitennavigation"
+  }
+}

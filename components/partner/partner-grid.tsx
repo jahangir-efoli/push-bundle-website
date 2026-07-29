@@ -14,7 +14,30 @@ const PER_PAGE = 9;
  * comes from the server; we page through it 9 at a time so the directory stays
  * scannable as the ecosystem grows.
  */
-export function PartnerGrid({ partners }: { partners: Partner[] }) {
+/** Localized grid UI strings (defaults are English). */
+export type PartnerGridUi = {
+  visit: string;
+  opensNewTab: string;
+  prev: string;
+  next: string;
+  paginationAria: string;
+};
+
+const DEFAULT_UI: PartnerGridUi = {
+  visit: "Visit",
+  opensNewTab: "(opens in a new tab)",
+  prev: "Prev",
+  next: "Next",
+  paginationAria: "Partner pagination",
+};
+
+export function PartnerGrid({
+  partners,
+  ui = DEFAULT_UI,
+}: {
+  partners: Partner[];
+  ui?: PartnerGridUi;
+}) {
   const [page, setPage] = useState(1);
   const totalPages = Math.max(1, Math.ceil(partners.length / PER_PAGE));
   const current = Math.min(page, totalPages);
@@ -41,8 +64,8 @@ export function PartnerGrid({ partners }: { partners: Partner[] }) {
                   rel="noopener noreferrer"
                   className="mt-5 inline-flex min-h-11 items-center font-semibold text-primary underline underline-offset-4"
                 >
-                  Visit
-                  <span className="sr-only"> {partner.name} (opens in a new tab)</span>
+                  {ui.visit}
+                  <span className="sr-only"> {partner.name} {ui.opensNewTab}</span>
                   <span aria-hidden="true" className="ml-1">
                     ↗
                   </span>
@@ -55,7 +78,7 @@ export function PartnerGrid({ partners }: { partners: Partner[] }) {
 
       {totalPages > 1 && (
         <nav
-          aria-label="Partner pagination"
+          aria-label={ui.paginationAria}
           className="mt-12 flex flex-wrap items-center justify-center gap-2"
         >
           <button
@@ -64,7 +87,7 @@ export function PartnerGrid({ partners }: { partners: Partner[] }) {
             disabled={current === 1}
             className="flex h-11 items-center rounded-lg border border-border px-4 text-sm font-medium transition-colors hover:bg-surface-subtle disabled:pointer-events-none disabled:opacity-40"
           >
-            ← Prev
+            ← {ui.prev}
           </button>
 
           {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => (
@@ -90,7 +113,7 @@ export function PartnerGrid({ partners }: { partners: Partner[] }) {
             disabled={current === totalPages}
             className="flex h-11 items-center rounded-lg border border-border px-4 text-sm font-medium transition-colors hover:bg-surface-subtle disabled:pointer-events-none disabled:opacity-40"
           >
-            Next →
+            {ui.next} →
           </button>
         </nav>
       )}

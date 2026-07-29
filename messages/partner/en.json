@@ -1,0 +1,21 @@
+{
+  "meta": {
+    "title": "Partners — Shopify Bundle App Ecosystem",
+    "description": "The Shopify apps and services we partner with to deliver powerful, scalable bundling solutions."
+  },
+  "eyebrow": "Explore our partners",
+  "title": "Our Partners",
+  "subtitle": "We love working with the best in the Shopify ecosystem. By partnering with leading apps and services, we deliver powerful, scalable bundling solutions that keep your store ahead as you grow.",
+  "becomePartner": {
+    "title": "Want to partner with us?",
+    "body": "Building something for the Shopify ecosystem? We'd love to hear from you.",
+    "cta": "Get in touch"
+  },
+  "ui": {
+    "visit": "Visit",
+    "opensNewTab": "(opens in a new tab)",
+    "prev": "Prev",
+    "next": "Next",
+    "paginationAria": "Partner pagination"
+  }
+}

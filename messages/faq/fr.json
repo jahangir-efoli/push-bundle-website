@@ -1,0 +1,18 @@
+{
+  "meta": {
+    "title": "FAQ — Réponses aux questions sur l'application de bundles Shopify",
+    "description": "Réponses aux questions fréquentes sur PushBundle — configuration des bundles, remises, facturation, compatibilité et plus encore."
+  },
+  "eyebrow": "FAQ",
+  "title": "Questions fréquentes",
+  "subtitle": "Obtenez des réponses d'experts à toutes vos questions sur PushBundle — de la configuration de bundles personnalisés à la maximisation des remises et aux intégrations fluides.",
+  "help": {
+    "title": "Vous n'avez pas trouvé la réponse que vous cherchiez ?",
+    "cta": "Contacter notre assistance"
+  },
+  "ui": {
+    "searchLabel": "Rechercher des questions",
+    "searchPlaceholder": "Rechercher des questions…",
+    "noMatch": "Aucune question ne correspond à votre recherche. Essayez une autre recherche."
+  }
+}

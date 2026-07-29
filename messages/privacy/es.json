@@ -1,0 +1,83 @@
+{
+  "meta": {
+    "title": "Política de Privacidad",
+    "description": "Cómo PushBundle (WhenLab F.Z.C) recopila, utiliza, protege y comparte tu información, incluidos los derechos del GDPR y las prácticas relativas a las cookies."
+  },
+  "eyebrow": "Legal",
+  "title": "Política de Privacidad",
+  "lastUpdatedLabel": "Última actualización",
+  "lastUpdated": "julio de 2026",
+  "entity": "WhenLab F.Z.C",
+  "onThisPage": "En esta página",
+  "intro": "Esta Política de Privacidad explica cómo PushBundle, operado por WhenLab F.Z.C, recopila, utiliza, protege y comparte información cuando utilizas nuestro sitio web y nuestra aplicación de Shopify.",
+  "questionsPrefix": "¿Tienes preguntas sobre esta política? Escríbenos a",
+  "sections": [
+    {
+      "id": "information-collected",
+      "heading": "Información que recopilamos",
+      "body": [
+        "Recopilamos la información que nos proporcionas directamente, como tu nombre, dirección de correo electrónico y los datos de tu tienda cuando te pones en contacto con nosotros o instalas la aplicación. También recopilamos información de forma automática, incluidos datos del dispositivo, de uso y de ubicación, así como información procedente de cookies y tecnologías similares.",
+        "Cuando conectas nuestra aplicación de Shopify, accedemos a los datos de la tienda necesarios para ofrecer las funciones de creación de paquetes, de acuerdo con los permisos que concedes durante la instalación."
+      ]
+    },
+    {
+      "id": "use-of-information",
+      "heading": "Uso de la información",
+      "body": [
+        "Utilizamos la información recopilada para prestar y mejorar nuestros servicios, ofrecer soporte, detectar y prevenir el fraude, comunicarnos contigo y publicar estadísticas agregadas y anonimizadas.",
+        "No vendemos tu información personal."
+      ]
+    },
+    {
+      "id": "protecting-and-sharing",
+      "heading": "Protección, seguridad y divulgación de la información",
+      "body": [
+        "Aplicamos medidas técnicas y organizativas apropiadas para proteger tu información. Podemos compartir información con tu consentimiento, con encargados del tratamiento de confianza que actúan en nuestro nombre, cuando lo exija la ley o un procedimiento legal, con personal interno que la necesite para operar el servicio y en forma de datos agregados y no personales.",
+        "Todos los encargados del tratamiento externos están sujetos a obligaciones coherentes con esta política."
+      ]
+    },
+    {
+      "id": "storing-and-deleting",
+      "heading": "Almacenamiento y eliminación de la información",
+      "body": [
+        "Conservamos la información únicamente durante el tiempo necesario para los fines descritos aquí o según lo exija la ley. Puedes solicitar acceder a tu información personal, transferirla, rectificarla, suprimirla o restringir su tratamiento."
+      ]
+    },
+    {
+      "id": "business-ownership",
+      "heading": "Cambios en la titularidad y el control del negocio",
+      "body": [
+        "Si nuestro negocio se vende o se fusiona con otra organización, tu información podrá transferirse a los nuevos propietarios para que el servicio pueda continuar. Cualquier transferencia de este tipo seguirá estando sujeta a protecciones coherentes con esta política."
+      ]
+    },
+    {
+      "id": "changes-to-policy",
+      "heading": "Cambios en esta Política de Privacidad",
+      "body": [
+        "Podemos modificar esta política de vez en cuando. Las actualizaciones entran en vigor en el momento de su publicación, y el uso continuado del servicio constituye la aceptación de la política revisada."
+      ]
+    },
+    {
+      "id": "gdpr-rights",
+      "heading": "DPA y derechos del interesado bajo el GDPR",
+      "body": [
+        "Si te encuentras en la EU, el EEA o Switzerland, dispones de derechos en virtud del GDPR, incluidos los derechos de acceso, rectificación, supresión, limitación y portabilidad de tus datos, así como el derecho a oponerte al tratamiento. Tratamos los datos personales sobre bases legítimas que incluyen la ejecución de un contrato, el interés legítimo del negocio y el consentimiento.",
+        "Esta política se administra de conformidad con la legislación aplicable en materia de protección de datos."
+      ]
+    },
+    {
+      "id": "childrens-privacy",
+      "heading": "Privacidad de los menores",
+      "body": [
+        "Nuestros servicios no están dirigidos a menores. No recopilamos de forma consciente información de identificación personal de ninguna persona menor de 13 años. Si crees que un menor nos ha proporcionado información personal, ponte en contacto con nosotros y tomaremos las medidas necesarias para eliminarla."
+      ]
+    },
+    {
+      "id": "updates",
+      "heading": "Actualizaciones de esta Política de Privacidad",
+      "body": [
+        "Nos comprometemos a notificar a los usuarios los cambios significativos mediante un aviso destacado en nuestro sitio web. Si tienes preguntas sobre esta política, contáctanos en support@pushbundle.com."
+      ]
+    }
+  ]
+}

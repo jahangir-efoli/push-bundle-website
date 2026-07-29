@@ -1,0 +1,18 @@
+{
+  "meta": {
+    "title": "FAQ — Shopify Bundle App Questions Answered",
+    "description": "Answers to common PushBundle questions — setting up bundles, discounts, billing, compatibility, and more."
+  },
+  "eyebrow": "FAQ",
+  "title": "Frequently asked questions",
+  "subtitle": "Get expert answers to all your PushBundle questions — from setting up custom bundles to maximizing discounts and seamless integrations.",
+  "help": {
+    "title": "Didn't find the answer you're looking for?",
+    "cta": "Contact our support"
+  },
+  "ui": {
+    "searchLabel": "Search questions",
+    "searchPlaceholder": "Search questions…",
+    "noMatch": "No questions match your search. Try a different search."
+  }
+}

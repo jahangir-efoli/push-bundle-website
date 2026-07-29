@@ -11,12 +11,27 @@ type Category = { slug: string; name: string };
  * Client-side filter over the CMS items; `FAQPage` JSON-LD is emitted by the
  * server page from the full set (search must not shrink structured data).
  */
+/** Localized browser UI strings (defaults are English). */
+export type FaqBrowserUi = {
+  searchLabel: string;
+  searchPlaceholder: string;
+  noMatch: string;
+};
+
+const DEFAULT_UI: FaqBrowserUi = {
+  searchLabel: "Search questions",
+  searchPlaceholder: "Search questions…",
+  noMatch: "No questions match your search. Try a different search.",
+};
+
 export function FaqBrowser({
   items,
   categories,
+  ui = DEFAULT_UI,
 }: {
   items: FaqItem[];
   categories: Category[];
+  ui?: FaqBrowserUi;
 }) {
   const [query, setQuery] = useState("");
 
@@ -45,21 +60,21 @@ export function FaqBrowser({
     <div>
       <div className="max-w-md">
         <label htmlFor="faq-search" className="sr-only">
-          Search questions
+          {ui.searchLabel}
         </label>
         <input
           id="faq-search"
           type="search"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search questions…"
+          placeholder={ui.searchPlaceholder}
           className="h-12 w-full rounded-lg border border-border bg-surface px-4 text-foreground placeholder:text-muted focus-visible:border-primary"
         />
       </div>
 
       {groups.length === 0 ? (
         <p className="mt-10 text-muted" role="status">
-          No questions match &ldquo;{query}&rdquo;. Try a different search.
+          {ui.noMatch}
         </p>
       ) : (
         <div className="mt-10 space-y-12">

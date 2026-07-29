@@ -1,0 +1,23 @@
+{
+  "meta": {
+    "title": "Docs — Setup & Help Center",
+    "description": "Documentation for the PushBundle Shopify bundle app — installation, setup, and how-to guides."
+  },
+  "eyebrow": "Docs",
+  "title": "Documentation",
+  "subtitle": "Everything you need to install, set up, and get the most out of PushBundle.",
+  "help": {
+    "title": "Still need help?",
+    "body": "Can't find what you're looking for? Our team is here to help.",
+    "cta": "Contact support"
+  },
+  "ui": {
+    "searchLabel": "Search documentation",
+    "searchPlaceholder": "Search the docs…",
+    "resultOne": "result",
+    "resultOther": "results",
+    "forQuery": "for",
+    "noResultsTitle": "No results found",
+    "noResultsBody": "Nothing matches your search. Try a different term or browse the categories."
+  }
+}

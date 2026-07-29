@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { cms, DEFAULT_LOCALE } from "@/lib/cms";
+import { cms } from "@/lib/cms";
 import { pageMetadata } from "@/lib/seo/metadata";
-import type { Locale } from "@/i18n/config";
+import { isLocale, type Locale } from "@/i18n/config";
+import { getCommon, getPartnerContent } from "@/i18n/content";
 import { PageHero } from "@/components/sections/page-hero";
 import { Container } from "@/components/ui/container";
 import { PartnerGrid } from "@/components/partner/partner-grid";
@@ -10,18 +11,19 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { breadcrumbLd } from "@/lib/seo/structured-data";
 import { site } from "@/lib/site-config";
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ lang: string }>;
-}): Promise<Metadata> {
+const toLocale = (lang: string): Locale => (isLocale(lang) ? lang : "en");
+
+type Props = { params: Promise<{ lang: string }> };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang } = await params;
+  const locale = toLocale(lang);
+  const { meta } = await getPartnerContent(locale);
   return pageMetadata({
-  title: "Partners — Shopify Bundle App Ecosystem",
-  description:
-    "The Shopify apps and services we partner with to deliver powerful, scalable bundling solutions.",
-  path: "/partner",
-    locale: lang as Locale,
+    title: meta.title,
+    description: meta.description,
+    path: "/partner",
+    locale,
   });
 }
 
@@ -45,8 +47,14 @@ function itemListLd(
 }
 
 /** Partners (docs/PLAN.md §5.6) — CMS-driven. */
-export default async function PartnerPage() {
-  const partners = await cms.listPartners({ locale: DEFAULT_LOCALE });
+export default async function PartnerPage({ params }: Props) {
+  const { lang } = await params;
+  const locale = toLocale(lang);
+  const [content, common, partners] = await Promise.all([
+    getPartnerContent(locale),
+    getCommon(locale),
+    cms.listPartners({ locale }),
+  ]);
 
   return (
     <>
@@ -59,31 +67,30 @@ export default async function PartnerPage() {
       />
 
       <PageHero
-        eyebrow="Explore our partners"
-        title="Our Partners"
-        subtitle="We love working with the best in the Shopify ecosystem. By partnering with leading apps and services, we deliver powerful, scalable bundling solutions that keep your store ahead as you grow."
+        eyebrow={content.eyebrow}
+        title={content.title}
+        subtitle={content.subtitle}
       />
 
       <Container className="py-16">
-        <PartnerGrid partners={partners} />
+        <PartnerGrid partners={partners} ui={content.ui} />
 
         {/* Become a partner (light prompt, not a full program — §5.6) */}
         <div className="mt-16 rounded-2xl bg-brand-gradient p-8 text-center text-white sm:p-12">
-          <h2 className="text-display-sm">Want to partner with us?</h2>
+          <h2 className="text-display-sm">{content.becomePartner.title}</h2>
           <p className="mx-auto mt-3 max-w-xl text-white/90">
-            Building something for the Shopify ecosystem? We&rsquo;d love to hear
-            from you.
+            {content.becomePartner.body}
           </p>
           <a
             href={`mailto:${site.email}`}
             className="mt-6 inline-flex min-h-11 items-center rounded-lg bg-white px-6 font-semibold text-(--pb-indigo-700) transition-colors hover:bg-white/90"
           >
-            Get in touch
+            {content.becomePartner.cta}
           </a>
         </div>
       </Container>
 
-      <TrialCta />
+      <TrialCta content={common.trialCta} />
     </>
   );
 }

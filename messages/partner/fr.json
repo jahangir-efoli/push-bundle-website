@@ -1,0 +1,21 @@
+{
+  "meta": {
+    "title": "Partenaires — L'écosystème de l'application de bundles Shopify",
+    "description": "Les applications et services Shopify avec lesquels nous nous associons pour offrir des solutions de bundling puissantes et évolutives."
+  },
+  "eyebrow": "Découvrez nos partenaires",
+  "title": "Nos partenaires",
+  "subtitle": "Nous aimons travailler avec les meilleurs de l'écosystème Shopify. En nous associant à des applications et services de premier plan, nous offrons des solutions de bundling puissantes et évolutives qui gardent votre boutique en tête à mesure que vous grandissez.",
+  "becomePartner": {
+    "title": "Vous souhaitez devenir notre partenaire ?",
+    "body": "Vous développez quelque chose pour l'écosystème Shopify ? Nous serions ravis d'avoir de vos nouvelles.",
+    "cta": "Prendre contact"
+  },
+  "ui": {
+    "visit": "Visiter",
+    "opensNewTab": "(ouvre dans un nouvel onglet)",
+    "prev": "Préc.",
+    "next": "Suivant",
+    "paginationAria": "Pagination des partenaires"
+  }
+}

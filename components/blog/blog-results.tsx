@@ -23,6 +23,35 @@ const pill = (active: boolean) =>
  * Category chips are real archive links (crawlable); counts reflect the posts
  * shown on this page. Search filters across ALL posts and hides pagination.
  */
+/** Localized results UI strings (defaults are English). */
+export type BlogResultsUi = {
+  searchLabel: string;
+  searchPlaceholder: string;
+  filterByCategory: string;
+  all: string;
+  resultOne: string;
+  resultOther: string;
+  found: string;
+  onThisPage: string;
+  noMatch: string;
+  noneYet: string;
+  minRead: string;
+};
+
+const DEFAULT_UI: BlogResultsUi = {
+  searchLabel: "Search articles",
+  searchPlaceholder: "Search articles…",
+  filterByCategory: "Filter by category",
+  all: "All",
+  resultOne: "result",
+  resultOther: "results",
+  found: "found",
+  onThisPage: "on this page",
+  noMatch: "No articles match your search. Try a different search.",
+  noneYet: "No articles yet — check back soon.",
+  minRead: "min read",
+};
+
 export function BlogResults({
   pagePosts,
   allPosts,
@@ -31,6 +60,7 @@ export function BlogResults({
   page,
   totalPages,
   basePath,
+  ui = DEFAULT_UI,
 }: {
   pagePosts: Post[];
   allPosts: Post[];
@@ -39,6 +69,7 @@ export function BlogResults({
   page: number;
   totalPages: number;
   basePath: string;
+  ui?: BlogResultsUi;
 }) {
   const [query, setQuery] = useState("");
   const q = query.trim().toLowerCase();
@@ -68,7 +99,7 @@ export function BlogResults({
       {/* Search */}
       <div className="mb-6 max-w-md">
         <label htmlFor="blog-search" className="sr-only">
-          Search articles
+          {ui.searchLabel}
         </label>
         <div className="relative">
           <span
@@ -85,7 +116,7 @@ export function BlogResults({
             type="search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search articles…"
+            placeholder={ui.searchPlaceholder}
             className="h-12 w-full rounded-lg border border-border bg-surface pl-11 pr-4 text-foreground placeholder:text-muted focus-visible:border-primary"
           />
         </div>
@@ -95,14 +126,15 @@ export function BlogResults({
       <div className="rounded-2xl border border-border bg-surface p-5 sm:p-6">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <p className="text-xs font-semibold uppercase tracking-wider text-muted">
-            Filter by category
+            {ui.filterByCategory}
           </p>
           <p
             role="status"
             className="text-xs font-medium uppercase tracking-wider text-muted"
           >
-            {results.length} result{results.length === 1 ? "" : "s"}{" "}
-            {searching ? "found" : "on this page"}
+            {results.length}{" "}
+            {results.length === 1 ? ui.resultOne : ui.resultOther}{" "}
+            {searching ? ui.found : ui.onThisPage}
           </p>
         </div>
 
@@ -112,7 +144,7 @@ export function BlogResults({
             aria-current={!activeCategory ? "true" : undefined}
             className={pill(!activeCategory)}
           >
-            All
+            {ui.all}
           </Link>
           {chipCategories.map((c) => (
             <Link
@@ -131,10 +163,10 @@ export function BlogResults({
       {results.length === 0 ? (
         searching ? (
           <p className="mt-10 text-muted" role="status">
-            No articles match &ldquo;{query}&rdquo;. Try a different search.
+            {ui.noMatch}
           </p>
         ) : (
-          <p className="mt-10 text-muted">No articles yet — check back soon.</p>
+          <p className="mt-10 text-muted">{ui.noneYet}</p>
         )
       ) : (
         <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -142,7 +174,12 @@ export function BlogResults({
             <li key={post.slug} className="h-full">
               <AnimateIn delay={(i % 3) * 0.08} className="h-full">
                 {/* h2: these cards are the primary content under the page h1 */}
-                <PostCard post={post} categories={categories} titleAs="h2" />
+                <PostCard
+                  post={post}
+                  categories={categories}
+                  titleAs="h2"
+                  minReadLabel={ui.minRead}
+                />
               </AnimateIn>
             </li>
           ))}

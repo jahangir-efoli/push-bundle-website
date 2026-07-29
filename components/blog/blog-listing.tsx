@@ -1,6 +1,6 @@
 import { Container } from "@/components/ui/container";
 import { Eyebrow } from "@/components/ui/eyebrow";
-import { BlogResults } from "@/components/blog/blog-results";
+import { BlogResults, type BlogResultsUi } from "@/components/blog/blog-results";
 import type { Category, Paginated, Post } from "@/lib/cms";
 
 /**
@@ -18,6 +18,7 @@ export function BlogListing({
   categories,
   activeCategory,
   basePath,
+  ui,
 }: {
   eyebrow?: string;
   title: string;
@@ -28,6 +29,7 @@ export function BlogListing({
   categories: Category[];
   activeCategory?: string;
   basePath: string;
+  ui?: BlogResultsUi;
 }) {
   return (
     <Container className="py-16">
@@ -43,6 +45,7 @@ export function BlogListing({
         page={result.page}
         totalPages={result.totalPages}
         basePath={basePath}
+        ui={ui}
       />
     </Container>
   );

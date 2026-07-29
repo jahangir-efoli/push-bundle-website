@@ -1,0 +1,18 @@
+{
+  "meta": {
+    "title": "FAQ — Antworten zur Shopify-Bundle-App",
+    "description": "Antworten auf häufige Fragen zu PushBundle — Bundles einrichten, Rabatte, Abrechnung, Kompatibilität und mehr."
+  },
+  "eyebrow": "FAQ",
+  "title": "Häufig gestellte Fragen",
+  "subtitle": "Erhalten Sie fachkundige Antworten auf all Ihre Fragen zu PushBundle — vom Einrichten individueller Bundles bis zur Maximierung von Rabatten und nahtlosen Integrationen.",
+  "help": {
+    "title": "Haben Sie nicht die gesuchte Antwort gefunden?",
+    "cta": "Unseren Support kontaktieren"
+  },
+  "ui": {
+    "searchLabel": "Fragen durchsuchen",
+    "searchPlaceholder": "Fragen durchsuchen…",
+    "noMatch": "Keine Fragen entsprechen Ihrer Suche. Versuchen Sie eine andere Suche."
+  }
+}

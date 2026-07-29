@@ -40,7 +40,34 @@ function formatDate(iso: string) {
  * `body` is sanitized CMS HTML (headings, lists, images, tables) — rendered via
  * `prose-pb`, not printed as text. Filtering or paging resets to page 1.
  */
-export function ChangelogTimeline({ entries }: { entries: ChangelogEntry[] }) {
+/** Localized timeline UI strings (defaults are English). Category names come
+    from the CMS and are NOT translated here — only the "All" tab label. */
+export type ChangelogUi = {
+  all: string;
+  filterAria: string;
+  empty: string;
+  previous: string;
+  next: string;
+  paginationAria: string;
+};
+
+const DEFAULT_UI: ChangelogUi = {
+  all: "All",
+  filterAria: "Filter by type",
+  empty: "No entries in this category yet.",
+  previous: "Previous",
+  next: "Next",
+  paginationAria: "Changelog pages",
+};
+
+export function ChangelogTimeline({
+  entries,
+  ui = DEFAULT_UI,
+}: {
+  entries: ChangelogEntry[];
+  ui?: ChangelogUi;
+}) {
+  // "All" is an internal sentinel (not a CMS category); its tab shows ui.all.
   const [filter, setFilter] = useState<string>("All");
   const [page, setPage] = useState(1);
 
@@ -75,7 +102,7 @@ export function ChangelogTimeline({ entries }: { entries: ChangelogEntry[] }) {
   return (
     <div>
       {/* Filter */}
-      <div role="group" aria-label="Filter by type" className="flex flex-wrap gap-2">
+      <div role="group" aria-label={ui.filterAria} className="flex flex-wrap gap-2">
         {categories.map((cat) => (
           <button
             key={cat}
@@ -89,7 +116,7 @@ export function ChangelogTimeline({ entries }: { entries: ChangelogEntry[] }) {
                 : "border border-border text-muted hover:bg-surface-subtle hover:text-foreground",
             )}
           >
-            {cat}
+            {cat === "All" ? ui.all : cat}
           </button>
         ))}
       </div>
@@ -154,13 +181,13 @@ export function ChangelogTimeline({ entries }: { entries: ChangelogEntry[] }) {
       </ol>
 
       {visible.length === 0 && (
-        <p className="mt-10 text-muted">No entries in this category yet.</p>
+        <p className="mt-10 text-muted">{ui.empty}</p>
       )}
 
       {/* Pagination */}
       {pageCount > 1 && (
         <nav
-          aria-label="Changelog pages"
+          aria-label={ui.paginationAria}
           className="mt-12 flex flex-wrap items-center justify-center gap-2"
         >
           <button
@@ -169,7 +196,7 @@ export function ChangelogTimeline({ entries }: { entries: ChangelogEntry[] }) {
             disabled={current === 1}
             className="flex h-10 items-center rounded-full border border-border px-4 text-sm font-semibold transition-colors hover:bg-surface-subtle disabled:pointer-events-none disabled:opacity-40"
           >
-            Previous
+            {ui.previous}
           </button>
 
           {Array.from({ length: pageCount }, (_, i) => i + 1).map((n) => (
@@ -195,7 +222,7 @@ export function ChangelogTimeline({ entries }: { entries: ChangelogEntry[] }) {
             disabled={current === pageCount}
             className="flex h-10 items-center rounded-full border border-border px-4 text-sm font-semibold transition-colors hover:bg-surface-subtle disabled:pointer-events-none disabled:opacity-40"
           >
-            Next
+            {ui.next}
           </button>
         </nav>
       )}

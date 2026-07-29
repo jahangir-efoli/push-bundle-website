@@ -14,7 +14,35 @@ import type { DocArticle } from "@/lib/cms";
  * that slides on hover. Rows read left-to-right so the eye lands on the title,
  * not empty space.
  */
-export function DocsBrowser({ docs }: { docs: DocArticle[] }) {
+/** Localized browser UI strings (defaults are English). */
+export type DocsBrowserUi = {
+  searchLabel: string;
+  searchPlaceholder: string;
+  resultOne: string;
+  resultOther: string;
+  forQuery: string;
+  noResultsTitle: string;
+  noResultsBody: string;
+};
+
+const DEFAULT_UI: DocsBrowserUi = {
+  searchLabel: "Search documentation",
+  searchPlaceholder: "Search the docs…",
+  resultOne: "result",
+  resultOther: "results",
+  forQuery: "for",
+  noResultsTitle: "No results found",
+  noResultsBody:
+    "Nothing matches your search. Try a different term or browse the categories.",
+};
+
+export function DocsBrowser({
+  docs,
+  ui = DEFAULT_UI,
+}: {
+  docs: DocArticle[];
+  ui?: DocsBrowserUi;
+}) {
   const [query, setQuery] = useState("");
   const q = query.trim().toLowerCase();
 
@@ -39,7 +67,7 @@ export function DocsBrowser({ docs }: { docs: DocArticle[] }) {
       {/* Search */}
       <div className="mx-auto max-w-xl">
         <label htmlFor="docs-search" className="sr-only">
-          Search documentation
+          {ui.searchLabel}
         </label>
         <div className="group relative">
           <span
@@ -56,24 +84,22 @@ export function DocsBrowser({ docs }: { docs: DocArticle[] }) {
             type="search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search the docs…"
+            placeholder={ui.searchPlaceholder}
             className="h-13 w-full rounded-xl border border-border bg-surface pl-12 pr-4 text-foreground shadow-soft placeholder:text-muted focus-visible:border-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary/40"
           />
         </div>
         {q && (
           <p className="mt-3 text-center text-sm text-muted" role="status">
-            {total} {total === 1 ? "result" : "results"} for &ldquo;{query}&rdquo;
+            {total} {total === 1 ? ui.resultOne : ui.resultOther} {ui.forQuery}{" "}
+            &ldquo;{query}&rdquo;
           </p>
         )}
       </div>
 
       {groups.length === 0 ? (
         <div className="mx-auto mt-12 max-w-md rounded-2xl border border-border bg-surface-subtle p-8 text-center">
-          <p className="font-display text-lg font-bold">No results found</p>
-          <p className="mt-2 text-muted">
-            Nothing matches &ldquo;{query}&rdquo;. Try a different term or browse
-            the categories.
-          </p>
+          <p className="font-display text-lg font-bold">{ui.noResultsTitle}</p>
+          <p className="mt-2 text-muted">{ui.noResultsBody}</p>
         </div>
       ) : (
         <div className="mt-14 space-y-14">

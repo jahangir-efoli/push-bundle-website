@@ -1,0 +1,23 @@
+{
+  "meta": {
+    "title": "Dokumentation — Einrichtung & Hilfecenter",
+    "description": "Dokumentation für die PushBundle Shopify-Bundle-App — Installation, Einrichtung und Anleitungen."
+  },
+  "eyebrow": "Dokumentation",
+  "title": "Dokumentation",
+  "subtitle": "Alles, was Sie brauchen, um PushBundle zu installieren, einzurichten und optimal zu nutzen.",
+  "help": {
+    "title": "Benötigen Sie weiterhin Hilfe?",
+    "body": "Sie finden nicht, wonach Sie suchen? Unser Team hilft Ihnen gerne weiter.",
+    "cta": "Support kontaktieren"
+  },
+  "ui": {
+    "searchLabel": "Dokumentation durchsuchen",
+    "searchPlaceholder": "Dokumentation durchsuchen…",
+    "resultOne": "Ergebnis",
+    "resultOther": "Ergebnisse",
+    "forQuery": "für",
+    "noResultsTitle": "Keine Ergebnisse gefunden",
+    "noResultsBody": "Nichts entspricht Ihrer Suche. Versuchen Sie einen anderen Begriff oder durchstöbern Sie die Kategorien."
+  }
+}

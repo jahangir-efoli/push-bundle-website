@@ -1,0 +1,17 @@
+{
+  "meta": {
+    "title": "Changelog — Aggiornamenti dell'app di bundle Shopify",
+    "description": "Le ultime funzionalità, migliorie e correzioni di PushBundle — scopri le novità dell'app di bundle Shopify."
+  },
+  "eyebrow": "Changelog",
+  "title": "Le novità di PushBundle",
+  "subtitle": "Nuove funzionalità, migliorie e correzioni — rilasciate con regolarità.",
+  "ui": {
+    "all": "Tutti",
+    "filterAria": "Filtra per tipo",
+    "empty": "Ancora nessuna voce in questa categoria.",
+    "previous": "Precedente",
+    "next": "Successivo",
+    "paginationAria": "Pagine del changelog"
+  }
+}

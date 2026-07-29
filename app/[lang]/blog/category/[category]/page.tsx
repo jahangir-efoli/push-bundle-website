@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { cms } from "@/lib/cms";
+import { getBlogContent } from "@/i18n/content";
 import { BlogListing } from "@/components/blog/blog-listing";
 import { JsonLd } from "@/components/seo/json-ld";
 import { breadcrumbLd } from "@/lib/seo/structured-data";
@@ -11,19 +12,19 @@ type Props = { params: Promise<{ lang: string; category: string }> };
 
 const toLocale = (lang: string): Locale => (isLocale(lang) ? lang : "en");
 
-async function getCategory(slug: string) {
-  const categories = await cms.listCategories({ locale: "en" });
+async function getCategory(slug: string, locale: Locale) {
+  const categories = await cms.listCategories({ locale });
   return categories.find((c) => c.slug === slug);
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang, category } = await params;
   const locale = toLocale(lang);
-  const found = await getCategory(category);
+  const found = await getCategory(category, locale);
   if (!found) return {};
   return {
     title: `${found.name} | PushBundle Blog`,
-    description: `PushBundle articles about ${found.name.toLowerCase()}.`,
+    description: `PushBundle — ${found.name}.`,
     alternates: localeAlternates(`/blog/category/${category}`, locale),
   };
 }
@@ -33,8 +34,9 @@ export default async function BlogCategoryPage({ params }: Props) {
   const { lang, category } = await params;
   const locale = toLocale(lang);
 
-  const [found, categories] = await Promise.all([
-    getCategory(category),
+  const [content, found, categories] = await Promise.all([
+    getBlogContent(locale),
+    getCategory(category, locale),
     cms.listCategories({ locale }),
   ]);
   if (!found) notFound();
@@ -54,13 +56,15 @@ export default async function BlogCategoryPage({ params }: Props) {
         ])}
       />
       <BlogListing
+        eyebrow={content.eyebrow}
         title={found.name}
-        intro={`Articles about ${found.name.toLowerCase()}.`}
+        intro={`${content.categoryIntroPrefix} ${found.name}.`}
         result={result}
         allPosts={all.items}
         categories={categories}
         activeCategory={category}
         basePath={`/blog/category/${category}`}
+        ui={content.ui}
       />
     </>
   );

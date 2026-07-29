@@ -1,0 +1,18 @@
+{
+  "meta": {
+    "title": "Preguntas frecuentes — Respuestas sobre la app de paquetes de Shopify",
+    "description": "Respuestas a las preguntas más comunes sobre PushBundle: configurar paquetes, descuentos, facturación, compatibilidad y mucho más."
+  },
+  "eyebrow": "FAQ",
+  "title": "Preguntas frecuentes",
+  "subtitle": "Obtén respuestas de expertos a todas tus preguntas sobre PushBundle, desde la configuración de paquetes personalizados hasta maximizar los descuentos e integraciones sin fricciones.",
+  "help": {
+    "title": "¿No encontraste la respuesta que buscabas?",
+    "cta": "Contacta con nuestro soporte"
+  },
+  "ui": {
+    "searchLabel": "Buscar preguntas",
+    "searchPlaceholder": "Buscar preguntas…",
+    "noMatch": "Ninguna pregunta coincide con tu búsqueda. Prueba con otra búsqueda."
+  }
+}

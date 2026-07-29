@@ -49,10 +49,13 @@ export function PostCard({
   categories,
   /** Heading level so the card fits its context (h2 under a page h1). */
   titleAs: Tag = "h3",
+  /** Localized "min read" label (defaults to English). */
+  minReadLabel = "min read",
 }: {
   post: Post;
   categories: Category[];
   titleAs?: "h2" | "h3";
+  minReadLabel?: string;
 }) {
   const categoryName =
     categories.find((c) => c.slug === post.category)?.name ?? post.category;
@@ -81,7 +84,7 @@ export function PostCard({
           {categoryName}
         </span>
         <span className="absolute right-3 top-3 rounded-full bg-foreground px-2.5 py-1 text-[11px] font-medium uppercase tracking-wide text-background">
-          {post.readingMinutes} min read
+          {post.readingMinutes} {minReadLabel}
         </span>
       </Link>
 

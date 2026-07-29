@@ -1,0 +1,24 @@
+{
+  "meta": {
+    "title": "Blog — Consigli e best practice per il bundling su Shopify",
+    "description": "Strategie di bundling, consigli per aumentare l'AOV e le ultime tendenze dell'e-commerce per aiutare i merchant Shopify a crescere."
+  },
+  "eyebrow": "Blog",
+  "title": "Articoli",
+  "intro": "Ci impegniamo a offrire ai merchant Shopify spunti concreti e attuabili. Immergiti nei nostri articoli curati da esperti, ricchi di strategie di bundling, consigli per aumentare l'AOV e le ultime tendenze dell'e-commerce.",
+  "pageTitleTemplate": "Articoli — Pagina {n}",
+  "categoryIntroPrefix": "Articoli su",
+  "ui": {
+    "searchLabel": "Cerca articoli",
+    "searchPlaceholder": "Cerca articoli…",
+    "filterByCategory": "Filtra per categoria",
+    "all": "Tutti",
+    "resultOne": "risultato",
+    "resultOther": "risultati",
+    "found": "trovati",
+    "onThisPage": "in questa pagina",
+    "noMatch": "Nessun articolo corrisponde alla tua ricerca. Prova una ricerca diversa.",
+    "noneYet": "Ancora nessun articolo — torna a trovarci presto.",
+    "minRead": "min di lettura"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "meta": {
+    "title": "Blog — Consejos y buenas prácticas de creación de paquetes en Shopify",
+    "description": "Estrategias de creación de paquetes, consejos para aumentar el AOV y las últimas tendencias del comercio electrónico para ayudar a los comerciantes de Shopify a crecer."
+  },
+  "eyebrow": "Blog",
+  "title": "Artículos",
+  "intro": "Nos comprometemos a empoderar a los comerciantes de Shopify con información práctica. Sumérgete en nuestros artículos elaborados por expertos, repletos de estrategias de creación de paquetes, consejos para aumentar el AOV y las últimas tendencias del comercio electrónico.",
+  "pageTitleTemplate": "Artículos — Página {n}",
+  "categoryIntroPrefix": "Artículos sobre",
+  "ui": {
+    "searchLabel": "Buscar artículos",
+    "searchPlaceholder": "Buscar artículos…",
+    "filterByCategory": "Filtrar por categoría",
+    "all": "Todos",
+    "resultOne": "resultado",
+    "resultOther": "resultados",
+    "found": "encontrados",
+    "onThisPage": "en esta página",
+    "noMatch": "Ningún artículo coincide con tu búsqueda. Prueba con otra búsqueda.",
+    "noneYet": "Todavía no hay artículos: vuelve pronto.",
+    "minRead": "min de lectura"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "meta": {
+    "title": "Registro de cambios — Actualizaciones de la app de paquetes de Shopify",
+    "description": "Las últimas funciones, mejoras y correcciones de PushBundle: descubre las novedades de la aplicación de paquetes de Shopify."
+  },
+  "eyebrow": "Registro de cambios",
+  "title": "Novedades de PushBundle",
+  "subtitle": "Nuevas funciones, mejoras y correcciones, publicadas con regularidad.",
+  "ui": {
+    "all": "Todos",
+    "filterAria": "Filtrar por tipo",
+    "empty": "Aún no hay entradas en esta categoría.",
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "paginationAria": "Páginas del registro de cambios"
+  }
+}

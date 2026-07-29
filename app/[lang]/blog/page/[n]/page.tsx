@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
 import { cms } from "@/lib/cms";
+import { getBlogContent } from "@/i18n/content";
 import { BlogListing } from "@/components/blog/blog-listing";
 import { isLocale, type Locale } from "@/i18n/config";
 
@@ -9,9 +10,11 @@ type Props = { params: Promise<{ lang: string; n: string }> };
 const toLocale = (lang: string): Locale => (isLocale(lang) ? lang : "en");
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { n } = await params;
+  const { lang, n } = await params;
+  const locale = toLocale(lang);
+  const { pageTitleTemplate } = await getBlogContent(locale);
   return {
-    title: `Articles — Page ${n} | PushBundle Blog`,
+    title: `${pageTitleTemplate.replace("{n}", n)} | PushBundle Blog`,
     alternates: { canonical: `/blog/page/${n}` },
   };
 }
@@ -26,7 +29,8 @@ export default async function BlogPaginatedPage({ params }: Props) {
   if (page === 1) redirect("/blog");
 
   const locale = toLocale(lang);
-  const [result, all, categories] = await Promise.all([
+  const [content, result, all, categories] = await Promise.all([
+    getBlogContent(locale),
     cms.listPosts({ locale, page }),
     cms.listPosts({ locale, perPage: 100 }),
     cms.listCategories({ locale }),
@@ -36,11 +40,13 @@ export default async function BlogPaginatedPage({ params }: Props) {
 
   return (
     <BlogListing
-      title="Articles"
+      eyebrow={content.eyebrow}
+      title={content.title}
       result={result}
       allPosts={all.items}
       categories={categories}
       basePath="/blog"
+      ui={content.ui}
     />
   );
 }

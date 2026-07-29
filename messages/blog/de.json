@@ -1,0 +1,24 @@
+{
+  "meta": {
+    "title": "Blog — Tipps & Best Practices für Shopify-Bundles",
+    "description": "Bündelungsstrategien, Tipps zur Steigerung des AOV und die neuesten E-Commerce-Trends, die Shopify-Händlern beim Wachstum helfen."
+  },
+  "eyebrow": "Blog",
+  "title": "Artikel",
+  "intro": "Wir haben es uns zur Aufgabe gemacht, Shopify-Händler mit umsetzbaren Erkenntnissen zu stärken. Tauchen Sie ein in unsere von Experten kuratierten Artikel voller Bündelungsstrategien, Tipps zur Steigerung des AOV und der neuesten E-Commerce-Trends.",
+  "pageTitleTemplate": "Artikel — Seite {n}",
+  "categoryIntroPrefix": "Artikel über",
+  "ui": {
+    "searchLabel": "Artikel durchsuchen",
+    "searchPlaceholder": "Artikel durchsuchen…",
+    "filterByCategory": "Nach Kategorie filtern",
+    "all": "Alle",
+    "resultOne": "Ergebnis",
+    "resultOther": "Ergebnisse",
+    "found": "gefunden",
+    "onThisPage": "auf dieser Seite",
+    "noMatch": "Keine Artikel entsprechen Ihrer Suche. Versuchen Sie eine andere Suche.",
+    "noneYet": "Noch keine Artikel — schauen Sie bald wieder vorbei.",
+    "minRead": "Min. Lesezeit"
+  }
+}

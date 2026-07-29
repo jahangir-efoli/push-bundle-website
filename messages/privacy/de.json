@@ -1,0 +1,83 @@
+{
+  "meta": {
+    "title": "Datenschutzerklärung",
+    "description": "Wie PushBundle (WhenLab F.Z.C) Ihre Informationen erhebt, verwendet, schützt und weitergibt, einschließlich Ihrer Rechte nach der DSGVO und unserer Cookie-Praktiken."
+  },
+  "eyebrow": "Rechtliches",
+  "title": "Datenschutzerklärung",
+  "lastUpdatedLabel": "Zuletzt aktualisiert",
+  "lastUpdated": "Juli 2026",
+  "entity": "WhenLab F.Z.C",
+  "onThisPage": "Auf dieser Seite",
+  "intro": "Diese Datenschutzerklärung erläutert, wie PushBundle, betrieben von WhenLab F.Z.C, Informationen erhebt, verwendet, schützt und weitergibt, wenn Sie unsere Website und unsere Shopify-Anwendung nutzen.",
+  "questionsPrefix": "Haben Sie Fragen zu dieser Erklärung? Schreiben Sie an",
+  "sections": [
+    {
+      "id": "information-collected",
+      "heading": "Erhobene Informationen",
+      "body": [
+        "Wir erheben Informationen, die Sie uns direkt zur Verfügung stellen, etwa Ihren Namen, Ihre E-Mail-Adresse und Ihre Shop-Angaben, wenn Sie uns kontaktieren oder die App installieren. Darüber hinaus erheben wir automatisch Informationen, darunter Geräte-, Nutzungs- und Standortdaten sowie Informationen aus Cookies und ähnlichen Technologien.",
+        "Wenn Sie unsere Shopify-App verbinden, greifen wir auf die Shop-Daten zu, die zur Bereitstellung der Bündelungsfunktionen erforderlich sind, im Einklang mit den Berechtigungen, die Sie während der Installation erteilen."
+      ]
+    },
+    {
+      "id": "use-of-information",
+      "heading": "Verwendung der Informationen",
+      "body": [
+        "Wir verwenden die erhobenen Informationen, um unsere Dienste bereitzustellen und zu verbessern, Support zu leisten, Betrug zu erkennen und zu verhindern, mit Ihnen zu kommunizieren sowie anonymisierte, aggregierte Statistiken zu veröffentlichen.",
+        "Wir verkaufen Ihre personenbezogenen Daten nicht."
+      ]
+    },
+    {
+      "id": "protecting-and-sharing",
+      "heading": "Schutz, Sicherung und Weitergabe von Informationen",
+      "body": [
+        "Wir treffen angemessene technische und organisatorische Maßnahmen zum Schutz Ihrer Informationen. Wir geben Informationen unter Umständen mit Ihrer Einwilligung weiter, an vertrauenswürdige Auftragsverarbeiter, die in unserem Auftrag handeln, wenn dies gesetzlich oder durch ein rechtliches Verfahren vorgeschrieben ist, an interne Mitarbeitende, die sie zum Betrieb des Dienstes benötigen, sowie als nicht personenbezogene, aggregierte Daten.",
+        "Alle Auftragsverarbeiter sind an Verpflichtungen gebunden, die mit dieser Erklärung im Einklang stehen."
+      ]
+    },
+    {
+      "id": "storing-and-deleting",
+      "heading": "Speicherung und Löschung von Informationen",
+      "body": [
+        "Wir bewahren Informationen nur so lange auf, wie es für die hier beschriebenen Zwecke erforderlich oder gesetzlich vorgeschrieben ist. Sie können den Zugang zu Ihren personenbezogenen Daten, deren Übertragung, Berichtigung, Löschung oder die Einschränkung ihrer Verarbeitung verlangen."
+      ]
+    },
+    {
+      "id": "business-ownership",
+      "heading": "Änderungen bei Eigentum und Kontrolle des Unternehmens",
+      "body": [
+        "Sollte unser Unternehmen verkauft werden oder mit einer anderen Organisation verschmelzen, können Ihre Informationen an die neuen Eigentümer übertragen werden, damit der Dienst fortgeführt werden kann. Jede derartige Übertragung unterliegt weiterhin Schutzmaßnahmen, die mit dieser Erklärung im Einklang stehen."
+      ]
+    },
+    {
+      "id": "changes-to-policy",
+      "heading": "Änderungen dieser Datenschutzerklärung",
+      "body": [
+        "Wir können diese Erklärung von Zeit zu Zeit ändern. Änderungen treten mit ihrer Veröffentlichung in Kraft, und Ihre fortgesetzte Nutzung des Dienstes gilt als Zustimmung zur überarbeiteten Erklärung."
+      ]
+    },
+    {
+      "id": "gdpr-rights",
+      "heading": "DPA und Betroffenenrechte nach der DSGVO",
+      "body": [
+        "Wenn Sie sich in der EU, im EWR oder in der Schweiz befinden, stehen Ihnen Rechte nach der DSGVO zu, darunter das Recht auf Zugang, Berichtigung, Löschung, Einschränkung und Übertragbarkeit Ihrer Daten sowie das Recht, der Verarbeitung zu widersprechen. Wir verarbeiten personenbezogene Daten auf rechtlichen Grundlagen, darunter die Erfüllung eines Vertrags, berechtigte geschäftliche Interessen und Ihre Einwilligung.",
+        "Diese Erklärung wird in Übereinstimmung mit dem anwendbaren Datenschutzrecht verwaltet."
+      ]
+    },
+    {
+      "id": "childrens-privacy",
+      "heading": "Datenschutz für Kinder",
+      "body": [
+        "Unsere Dienste richten sich nicht an Kinder. Wir erheben wissentlich keine personenbezogenen Daten von Personen unter 13 Jahren. Wenn Sie glauben, dass uns ein Kind personenbezogene Daten übermittelt hat, kontaktieren Sie uns bitte, und wir werden Schritte einleiten, um diese zu löschen."
+      ]
+    },
+    {
+      "id": "updates",
+      "heading": "Aktualisierungen dieser Datenschutzerklärung",
+      "body": [
+        "Wir verpflichten uns, Nutzerinnen und Nutzer durch einen deutlichen Hinweis auf unserer Website über wesentliche Änderungen zu informieren. Bei Fragen zu dieser Erklärung kontaktieren Sie uns unter support@pushbundle.com."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "meta": {
+    "title": "Docs — Configuration et centre d'aide",
+    "description": "Documentation de l'application de bundles Shopify PushBundle — installation, configuration et guides pratiques."
+  },
+  "eyebrow": "Docs",
+  "title": "Documentation",
+  "subtitle": "Tout ce dont vous avez besoin pour installer, configurer et tirer le meilleur parti de PushBundle.",
+  "help": {
+    "title": "Besoin d'aide supplémentaire ?",
+    "body": "Vous ne trouvez pas ce que vous cherchez ? Notre équipe est là pour vous aider.",
+    "cta": "Contacter l'assistance"
+  },
+  "ui": {
+    "searchLabel": "Rechercher dans la documentation",
+    "searchPlaceholder": "Rechercher dans la doc…",
+    "resultOne": "résultat",
+    "resultOther": "résultats",
+    "forQuery": "pour",
+    "noResultsTitle": "Aucun résultat trouvé",
+    "noResultsBody": "Aucun élément ne correspond à votre recherche. Essayez un autre terme ou parcourez les catégories."
+  }
+}

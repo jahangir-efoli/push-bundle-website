@@ -127,3 +127,99 @@ export async function getContactContent(locale: Locale): Promise<ContactContent>
     return (await contactLoaders[defaultLocale]()).default;
   }
 }
+
+/**
+ * Generic namespace loader factory for the remaining page dictionaries. Each is
+ * a folder of `<locale>.json` files with an English fallback. CMS-driven content
+ * (blog posts, docs, changelog entries, FAQ items, partners) is NOT translated
+ * here — only the static page chrome and browser UI strings.
+ */
+function makeLoader<T>(
+  loaders: Record<Locale, () => Promise<{ default: T }>>,
+) {
+  return async (locale: Locale): Promise<T> => {
+    try {
+      return (await loaders[locale]()).default;
+    } catch {
+      return (await loaders[defaultLocale]()).default;
+    }
+  };
+}
+
+// --- privacy --------------------------------------------------------------
+import type privacyEn from "@/messages/privacy/en.json";
+export type PrivacyContent = typeof privacyEn;
+export const getPrivacyContent = makeLoader<PrivacyContent>({
+  en: () => import("@/messages/privacy/en.json"),
+  de: () => import("@/messages/privacy/de.json"),
+  fr: () => import("@/messages/privacy/fr.json"),
+  es: () => import("@/messages/privacy/es.json"),
+  it: () => import("@/messages/privacy/it.json"),
+  ja: () => import("@/messages/privacy/ja.json"),
+  zh: () => import("@/messages/privacy/zh.json"),
+});
+
+// --- docs -----------------------------------------------------------------
+import type docsEn from "@/messages/docs/en.json";
+export type DocsContent = typeof docsEn;
+export const getDocsContent = makeLoader<DocsContent>({
+  en: () => import("@/messages/docs/en.json"),
+  de: () => import("@/messages/docs/de.json"),
+  fr: () => import("@/messages/docs/fr.json"),
+  es: () => import("@/messages/docs/es.json"),
+  it: () => import("@/messages/docs/it.json"),
+  ja: () => import("@/messages/docs/ja.json"),
+  zh: () => import("@/messages/docs/zh.json"),
+});
+
+// --- blog -----------------------------------------------------------------
+import type blogEn from "@/messages/blog/en.json";
+export type BlogContent = typeof blogEn;
+export const getBlogContent = makeLoader<BlogContent>({
+  en: () => import("@/messages/blog/en.json"),
+  de: () => import("@/messages/blog/de.json"),
+  fr: () => import("@/messages/blog/fr.json"),
+  es: () => import("@/messages/blog/es.json"),
+  it: () => import("@/messages/blog/it.json"),
+  ja: () => import("@/messages/blog/ja.json"),
+  zh: () => import("@/messages/blog/zh.json"),
+});
+
+// --- changelog ------------------------------------------------------------
+import type changelogEn from "@/messages/changelog/en.json";
+export type ChangelogContent = typeof changelogEn;
+export const getChangelogContent = makeLoader<ChangelogContent>({
+  en: () => import("@/messages/changelog/en.json"),
+  de: () => import("@/messages/changelog/de.json"),
+  fr: () => import("@/messages/changelog/fr.json"),
+  es: () => import("@/messages/changelog/es.json"),
+  it: () => import("@/messages/changelog/it.json"),
+  ja: () => import("@/messages/changelog/ja.json"),
+  zh: () => import("@/messages/changelog/zh.json"),
+});
+
+// --- faq -------------------------------------------------------------------
+import type faqEn from "@/messages/faq/en.json";
+export type FaqContent = typeof faqEn;
+export const getFaqContent = makeLoader<FaqContent>({
+  en: () => import("@/messages/faq/en.json"),
+  de: () => import("@/messages/faq/de.json"),
+  fr: () => import("@/messages/faq/fr.json"),
+  es: () => import("@/messages/faq/es.json"),
+  it: () => import("@/messages/faq/it.json"),
+  ja: () => import("@/messages/faq/ja.json"),
+  zh: () => import("@/messages/faq/zh.json"),
+});
+
+// --- partner --------------------------------------------------------------
+import type partnerEn from "@/messages/partner/en.json";
+export type PartnerContent = typeof partnerEn;
+export const getPartnerContent = makeLoader<PartnerContent>({
+  en: () => import("@/messages/partner/en.json"),
+  de: () => import("@/messages/partner/de.json"),
+  fr: () => import("@/messages/partner/fr.json"),
+  es: () => import("@/messages/partner/es.json"),
+  it: () => import("@/messages/partner/it.json"),
+  ja: () => import("@/messages/partner/ja.json"),
+  zh: () => import("@/messages/partner/zh.json"),
+});
