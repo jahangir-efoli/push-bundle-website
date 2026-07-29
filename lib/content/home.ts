@@ -5,7 +5,7 @@
  */
 
 export const hero = {
-  title: "Boost Your AOV and Sell More With the Best Shopify Bundle App",
+  title: "Turn More Products Into Bigger Shopify Orders",
   subtitle:
     "Whether selling to retail shoppers or wholesale buyers, Push Bundle gives you mix & match, volume discounts, upsells, and B2B bundle tools. All designed to convert.",
   primaryCta: "Install Free on Shopify",

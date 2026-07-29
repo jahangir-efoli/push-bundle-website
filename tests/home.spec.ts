@@ -13,7 +13,7 @@ test("hero renders the H1 and both CTAs", async ({ page }) => {
   await expect(
     page.getByRole("heading", {
       level: 1,
-      name: /Boost Your AOV and Sell More With the Best Shopify Bundle App/i,
+      name: /Turn More Products Into Bigger Shopify Orders/i,
     }),
   ).toBeVisible();
 
