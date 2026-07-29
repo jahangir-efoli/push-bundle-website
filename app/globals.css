@@ -802,6 +802,24 @@ body {
     animation: none;
   }
 }
+
+/* Distinctive background for the interactive-demo showcase
+   (feature-showcase.tsx): a soft brand tint + two corner glows so the section
+   stands apart from the plain sections around it. Theme-aware via tokens. */
+.showcase-glow {
+  background-color: color-mix(in oklab, var(--pb-blue-500) 7%, var(--surface-subtle));
+  background-image:
+    radial-gradient(
+      56rem 34rem at 12% -12%,
+      color-mix(in oklab, var(--pb-blue-500) 16%, transparent),
+      transparent 58%
+    ),
+    radial-gradient(
+      50rem 32rem at 100% 112%,
+      color-mix(in oklab, var(--pb-cyan-400) 14%, transparent),
+      transparent 58%
+    );
+}
 .marquee {
   overflow: hidden;
   -webkit-mask-image: linear-gradient(

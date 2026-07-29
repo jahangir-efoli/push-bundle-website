@@ -65,61 +65,73 @@ export function FeatureShowcase() {
   };
 
   return (
-    <Section tone="alt">
+    <Section tone="default" className="showcase-glow">
       <div className="mx-auto max-w-2xl text-center">
         <Eyebrow>{showcase.eyebrow}</Eyebrow>
         <h2 className="mt-3 text-display-md text-balance">{showcase.title}</h2>
         <p className="mt-4 text-lg text-muted">{showcase.subtitle}</p>
       </div>
 
-      {/* Tabs — icon pills */}
-      <div
-        role="tablist"
-        aria-label="Bundle types"
-        onKeyDown={onKeyDown}
-        className="mt-14 flex flex-wrap justify-center gap-2.5"
-      >
-        {features.map((f, i) => {
-          const selected = i === active;
-          return (
-            <button
-              key={f.id}
-              ref={(el) => {
-                tabRefs.current[i] = el;
-              }}
-              type="button"
-              role="tab"
-              id={`${baseId}-tab-${i}`}
-              aria-selected={selected}
-              aria-controls={`${baseId}-panel`}
-              tabIndex={selected ? 0 : -1}
-              onClick={() => setActive(i)}
-              className={cn(
-                "flex cursor-pointer items-center gap-2 rounded-lg border px-4 py-2.5 text-sm font-semibold transition-[color,background-color,border-color,box-shadow,transform] duration-200",
-                selected
-                  ? "-translate-y-px border-transparent bg-primary text-primary-foreground shadow-glow"
-                  : "border-border bg-surface text-foreground shadow-soft hover:-translate-y-px hover:border-primary/50 hover:bg-primary-subtle hover:text-primary hover:shadow-lift",
-              )}
-            >
-              <Icon
-                name={f.icon as IconName}
+      {/* Tabs — a segmented control, so it clearly reads as clickable tabs that
+          switch the live preview below (not static chips). */}
+      <div className="mt-10 flex justify-center">
+        <div
+          role="tablist"
+          aria-label="Bundle types"
+          onKeyDown={onKeyDown}
+          className="inline-flex max-w-full flex-wrap justify-center gap-1 rounded-2xl border border-border bg-surface/70 p-1.5 shadow-soft backdrop-blur-sm"
+        >
+          {features.map((f, i) => {
+            const selected = i === active;
+            return (
+              <button
+                key={f.id}
+                ref={(el) => {
+                  tabRefs.current[i] = el;
+                }}
+                type="button"
+                role="tab"
+                id={`${baseId}-tab-${i}`}
+                aria-selected={selected}
+                aria-controls={`${baseId}-panel`}
+                tabIndex={selected ? 0 : -1}
+                onClick={() => setActive(i)}
                 className={cn(
-                  "size-4 shrink-0",
-                  selected ? "text-primary-foreground" : "text-primary",
+                  "flex cursor-pointer items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-[color,background-color,box-shadow] duration-200",
+                  selected
+                    ? "bg-primary text-primary-foreground shadow-glow"
+                    : "text-muted hover:bg-surface-subtle hover:text-foreground",
                 )}
-              />
-              {f.tab}
-            </button>
-          );
-        })}
+              >
+                <Icon
+                  name={f.icon as IconName}
+                  className={cn(
+                    "size-4 shrink-0",
+                    selected ? "text-primary-foreground" : "text-primary",
+                  )}
+                />
+                {f.tab}
+              </button>
+            );
+          })}
+        </div>
       </div>
+
+      {/* Cue: the tabs drive the live, interactive preview below. */}
+      <p className="mt-4 flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-wide text-muted">
+        <span className="relative flex size-2" aria-hidden="true">
+          <span className="absolute inline-flex size-full animate-ping rounded-full bg-primary/60" />
+          <span className="relative inline-flex size-2 rounded-full bg-primary" />
+        </span>
+        Live, interactive preview — try it below
+      </p>
 
       {/* Panel — preview is the star; copy is the supporting column. */}
       <div
         id={`${baseId}-panel`}
         role="tabpanel"
         aria-labelledby={`${baseId}-tab-${active}`}
-        className="mt-12 grid grid-cols-1 items-start gap-8 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)] lg:gap-12"
+        className="mt-8 grid grid-cols-1 items-start gap-8 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)] lg:gap-12"
       >
         {/* LEFT — large app-window placeholder (live preview goes here later).
             `pb-light` pins the preview to the light token set so it always reads
