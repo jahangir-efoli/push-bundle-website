@@ -13,6 +13,9 @@ import { defaultLocale, type Locale } from "./config";
  *  - `common`   — site-wide shared strings (trial CTA, reviews/FAQ headings,
  *                 shared buttons, demo labels) reused across pages.
  *  - `features` — the Features page (`app/[lang]/features`).
+ *  - `pricing`  — the Pricing page (`app/[lang]/pricing`). Only text lives here;
+ *                 prices/flags stay in `lib/content/pricing.ts` (single source of
+ *                 truth) and are merged with this text, by index, in the page.
  */
 
 // --- common ---------------------------------------------------------------
@@ -56,5 +59,27 @@ export async function getFeaturesContent(locale: Locale): Promise<FeaturesConten
     return (await featuresLoaders[locale]()).default;
   } catch {
     return (await featuresLoaders[defaultLocale]()).default;
+  }
+}
+
+// --- pricing --------------------------------------------------------------
+import type pricingEn from "@/messages/pricing/en.json";
+export type PricingContent = typeof pricingEn;
+
+const pricingLoaders: Record<Locale, () => Promise<{ default: PricingContent }>> = {
+  en: () => import("@/messages/pricing/en.json"),
+  de: () => import("@/messages/pricing/de.json"),
+  fr: () => import("@/messages/pricing/fr.json"),
+  es: () => import("@/messages/pricing/es.json"),
+  it: () => import("@/messages/pricing/it.json"),
+  ja: () => import("@/messages/pricing/ja.json"),
+  zh: () => import("@/messages/pricing/zh.json"),
+};
+
+export async function getPricingContent(locale: Locale): Promise<PricingContent> {
+  try {
+    return (await pricingLoaders[locale]()).default;
+  } catch {
+    return (await pricingLoaders[defaultLocale]()).default;
   }
 }

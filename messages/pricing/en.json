@@ -1,0 +1,118 @@
+{
+  "meta": {
+    "title": "Pricing — Flexible Shopify Bundle Plans",
+    "description": "Simple, flexible pricing for the PushBundle Shopify bundle app. Start free forever, or unlock Mix & Match and advanced tools on Growth from $14/month."
+  },
+  "hero": {
+    "eyebrow": "Pricing",
+    "title": "Simple, flexible pricing that scales with your store",
+    "subtitle": "At PushBundle, we offer flexible pricing plans to fit your unique business needs."
+  },
+  "billing": {
+    "monthly": "Monthly",
+    "yearly": "Yearly",
+    "yearlyNote": "Save 20%",
+    "perMonth": "/month",
+    "perYear": "/year",
+    "free": "Free",
+    "freeForever": "Free forever",
+    "mostPopular": "Most Popular",
+    "billingAriaMonthly": "Bill monthly — toggle billing period",
+    "billingAriaYearly": "Bill yearly — toggle billing period"
+  },
+  "plans": [
+    {
+      "tagline": "Basic features for new businesses",
+      "cta": "Get it on Shopify",
+      "trial": "",
+      "features": [
+        "Volume Bundle",
+        "Percentage discount",
+        "Fixed discount on total",
+        "Discount on Fixed Quantity",
+        "Discount on custom quantity range",
+        "Customer tag based discount",
+        "Discount on specific customers",
+        "Different display styles",
+        "Live preview",
+        "24/7 support"
+      ]
+    },
+    {
+      "tagline": "Advanced tools to boost sales and AOV",
+      "cta": "Get it on Shopify",
+      "trial": "14-day free trial",
+      "features": [
+        "Everything in Starter",
+        "Mix and Match – Build a box",
+        "Sell mix and match in different pack sizes",
+        "Multipack discount",
+        "Variant restriction",
+        "Limit quantity per variant",
+        "Customer tag-based bundle",
+        "Specific client based bundle",
+        "Custom bundle icon upload",
+        "Cross-sell bundles",
+        "Basic customization",
+        "Custom CSS"
+      ]
+    }
+  ],
+  "comparison": {
+    "title": "Compare plans",
+    "featureHeader": "Feature",
+    "starterHeader": "Starter",
+    "growthHeader": "Growth",
+    "groups": [
+      {
+        "group": "Bundle types",
+        "rows": [
+          { "label": "Volume bundles" },
+          { "label": "Mix & Match / Build-a-Box" },
+          { "label": "Multi-pack sizes" },
+          { "label": "Cross-sell bundles" }
+        ]
+      },
+      {
+        "group": "Discounts",
+        "rows": [
+          { "label": "Percentage & fixed discounts" },
+          { "label": "Custom quantity ranges" },
+          { "label": "Multipack discounts" }
+        ]
+      },
+      {
+        "group": "Targeting",
+        "rows": [
+          { "label": "Customer-tag targeting" },
+          { "label": "Specific-customer targeting" },
+          { "label": "Variant restrictions & limits" }
+        ]
+      },
+      {
+        "group": "Customization",
+        "rows": [
+          { "label": "Display styles & live preview" },
+          { "label": "Custom bundle icons" },
+          { "label": "Custom CSS" }
+        ]
+      },
+      {
+        "group": "Support",
+        "rows": [
+          { "label": "24/7 support" }
+        ]
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "Billing",
+    "title": "Pricing questions"
+  },
+  "trust": {
+    "builtForShopify": "Built for Shopify",
+    "reviews": "reviews",
+    "compatibility": "Works with Checkout · POS · Markets · PageFly · GemPages",
+    "viewOnAppStore": "View on the App Store"
+  }
+}

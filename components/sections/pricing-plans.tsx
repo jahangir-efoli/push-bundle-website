@@ -4,14 +4,49 @@ import { useState } from "react";
 import { buttonStyles } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { site } from "@/lib/site-config";
-import { plans, pricingCopy } from "@/lib/content/pricing";
+import { plans as defaultPlans, pricingCopy, type Plan } from "@/lib/content/pricing";
 import { cn } from "@/lib/utils";
+
+/** Localized billing labels (defaults mirror the English content module). */
+export type PricingBilling = {
+  monthly: string;
+  yearly: string;
+  yearlyNote: string;
+  perMonth: string;
+  perYear: string;
+  free: string;
+  freeForever: string;
+  mostPopular: string;
+  billingAriaMonthly: string;
+  billingAriaYearly: string;
+};
+
+const DEFAULT_BILLING: PricingBilling = {
+  monthly: pricingCopy.monthlyLabel,
+  yearly: pricingCopy.yearlyLabel,
+  yearlyNote: pricingCopy.yearlyNote,
+  perMonth: "/month",
+  perYear: "/year",
+  free: "Free",
+  freeForever: "Free forever",
+  mostPopular: "Most Popular",
+  billingAriaMonthly: "Bill monthly — toggle billing period",
+  billingAriaYearly: "Bill yearly — toggle billing period",
+};
 
 /**
  * Pricing plan cards + billing toggle (docs/PLAN.md §5.2 §3).
  * Client component only because of the toggle; the cards themselves are static.
+ * `plans` (numbers) + `billing` (labels) are passed in localized by the page;
+ * they default to the English content module.
  */
-export function PricingPlans() {
+export function PricingPlans({
+  plans = defaultPlans,
+  billing = DEFAULT_BILLING,
+}: {
+  plans?: Plan[];
+  billing?: PricingBilling;
+} = {}) {
   const [yearly, setYearly] = useState(false);
 
   return (
@@ -24,13 +59,13 @@ export function PricingPlans() {
             !yearly ? "text-foreground" : "text-muted",
           )}
         >
-          {pricingCopy.monthlyLabel}
+          {billing.monthly}
         </span>
         <button
           type="button"
           role="switch"
           aria-checked={yearly}
-          aria-label={`Bill ${yearly ? "yearly" : "monthly"} — toggle billing period`}
+          aria-label={yearly ? billing.billingAriaYearly : billing.billingAriaMonthly}
           onClick={() => setYearly((v) => !v)}
           className={cn(
             "relative h-8 w-16 shrink-0 rounded-full transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring",
@@ -53,8 +88,8 @@ export function PricingPlans() {
             yearly ? "text-foreground" : "text-muted",
           )}
         >
-          {pricingCopy.yearlyLabel}
-          <Badge tone="warm">{pricingCopy.yearlyNote}</Badge>
+          {billing.yearly}
+          <Badge tone="warm">{billing.yearlyNote}</Badge>
         </span>
       </div>
 
@@ -62,7 +97,7 @@ export function PricingPlans() {
         {plans.map((plan) => {
           const free = plan.monthly === 0;
           const price = yearly && plan.yearly !== null ? plan.yearly : plan.monthly;
-          const period = free ? "" : yearly ? "/year" : "/month";
+          const period = free ? "" : yearly ? billing.perYear : billing.perMonth;
           // Undiscounted yearly total (12× monthly) — struck through to show the
           // yearly saving. Only when a real discount exists.
           const fullYearly = plan.monthly * 12;
@@ -80,7 +115,7 @@ export function PricingPlans() {
             >
               {plan.featured && (
                 <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-primary px-3 py-1 text-xs font-semibold text-primary-foreground shadow-soft">
-                  Most Popular
+                  {billing.mostPopular}
                 </span>
               )}
 
@@ -94,12 +129,12 @@ export function PricingPlans() {
                   </span>
                 )}
                 <span className="font-display text-4xl font-extrabold">
-                  {free ? "Free" : `$${price % 1 === 0 ? price : price.toFixed(2)}`}
+                  {free ? billing.free : `$${price % 1 === 0 ? price : price.toFixed(2)}`}
                 </span>
                 {period && <span className="text-muted">{period}</span>}
               </p>
               <p className="mt-1 h-5 text-sm text-warm-foreground">
-                {free ? "Free forever" : plan.trial}
+                {free ? billing.freeForever : plan.trial}
               </p>
 
               <a

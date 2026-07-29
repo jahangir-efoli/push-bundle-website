@@ -1,0 +1,118 @@
+{
+  "meta": {
+    "title": "Tarifs — Des formules de bundles Shopify flexibles",
+    "description": "Une tarification simple et flexible pour l'application de bundles Shopify PushBundle. Commencez gratuitement à vie, ou débloquez Mix & Match et des outils avancés avec Growth à partir de 14 $/mois."
+  },
+  "hero": {
+    "eyebrow": "Tarifs",
+    "title": "Une tarification simple et flexible qui évolue avec votre boutique",
+    "subtitle": "Chez PushBundle, nous proposons des formules flexibles pour répondre aux besoins uniques de votre entreprise."
+  },
+  "billing": {
+    "monthly": "Mensuel",
+    "yearly": "Annuel",
+    "yearlyNote": "Économisez 20%",
+    "perMonth": "/mois",
+    "perYear": "/an",
+    "free": "Gratuit",
+    "freeForever": "Gratuit à vie",
+    "mostPopular": "Le plus populaire",
+    "billingAriaMonthly": "Facturation mensuelle — changer la période de facturation",
+    "billingAriaYearly": "Facturation annuelle — changer la période de facturation"
+  },
+  "plans": [
+    {
+      "tagline": "Fonctionnalités essentielles pour les nouvelles entreprises",
+      "cta": "Installer sur Shopify",
+      "trial": "",
+      "features": [
+        "Volume Bundle",
+        "Remise en pourcentage",
+        "Remise fixe sur le total",
+        "Remise sur quantité fixe",
+        "Remise sur plage de quantité personnalisée",
+        "Remise basée sur les tags client",
+        "Remise sur des clients spécifiques",
+        "Différents styles d'affichage",
+        "Aperçu en direct",
+        "Assistance 24/7"
+      ]
+    },
+    {
+      "tagline": "Des outils avancés pour booster les ventes et l'AOV",
+      "cta": "Installer sur Shopify",
+      "trial": "Essai gratuit de 14 jours",
+      "features": [
+        "Tout ce qui est inclus dans Starter",
+        "Mix & Match – Build-a-Box",
+        "Vendez en Mix & Match dans différentes tailles de packs",
+        "Remise Multipack",
+        "Restriction de variantes",
+        "Limiter la quantité par variante",
+        "Bundle basé sur les tags client",
+        "Bundle pour des clients spécifiques",
+        "Import d'icône de bundle personnalisée",
+        "Bundles Cross-sell",
+        "Personnalisation de base",
+        "CSS personnalisé"
+      ]
+    }
+  ],
+  "comparison": {
+    "title": "Comparer les formules",
+    "featureHeader": "Fonctionnalité",
+    "starterHeader": "Starter",
+    "growthHeader": "Growth",
+    "groups": [
+      {
+        "group": "Types de bundles",
+        "rows": [
+          { "label": "Volume Bundle" },
+          { "label": "Mix & Match / Build-a-Box" },
+          { "label": "Tailles Multipack" },
+          { "label": "Bundles Cross-sell" }
+        ]
+      },
+      {
+        "group": "Remises",
+        "rows": [
+          { "label": "Remises en pourcentage et fixes" },
+          { "label": "Plages de quantité personnalisées" },
+          { "label": "Remises Multipack" }
+        ]
+      },
+      {
+        "group": "Ciblage",
+        "rows": [
+          { "label": "Ciblage par tag client" },
+          { "label": "Ciblage de clients spécifiques" },
+          { "label": "Restrictions et limites de variantes" }
+        ]
+      },
+      {
+        "group": "Personnalisation",
+        "rows": [
+          { "label": "Styles d'affichage et aperçu en direct" },
+          { "label": "Icônes de bundle personnalisées" },
+          { "label": "CSS personnalisé" }
+        ]
+      },
+      {
+        "group": "Assistance",
+        "rows": [
+          { "label": "Assistance 24/7" }
+        ]
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "Facturation",
+    "title": "Questions sur les tarifs"
+  },
+  "trust": {
+    "builtForShopify": "Built for Shopify",
+    "reviews": "avis",
+    "compatibility": "Fonctionne avec Checkout · POS · Markets · PageFly · GemPages",
+    "viewOnAppStore": "Voir sur l'App Store"
+  }
+}

@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
-import { cms, DEFAULT_LOCALE } from "@/lib/cms";
+import { cms } from "@/lib/cms";
 import { pageMetadata } from "@/lib/seo/metadata";
-import type { Locale } from "@/i18n/config";
+import { isLocale, type Locale } from "@/i18n/config";
+import { getCommon, getPricingContent } from "@/i18n/content";
+import { plans, comparison } from "@/lib/content/pricing";
 import { PageHero } from "@/components/sections/page-hero";
 import { Section } from "@/components/ui/section";
 import { PricingPlans } from "@/components/sections/pricing-plans";
@@ -14,31 +16,53 @@ import {
   breadcrumbLd,
   softwareApplicationLd,
 } from "@/lib/seo/structured-data";
-import { pricingCopy } from "@/lib/content/pricing";
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ lang: string }>;
-}): Promise<Metadata> {
+const toLocale = (lang: string): Locale => (isLocale(lang) ? lang : "en");
+
+type Props = { params: Promise<{ lang: string }> };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang } = await params;
+  const locale = toLocale(lang);
+  const { meta } = await getPricingContent(locale);
   return pageMetadata({
-  title: "Pricing — Flexible Shopify Bundle Plans",
-  description:
-    "Simple, flexible pricing for the PushBundle Shopify bundle app. Start free forever, or unlock Mix & Match and advanced tools on Growth from $14/month.",
-  path: "/pricing",
-    locale: lang as Locale,
+    title: meta.title,
+    description: meta.description,
+    path: "/pricing",
+    locale,
   });
 }
 
 /** Pricing page (docs/PLAN.md §5.2). */
-export default async function PricingPage() {
-  const locale = DEFAULT_LOCALE;
-  const [rating, reviews, faqs] = await Promise.all([
+export default async function PricingPage({ params }: Props) {
+  const { lang } = await params;
+  const locale = toLocale(lang);
+
+  const [content, common, rating, reviews, faqs] = await Promise.all([
+    getPricingContent(locale),
+    getCommon(locale),
     cms.getAggregateRating(),
     cms.listReviews({ locale, limit: 12 }),
     cms.listFaqs({ locale, category: "billing-plans" }),
   ]);
+
+  // Prices/flags stay in code (single source of truth); merge the localized
+  // text on top, by index. The JSON arrays mirror `lib/content/pricing.ts`.
+  const displayPlans = plans.map((plan, i) => ({
+    ...plan,
+    tagline: content.plans[i]?.tagline ?? plan.tagline,
+    cta: content.plans[i]?.cta ?? plan.cta,
+    trial: content.plans[i]?.trial || plan.trial,
+    features: content.plans[i]?.features ?? plan.features,
+  }));
+
+  const displayComparison = comparison.map((group, i) => ({
+    group: content.comparison.groups[i]?.group ?? group.group,
+    rows: group.rows.map((row, j) => ({
+      ...row,
+      label: content.comparison.groups[i]?.rows[j]?.label ?? row.label,
+    })),
+  }));
 
   return (
     <>
@@ -51,25 +75,33 @@ export default async function PricingPage() {
       />
 
       <PageHero
-        eyebrow={pricingCopy.eyebrow}
-        title={pricingCopy.title}
-        subtitle={pricingCopy.subtitle}
+        eyebrow={content.hero.eyebrow}
+        title={content.hero.title}
+        subtitle={content.hero.subtitle}
       />
 
       <Section>
-        <PricingPlans />
+        <PricingPlans plans={displayPlans} billing={content.billing} />
       </Section>
 
-      <PricingComparison />
-      <TrustBand rating={rating} />
+      <PricingComparison
+        comparison={displayComparison}
+        headers={{
+          title: content.comparison.title,
+          feature: content.comparison.featureHeader,
+          starter: content.comparison.starterHeader,
+          growth: content.comparison.growthHeader,
+        }}
+      />
+      <TrustBand rating={rating} content={content.trust} />
 
       <FaqSection
         items={faqs}
-        eyebrow={pricingCopy.faqEyebrow}
-        title={pricingCopy.faqTitle}
+        eyebrow={content.faq.eyebrow}
+        title={content.faq.title}
       />
 
-      <TrialCta />
+      <TrialCta content={common.trialCta} />
     </>
   );
 }

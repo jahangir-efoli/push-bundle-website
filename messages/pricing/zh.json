@@ -1,0 +1,118 @@
+{
+  "meta": {
+    "title": "价格 — 灵活的 Shopify 捆绑销售方案",
+    "description": "PushBundle Shopify 捆绑销售应用，价格简单灵活。永久免费起步，或在 Growth 方案上以每月 $14 起解锁 Mix & Match 及高级工具。"
+  },
+  "hero": {
+    "eyebrow": "价格",
+    "title": "简单灵活的价格，随店铺一同成长",
+    "subtitle": "PushBundle 提供灵活的价格方案，满足您独特的业务需求。"
+  },
+  "billing": {
+    "monthly": "按月",
+    "yearly": "按年",
+    "yearlyNote": "立省 20%",
+    "perMonth": "/月",
+    "perYear": "/年",
+    "free": "免费",
+    "freeForever": "永久免费",
+    "mostPopular": "最受欢迎",
+    "billingAriaMonthly": "按月计费 — 切换计费周期",
+    "billingAriaYearly": "按年计费 — 切换计费周期"
+  },
+  "plans": [
+    {
+      "tagline": "为新兴商家提供的基础功能",
+      "cta": "在 Shopify 上获取",
+      "trial": "",
+      "features": [
+        "数量捆绑（Volume Bundle）",
+        "百分比折扣",
+        "总额固定折扣",
+        "固定数量折扣",
+        "自定义数量区间折扣",
+        "基于客户标签的折扣",
+        "针对特定客户的折扣",
+        "多种展示样式",
+        "实时预览",
+        "全天候支持"
+      ]
+    },
+    {
+      "tagline": "助力提升销量与 AOV 的高级工具",
+      "cta": "在 Shopify 上获取",
+      "trial": "14 天免费试用",
+      "features": [
+        "Starter 的全部功能",
+        "自由组合（Mix and Match）— 打造专属礼盒",
+        "以不同包装规格销售自由组合套装",
+        "多件装折扣",
+        "变体限制",
+        "限制每个变体的数量",
+        "基于客户标签的捆绑",
+        "针对特定客户的捆绑",
+        "自定义捆绑图标上传",
+        "交叉销售（Cross-sell）捆绑",
+        "基础自定义",
+        "自定义 CSS"
+      ]
+    }
+  ],
+  "comparison": {
+    "title": "方案对比",
+    "featureHeader": "功能",
+    "starterHeader": "Starter",
+    "growthHeader": "Growth",
+    "groups": [
+      {
+        "group": "捆绑类型",
+        "rows": [
+          { "label": "数量捆绑（Volume Bundle）" },
+          { "label": "自由组合 / 打造专属礼盒" },
+          { "label": "多件装规格" },
+          { "label": "交叉销售（Cross-sell）捆绑" }
+        ]
+      },
+      {
+        "group": "折扣",
+        "rows": [
+          { "label": "百分比与固定折扣" },
+          { "label": "自定义数量区间" },
+          { "label": "多件装折扣" }
+        ]
+      },
+      {
+        "group": "定向投放",
+        "rows": [
+          { "label": "客户标签定向" },
+          { "label": "特定客户定向" },
+          { "label": "变体限制与上限" }
+        ]
+      },
+      {
+        "group": "自定义",
+        "rows": [
+          { "label": "展示样式与实时预览" },
+          { "label": "自定义捆绑图标" },
+          { "label": "自定义 CSS" }
+        ]
+      },
+      {
+        "group": "支持",
+        "rows": [
+          { "label": "全天候支持" }
+        ]
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "计费",
+    "title": "价格常见问题"
+  },
+  "trust": {
+    "builtForShopify": "专为 Shopify 打造",
+    "reviews": "条评价",
+    "compatibility": "兼容 Checkout · POS · Markets · PageFly · GemPages",
+    "viewOnAppStore": "在应用商店查看"
+  }
+}

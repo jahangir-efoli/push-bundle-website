@@ -1,0 +1,118 @@
+{
+  "meta": {
+    "title": "料金プラン — 柔軟なShopifyバンドルプラン",
+    "description": "PushBundleのShopifyバンドルアプリのためのシンプルで柔軟な料金プラン。永久無料で始められ、月額$14からのGrowthプランでMix & Matchや高度なツールをご利用いただけます。"
+  },
+  "hero": {
+    "eyebrow": "料金プラン",
+    "title": "ストアの成長に合わせて拡張する、シンプルで柔軟な料金プラン",
+    "subtitle": "PushBundleでは、お客様独自のビジネスニーズに合わせた柔軟な料金プランをご用意しています。"
+  },
+  "billing": {
+    "monthly": "月払い",
+    "yearly": "年払い",
+    "yearlyNote": "20%お得",
+    "perMonth": "/月",
+    "perYear": "/年",
+    "free": "無料",
+    "freeForever": "永久無料",
+    "mostPopular": "一番人気",
+    "billingAriaMonthly": "月払い — 請求サイクルを切り替える",
+    "billingAriaYearly": "年払い — 請求サイクルを切り替える"
+  },
+  "plans": [
+    {
+      "tagline": "新規ビジネス向けの基本機能",
+      "cta": "Shopifyで入手する",
+      "trial": "",
+      "features": [
+        "Volume Bundle",
+        "パーセンテージ割引",
+        "合計金額への固定割引",
+        "指定数量への割引",
+        "カスタム数量範囲への割引",
+        "顧客タグに基づく割引",
+        "特定顧客への割引",
+        "多彩な表示スタイル",
+        "ライブプレビュー",
+        "24時間365日サポート"
+      ]
+    },
+    {
+      "tagline": "売上とAOVを高める高度なツール",
+      "cta": "Shopifyで入手する",
+      "trial": "14日間の無料トライアル",
+      "features": [
+        "Starterのすべての機能",
+        "Mix & Match – ボックスを作成",
+        "さまざまなパックサイズでMix & Matchを販売",
+        "マルチパック割引",
+        "バリエーション制限",
+        "バリエーションごとの数量制限",
+        "顧客タグに基づくバンドル",
+        "特定顧客に基づくバンドル",
+        "カスタムバンドルアイコンのアップロード",
+        "Cross-sellバンドル",
+        "基本カスタマイズ",
+        "カスタムCSS"
+      ]
+    }
+  ],
+  "comparison": {
+    "title": "プランを比較する",
+    "featureHeader": "機能",
+    "starterHeader": "Starter",
+    "growthHeader": "Growth",
+    "groups": [
+      {
+        "group": "バンドルタイプ",
+        "rows": [
+          { "label": "Volumeバンドル" },
+          { "label": "Mix & Match / Build-a-Box" },
+          { "label": "マルチパックサイズ" },
+          { "label": "Cross-sellバンドル" }
+        ]
+      },
+      {
+        "group": "割引",
+        "rows": [
+          { "label": "パーセンテージ割引と固定割引" },
+          { "label": "カスタム数量範囲" },
+          { "label": "マルチパック割引" }
+        ]
+      },
+      {
+        "group": "ターゲティング",
+        "rows": [
+          { "label": "顧客タグターゲティング" },
+          { "label": "特定顧客ターゲティング" },
+          { "label": "バリエーション制限と数量制限" }
+        ]
+      },
+      {
+        "group": "カスタマイズ",
+        "rows": [
+          { "label": "表示スタイルとライブプレビュー" },
+          { "label": "カスタムバンドルアイコン" },
+          { "label": "カスタムCSS" }
+        ]
+      },
+      {
+        "group": "サポート",
+        "rows": [
+          { "label": "24時間365日サポート" }
+        ]
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "請求",
+    "title": "料金に関するよくあるご質問"
+  },
+  "trust": {
+    "builtForShopify": "Built for Shopify",
+    "reviews": "件のレビュー",
+    "compatibility": "Checkout · POS · Markets · PageFly · GemPagesに対応",
+    "viewOnAppStore": "App Storeで見る"
+  }
+}

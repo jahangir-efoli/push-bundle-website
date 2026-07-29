@@ -1,6 +1,30 @@
 import { Fragment } from "react";
 import { Section } from "@/components/ui/section";
-import { comparison, pricingCopy } from "@/lib/content/pricing";
+import {
+  comparison as defaultComparison,
+  pricingCopy,
+} from "@/lib/content/pricing";
+
+/** One comparison group with per-plan availability (booleans) + localized labels. */
+export type ComparisonGroup = {
+  group: string;
+  rows: Array<{ label: string; starter: boolean; growth: boolean }>;
+};
+
+/** Localized table headers (defaults mirror the English content module). */
+export type ComparisonHeaders = {
+  title: string;
+  feature: string;
+  starter: string;
+  growth: string;
+};
+
+const DEFAULT_HEADERS: ComparisonHeaders = {
+  title: pricingCopy.comparisonTitle,
+  feature: "Feature",
+  starter: "Starter",
+  growth: "Growth",
+};
 
 /**
  * Feature comparison table (docs/PLAN.md §5.2 §4).
@@ -21,10 +45,16 @@ function Check({ on }: { on: boolean }) {
   );
 }
 
-export function PricingComparison() {
+export function PricingComparison({
+  comparison = defaultComparison,
+  headers = DEFAULT_HEADERS,
+}: {
+  comparison?: ComparisonGroup[];
+  headers?: ComparisonHeaders;
+} = {}) {
   return (
     <Section tone="alt">
-      <h2 className="text-display-md">{pricingCopy.comparisonTitle}</h2>
+      <h2 className="text-display-md">{headers.title}</h2>
 
       {/*
         No min-width / horizontal scroll: a min-width table forces document
@@ -36,12 +66,12 @@ export function PricingComparison() {
         <table className="w-full border-collapse text-left">
           <thead>
             <tr className="border-b border-border">
-              <th className="py-4 pr-4 font-semibold">Feature</th>
+              <th className="py-4 pr-4 font-semibold">{headers.feature}</th>
               <th className="w-16 py-4 text-center font-semibold sm:w-32">
-                Starter
+                {headers.starter}
               </th>
               <th className="w-16 py-4 text-center font-semibold text-primary sm:w-32">
-                Growth
+                {headers.growth}
               </th>
             </tr>
           </thead>
