@@ -80,9 +80,10 @@ export function Hero({ rating }: { rating: AggregateRating }) {
         }}
       />
 
-      {/* Uses the shared site width (max-w-site) so the hero, header and every
-          page section line up on the same edges. */}
-      <div className="relative mx-auto grid w-full max-w-site items-center gap-8 px-gutter pt-8 pb-16 lg:grid-cols-[0.85fr_1.15fr] lg:gap-10 lg:pt-10 lg:pb-20">
+      {/* Full-bleed hero: content spans the full viewport width (only the hero
+          is uncapped — every other section stays at max-w-site). Keeps the
+          gutter padding so text/slider never touch the very edge. */}
+      <div className="relative grid w-full items-center gap-8 px-gutter pt-8 pb-16 lg:grid-cols-[0.85fr_1.15fr] lg:gap-10 lg:pt-10 lg:pb-20">
         <div>
           {/* Trust pill: badge + live rating */}
           <div className="inline-flex flex-wrap items-center gap-x-3 gap-y-1 rounded-full border border-border bg-surface px-4 py-2 text-sm font-semibold shadow-soft">
