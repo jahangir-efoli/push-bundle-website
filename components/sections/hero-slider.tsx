@@ -118,7 +118,9 @@ export function HeroSlider({
                 }
                 className={cn(
                   "object-cover transition-opacity duration-700 ease-out motion-reduce:transition-none",
-                  i === index ? "opacity-100" : "opacity-0",
+                  i === index
+                    ? "opacity-100 animate-[pb-kenburns_7s_ease-out_forwards] motion-reduce:animate-none"
+                    : "opacity-0",
                 )}
               />
             ) : (
@@ -135,26 +137,8 @@ export function HeroSlider({
             ),
           )}
 
-          {/* Hint that the preview is zoomable (only when there's a real image). */}
-          {currentOk && (
-            <span
-              aria-hidden="true"
-              className="absolute right-3 top-3 grid size-8 place-items-center rounded-full bg-black/45 text-white backdrop-blur-sm"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                className="size-4"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <circle cx="11" cy="11" r="7" />
-                <path d="m21 21-4.3-4.3M11 8v6M8 11h6" />
-              </svg>
-            </span>
-          )}
+          {/* No persistent zoom badge — the zoom-in cursor on hover already
+              signals the preview is clickable/enlargeable. */}
         </div>
       </div>
 

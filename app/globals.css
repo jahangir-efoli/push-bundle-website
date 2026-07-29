@@ -764,6 +764,16 @@ body {
     opacity: 1;
   }
 }
+/* Slow "Ken Burns" zoom for the active hero slide (hero-slider.tsx). Applied
+   only to the visible slide; disabled under reduced-motion. */
+@keyframes pb-kenburns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}
 .marquee {
   overflow: hidden;
   -webkit-mask-image: linear-gradient(
