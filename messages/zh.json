@@ -1,43 +1,43 @@
 {
   "nav": {
-    "home": "Home",
-    "pricing": "Pricing",
-    "features": "Features",
-    "about": "About us",
-    "contact": "Contact us",
-    "resources": "Resources",
-    "partners": "Partners",
-    "docs": "Docs",
-    "blog": "Blog",
-    "changelog": "Changelog",
-    "faq": "FAQ",
-    "privacy": "Privacy Policy"
+    "home": "首页",
+    "pricing": "定价",
+    "features": "功能",
+    "about": "关于我们",
+    "contact": "联系我们",
+    "resources": "资源",
+    "partners": "合作伙伴",
+    "docs": "文档",
+    "blog": "博客",
+    "changelog": "更新日志",
+    "faq": "常见问题",
+    "privacy": "隐私政策"
   },
   "cta": {
-    "install": "Install Free on Shopify",
-    "getItShopify": "Get it on Shopify",
-    "viewDemo": "View Demo",
-    "startTrial": "Start 14 Days Free Trial",
-    "moreFaq": "More FAQ",
-    "contactSupport": "Contact our support",
-    "viewAll": "View All",
-    "exploreMore": "Explore More",
-    "seeMore": "See More"
+    "install": "在 Shopify 上免费安装",
+    "getItShopify": "前往 Shopify 获取",
+    "viewDemo": "查看演示",
+    "startTrial": "开始 14 天免费试用",
+    "moreFaq": "更多常见问题",
+    "contactSupport": "联系客服",
+    "viewAll": "查看全部",
+    "exploreMore": "了解更多",
+    "seeMore": "查看更多"
   },
   "common": {
-    "menu": "Menu",
-    "skipToContent": "Skip to content",
-    "openMenu": "Open menu",
-    "closeMenu": "Close menu",
-    "minRead": "min read",
-    "subscribe": "Subscribe",
-    "newsletterTitle": "Subscribe to our Newsletter",
-    "newsletterBody": "Get the latest strategies, deals, and bundle optimization tips delivered straight to your inbox.",
-    "usefulLinks": "Useful Links",
-    "ourApps": "Our Shopify Apps"
+    "menu": "菜单",
+    "skipToContent": "跳到内容",
+    "openMenu": "打开菜单",
+    "closeMenu": "关闭菜单",
+    "minRead": "分钟阅读",
+    "subscribe": "订阅",
+    "newsletterTitle": "订阅我们的新闻通讯",
+    "newsletterBody": "将最新的策略、优惠和捆绑优化技巧直接发送到您的收件箱。",
+    "usefulLinks": "实用链接",
+    "ourApps": "我们的 Shopify 应用"
   },
   "langSwitcher": {
-    "label": "Change language",
-    "current": "Current language"
+    "label": "切换语言",
+    "current": "当前语言"
   }
 }

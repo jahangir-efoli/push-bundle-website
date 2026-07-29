@@ -1,43 +1,43 @@
 {
   "nav": {
     "home": "Home",
-    "pricing": "Pricing",
-    "features": "Features",
-    "about": "About us",
-    "contact": "Contact us",
-    "resources": "Resources",
-    "partners": "Partners",
-    "docs": "Docs",
+    "pricing": "Prezzi",
+    "features": "Funzionalità",
+    "about": "Chi siamo",
+    "contact": "Contatti",
+    "resources": "Risorse",
+    "partners": "Partner",
+    "docs": "Documentazione",
     "blog": "Blog",
-    "changelog": "Changelog",
+    "changelog": "Novità",
     "faq": "FAQ",
-    "privacy": "Privacy Policy"
+    "privacy": "Privacy"
   },
   "cta": {
-    "install": "Install Free on Shopify",
-    "getItShopify": "Get it on Shopify",
-    "viewDemo": "View Demo",
-    "startTrial": "Start 14 Days Free Trial",
-    "moreFaq": "More FAQ",
-    "contactSupport": "Contact our support",
-    "viewAll": "View All",
-    "exploreMore": "Explore More",
-    "seeMore": "See More"
+    "install": "Installa gratis su Shopify",
+    "getItShopify": "Ottieni su Shopify",
+    "viewDemo": "Guarda la demo",
+    "startTrial": "Prova gratis per 14 giorni",
+    "moreFaq": "Altre FAQ",
+    "contactSupport": "Contatta il supporto",
+    "viewAll": "Vedi tutto",
+    "exploreMore": "Scopri di più",
+    "seeMore": "Vedi altro"
   },
   "common": {
     "menu": "Menu",
-    "skipToContent": "Skip to content",
-    "openMenu": "Open menu",
-    "closeMenu": "Close menu",
-    "minRead": "min read",
-    "subscribe": "Subscribe",
-    "newsletterTitle": "Subscribe to our Newsletter",
-    "newsletterBody": "Get the latest strategies, deals, and bundle optimization tips delivered straight to your inbox.",
-    "usefulLinks": "Useful Links",
-    "ourApps": "Our Shopify Apps"
+    "skipToContent": "Vai al contenuto",
+    "openMenu": "Apri il menu",
+    "closeMenu": "Chiudi il menu",
+    "minRead": "min di lettura",
+    "subscribe": "Iscriviti",
+    "newsletterTitle": "Iscriviti alla nostra newsletter",
+    "newsletterBody": "Ricevi le ultime strategie, offerte e consigli per ottimizzare i bundle direttamente nella tua casella di posta.",
+    "usefulLinks": "Link utili",
+    "ourApps": "Le nostre app Shopify"
   },
   "langSwitcher": {
-    "label": "Change language",
-    "current": "Current language"
+    "label": "Cambia lingua",
+    "current": "Lingua attuale"
   }
 }

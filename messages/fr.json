@@ -1,43 +1,43 @@
 {
   "nav": {
-    "home": "Home",
-    "pricing": "Pricing",
-    "features": "Features",
-    "about": "About us",
-    "contact": "Contact us",
-    "resources": "Resources",
-    "partners": "Partners",
-    "docs": "Docs",
+    "home": "Accueil",
+    "pricing": "Tarifs",
+    "features": "Fonctionnalités",
+    "about": "À propos",
+    "contact": "Contact",
+    "resources": "Ressources",
+    "partners": "Partenaires",
+    "docs": "Documentation",
     "blog": "Blog",
-    "changelog": "Changelog",
+    "changelog": "Nouveautés",
     "faq": "FAQ",
-    "privacy": "Privacy Policy"
+    "privacy": "Confidentialité"
   },
   "cta": {
-    "install": "Install Free on Shopify",
-    "getItShopify": "Get it on Shopify",
-    "viewDemo": "View Demo",
-    "startTrial": "Start 14 Days Free Trial",
-    "moreFaq": "More FAQ",
-    "contactSupport": "Contact our support",
-    "viewAll": "View All",
-    "exploreMore": "Explore More",
-    "seeMore": "See More"
+    "install": "Installer gratuitement sur Shopify",
+    "getItShopify": "Obtenir sur Shopify",
+    "viewDemo": "Voir la démo",
+    "startTrial": "Essai gratuit de 14 jours",
+    "moreFaq": "Plus de FAQ",
+    "contactSupport": "Contacter le support",
+    "viewAll": "Tout voir",
+    "exploreMore": "En savoir plus",
+    "seeMore": "Voir plus"
   },
   "common": {
     "menu": "Menu",
-    "skipToContent": "Skip to content",
-    "openMenu": "Open menu",
-    "closeMenu": "Close menu",
-    "minRead": "min read",
-    "subscribe": "Subscribe",
-    "newsletterTitle": "Subscribe to our Newsletter",
-    "newsletterBody": "Get the latest strategies, deals, and bundle optimization tips delivered straight to your inbox.",
-    "usefulLinks": "Useful Links",
-    "ourApps": "Our Shopify Apps"
+    "skipToContent": "Aller au contenu",
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu",
+    "minRead": "min de lecture",
+    "subscribe": "S'abonner",
+    "newsletterTitle": "Abonnez-vous à notre newsletter",
+    "newsletterBody": "Recevez les dernières stratégies, offres et astuces d'optimisation des offres groupées directement dans votre boîte mail.",
+    "usefulLinks": "Liens utiles",
+    "ourApps": "Nos applications Shopify"
   },
   "langSwitcher": {
-    "label": "Change language",
-    "current": "Current language"
+    "label": "Changer de langue",
+    "current": "Langue actuelle"
   }
 }

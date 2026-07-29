@@ -1,43 +1,43 @@
 {
   "nav": {
-    "home": "Home",
-    "pricing": "Pricing",
-    "features": "Features",
-    "about": "About us",
-    "contact": "Contact us",
-    "resources": "Resources",
-    "partners": "Partners",
-    "docs": "Docs",
-    "blog": "Blog",
-    "changelog": "Changelog",
-    "faq": "FAQ",
-    "privacy": "Privacy Policy"
+    "home": "ホーム",
+    "pricing": "料金",
+    "features": "機能",
+    "about": "会社概要",
+    "contact": "お問い合わせ",
+    "resources": "リソース",
+    "partners": "パートナー",
+    "docs": "ドキュメント",
+    "blog": "ブログ",
+    "changelog": "変更履歴",
+    "faq": "よくある質問",
+    "privacy": "プライバシー"
   },
   "cta": {
-    "install": "Install Free on Shopify",
-    "getItShopify": "Get it on Shopify",
-    "viewDemo": "View Demo",
-    "startTrial": "Start 14 Days Free Trial",
-    "moreFaq": "More FAQ",
-    "contactSupport": "Contact our support",
-    "viewAll": "View All",
-    "exploreMore": "Explore More",
-    "seeMore": "See More"
+    "install": "Shopifyに無料でインストール",
+    "getItShopify": "Shopifyで入手",
+    "viewDemo": "デモを見る",
+    "startTrial": "14日間の無料トライアルを開始",
+    "moreFaq": "さらにFAQを見る",
+    "contactSupport": "サポートに問い合わせる",
+    "viewAll": "すべて見る",
+    "exploreMore": "もっと見る",
+    "seeMore": "さらに表示"
   },
   "common": {
-    "menu": "Menu",
-    "skipToContent": "Skip to content",
-    "openMenu": "Open menu",
-    "closeMenu": "Close menu",
-    "minRead": "min read",
-    "subscribe": "Subscribe",
-    "newsletterTitle": "Subscribe to our Newsletter",
-    "newsletterBody": "Get the latest strategies, deals, and bundle optimization tips delivered straight to your inbox.",
-    "usefulLinks": "Useful Links",
-    "ourApps": "Our Shopify Apps"
+    "menu": "メニュー",
+    "skipToContent": "コンテンツにスキップ",
+    "openMenu": "メニューを開く",
+    "closeMenu": "メニューを閉じる",
+    "minRead": "分で読めます",
+    "subscribe": "購読する",
+    "newsletterTitle": "ニュースレターを購読",
+    "newsletterBody": "最新の戦略、お得な情報、バンドル最適化のヒントをメールで直接お届けします。",
+    "usefulLinks": "便利なリンク",
+    "ourApps": "当社のShopifyアプリ"
   },
   "langSwitcher": {
-    "label": "Change language",
-    "current": "Current language"
+    "label": "言語を変更",
+    "current": "現在の言語"
   }
 }
