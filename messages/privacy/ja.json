@@ -1,82 +1,82 @@
 {
   "meta": {
-    "title": "Privacy Policy",
-    "description": "How PushBundle (WhenLab F.Z.C) collects, uses, protects, and shares your information, including GDPR rights and cookie practices."
+    "title": "プライバシーポリシー",
+    "description": "PushBundle（WhenLab F.Z.C）がお客様の情報をどのように収集、利用、保護、共有するかについて。GDPRに基づく権利やCookieの取り扱いを含みます。"
   },
-  "eyebrow": "Legal",
-  "title": "Privacy Policy",
-  "lastUpdatedLabel": "Last updated",
-  "lastUpdated": "July 2026",
+  "eyebrow": "法的事項",
+  "title": "プライバシーポリシー",
+  "lastUpdatedLabel": "最終更新日",
+  "lastUpdated": "2026年7月",
   "entity": "WhenLab F.Z.C",
-  "onThisPage": "On this page",
-  "intro": "This Privacy Policy explains how PushBundle, operated by WhenLab F.Z.C, collects, uses, protects, and shares information when you use our website and Shopify application.",
-  "questionsPrefix": "Questions about this policy? Email",
+  "onThisPage": "このページの内容",
+  "intro": "本プライバシーポリシーは、WhenLab F.Z.Cが運営するPushBundleが、当社のウェブサイトおよびShopifyアプリケーションのご利用に際して情報をどのように収集、利用、保護、共有するかについて説明するものです。",
+  "questionsPrefix": "本ポリシーに関するご質問は、次のメールアドレスまでご連絡ください：",
   "sections": [
     {
       "id": "information-collected",
-      "heading": "Information Collected",
+      "heading": "収集する情報",
       "body": [
-        "We collect information you provide directly, such as your name, email address, and store details when you contact us or install the app. We also collect information automatically, including device, usage, and location data, and information from cookies and similar technologies.",
-        "When you connect our Shopify app, we access store data necessary to provide bundling features, in line with the permissions you grant during installation."
+        "当社は、お問い合わせやアプリのインストールの際にお客様が直接ご提供いただく情報（氏名、メールアドレス、ストア情報など）を収集します。また、デバイス、利用状況、位置情報などの情報や、Cookieおよび類似技術から得られる情報を自動的に収集します。",
+        "当社のShopifyアプリを接続すると、インストール時にお客様が付与された権限に基づき、バンドル機能の提供に必要なストアデータにアクセスします。"
       ]
     },
     {
       "id": "use-of-information",
-      "heading": "Use of Information",
+      "heading": "情報の利用",
       "body": [
-        "We use collected information to deliver and improve our services, provide support, detect and prevent fraud, communicate with you, and publish anonymized, aggregated statistics.",
-        "We do not sell your personal information."
+        "当社は、収集した情報を、サービスの提供および改善、サポートの提供、不正行為の検出および防止、お客様との連絡、ならびに匿名化・集計された統計情報の公開のために利用します。",
+        "当社がお客様の個人情報を販売することはありません。"
       ]
     },
     {
       "id": "protecting-and-sharing",
-      "heading": "Protecting, Securing, and Sharing of Information",
+      "heading": "情報の保護、セキュリティ、および共有",
       "body": [
-        "We apply appropriate technical and organizational measures to protect your information. We may share information with your consent, with trusted third-party processors who act on our behalf, when required by law or legal process, with internal staff who need it to operate the service, and as non-personal, aggregated data.",
-        "Any third-party processors are bound by obligations consistent with this policy."
+        "当社は、お客様の情報を保護するために適切な技術的および組織的措置を講じます。当社は、お客様の同意がある場合、当社に代わって業務を行う信頼できる第三者の処理業者に対して、法律または法的手続きにより求められる場合、サービスの運営に必要な社内スタッフに対して、および非個人的な集計データとして、情報を共有することがあります。",
+        "第三者の処理業者は、本ポリシーと整合する義務を負うものとします。"
       ]
     },
     {
       "id": "storing-and-deleting",
-      "heading": "Storing and Deleting of Information",
+      "heading": "情報の保存および削除",
       "body": [
-        "We retain information only as long as necessary for the purposes described here or as required by law. You may request to access, transfer, rectify, erase, or restrict the processing of your personal information."
+        "当社は、本ポリシーに記載された目的のために必要な期間、または法律により求められる期間に限り、情報を保持します。お客様は、ご自身の個人情報へのアクセス、移転、訂正、消去、または処理の制限を請求することができます。"
       ]
     },
     {
       "id": "business-ownership",
-      "heading": "Changes in Business Ownership and Control",
+      "heading": "事業の所有権および支配権の変更",
       "body": [
-        "If our business is sold or merges with another organization, your information may be transferred to the new owners so the service can continue. Any such transfer will remain subject to protections consistent with this policy."
+        "当社の事業が売却され、または他の組織と合併した場合、サービスを継続できるよう、お客様の情報が新たな所有者に移転されることがあります。かかる移転は、本ポリシーと整合する保護の対象であり続けます。"
       ]
     },
     {
       "id": "changes-to-policy",
-      "heading": "Changes to this Privacy Policy",
+      "heading": "本プライバシーポリシーの変更",
       "body": [
-        "We may modify this policy from time to time. Updates take effect when posted, and your continued use of the service constitutes acceptance of the revised policy."
+        "当社は、本ポリシーを随時変更することがあります。変更は掲載時に効力を生じ、サービスの継続的なご利用をもって、改訂後のポリシーに同意いただいたものとみなされます。"
       ]
     },
     {
       "id": "gdpr-rights",
-      "heading": "DPA and GDPR Subject Rights",
+      "heading": "DPAおよびGDPRに基づくデータ主体の権利",
       "body": [
-        "If you are located in the EU, EEA, or Switzerland, you have rights under the GDPR, including the rights to access, rectify, erase, restrict, and port your data, and to object to processing. We process personal data on lawful bases including performance of a contract, legitimate business interest, and consent.",
-        "This policy is administered in accordance with applicable data protection law."
+        "EU、EEA、またはスイスにお住まいの場合、お客様はGDPRに基づく権利を有します。これには、ご自身のデータへのアクセス、訂正、消去、制限、移転を求める権利、および処理に異議を申し立てる権利が含まれます。当社は、契約の履行、正当な事業上の利益、および同意を含む適法な根拠に基づいて個人データを処理します。",
+        "本ポリシーは、適用されるデータ保護法に従って運用されます。"
       ]
     },
     {
       "id": "childrens-privacy",
-      "heading": "Children's Privacy",
+      "heading": "お子様のプライバシー",
       "body": [
-        "Our services are not directed to children. We do not knowingly collect personally identifiable information from anyone under 13. If you believe a child has provided us personal information, please contact us and we will take steps to delete it."
+        "当社のサービスはお子様を対象としていません。当社は、13歳未満の方から個人を特定できる情報を意図的に収集することはありません。お子様が当社に個人情報を提供したと思われる場合は、当社までご連絡ください。当社は当該情報を削除するための措置を講じます。"
       ]
     },
     {
       "id": "updates",
-      "heading": "Updates to this Privacy Policy",
+      "heading": "本プライバシーポリシーの更新",
       "body": [
-        "We are committed to notifying users of significant changes through a prominent notice on our website. For questions about this policy, contact us at support@pushbundle.com."
+        "当社は、重要な変更については、ウェブサイト上の目立つ通知を通じてユーザーにお知らせすることをお約束します。本ポリシーに関するご質問は、support@pushbundle.com までお問い合わせください。"
       ]
     }
   ]

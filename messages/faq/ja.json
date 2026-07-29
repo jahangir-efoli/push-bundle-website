@@ -1,18 +1,18 @@
 {
   "meta": {
-    "title": "FAQ — Shopify Bundle App Questions Answered",
-    "description": "Answers to common PushBundle questions — setting up bundles, discounts, billing, compatibility, and more."
+    "title": "よくある質問 — Shopifyバンドルアプリに関する疑問を解決",
+    "description": "PushBundleに関するよくある質問への回答。バンドルの設定、割引、請求、互換性などをご案内します。"
   },
-  "eyebrow": "FAQ",
-  "title": "Frequently asked questions",
-  "subtitle": "Get expert answers to all your PushBundle questions — from setting up custom bundles to maximizing discounts and seamless integrations.",
+  "eyebrow": "よくある質問",
+  "title": "よくある質問",
+  "subtitle": "PushBundleに関するあらゆる疑問に、専門チームがお答えします。カスタムバンドルの設定から割引の最大化、スムーズな連携まで。",
   "help": {
-    "title": "Didn't find the answer you're looking for?",
-    "cta": "Contact our support"
+    "title": "お探しの答えが見つかりませんでしたか？",
+    "cta": "サポートに問い合わせる"
   },
   "ui": {
-    "searchLabel": "Search questions",
-    "searchPlaceholder": "Search questions…",
-    "noMatch": "No questions match your search. Try a different search."
+    "searchLabel": "質問を検索",
+    "searchPlaceholder": "質問を検索…",
+    "noMatch": "検索に一致する質問がありません。別のキーワードをお試しください。"
   }
 }

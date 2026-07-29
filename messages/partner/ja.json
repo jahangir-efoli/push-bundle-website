@@ -1,21 +1,21 @@
 {
   "meta": {
-    "title": "Partners — Shopify Bundle App Ecosystem",
-    "description": "The Shopify apps and services we partner with to deliver powerful, scalable bundling solutions."
+    "title": "パートナー — Shopifyバンドルアプリのエコシステム",
+    "description": "強力でスケーラブルなバンドルソリューションを提供するために連携しているShopifyアプリやサービスをご紹介します。"
   },
-  "eyebrow": "Explore our partners",
-  "title": "Our Partners",
-  "subtitle": "We love working with the best in the Shopify ecosystem. By partnering with leading apps and services, we deliver powerful, scalable bundling solutions that keep your store ahead as you grow.",
+  "eyebrow": "パートナーのご紹介",
+  "title": "パートナー",
+  "subtitle": "私たちはShopifyエコシステムの優れたパートナーとの協業を大切にしています。主要なアプリやサービスと連携することで、店舗の成長を支える強力でスケーラブルなバンドルソリューションを提供します。",
   "becomePartner": {
-    "title": "Want to partner with us?",
-    "body": "Building something for the Shopify ecosystem? We'd love to hear from you.",
-    "cta": "Get in touch"
+    "title": "私たちと一緒にパートナーになりませんか？",
+    "body": "Shopifyエコシステム向けに何かを構築していますか？ぜひお聞かせください。",
+    "cta": "お問い合わせ"
   },
   "ui": {
-    "visit": "Visit",
-    "opensNewTab": "(opens in a new tab)",
-    "prev": "Prev",
-    "next": "Next",
-    "paginationAria": "Partner pagination"
+    "visit": "サイトを見る",
+    "opensNewTab": "（新しいタブで開きます）",
+    "prev": "前へ",
+    "next": "次へ",
+    "paginationAria": "パートナーのページ送り"
   }
 }

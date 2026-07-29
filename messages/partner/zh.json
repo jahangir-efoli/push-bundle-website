@@ -1,21 +1,21 @@
 {
   "meta": {
-    "title": "Partners — Shopify Bundle App Ecosystem",
-    "description": "The Shopify apps and services we partner with to deliver powerful, scalable bundling solutions."
+    "title": "合作伙伴 — Shopify 捆绑应用生态",
+    "description": "与我们合作、共同打造强大且可扩展捆绑解决方案的 Shopify 应用与服务。"
   },
-  "eyebrow": "Explore our partners",
-  "title": "Our Partners",
-  "subtitle": "We love working with the best in the Shopify ecosystem. By partnering with leading apps and services, we deliver powerful, scalable bundling solutions that keep your store ahead as you grow.",
+  "eyebrow": "了解我们的合作伙伴",
+  "title": "我们的合作伙伴",
+  "subtitle": "我们乐于与 Shopify 生态中最优秀的伙伴携手。通过与领先的应用和服务合作，我们提供强大且可扩展的捆绑解决方案，助您的店铺在成长中始终保持领先。",
   "becomePartner": {
-    "title": "Want to partner with us?",
-    "body": "Building something for the Shopify ecosystem? We'd love to hear from you.",
-    "cta": "Get in touch"
+    "title": "想与我们合作吗？",
+    "body": "正在为 Shopify 生态打造产品？我们期待听到您的想法。",
+    "cta": "联系我们"
   },
   "ui": {
-    "visit": "Visit",
-    "opensNewTab": "(opens in a new tab)",
-    "prev": "Prev",
-    "next": "Next",
-    "paginationAria": "Partner pagination"
+    "visit": "访问",
+    "opensNewTab": "（在新标签页中打开）",
+    "prev": "上一页",
+    "next": "下一页",
+    "paginationAria": "合作伙伴分页"
   }
 }

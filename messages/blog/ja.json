@@ -1,24 +1,24 @@
 {
   "meta": {
-    "title": "Blog — Shopify Bundling Tips & Best Practices",
-    "description": "Bundling strategies, AOV-boosting tips, and the latest e-commerce trends to help Shopify merchants scale."
+    "title": "ブログ — Shopifyバンドルのコツとベストプラクティス",
+    "description": "バンドル戦略、AOV向上のヒント、最新のeコマーストレンドで、Shopifyマーチャントの成長を支援します。"
   },
-  "eyebrow": "Blog",
-  "title": "Articles",
-  "intro": "We're committed to empowering Shopify merchants with actionable insights. Dive into our expert-curated articles filled with bundling strategies, AOV-boosting tips, and the latest e-commerce trends.",
-  "pageTitleTemplate": "Articles — Page {n}",
-  "categoryIntroPrefix": "Articles about",
+  "eyebrow": "ブログ",
+  "title": "記事",
+  "intro": "私たちは、実践的なインサイトでShopifyマーチャントを支援することに力を注いでいます。バンドル戦略、AOV向上のヒント、最新のeコマーストレンドが詰まった専門家厳選の記事をぜひご覧ください。",
+  "pageTitleTemplate": "記事 — {n}ページ目",
+  "categoryIntroPrefix": "以下に関する記事：",
   "ui": {
-    "searchLabel": "Search articles",
-    "searchPlaceholder": "Search articles…",
-    "filterByCategory": "Filter by category",
-    "all": "All",
-    "resultOne": "result",
-    "resultOther": "results",
-    "found": "found",
-    "onThisPage": "on this page",
-    "noMatch": "No articles match your search. Try a different search.",
-    "noneYet": "No articles yet — check back soon.",
-    "minRead": "min read"
+    "searchLabel": "記事を検索",
+    "searchPlaceholder": "記事を検索…",
+    "filterByCategory": "カテゴリーで絞り込む",
+    "all": "すべて",
+    "resultOne": "件の結果",
+    "resultOther": "件の結果",
+    "found": "見つかりました",
+    "onThisPage": "このページ",
+    "noMatch": "検索に一致する記事がありません。別のキーワードをお試しください。",
+    "noneYet": "まだ記事がありません。近日中に公開予定です。",
+    "minRead": "分で読めます"
   }
 }

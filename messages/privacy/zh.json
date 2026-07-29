@@ -1,82 +1,82 @@
 {
   "meta": {
-    "title": "Privacy Policy",
-    "description": "How PushBundle (WhenLab F.Z.C) collects, uses, protects, and shares your information, including GDPR rights and cookie practices."
+    "title": "隐私政策",
+    "description": "PushBundle（WhenLab F.Z.C）如何收集、使用、保护和共享您的信息，包括 GDPR 权利与 Cookie 相关做法。"
   },
-  "eyebrow": "Legal",
-  "title": "Privacy Policy",
-  "lastUpdatedLabel": "Last updated",
-  "lastUpdated": "July 2026",
+  "eyebrow": "法律",
+  "title": "隐私政策",
+  "lastUpdatedLabel": "最后更新",
+  "lastUpdated": "2026年7月",
   "entity": "WhenLab F.Z.C",
-  "onThisPage": "On this page",
-  "intro": "This Privacy Policy explains how PushBundle, operated by WhenLab F.Z.C, collects, uses, protects, and shares information when you use our website and Shopify application.",
-  "questionsPrefix": "Questions about this policy? Email",
+  "onThisPage": "本页内容",
+  "intro": "本隐私政策说明由 WhenLab F.Z.C 运营的 PushBundle 在您使用我们的网站和 Shopify 应用时，如何收集、使用、保护和共享信息。",
+  "questionsPrefix": "对本政策有疑问？请发送邮件至",
   "sections": [
     {
       "id": "information-collected",
-      "heading": "Information Collected",
+      "heading": "所收集的信息",
       "body": [
-        "We collect information you provide directly, such as your name, email address, and store details when you contact us or install the app. We also collect information automatically, including device, usage, and location data, and information from cookies and similar technologies.",
-        "When you connect our Shopify app, we access store data necessary to provide bundling features, in line with the permissions you grant during installation."
+        "我们会收集您直接提供的信息，例如您在联系我们或安装应用时提供的姓名、电子邮件地址和店铺详情。我们还会自动收集信息，包括设备、使用情况和位置信息，以及来自 Cookie 和类似技术的信息。",
+        "当您连接我们的 Shopify 应用时，我们会根据您在安装过程中授予的权限，访问提供捆绑功能所需的店铺数据。"
       ]
     },
     {
       "id": "use-of-information",
-      "heading": "Use of Information",
+      "heading": "信息的使用",
       "body": [
-        "We use collected information to deliver and improve our services, provide support, detect and prevent fraud, communicate with you, and publish anonymized, aggregated statistics.",
-        "We do not sell your personal information."
+        "我们使用所收集的信息来提供和改进我们的服务、提供支持、检测和防范欺诈、与您沟通，以及发布匿名化的汇总统计数据。",
+        "我们不会出售您的个人信息。"
       ]
     },
     {
       "id": "protecting-and-sharing",
-      "heading": "Protecting, Securing, and Sharing of Information",
+      "heading": "信息的保护、安全与共享",
       "body": [
-        "We apply appropriate technical and organizational measures to protect your information. We may share information with your consent, with trusted third-party processors who act on our behalf, when required by law or legal process, with internal staff who need it to operate the service, and as non-personal, aggregated data.",
-        "Any third-party processors are bound by obligations consistent with this policy."
+        "我们采取适当的技术和组织措施来保护您的信息。我们可能在以下情形下共享信息：经您同意；与代表我们行事的受信任的第三方处理方；在法律或法律程序要求时；与需要相关信息以运营服务的内部员工；以及作为非个人的汇总数据。",
+        "任何第三方处理方均须承担与本政策一致的义务。"
       ]
     },
     {
       "id": "storing-and-deleting",
-      "heading": "Storing and Deleting of Information",
+      "heading": "信息的存储与删除",
       "body": [
-        "We retain information only as long as necessary for the purposes described here or as required by law. You may request to access, transfer, rectify, erase, or restrict the processing of your personal information."
+        "我们仅在实现本政策所述目的所必需的期间内，或法律要求的期间内保留信息。您可以请求访问、转移、更正、删除或限制处理您的个人信息。"
       ]
     },
     {
       "id": "business-ownership",
-      "heading": "Changes in Business Ownership and Control",
+      "heading": "业务所有权与控制权的变更",
       "body": [
-        "If our business is sold or merges with another organization, your information may be transferred to the new owners so the service can continue. Any such transfer will remain subject to protections consistent with this policy."
+        "如果我们的业务被出售或与其他组织合并，您的信息可能会被转移给新的所有者，以便服务得以延续。任何此类转移仍将受到与本政策一致的保护。"
       ]
     },
     {
       "id": "changes-to-policy",
-      "heading": "Changes to this Privacy Policy",
+      "heading": "本隐私政策的变更",
       "body": [
-        "We may modify this policy from time to time. Updates take effect when posted, and your continued use of the service constitutes acceptance of the revised policy."
+        "我们可能会不时修改本政策。更新自发布时生效，您继续使用本服务即表示接受修订后的政策。"
       ]
     },
     {
       "id": "gdpr-rights",
-      "heading": "DPA and GDPR Subject Rights",
+      "heading": "DPA 与 GDPR 数据主体权利",
       "body": [
-        "If you are located in the EU, EEA, or Switzerland, you have rights under the GDPR, including the rights to access, rectify, erase, restrict, and port your data, and to object to processing. We process personal data on lawful bases including performance of a contract, legitimate business interest, and consent.",
-        "This policy is administered in accordance with applicable data protection law."
+        "如果您位于欧盟（EU）、欧洲经济区（EEA）或瑞士，您享有 GDPR 下的权利，包括访问、更正、删除、限制和移植您的数据的权利，以及对处理提出异议的权利。我们在合法依据的基础上处理个人数据，包括履行合同、正当业务利益和同意。",
+        "本政策依照适用的数据保护法进行管理。"
       ]
     },
     {
       "id": "childrens-privacy",
-      "heading": "Children's Privacy",
+      "heading": "儿童隐私",
       "body": [
-        "Our services are not directed to children. We do not knowingly collect personally identifiable information from anyone under 13. If you believe a child has provided us personal information, please contact us and we will take steps to delete it."
+        "我们的服务并非面向儿童。我们不会在知情的情况下收集任何 13 岁以下人士的个人身份信息。如果您认为有儿童向我们提供了个人信息，请联系我们，我们将采取措施予以删除。"
       ]
     },
     {
       "id": "updates",
-      "heading": "Updates to this Privacy Policy",
+      "heading": "本隐私政策的更新",
       "body": [
-        "We are committed to notifying users of significant changes through a prominent notice on our website. For questions about this policy, contact us at support@pushbundle.com."
+        "对于重大变更，我们承诺通过在网站上发布醒目通知来告知用户。如对本政策有任何疑问，请通过 support@pushbundle.com 与我们联系。"
       ]
     }
   ]

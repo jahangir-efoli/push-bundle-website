@@ -1,23 +1,23 @@
 {
   "meta": {
-    "title": "Docs — Setup & Help Center",
-    "description": "Documentation for the PushBundle Shopify bundle app — installation, setup, and how-to guides."
+    "title": "文档 — 设置与帮助中心",
+    "description": "PushBundle Shopify 捆绑应用的文档——安装、设置和操作指南。"
   },
-  "eyebrow": "Docs",
-  "title": "Documentation",
-  "subtitle": "Everything you need to install, set up, and get the most out of PushBundle.",
+  "eyebrow": "文档",
+  "title": "文档",
+  "subtitle": "安装、设置并充分发挥 PushBundle 价值所需的一切，尽在于此。",
   "help": {
-    "title": "Still need help?",
-    "body": "Can't find what you're looking for? Our team is here to help.",
-    "cta": "Contact support"
+    "title": "仍需帮助？",
+    "body": "找不到所需内容？我们的团队随时为您提供帮助。",
+    "cta": "联系客服"
   },
   "ui": {
-    "searchLabel": "Search documentation",
-    "searchPlaceholder": "Search the docs…",
-    "resultOne": "result",
-    "resultOther": "results",
-    "forQuery": "for",
-    "noResultsTitle": "No results found",
-    "noResultsBody": "Nothing matches your search. Try a different term or browse the categories."
+    "searchLabel": "搜索文档",
+    "searchPlaceholder": "搜索文档…",
+    "resultOne": "个结果",
+    "resultOther": "个结果",
+    "forQuery": "：",
+    "noResultsTitle": "未找到结果",
+    "noResultsBody": "没有与您的搜索匹配的内容。请尝试其他关键词，或浏览各个分类。"
   }
 }

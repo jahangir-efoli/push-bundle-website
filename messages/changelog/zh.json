@@ -1,17 +1,17 @@
 {
   "meta": {
-    "title": "Changelog — Shopify Bundle App Updates",
-    "description": "The latest PushBundle features, improvements, and fixes — see what's new in the Shopify bundle app."
+    "title": "更新日志 — Shopify 捆绑应用更新",
+    "description": "PushBundle 的最新功能、改进和修复——了解这款 Shopify 捆绑应用的新变化。"
   },
-  "eyebrow": "Changelog",
-  "title": "What's new in PushBundle",
-  "subtitle": "New features, improvements, and fixes — shipped regularly.",
+  "eyebrow": "更新日志",
+  "title": "PushBundle 新变化",
+  "subtitle": "新功能、改进和修复——持续定期发布。",
   "ui": {
-    "all": "All",
-    "filterAria": "Filter by type",
-    "empty": "No entries in this category yet.",
-    "previous": "Previous",
-    "next": "Next",
-    "paginationAria": "Changelog pages"
+    "all": "全部",
+    "filterAria": "按类型筛选",
+    "empty": "此分类下暂无条目。",
+    "previous": "上一页",
+    "next": "下一页",
+    "paginationAria": "更新日志分页"
   }
 }

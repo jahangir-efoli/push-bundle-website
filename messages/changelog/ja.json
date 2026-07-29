@@ -1,17 +1,17 @@
 {
   "meta": {
-    "title": "Changelog — Shopify Bundle App Updates",
-    "description": "The latest PushBundle features, improvements, and fixes — see what's new in the Shopify bundle app."
+    "title": "変更履歴 — Shopifyバンドルアプリのアップデート",
+    "description": "PushBundleの最新機能、改善、修正情報。Shopifyバンドルアプリの新着情報をご覧いただけます。"
   },
-  "eyebrow": "Changelog",
-  "title": "What's new in PushBundle",
-  "subtitle": "New features, improvements, and fixes — shipped regularly.",
+  "eyebrow": "変更履歴",
+  "title": "PushBundleの新着情報",
+  "subtitle": "新機能、改善、修正を随時リリースしています。",
   "ui": {
-    "all": "All",
-    "filterAria": "Filter by type",
-    "empty": "No entries in this category yet.",
-    "previous": "Previous",
-    "next": "Next",
-    "paginationAria": "Changelog pages"
+    "all": "すべて",
+    "filterAria": "種類で絞り込む",
+    "empty": "このカテゴリーにはまだ項目がありません。",
+    "previous": "前へ",
+    "next": "次へ",
+    "paginationAria": "変更履歴のページ"
   }
 }

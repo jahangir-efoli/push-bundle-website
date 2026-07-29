@@ -1,24 +1,24 @@
 {
   "meta": {
-    "title": "Blog — Shopify Bundling Tips & Best Practices",
-    "description": "Bundling strategies, AOV-boosting tips, and the latest e-commerce trends to help Shopify merchants scale."
+    "title": "博客 — Shopify 捆绑技巧与最佳实践",
+    "description": "捆绑策略、提升客单价（AOV）的技巧，以及最新的电商趋势，助力 Shopify 商家实现增长。"
   },
-  "eyebrow": "Blog",
-  "title": "Articles",
-  "intro": "We're committed to empowering Shopify merchants with actionable insights. Dive into our expert-curated articles filled with bundling strategies, AOV-boosting tips, and the latest e-commerce trends.",
-  "pageTitleTemplate": "Articles — Page {n}",
-  "categoryIntroPrefix": "Articles about",
+  "eyebrow": "博客",
+  "title": "文章",
+  "intro": "我们致力于为 Shopify 商家提供切实可行的洞见。深入阅读我们精选的专家文章，内容涵盖捆绑策略、提升客单价（AOV）的技巧以及最新的电商趋势。",
+  "pageTitleTemplate": "文章 — 第 {n} 页",
+  "categoryIntroPrefix": "关于以下主题的文章：",
   "ui": {
-    "searchLabel": "Search articles",
-    "searchPlaceholder": "Search articles…",
-    "filterByCategory": "Filter by category",
-    "all": "All",
-    "resultOne": "result",
-    "resultOther": "results",
-    "found": "found",
-    "onThisPage": "on this page",
-    "noMatch": "No articles match your search. Try a different search.",
-    "noneYet": "No articles yet — check back soon.",
-    "minRead": "min read"
+    "searchLabel": "搜索文章",
+    "searchPlaceholder": "搜索文章…",
+    "filterByCategory": "按分类筛选",
+    "all": "全部",
+    "resultOne": "个结果",
+    "resultOther": "个结果",
+    "found": "找到",
+    "onThisPage": "本页",
+    "noMatch": "没有与您的搜索匹配的文章。请尝试其他关键词。",
+    "noneYet": "暂无文章，敬请期待。",
+    "minRead": "分钟阅读"
   }
 }

@@ -1,18 +1,18 @@
 {
   "meta": {
-    "title": "FAQ — Shopify Bundle App Questions Answered",
-    "description": "Answers to common PushBundle questions — setting up bundles, discounts, billing, compatibility, and more."
+    "title": "常见问题 — 解答 Shopify 捆绑应用相关疑问",
+    "description": "PushBundle 常见问题解答——设置捆绑、折扣、计费、兼容性等。"
   },
-  "eyebrow": "FAQ",
-  "title": "Frequently asked questions",
-  "subtitle": "Get expert answers to all your PushBundle questions — from setting up custom bundles to maximizing discounts and seamless integrations.",
+  "eyebrow": "常见问题",
+  "title": "常见问题",
+  "subtitle": "获取专家对 PushBundle 所有问题的解答——从设置自定义捆绑，到最大化折扣与无缝集成。",
   "help": {
-    "title": "Didn't find the answer you're looking for?",
-    "cta": "Contact our support"
+    "title": "没有找到您想要的答案？",
+    "cta": "联系我们的客服"
   },
   "ui": {
-    "searchLabel": "Search questions",
-    "searchPlaceholder": "Search questions…",
-    "noMatch": "No questions match your search. Try a different search."
+    "searchLabel": "搜索问题",
+    "searchPlaceholder": "搜索问题…",
+    "noMatch": "没有与您的搜索匹配的问题。请尝试其他关键词。"
   }
 }

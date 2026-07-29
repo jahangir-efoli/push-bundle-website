@@ -1,23 +1,23 @@
 {
   "meta": {
-    "title": "Docs — Setup & Help Center",
-    "description": "Documentation for the PushBundle Shopify bundle app — installation, setup, and how-to guides."
+    "title": "ドキュメント — セットアップ＆ヘルプセンター",
+    "description": "PushBundle（Shopifyバンドルアプリ）のドキュメント。インストール、セットアップ、使い方ガイドをご案内します。"
   },
-  "eyebrow": "Docs",
-  "title": "Documentation",
-  "subtitle": "Everything you need to install, set up, and get the most out of PushBundle.",
+  "eyebrow": "ドキュメント",
+  "title": "ドキュメント",
+  "subtitle": "PushBundleのインストール、設定、そして最大限に活用するために必要なすべてをまとめています。",
   "help": {
-    "title": "Still need help?",
-    "body": "Can't find what you're looking for? Our team is here to help.",
-    "cta": "Contact support"
+    "title": "まだお困りですか？",
+    "body": "お探しの情報が見つかりませんか？私たちのチームがサポートいたします。",
+    "cta": "サポートに問い合わせる"
   },
   "ui": {
-    "searchLabel": "Search documentation",
-    "searchPlaceholder": "Search the docs…",
-    "resultOne": "result",
-    "resultOther": "results",
-    "forQuery": "for",
-    "noResultsTitle": "No results found",
-    "noResultsBody": "Nothing matches your search. Try a different term or browse the categories."
+    "searchLabel": "ドキュメントを検索",
+    "searchPlaceholder": "ドキュメントを検索…",
+    "resultOne": "件の結果",
+    "resultOther": "件の結果",
+    "forQuery": "／",
+    "noResultsTitle": "結果が見つかりません",
+    "noResultsBody": "検索に一致する項目がありません。別のキーワードをお試しいただくか、カテゴリーからお探しください。"
   }
 }
