@@ -85,7 +85,7 @@ export function Hero({ rating }: { rating: AggregateRating }) {
           is uncapped — every other section stays at max-w-site). Larger
           responsive side padding than the standard gutter so the content
           breathes against the screen edges. */}
-      <div className="relative grid w-full items-center gap-8 px-6 pt-8 pb-16 sm:px-10 lg:grid-cols-[1fr_1fr] lg:gap-10 lg:px-12 lg:pt-10 lg:pb-20 xl:px-16">
+      <div className="relative grid w-full items-center gap-8 px-6 pt-8 pb-16 sm:px-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-10 lg:px-20 lg:pt-10 lg:pb-20 xl:px-28">
         <div>
           {/* Trust pill: badge + live rating */}
           <div className="inline-flex flex-wrap items-center gap-x-3 gap-y-1 rounded-full border border-border bg-surface px-4 py-2 text-sm font-semibold shadow-soft">
@@ -106,7 +106,7 @@ export function Hero({ rating }: { rating: AggregateRating }) {
               visual spans are aria-hidden so they aren't read as "T u r n …". */}
           <h1
             aria-label={hero.title}
-            className="mt-4 max-w-[24ch] pb-[0.08em] leading-[1.12] text-[clamp(2.125rem,2.125rem+0.95vw,3.25rem)]"
+            className="mt-4 max-w-[24ch] pb-[0.08em] leading-[1.12] text-[clamp(1.75rem,0.5rem+2.05vw,3rem)]"
           >
             <span aria-hidden="true">
               {(() => {
