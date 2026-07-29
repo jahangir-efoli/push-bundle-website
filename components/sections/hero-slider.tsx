@@ -84,9 +84,9 @@ export function HeroSlider({
       aria-roledescription="carousel"
       aria-label="PushBundle feature previews"
     >
-      {/* Frame — a soft, low-key border/shadow so attention stays on the image,
-          not a bright gradient edge. */}
-      <div className="relative aspect-4/3 overflow-hidden rounded-2xl border border-border bg-surface shadow-lift">
+      {/* Frameless: the preview screenshots are self-contained compositions, so
+          no surface fill, border, or rounding — the image sits flush. */}
+      <div className="relative aspect-4/3 overflow-hidden">
         {/* Trigger layer — holds the slides + hint plus the open/pause handlers.
             The lightbox portal is a SIBLING of this (not a child), so React
             portal event-bubbling can't route the portal's clicks/focus back into
