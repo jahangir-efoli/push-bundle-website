@@ -71,7 +71,7 @@ export function Header({
           Three parts: logo (left) · nav (centered) · actions (right). */}
       <div
         className={cn(
-          "mx-auto flex h-16 w-full max-w-6xl items-center gap-3 rounded-2xl border border-border bg-surface/95 px-4 backdrop-blur-md transition-shadow duration-200 sm:px-6",
+          "mx-auto flex h-20 w-full max-w-site items-center gap-3 rounded-2xl border border-border bg-surface/95 px-4 backdrop-blur-md transition-shadow duration-200 sm:px-6",
           scrolled ? "shadow-lift" : "shadow-soft",
         )}
       >

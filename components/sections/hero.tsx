@@ -49,10 +49,12 @@ const HERO_SLIDES = [
  */
 export function Hero({ rating }: { rating: AggregateRating }) {
   return (
-    // Fills the viewport below the 5rem header. `svh` (not `vh`) so mobile
+    // Pull up under the floating header (-mt-24) so the hero background fills
+    // the whole top of the viewport, behind the transparent pill — no seam.
+    // pt-24 keeps the content clear of the header. `svh` (not `vh`) so mobile
     // browser chrome doesn't push content off-screen; `min-h` (not `h`) so the
     // hero can still grow on short screens or with longer translated copy.
-    <section className="relative isolate flex min-h-[calc(100svh-5rem)] items-center overflow-hidden bg-background text-foreground">
+    <section className="relative isolate -mt-24 flex min-h-svh items-center overflow-hidden bg-background pt-24 text-foreground">
       {/* Soft brand washes */}
       <div
         aria-hidden="true"
