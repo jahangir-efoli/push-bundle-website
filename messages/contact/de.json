@@ -1,0 +1,64 @@
+{
+  "meta": {
+    "title": "Kontakt — Support für die Shopify-Bundle-App",
+    "description": "Nehmen Sie Kontakt mit dem PushBundle-Team auf. Schreiben Sie uns eine E-Mail, starten Sie einen Live-Chat oder buchen Sie einen Termin — wir antworten innerhalb von 24 Stunden."
+  },
+  "hero": {
+    "eyebrow": "Kontakt",
+    "title": "Sprechen wir über Bundling",
+    "subtitle": "Sind Sie auf eine Bundling-Herausforderung gestoßen oder haben Sie eine Idee, um Ihren Shop zu verbessern? Wir freuen uns, von Ihnen zu hören. Lassen Sie uns austauschen und gemeinsam entdecken, wie wir aus smarten Ideen leistungsstarke Lösungen machen."
+  },
+  "sidebar": {
+    "tagline": "Melden Sie sich jederzeit",
+    "taglineBody": "Rufen Sie uns an, buchen Sie einen Termin oder hinterlassen Sie unten Ihre Projektdetails. Wir melden uns innerhalb von 24 Stunden zurück. Versprochen!",
+    "emailLabel": "E-Mail",
+    "phoneLabel": "Telefon",
+    "addressLabel": "Adresse",
+    "hoursLabel": "Support-Zeiten",
+    "hoursValue": "Montag–Freitag"
+  },
+  "methods": [
+    {
+      "icon": "cart",
+      "kind": "email",
+      "title": "E-Mail senden",
+      "body": "Beschäftigt Sie etwas oder haben Sie ein Problem? Schreiben Sie uns eine E-Mail. Wir sind ganz Ohr und helfen Ihnen gerne weiter.",
+      "action": "E-Mail schreiben"
+    },
+    {
+      "icon": "sparkles",
+      "kind": "chat",
+      "title": "Lassen Sie uns chatten",
+      "body": "Haben Sie Fragen? Unser Team ist von Montag bis Freitag und nahezu rund um die Uhr für Sie da.",
+      "action": "Live-Chat starten"
+    },
+    {
+      "icon": "calendar",
+      "kind": "meeting",
+      "title": "Termin vereinbaren",
+      "body": "Lieber von Angesicht zu Bildschirm? Buchen Sie einen Termin und lassen Sie uns über Bundling sprechen — ganz nach Ihren Vorstellungen.",
+      "action": "Termin buchen"
+    }
+  ],
+  "form": {
+    "nameLabel": "Vollständiger Name",
+    "namePlaceholder": "Geben Sie Ihren Namen ein",
+    "emailLabel": "E-Mail",
+    "emailPlaceholder": "Geben Sie Ihre E-Mail-Adresse ein",
+    "subjectLabel": "Betreff",
+    "subjectPlaceholder": "Geben Sie einen Betreff ein",
+    "messageLabel": "Ihre Nachricht",
+    "messagePlaceholder": "Geben Sie Ihre Nachricht ein",
+    "submit": "Formular absenden",
+    "errors": {
+      "name": "Bitte geben Sie Ihren Namen ein.",
+      "emailRequired": "Bitte geben Sie Ihre E-Mail-Adresse ein.",
+      "emailInvalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+      "subject": "Bitte geben Sie einen Betreff ein.",
+      "message": "Bitte geben Sie eine Nachricht ein."
+    },
+    "successTitle": "Danke — Ihre Nachricht ist angekommen!",
+    "successBody": "Wir melden uns innerhalb von 24 Stunden bei Ihnen.",
+    "sendAnother": "Weitere Nachricht senden"
+  }
+}

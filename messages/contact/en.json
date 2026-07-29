@@ -1,0 +1,64 @@
+{
+  "meta": {
+    "title": "Contact — Shopify Bundle App Support",
+    "description": "Get in touch with the PushBundle team. Email us, start a live chat, or book a meeting — we reply within 24 hours."
+  },
+  "hero": {
+    "eyebrow": "Contact us",
+    "title": "Let's talk bundling",
+    "subtitle": "Ran into a bundling challenge or have an idea to improve your store? We'd love to hear from you. Let's chat and explore how we can turn smart ideas into powerful solutions."
+  },
+  "sidebar": {
+    "tagline": "Reach Out Anytime",
+    "taglineBody": "Call us, book a meeting, or drop your project details below. We'll get back to you within 24 hours. Promise!",
+    "emailLabel": "Email",
+    "phoneLabel": "Phone",
+    "addressLabel": "Address",
+    "hoursLabel": "Support hours",
+    "hoursValue": "Monday–Friday"
+  },
+  "methods": [
+    {
+      "icon": "cart",
+      "kind": "email",
+      "title": "Send an Email",
+      "body": "Got something on your mind or facing any issues? Drop us an email. We are all ears and happy to help you.",
+      "action": "Email us"
+    },
+    {
+      "icon": "sparkles",
+      "kind": "chat",
+      "title": "Let's Chat",
+      "body": "Have questions? Our team is here for you Monday to Friday, almost around the clock.",
+      "action": "Start live chat"
+    },
+    {
+      "icon": "calendar",
+      "kind": "meeting",
+      "title": "Set a Meeting",
+      "body": "Prefer a face-to-screen? Book a meeting and let's talk about bundling, your way.",
+      "action": "Book a meeting"
+    }
+  ],
+  "form": {
+    "nameLabel": "Full Name",
+    "namePlaceholder": "Enter your name",
+    "emailLabel": "Email",
+    "emailPlaceholder": "Enter your email",
+    "subjectLabel": "Subject",
+    "subjectPlaceholder": "Enter a subject",
+    "messageLabel": "Your Message",
+    "messagePlaceholder": "Enter your message",
+    "submit": "Submit Form",
+    "errors": {
+      "name": "Please enter your name.",
+      "emailRequired": "Please enter your email.",
+      "emailInvalid": "Please enter a valid email.",
+      "subject": "Please enter a subject.",
+      "message": "Please enter a message."
+    },
+    "successTitle": "Thanks — message received!",
+    "successBody": "We'll get back to you within 24 hours.",
+    "sendAnother": "Send another message"
+  }
+}

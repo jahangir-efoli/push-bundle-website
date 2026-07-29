@@ -14,9 +14,58 @@ import { Button } from "@/components/ui/button";
 
 type Errors = Partial<Record<"name" | "email" | "subject" | "message", string>>;
 
+/** Localized form copy (defaults are English). */
+export type ContactFormContent = {
+  nameLabel: string;
+  namePlaceholder: string;
+  emailLabel: string;
+  emailPlaceholder: string;
+  subjectLabel: string;
+  subjectPlaceholder: string;
+  messageLabel: string;
+  messagePlaceholder: string;
+  submit: string;
+  errors: {
+    name: string;
+    emailRequired: string;
+    emailInvalid: string;
+    subject: string;
+    message: string;
+  };
+  successTitle: string;
+  successBody: string;
+  sendAnother: string;
+};
+
+const DEFAULT_CONTENT: ContactFormContent = {
+  nameLabel: "Full Name",
+  namePlaceholder: "Enter your name",
+  emailLabel: "Email",
+  emailPlaceholder: "Enter your email",
+  subjectLabel: "Subject",
+  subjectPlaceholder: "Enter a subject",
+  messageLabel: "Your Message",
+  messagePlaceholder: "Enter your message",
+  submit: "Submit Form",
+  errors: {
+    name: "Please enter your name.",
+    emailRequired: "Please enter your email.",
+    emailInvalid: "Please enter a valid email.",
+    subject: "Please enter a subject.",
+    message: "Please enter a message.",
+  },
+  successTitle: "Thanks — message received!",
+  successBody: "We'll get back to you within 24 hours.",
+  sendAnother: "Send another message",
+};
+
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-export function ContactForm() {
+export function ContactForm({
+  content = DEFAULT_CONTENT,
+}: {
+  content?: ContactFormContent;
+} = {}) {
   const [errors, setErrors] = useState<Errors>({});
   const [sent, setSent] = useState(false);
 
@@ -29,14 +78,14 @@ export function ContactForm() {
     if (data.get("company")) return;
 
     const next: Errors = {};
-    if (!String(data.get("name") ?? "").trim()) next.name = "Please enter your name.";
+    if (!String(data.get("name") ?? "").trim()) next.name = content.errors.name;
     const email = String(data.get("email") ?? "").trim();
-    if (!email) next.email = "Please enter your email.";
-    else if (!EMAIL_RE.test(email)) next.email = "Please enter a valid email.";
+    if (!email) next.email = content.errors.emailRequired;
+    else if (!EMAIL_RE.test(email)) next.email = content.errors.emailInvalid;
     if (!String(data.get("subject") ?? "").trim())
-      next.subject = "Please enter a subject.";
+      next.subject = content.errors.subject;
     if (!String(data.get("message") ?? "").trim())
-      next.message = "Please enter a message.";
+      next.message = content.errors.message;
 
     setErrors(next);
     if (Object.keys(next).length > 0) {
@@ -56,17 +105,15 @@ export function ContactForm() {
         className="rounded-2xl border border-success/30 bg-success/10 p-8 text-center"
       >
         <p className="font-display text-xl font-bold text-foreground">
-          Thanks — message received!
+          {content.successTitle}
         </p>
-        <p className="mt-2 text-muted">
-          We&rsquo;ll get back to you within 24 hours.
-        </p>
+        <p className="mt-2 text-muted">{content.successBody}</p>
         <Button
           variant="secondary"
           className="mt-6"
           onClick={() => setSent(false)}
         >
-          Send another message
+          {content.sendAnother}
         </Button>
       </div>
     );
@@ -89,38 +136,38 @@ export function ContactForm() {
       <div className="grid gap-5">
         <div className="grid gap-5 sm:grid-cols-2">
           <Input
-            label="Full Name"
+            label={content.nameLabel}
             name="name"
-            placeholder="Enter your name"
+            placeholder={content.namePlaceholder}
             error={errors.name}
             required
           />
           <Input
-            label="Email"
+            label={content.emailLabel}
             name="email"
             type="email"
-            placeholder="Enter your email"
+            placeholder={content.emailPlaceholder}
             error={errors.email}
             required
           />
         </div>
         <Input
-          label="Subject"
+          label={content.subjectLabel}
           name="subject"
-          placeholder="Enter a subject"
+          placeholder={content.subjectPlaceholder}
           error={errors.subject}
           required
         />
         <Textarea
-          label="Your Message"
+          label={content.messageLabel}
           name="message"
-          placeholder="Enter your message"
+          placeholder={content.messagePlaceholder}
           error={errors.message}
           required
         />
         <div>
           <Button type="submit" size="lg">
-            Submit Form
+            {content.submit}
           </Button>
         </div>
       </div>

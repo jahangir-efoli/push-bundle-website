@@ -1,0 +1,64 @@
+{
+  "meta": {
+    "title": "Contacto — Soporte de la app de bundles para Shopify",
+    "description": "Ponte en contacto con el equipo de PushBundle. Escríbenos un correo, inicia un chat en vivo o agenda una reunión: respondemos en menos de 24 horas."
+  },
+  "hero": {
+    "eyebrow": "Contáctanos",
+    "title": "Hablemos de bundles",
+    "subtitle": "¿Te topaste con un reto de bundles o tienes una idea para mejorar tu tienda? Nos encantaría saber de ti. Conversemos y exploremos cómo convertir ideas inteligentes en soluciones potentes."
+  },
+  "sidebar": {
+    "tagline": "Escríbenos cuando quieras",
+    "taglineBody": "Llámanos, agenda una reunión o cuéntanos los detalles de tu proyecto aquí abajo. Te responderemos en menos de 24 horas. ¡Prometido!",
+    "emailLabel": "Correo electrónico",
+    "phoneLabel": "Teléfono",
+    "addressLabel": "Dirección",
+    "hoursLabel": "Horario de soporte",
+    "hoursValue": "Lunes–Viernes"
+  },
+  "methods": [
+    {
+      "icon": "cart",
+      "kind": "email",
+      "title": "Envía un correo",
+      "body": "¿Tienes algo en mente o enfrentas algún inconveniente? Escríbenos un correo. Somos todo oídos y estaremos encantados de ayudarte.",
+      "action": "Escríbenos"
+    },
+    {
+      "icon": "sparkles",
+      "kind": "chat",
+      "title": "Conversemos",
+      "body": "¿Tienes preguntas? Nuestro equipo está aquí para ti de lunes a viernes, casi las 24 horas.",
+      "action": "Iniciar chat en vivo"
+    },
+    {
+      "icon": "calendar",
+      "kind": "meeting",
+      "title": "Agenda una reunión",
+      "body": "¿Prefieres una conversación cara a cara? Agenda una reunión y hablemos de bundles, a tu manera.",
+      "action": "Agendar una reunión"
+    }
+  ],
+  "form": {
+    "nameLabel": "Nombre completo",
+    "namePlaceholder": "Ingresa tu nombre",
+    "emailLabel": "Correo electrónico",
+    "emailPlaceholder": "Ingresa tu correo",
+    "subjectLabel": "Asunto",
+    "subjectPlaceholder": "Ingresa un asunto",
+    "messageLabel": "Tu mensaje",
+    "messagePlaceholder": "Ingresa tu mensaje",
+    "submit": "Enviar formulario",
+    "errors": {
+      "name": "Por favor, ingresa tu nombre.",
+      "emailRequired": "Por favor, ingresa tu correo.",
+      "emailInvalid": "Por favor, ingresa un correo válido.",
+      "subject": "Por favor, ingresa un asunto.",
+      "message": "Por favor, ingresa un mensaje."
+    },
+    "successTitle": "¡Gracias, mensaje recibido!",
+    "successBody": "Te responderemos en menos de 24 horas.",
+    "sendAnother": "Enviar otro mensaje"
+  }
+}

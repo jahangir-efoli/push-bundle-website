@@ -83,3 +83,47 @@ export async function getPricingContent(locale: Locale): Promise<PricingContent>
     return (await pricingLoaders[defaultLocale]()).default;
   }
 }
+
+// --- about ----------------------------------------------------------------
+import type aboutEn from "@/messages/about/en.json";
+export type AboutContent = typeof aboutEn;
+
+const aboutLoaders: Record<Locale, () => Promise<{ default: AboutContent }>> = {
+  en: () => import("@/messages/about/en.json"),
+  de: () => import("@/messages/about/de.json"),
+  fr: () => import("@/messages/about/fr.json"),
+  es: () => import("@/messages/about/es.json"),
+  it: () => import("@/messages/about/it.json"),
+  ja: () => import("@/messages/about/ja.json"),
+  zh: () => import("@/messages/about/zh.json"),
+};
+
+export async function getAboutContent(locale: Locale): Promise<AboutContent> {
+  try {
+    return (await aboutLoaders[locale]()).default;
+  } catch {
+    return (await aboutLoaders[defaultLocale]()).default;
+  }
+}
+
+// --- contact --------------------------------------------------------------
+import type contactEn from "@/messages/contact/en.json";
+export type ContactContent = typeof contactEn;
+
+const contactLoaders: Record<Locale, () => Promise<{ default: ContactContent }>> = {
+  en: () => import("@/messages/contact/en.json"),
+  de: () => import("@/messages/contact/de.json"),
+  fr: () => import("@/messages/contact/fr.json"),
+  es: () => import("@/messages/contact/es.json"),
+  it: () => import("@/messages/contact/it.json"),
+  ja: () => import("@/messages/contact/ja.json"),
+  zh: () => import("@/messages/contact/zh.json"),
+};
+
+export async function getContactContent(locale: Locale): Promise<ContactContent> {
+  try {
+    return (await contactLoaders[locale]()).default;
+  } catch {
+    return (await contactLoaders[defaultLocale]()).default;
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "meta": {
+    "title": "Acerca de — El equipo detrás de la app de bundles para Shopify",
+    "description": "Por qué creamos PushBundle, para quién es y cómo WhenLab ayuda a los comercios de Shopify a impulsar bundles más inteligentes y escalables. Creado en Dubai, pensado para comercios de todo el mundo."
+  },
+  "hero": {
+    "eyebrow": "Acerca de nosotros",
+    "title": "Bundles más inteligentes y escalables en Shopify",
+    "subtitle": "Conoce PushBundle: por qué lo creamos, para quién lo creamos y cómo ayudamos a comercios de todo el mundo a impulsar bundles más inteligentes y escalables en Shopify."
+  },
+  "whoWeAre": {
+    "eyebrow": "Quiénes somos",
+    "title": "Creado para comercios que superaron los bundles básicos",
+    "body": "Lo escuchábamos una y otra vez: “Quiero que los clientes armen sus propios packs, pero no puedo controlar los tamaños de pack ni las variantes.” La mayoría de las apps no entendían la complejidad de los bundles B2B. Por eso creamos PushBundle, una app no-code para Shopify con control total sobre bundles mix-and-match, MOQs, descuentos por volumen y precios de multi-pack. Sin soluciones improvisadas, solo bundles inteligentes que escalan. Creado en Dubai, pensado para comercios de todo el mundo. Si alguna vez te sentiste limitado por las apps de bundles, creamos PushBundle para ti.",
+    "imagePlaceholder": "Quiénes somos"
+  },
+  "mission": {
+    "eyebrow": "Nuestra misión",
+    "title": "Convierte los bundles en un motor de crecimiento",
+    "body": "En WhenLab, tenemos la misión de redefinir el éxito del e-commerce para los comercios que ya superaron los 'bundles básicos'. PushBundle nació de puntos de dolor reales de Shopify, diseñado para ofrecer bundles inteligentes y flexibles que escalan junto con tu tienda.",
+    "points": [
+      "Convierte los tamaños de pack, las reglas de variantes y los MOQs en herramientas de crecimiento, no en obstáculos.",
+      "Te ayuda a aumentar el AOV con potentes descuentos por volumen y precios de multi-pack.",
+      "Sé la app de descuentos por bundle de referencia para comercios que necesitan control, creatividad y resultados."
+    ]
+  },
+  "vision": {
+    "eyebrow": "Nuestra visión",
+    "title": "Una nueva era de bundles en Shopify",
+    "body": "Creemos que los bundles deben ser una estrategia de crecimiento, no un obstáculo técnico. Nuestra visión es liderar una nueva era de bundles en Shopify — una en la que los comercios tengan la libertad de crear exactamente lo que sus clientes quieren, sin limitaciones, sin código y sin suposiciones. Estamos construyendo la app de bundles más confiable y potente para comercios serios."
+  },
+  "features": {
+    "eyebrow": "Por qué PushBundle",
+    "title": "La forma más inteligente de crear bundles en Shopify",
+    "subtitle": "PushBundle te ayuda a crear bundles a tu manera. Define tus propias reglas, ofrece ofertas por volumen y deja que los compradores combinen lo que más les gusta. Más ventas, menos complicaciones.",
+    "items": [
+      {
+        "icon": "layers",
+        "title": "Creación de bundles sin esfuerzo",
+        "description": "Crea, edita y gestiona bundles con facilidad, con un panel diseñado para comercios ocupados."
+      },
+      {
+        "icon": "cart",
+        "title": "Vende más con bundles inteligentes",
+        "description": "Aumenta el valor promedio de tus pedidos con descuentos flexibles que se ajustan a cómo compran tus clientes."
+      },
+      {
+        "icon": "sparkles",
+        "title": "Crea bundles que van a encantarles",
+        "description": "Ofrece bundles mix-and-match llamativos que mantienen a los clientes interesados y hacen que vuelvan."
+      },
+      {
+        "icon": "globe",
+        "title": "Diseñado para crecer contigo",
+        "description": "Ya sea que vendas localmente o a nivel global, PushBundle escala con tu tienda en cada etapa."
+      },
+      {
+        "icon": "wand",
+        "title": "Precios inteligentes, siempre activos",
+        "description": "Configúralo y olvídate. PushBundle ajusta los precios de los bundles según el stock o el comportamiento del cliente."
+      },
+      {
+        "icon": "calendar",
+        "title": "Programa ofertas con anticipación",
+        "description": "Planifica ofertas flash o promociones de temporada por adelantado. PushBundle se encarga del momento justo por ti."
+      }
+    ]
+  },
+  "company": {
+    "eyebrow": "La empresa",
+    "title": "Creada por WhenLab, en Dubai",
+    "body": "PushBundle está desarrollado por WhenLab F.Z.C, un equipo con sede en Dubai que está detrás de una familia de apps de Shopify usadas por comercios de todo el mundo. Todo lo que creamos está moldeado por comentarios reales de los comercios.",
+    "stats": [
+      { "value": "4.9 / 5", "label": "Calificación en Shopify" },
+      { "value": "Built for Shopify", "label": "Insignia verificada" },
+      { "value": "2025", "label": "Lanzamiento" },
+      { "value": "5+", "label": "Apps de Shopify" }
+    ]
+  }
+}

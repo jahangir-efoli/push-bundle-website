@@ -1,0 +1,64 @@
+{
+  "meta": {
+    "title": "Contatti — Supporto per l'app di bundle Shopify",
+    "description": "Mettiti in contatto con il team di PushBundle. Scrivici un'email, avvia una chat dal vivo o prenota un incontro — rispondiamo entro 24 ore."
+  },
+  "hero": {
+    "eyebrow": "Contattaci",
+    "title": "Parliamo di bundling",
+    "subtitle": "Hai incontrato una difficoltà con i bundle o hai un'idea per migliorare il tuo store? Ci farebbe piacere sentirti. Parliamone e scopriamo insieme come trasformare idee intelligenti in soluzioni potenti."
+  },
+  "sidebar": {
+    "tagline": "Contattaci in qualsiasi momento",
+    "taglineBody": "Chiamaci, prenota un incontro o lascia i dettagli del tuo progetto qui sotto. Ti risponderemo entro 24 ore. Promesso!",
+    "emailLabel": "Email",
+    "phoneLabel": "Telefono",
+    "addressLabel": "Indirizzo",
+    "hoursLabel": "Orari di supporto",
+    "hoursValue": "Lunedì–Venerdì"
+  },
+  "methods": [
+    {
+      "icon": "cart",
+      "kind": "email",
+      "title": "Invia un'email",
+      "body": "Hai qualcosa da dirci o stai riscontrando dei problemi? Scrivici un'email. Siamo tutt'orecchi e felici di aiutarti.",
+      "action": "Scrivici"
+    },
+    {
+      "icon": "sparkles",
+      "kind": "chat",
+      "title": "Parliamone in chat",
+      "body": "Hai domande? Il nostro team è qui per te dal lunedì al venerdì, praticamente a ogni ora.",
+      "action": "Avvia la chat dal vivo"
+    },
+    {
+      "icon": "calendar",
+      "kind": "meeting",
+      "title": "Fissa un incontro",
+      "body": "Preferisci un confronto faccia a schermo? Prenota un incontro e parliamo di bundling, a modo tuo.",
+      "action": "Prenota un incontro"
+    }
+  ],
+  "form": {
+    "nameLabel": "Nome completo",
+    "namePlaceholder": "Inserisci il tuo nome",
+    "emailLabel": "Email",
+    "emailPlaceholder": "Inserisci la tua email",
+    "subjectLabel": "Oggetto",
+    "subjectPlaceholder": "Inserisci un oggetto",
+    "messageLabel": "Il tuo messaggio",
+    "messagePlaceholder": "Inserisci il tuo messaggio",
+    "submit": "Invia il modulo",
+    "errors": {
+      "name": "Inserisci il tuo nome.",
+      "emailRequired": "Inserisci la tua email.",
+      "emailInvalid": "Inserisci un'email valida.",
+      "subject": "Inserisci un oggetto.",
+      "message": "Inserisci un messaggio."
+    },
+    "successTitle": "Grazie — messaggio ricevuto!",
+    "successBody": "Ti risponderemo entro 24 ore.",
+    "sendAnother": "Invia un altro messaggio"
+  }
+}

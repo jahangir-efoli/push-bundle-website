@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { cms, DEFAULT_LOCALE } from "@/lib/cms";
+import { cms } from "@/lib/cms";
 import { pageMetadata } from "@/lib/seo/metadata";
-import type { Locale } from "@/i18n/config";
+import { isLocale, type Locale } from "@/i18n/config";
+import { getCommon, getContactContent } from "@/i18n/content";
 import { PageHero } from "@/components/sections/page-hero";
 import { Section } from "@/components/ui/section";
 import { IconTile, type IconName } from "@/components/ui/icon";
@@ -11,24 +12,21 @@ import { TrialCta } from "@/components/sections/trial-cta";
 import { JsonLd } from "@/components/seo/json-ld";
 import { breadcrumbLd } from "@/lib/seo/structured-data";
 import { site } from "@/lib/site-config";
-import {
-  contactCopy,
-  contactDetails,
-  contactMethods,
-} from "@/lib/content/contact";
+import { contactDetails } from "@/lib/content/contact";
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ lang: string }>;
-}): Promise<Metadata> {
+const toLocale = (lang: string): Locale => (isLocale(lang) ? lang : "en");
+
+type Props = { params: Promise<{ lang: string }> };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang } = await params;
+  const locale = toLocale(lang);
+  const { meta } = await getContactContent(locale);
   return pageMetadata({
-  title: "Contact — Shopify Bundle App Support",
-  description:
-    "Get in touch with the PushBundle team. Email us, start a live chat, or book a meeting — we reply within 24 hours.",
-  path: "/contact-us",
-    locale: lang as Locale,
+    title: meta.title,
+    description: meta.description,
+    path: "/contact-us",
+    locale,
   });
 }
 
@@ -55,8 +53,17 @@ function contactPageLd() {
 }
 
 /** Contact us page (docs/PLAN.md §5.4). */
-export default async function ContactPage() {
-  const faqs = await cms.listFaqs({ locale: DEFAULT_LOCALE, limit: 4 });
+export default async function ContactPage({ params }: Props) {
+  const { lang } = await params;
+  const locale = toLocale(lang);
+
+  const [content, common, faqs] = await Promise.all([
+    getContactContent(locale),
+    getCommon(locale),
+    cms.listFaqs({ locale, limit: 4 }),
+  ]);
+
+  const { hero, sidebar, methods, form } = content;
 
   return (
     <>
@@ -69,25 +76,25 @@ export default async function ContactPage() {
       />
 
       <PageHero
-        eyebrow={contactCopy.eyebrow}
-        title={contactCopy.title}
-        subtitle={contactCopy.subtitle}
+        eyebrow={hero.eyebrow}
+        title={hero.title}
+        subtitle={hero.subtitle}
       />
 
       {/* pt-0: the PageHero already provides the top gap — avoid a double one. */}
       <Section className="pt-0!">
         <div className="grid gap-10 lg:grid-cols-[1.3fr_1fr] lg:items-start">
-          <ContactForm />
+          <ContactForm content={form} />
 
           <div>
-            <h2 className="font-display text-xl font-bold">
-              {contactCopy.tagline}
-            </h2>
-            <p className="mt-2 text-muted">{contactCopy.taglineBody}</p>
+            <h2 className="font-display text-xl font-bold">{sidebar.tagline}</h2>
+            <p className="mt-2 text-muted">{sidebar.taglineBody}</p>
 
             <dl className="mt-6 space-y-4 text-sm">
               <div>
-                <dt className="font-semibold text-foreground">Email</dt>
+                <dt className="font-semibold text-foreground">
+                  {sidebar.emailLabel}
+                </dt>
                 <dd>
                   <a
                     href={`mailto:${contactDetails.email}`}
@@ -98,16 +105,22 @@ export default async function ContactPage() {
                 </dd>
               </div>
               <div>
-                <dt className="font-semibold text-foreground">Phone</dt>
+                <dt className="font-semibold text-foreground">
+                  {sidebar.phoneLabel}
+                </dt>
                 <dd className="text-muted">{contactDetails.phone}</dd>
               </div>
               <div>
-                <dt className="font-semibold text-foreground">Address</dt>
+                <dt className="font-semibold text-foreground">
+                  {sidebar.addressLabel}
+                </dt>
                 <dd className="text-muted">{contactDetails.address}</dd>
               </div>
               <div>
-                <dt className="font-semibold text-foreground">Support hours</dt>
-                <dd className="text-muted">{contactDetails.hours}</dd>
+                <dt className="font-semibold text-foreground">
+                  {sidebar.hoursLabel}
+                </dt>
+                <dd className="text-muted">{sidebar.hoursValue}</dd>
               </div>
             </dl>
           </div>
@@ -117,7 +130,7 @@ export default async function ContactPage() {
       {/* Three contact-method cards */}
       <Section tone="alt">
         <ul className="grid gap-6 md:grid-cols-3">
-          {contactMethods.map((method) => (
+          {methods.map((method) => (
             <li key={method.title} className="h-full">
               <div className="flex h-full flex-col rounded-2xl border border-border bg-surface p-6 shadow-soft">
                 <IconTile name={method.icon as IconName} />
@@ -145,8 +158,12 @@ export default async function ContactPage() {
         </ul>
       </Section>
 
-      <FaqSection items={faqs} title="Frequently asked questions" />
-      <TrialCta />
+      <FaqSection
+        items={faqs}
+        eyebrow={common.faq.eyebrow}
+        title={common.faq.title}
+      />
+      <TrialCta content={common.trialCta} />
     </>
   );
 }

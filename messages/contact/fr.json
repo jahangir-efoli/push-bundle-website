@@ -1,0 +1,64 @@
+{
+  "meta": {
+    "title": "Contact — Support de l'application de bundles Shopify",
+    "description": "Contactez l'équipe PushBundle. Écrivez-nous, lancez un chat en direct ou réservez un rendez-vous — nous répondons sous 24 heures."
+  },
+  "hero": {
+    "eyebrow": "Contactez-nous",
+    "title": "Parlons bundling",
+    "subtitle": "Vous rencontrez un défi lié au bundling ou avez une idée pour améliorer votre boutique ? Nous serions ravis d'échanger avec vous. Discutons ensemble et voyons comment transformer vos idées en solutions puissantes."
+  },
+  "sidebar": {
+    "tagline": "Écrivez-nous à tout moment",
+    "taglineBody": "Appelez-nous, réservez un rendez-vous ou décrivez votre projet ci-dessous. Nous vous répondrons sous 24 heures. Promis !",
+    "emailLabel": "E-mail",
+    "phoneLabel": "Téléphone",
+    "addressLabel": "Adresse",
+    "hoursLabel": "Horaires du support",
+    "hoursValue": "Lundi–Vendredi"
+  },
+  "methods": [
+    {
+      "icon": "cart",
+      "kind": "email",
+      "title": "Envoyer un e-mail",
+      "body": "Une question en tête ou un problème à résoudre ? Envoyez-nous un e-mail. Nous sommes tout ouïe et ravis de vous aider.",
+      "action": "Écrivez-nous"
+    },
+    {
+      "icon": "sparkles",
+      "kind": "chat",
+      "title": "Discutons",
+      "body": "Des questions ? Notre équipe est à votre disposition du lundi au vendredi, presque à toute heure.",
+      "action": "Lancer le chat en direct"
+    },
+    {
+      "icon": "calendar",
+      "kind": "meeting",
+      "title": "Planifier un rendez-vous",
+      "body": "Vous préférez un échange en face à face ? Réservez un rendez-vous et parlons bundling, à votre manière.",
+      "action": "Réserver un rendez-vous"
+    }
+  ],
+  "form": {
+    "nameLabel": "Nom complet",
+    "namePlaceholder": "Saisissez votre nom",
+    "emailLabel": "E-mail",
+    "emailPlaceholder": "Saisissez votre e-mail",
+    "subjectLabel": "Objet",
+    "subjectPlaceholder": "Saisissez un objet",
+    "messageLabel": "Votre message",
+    "messagePlaceholder": "Saisissez votre message",
+    "submit": "Envoyer le formulaire",
+    "errors": {
+      "name": "Veuillez saisir votre nom.",
+      "emailRequired": "Veuillez saisir votre e-mail.",
+      "emailInvalid": "Veuillez saisir un e-mail valide.",
+      "subject": "Veuillez saisir un objet.",
+      "message": "Veuillez saisir un message."
+    },
+    "successTitle": "Merci — message bien reçu !",
+    "successBody": "Nous vous répondrons sous 24 heures.",
+    "sendAnother": "Envoyer un autre message"
+  }
+}

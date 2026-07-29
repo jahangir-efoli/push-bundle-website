@@ -1,0 +1,80 @@
+{
+  "meta": {
+    "title": "关于我们 — Shopify 捆绑销售应用背后的团队",
+    "description": "了解我们为何打造 PushBundle、它为谁而生，以及 WhenLab 如何帮助 Shopify 商家解锁更智能、可扩展的捆绑销售。诞生于 Dubai，服务全球商家。"
+  },
+  "hero": {
+    "eyebrow": "关于我们",
+    "title": "在 Shopify 上实现更智能、更可扩展的捆绑销售",
+    "subtitle": "走近 PushBundle — 了解我们为何打造它、为谁而造，以及我们如何帮助全球商家在 Shopify 上解锁更智能、更可扩展的捆绑销售。"
+  },
+  "whoWeAre": {
+    "eyebrow": "我们是谁",
+    "title": "为超越简单捆绑的商家而生",
+    "body": "我们不断听到这样的声音：“我希望顾客能自由搭配自己的组合包，但我却无法控制组合包的规格或款式。”大多数应用都无法应对 B2B 捆绑销售的复杂性。于是我们打造了 PushBundle，一款无需代码的 Shopify 应用，让你全面掌控自由搭配（Mix & Match）组合、MOQ、批量折扣以及多件装（multi-pack）定价。没有变通妥协，只有可扩展的智能捆绑。诞生于 Dubai，服务全球商家。如果你曾被捆绑销售应用束缚，那么 PushBundle 正是为你而造。",
+    "imagePlaceholder": "我们是谁"
+  },
+  "mission": {
+    "eyebrow": "我们的使命",
+    "title": "让捆绑销售成为增长引擎",
+    "body": "在 WhenLab，我们的使命是为那些超越了“简单捆绑”的商家重新定义电商成功。PushBundle 源自真实的 Shopify 痛点，旨在提供智能、灵活、能随你的店铺一同成长的捆绑销售方案。",
+    "points": [
+      "将组合包规格、款式规则和 MOQ 转化为增长工具，而非绊脚石。",
+      "借助强大的批量折扣和多件装定价，助你提升 AOV。",
+      "成为需要掌控力、创意与成效的商家首选的捆绑折扣应用。"
+    ]
+  },
+  "vision": {
+    "eyebrow": "我们的愿景",
+    "title": "Shopify 捆绑销售的全新时代",
+    "body": "我们相信，捆绑销售应当是一种增长策略，而非技术难关。我们的愿景是引领 Shopify 捆绑销售的全新时代 — 让商家能够自由地创造顾客真正想要的一切，没有限制、无需代码、不必猜测。我们正在为认真经营的商家打造最值得信赖、最强大的捆绑销售应用。"
+  },
+  "features": {
+    "eyebrow": "为什么选择 PushBundle",
+    "title": "在 Shopify 上更智能的捆绑之道",
+    "subtitle": "PushBundle 助你按自己的方式创建捆绑。制定专属规则，提供批量优惠，让顾客自由搭配所爱。销量更高，烦恼更少。",
+    "items": [
+      {
+        "icon": "layers",
+        "title": "轻松创建捆绑",
+        "description": "通过专为繁忙商家设计的后台，轻松创建、编辑和管理捆绑。"
+      },
+      {
+        "icon": "cart",
+        "title": "用智能捆绑卖得更多",
+        "description": "通过贴合顾客购物方式的灵活折扣，提升你的平均订单价值。"
+      },
+      {
+        "icon": "sparkles",
+        "title": "打造顾客钟爱的捆绑",
+        "description": "提供吸睛的自由搭配捆绑，让顾客持续参与、不断回购。"
+      },
+      {
+        "icon": "globe",
+        "title": "与你一同成长",
+        "description": "无论你是本地经营还是走向全球，PushBundle 都会在每个阶段随你的店铺一同扩展。"
+      },
+      {
+        "icon": "wand",
+        "title": "智能定价，始终在线",
+        "description": "设置一次，从此无忧。PushBundle 会根据库存或顾客行为自动调整捆绑价格。"
+      },
+      {
+        "icon": "calendar",
+        "title": "提前排定促销",
+        "description": "提前规划闪购或季节性促销，PushBundle 会为你把控好时机。"
+      }
+    ]
+  },
+  "company": {
+    "eyebrow": "关于公司",
+    "title": "由 WhenLab 在 Dubai 打造",
+    "body": "PushBundle 由 WhenLab F.Z.C 打造，这是一支总部位于 Dubai 的团队，其旗下的一系列 Shopify 应用已服务全球商家。我们所打造的一切，都源自真实的商家反馈。",
+    "stats": [
+      { "value": "4.9 / 5", "label": "Shopify 评分" },
+      { "value": "Built for Shopify", "label": "认证徽章" },
+      { "value": "2025", "label": "上线时间" },
+      { "value": "5+", "label": "Shopify 应用" }
+    ]
+  }
+}

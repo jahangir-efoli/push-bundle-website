@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { cms, DEFAULT_LOCALE } from "@/lib/cms";
+import { cms } from "@/lib/cms";
 import { pageMetadata } from "@/lib/seo/metadata";
-import type { Locale } from "@/i18n/config";
+import { isLocale, type Locale } from "@/i18n/config";
+import { getAboutContent, getCommon } from "@/i18n/content";
 import { PageHero } from "@/components/sections/page-hero";
 import { Section } from "@/components/ui/section";
 import { Card, CardDescription, CardTitle } from "@/components/ui/card";
@@ -13,38 +14,37 @@ import { TrialCta } from "@/components/sections/trial-cta";
 import { FaqSection } from "@/components/sections/faq-section";
 import { JsonLd } from "@/components/seo/json-ld";
 import { breadcrumbLd, organizationLd } from "@/lib/seo/structured-data";
-import {
-  aboutCopy,
-  aboutFeatures,
-  company,
-  mission,
-  vision,
-  whoWeAre,
-} from "@/lib/content/about";
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ lang: string }>;
-}): Promise<Metadata> {
+const toLocale = (lang: string): Locale => (isLocale(lang) ? lang : "en");
+
+type Props = { params: Promise<{ lang: string }> };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang } = await params;
+  const locale = toLocale(lang);
+  const { meta } = await getAboutContent(locale);
   return pageMetadata({
-  title: "About — The Team Behind the Shopify Bundle App",
-  description:
-    "Why we built PushBundle, who it's for, and how WhenLab helps Shopify merchants unlock smarter, scalable bundling. Built in Dubai, made for global merchants.",
-  path: "/about-us",
-    locale: lang as Locale,
+    title: meta.title,
+    description: meta.description,
+    path: "/about-us",
+    locale,
   });
 }
 
 /** About us page (docs/PLAN.md §5.3). */
-export default async function AboutPage() {
-  const locale = DEFAULT_LOCALE;
-  const [rating, reviews, faqs] = await Promise.all([
+export default async function AboutPage({ params }: Props) {
+  const { lang } = await params;
+  const locale = toLocale(lang);
+
+  const [content, common, rating, reviews, faqs] = await Promise.all([
+    getAboutContent(locale),
+    getCommon(locale),
     cms.getAggregateRating(),
     cms.listReviews({ locale, limit: 12 }),
     cms.listFaqs({ locale, limit: 4 }),
   ]);
+
+  const { hero, whoWeAre, mission, vision, features, company } = content;
 
   return (
     <>
@@ -57,9 +57,9 @@ export default async function AboutPage() {
       />
 
       <PageHero
-        eyebrow={aboutCopy.eyebrow}
-        title={aboutCopy.title}
-        subtitle={aboutCopy.subtitle}
+        eyebrow={hero.eyebrow}
+        title={hero.title}
+        subtitle={hero.subtitle}
       />
 
       {/* Who we are — heading + image (drop a photo at /images/about/who-we-are.*) */}
@@ -82,7 +82,7 @@ export default async function AboutPage() {
                   <circle cx="9" cy="9" r="2" />
                   <path d="m21 15-3.6-3.6a2 2 0 0 0-2.8 0L6 20" />
                 </svg>
-                Who we are
+                {whoWeAre.imagePlaceholder}
               </span>
             </div>
           </div>
@@ -120,14 +120,14 @@ export default async function AboutPage() {
       {/* Feature grid */}
       <Section>
         <div className="max-w-2xl">
-          <Eyebrow>{aboutFeatures.eyebrow}</Eyebrow>
+          <Eyebrow>{features.eyebrow}</Eyebrow>
           <h2 className="mt-3 text-display-md text-balance">
-            {aboutFeatures.title}
+            {features.title}
           </h2>
-          <p className="mt-4 text-lg text-muted">{aboutFeatures.subtitle}</p>
+          <p className="mt-4 text-lg text-muted">{features.subtitle}</p>
         </div>
         <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {aboutFeatures.items.map((item, i) => (
+          {features.items.map((item, i) => (
             <li key={item.title} className="h-full">
               <AnimateIn delay={i * 0.06} className="h-full">
                 <Card className="h-full">
@@ -172,9 +172,20 @@ export default async function AboutPage() {
         </div>
       </Section>
 
-      <Reviews reviews={reviews} rating={rating} />
-      <TrialCta />
-      <FaqSection items={faqs} tone="subtle" />
+      <Reviews
+        reviews={reviews}
+        rating={rating}
+        eyebrow={common.reviews.eyebrow}
+        title={common.reviews.title}
+        subtitle={common.reviews.subtitle}
+      />
+      <TrialCta content={common.trialCta} />
+      <FaqSection
+        items={faqs}
+        eyebrow={common.faq.eyebrow}
+        title={common.faq.title}
+        tone="subtle"
+      />
     </>
   );
 }

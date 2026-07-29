@@ -1,0 +1,64 @@
+{
+  "meta": {
+    "title": "联系我们 — Shopify 捆绑销售应用支持",
+    "description": "联系 PushBundle 团队。给我们发邮件、发起在线聊天，或预约会议 — 我们将在 24 小时内回复。"
+  },
+  "hero": {
+    "eyebrow": "联系我们",
+    "title": "聊聊捆绑销售",
+    "subtitle": "遇到了捆绑销售方面的难题，或有提升店铺的好点子？我们非常期待收到你的来信。让我们聊一聊，共同探索如何将智慧的想法转化为强大的解决方案。"
+  },
+  "sidebar": {
+    "tagline": "随时联系我们",
+    "taglineBody": "致电我们、预约会议，或在下方留下你的项目详情。我们将在 24 小时内回复。说到做到！",
+    "emailLabel": "邮箱",
+    "phoneLabel": "电话",
+    "addressLabel": "地址",
+    "hoursLabel": "支持时间",
+    "hoursValue": "周一至周五"
+  },
+  "methods": [
+    {
+      "icon": "cart",
+      "kind": "email",
+      "title": "发送邮件",
+      "body": "有想法要分享，或遇到了任何问题？给我们发邮件吧。我们洗耳恭听，乐意为你效劳。",
+      "action": "给我们发邮件"
+    },
+    {
+      "icon": "sparkles",
+      "kind": "chat",
+      "title": "在线聊聊",
+      "body": "有疑问吗？我们的团队周一至周五几乎全天候为你待命。",
+      "action": "发起在线聊天"
+    },
+    {
+      "icon": "calendar",
+      "kind": "meeting",
+      "title": "预约会议",
+      "body": "更喜欢面对面交流？预约一场会议，让我们按你的方式聊聊捆绑销售。",
+      "action": "预约会议"
+    }
+  ],
+  "form": {
+    "nameLabel": "姓名",
+    "namePlaceholder": "请输入你的姓名",
+    "emailLabel": "邮箱",
+    "emailPlaceholder": "请输入你的邮箱",
+    "subjectLabel": "主题",
+    "subjectPlaceholder": "请输入主题",
+    "messageLabel": "留言内容",
+    "messagePlaceholder": "请输入你的留言",
+    "submit": "提交表单",
+    "errors": {
+      "name": "请输入你的姓名。",
+      "emailRequired": "请输入你的邮箱。",
+      "emailInvalid": "请输入有效的邮箱地址。",
+      "subject": "请输入主题。",
+      "message": "请输入留言内容。"
+    },
+    "successTitle": "谢谢 — 我们已收到你的留言！",
+    "successBody": "我们将在 24 小时内回复你。",
+    "sendAnother": "再发一条留言"
+  }
+}
