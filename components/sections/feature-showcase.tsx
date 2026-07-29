@@ -179,7 +179,7 @@ export function FeatureShowcase() {
         <div>
           <h3 className="text-display-sm text-balance">{feature.title}</h3>
 
-          <div className="mt-5 space-y-5">
+          <div className="mt-6 space-y-6">
             {[
               { label: "How it Works", body: feature.howItWorks },
               { label: "Benefits", body: feature.benefits },
@@ -187,14 +187,14 @@ export function FeatureShowcase() {
             ].map((s) => (
               <div key={s.label}>
                 <h4 className="text-base font-bold text-foreground">{s.label}</h4>
-                <p className="mt-1.5 text-sm leading-relaxed text-muted">
+                <p className="mt-2 text-base leading-relaxed text-muted">
                   {s.body}
                 </p>
               </div>
             ))}
           </div>
 
-          <div className="mt-7">
+          <div className="mt-8">
             <a
               href={site.shopifyAppUrl}
               target="_blank"
