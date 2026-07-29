@@ -64,19 +64,17 @@ export function Header({
 
   return (
     <>
-      <header
+      <header className="sticky top-0 z-40 px-gutter pt-3 sm:pt-4">
+      {/* Floating "pill": a self-contained capsule that hovers above the page,
+          so it no longer needs to align to the (full-bleed) hero edges. Capped
+          at max-w-site to stay consistent with the rest of the site's content.
+          Three parts: logo (left) · nav (centered) · actions (right). */}
+      <div
         className={cn(
-          // Only paint properties transition — the header height stays constant
-          // (animating it shifted the document and caused a scroll shake).
-          "sticky top-0 z-40 border-b transition-[background-color,border-color,box-shadow] duration-200",
-          scrolled
-            ? "border-border bg-background/85 shadow-soft backdrop-blur-md"
-            : "border-transparent bg-background",
+          "mx-auto flex h-16 w-full max-w-site items-center gap-3 rounded-full border border-border bg-surface/95 px-4 backdrop-blur-md transition-shadow duration-200 sm:px-6",
+          scrolled ? "shadow-lift" : "shadow-soft",
         )}
-    >
-      {/* Shared site width (max-w-site) so the logo/actions line up with the
-          page content. Three parts: logo (left) · nav (centered) · actions (right). */}
-      <div className="mx-auto flex h-20 w-full max-w-site items-center gap-4 px-gutter">
+      >
         <div className="flex flex-1 items-center">
           <Link
             href={homeHref}
