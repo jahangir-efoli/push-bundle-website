@@ -20,6 +20,9 @@ export type DropdownItem = {
   onSelect?: () => void;
   /** Marks the active choice (e.g. current locale). */
   current?: boolean;
+  /** Pass `false` to keep the scroll position on navigation (e.g. switching
+      locale in place, rather than jumping to the top like a page change). */
+  scroll?: boolean;
 };
 
 export function Dropdown({
@@ -161,6 +164,7 @@ export function Dropdown({
                 key={i}
                 {...shared}
                 href={item.href}
+                scroll={item.scroll}
                 aria-current={item.current ? "true" : undefined}
                 ref={(el) => {
                   itemRefs.current[i] = el;

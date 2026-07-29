@@ -51,6 +51,9 @@ export function LocaleSwitcher({
         ),
         href: localizePath(barePath, locale),
         current: locale === current,
+        // Same page, just translated — keep the reader where they are instead
+        // of jumping to the top like a normal page navigation.
+        scroll: false,
       }))}
     />
   );
