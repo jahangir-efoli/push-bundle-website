@@ -10,7 +10,12 @@ import { trialCta } from "@/lib/content/home";
  * give it depth so the white copy stays crisp (a flat bright gradient washed
  * the text out / looked hazy).
  */
-export function TrialCta() {
+export function TrialCta({
+  content = trialCta,
+}: {
+  /** Localized copy; defaults to the English content module. */
+  content?: { title: string; subtitle: string; cta: string };
+} = {}) {
   return (
     <section className="px-gutter py-section">
       <div className="relative mx-auto max-w-site overflow-hidden rounded-3xl bg-brand-gradient px-6 py-16 text-center text-white shadow-lift sm:px-12 sm:py-20">
@@ -36,10 +41,10 @@ export function TrialCta() {
 
         <div className="relative">
           <h2 className="mx-auto max-w-3xl text-display-md text-balance">
-            {trialCta.title}
+            {content.title}
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-lg text-white/95">
-            {trialCta.subtitle}
+            {content.subtitle}
           </p>
           <a
             href={site.shopifyAppUrl}
@@ -49,7 +54,7 @@ export function TrialCta() {
               className: "mt-8 shadow-lift",
             })}
           >
-            {trialCta.cta}
+            {content.cta}
           </a>
         </div>
       </div>

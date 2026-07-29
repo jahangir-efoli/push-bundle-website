@@ -46,17 +46,23 @@ function ReviewCard({
 export function Reviews({
   reviews,
   rating,
+  eyebrow = "Social proof",
+  title = reviewsSection.title,
+  subtitle = reviewsSection.subtitle,
 }: {
   reviews: Review[];
   rating: AggregateRating;
+  eyebrow?: string;
+  title?: string;
+  subtitle?: string;
 }) {
   return (
     <Section>
       <div className="flex flex-wrap items-end justify-between gap-6">
         <div className="max-w-2xl">
-          <Eyebrow>Social proof</Eyebrow>
-          <h2 className="mt-3 text-display-md">{reviewsSection.title}</h2>
-          <p className="mt-4 text-muted">{reviewsSection.subtitle}</p>
+          <Eyebrow>{eyebrow}</Eyebrow>
+          <h2 className="mt-3 text-display-md">{title}</h2>
+          <p className="mt-4 text-muted">{subtitle}</p>
         </div>
 
         <p className="text-muted">

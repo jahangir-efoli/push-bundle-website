@@ -1,0 +1,191 @@
+{
+  "meta": {
+    "title": "Funciones — El kit completo de bundles para Shopify",
+    "description": "Explora todas las funciones de PushBundle: Mix & Match para armar tu caja, bundles fijos y por volumen, precios B2B, vistas previas en vivo, checkout nativo y mucho más, todo sin código."
+  },
+  "hero": {
+    "eyebrow": "Funciones",
+    "title": "Todo lo que necesitas para crear bundles que convierten",
+    "subtitle": "Desde Mix & Match para armar tu caja hasta precios por volumen B2B, PushBundle ofrece a los comercios de Shopify un kit de bundling completo y sin código, diseñado para aumentar el valor medio del pedido sin ralentizar tu tienda."
+  },
+  "catalogue": {
+    "eyebrow": "El kit de herramientas",
+    "title": "Una sola app, todo tipo de bundles",
+    "subtitle": "Combina los bloques de abajo para lanzar cualquier promoción de bundles en minutos, sin desarrolladores ni cambios en el tema.",
+    "items": [
+      {
+        "icon": "layers",
+        "title": "Todos los tipos de bundle",
+        "description": "Lanza cualquier formato de bundle que esperan tus clientes, desde un armado guiado de caja hasta sets fijos y packs por volumen escalonados.",
+        "points": [
+          "Mix & Match — Arma tu caja",
+          "Bundles de productos fijos",
+          "Volume Bundles",
+          "Bundles multipack",
+          "Bundles de productos mixtos",
+          "Cantidad fija por variante"
+        ]
+      },
+      {
+        "icon": "sparkles",
+        "title": "Descuentos flexibles",
+        "description": "Premia los carritos más grandes a tu manera con reglas de descuento por niveles que se adaptan a cómo fijas los precios de tu catálogo.",
+        "points": [
+          "Descuento porcentual",
+          "Descuento fijo sobre el total",
+          "Descuento por cantidad fija",
+          "Rango de cantidad personalizado",
+          "Descuento multipack"
+        ]
+      },
+      {
+        "icon": "shield",
+        "title": "B2B y segmentación",
+        "description": "Atiende a compradores mayoristas y clientes VIP con bundles y precios que solo verán los clientes adecuados.",
+        "points": [
+          "Bundles por etiqueta de cliente",
+          "Bundles para clientes específicos",
+          "Restricción de variantes",
+          "Límite de cantidad por variante"
+        ]
+      },
+      {
+        "icon": "wand",
+        "title": "Experiencia en la tienda",
+        "description": "Un creador de bundles de alta conversión y acorde a tu marca que muestra una vista previa en vivo mientras el cliente elige, directamente en tu página de producto.",
+        "points": [
+          "Vista previa del bundle en vivo",
+          "Visualizaciones dinámicas de bundles",
+          "Icono de bundle personalizado",
+          "Personalización básica",
+          "CSS personalizado"
+        ]
+      },
+      {
+        "icon": "cart",
+        "title": "Checkout sin fricciones",
+        "description": "Los bundles fluyen por el checkout nativo de Shopify, sin soluciones improvisadas, sin descuentos rotos y sin código en el tema.",
+        "points": [
+          "Checkout nativo de Shopify",
+          "Compatible con Shopify Plus",
+          "Listo para POS y Markets",
+          "Sin editar el código del tema"
+        ]
+      },
+      {
+        "icon": "calendar",
+        "title": "Programación y control",
+        "description": "Planifica tus promociones con antelación y crea urgencia con lanzamientos programados, de edición limitada y de cantidad limitada.",
+        "points": [
+          "Programa bundles",
+          "Bundles de edición limitada",
+          "Lanzamientos de cantidad limitada"
+        ]
+      }
+    ]
+  },
+  "demos": {
+    "items": [
+      {
+        "id": "volume",
+        "icon": "gauge",
+        "tab": "Volume Bundle",
+        "title": "Volume Bundle",
+        "description": "Premia a quienes compran más. Ofrece descuentos por cantidad escalonados (cuanto más grande el pack, mayor el % de descuento) y deja que los clientes llenen el pack con cualquier combinación de variantes.",
+        "howItWorks": "Configura niveles como Compra 5 / 10 / 15, cada uno con su propio descuento. El cliente elige un nivel, selecciona las variantes para llenar el pack, y el total y el ahorro se actualizan en vivo antes de agregar al carrito.",
+        "benefits": "Aumenta el valor medio del pedido con descuentos por cantidad que premian los carritos más grandes, ideal para venta mayorista, multipacks y productos de reposición, mientras mantienes el control total de cada nivel y descuento.",
+        "flexibility": "Muestra los niveles como una lista compacta o en tarjetas, en la página de producto o en una página de bundle dedicada, en formato vertical u horizontal, todo con el estilo de tu tema.",
+        "cta": "Prueba el Volume Bundle"
+      },
+      {
+        "id": "cross-sell",
+        "icon": "cart",
+        "tab": "Cross-Sell",
+        "title": "Cross-Sell Bundle",
+        "description": "Combina productos relacionados en un solo bundle y ofrece artículos complementarios para una compra fluida y de mayor valor, directamente en la página de producto.",
+        "howItWorks": "Agrupa productos que se venden bien juntos y aplica un descuento de bundle; los clientes añaden el set completo con un solo clic.",
+        "benefits": "Aumenta el AOV combinando productos complementarios a un precio de bundle, un upsell probado que convierte una compra en un set completo sin clics adicionales.",
+        "flexibility": "Selecciona el set exacto, fija o muestra las cantidades y deja que los clientes elijan variantes, ya sea en la página de producto o como un bloque de \"comprados juntos habitualmente\".",
+        "cta": "Prueba el Cross-Sell Bundle"
+      },
+      {
+        "id": "mix-single",
+        "icon": "wand",
+        "tab": "Mix & Match (Único)",
+        "title": "Mix & Match — Producto único",
+        "description": "Permite a los clientes armar un pack combinando distintas variantes de un mismo producto: colores, tallas y opciones a su gusto.",
+        "howItWorks": "Elige un producto, define los tamaños de pack y los clientes arman su propia combinación con el descuento aplicado a medida que se llena la caja.",
+        "benefits": "Impulsa la interacción y el AOV dejando que los clientes armen su propio pack con las variantes de un producto, perfecto para packs de colores, sets de muestra y cajas tipo suscripción.",
+        "flexibility": "Define tamaños de pack y precios escalonados, limita las cantidades por variante y muéstralo como una cuadrícula compacta o una página completa, vertical u horizontal, para adaptarse a cualquier tema.",
+        "cta": "Prueba el Mix & Match Bundle"
+      },
+      {
+        "id": "mix-multi",
+        "icon": "layers",
+        "tab": "Mix & Match (Múltiple)",
+        "title": "Mix & Match — Varios productos",
+        "description": "Permite a los clientes combinar variantes de varios productos en un solo bundle personalizado, con control total sobre reglas, límites y precios.",
+        "howItWorks": "Selecciona los productos, define los mínimos/máximos y los límites por variante, y los clientes arman un bundle personalizado de varios productos.",
+        "benefits": "Aumenta el tamaño del carrito con sets de varios productos totalmente personalizables, ideales para colecciones seleccionadas y kits a medida, mientras mantienes el control de reglas y límites.",
+        "flexibility": "Selecciona el catálogo, define mínimos/máximos y límites por variante, y ofrece opciones de variante integradas, ya sea como un widget incrustado o una página de bundle independiente.",
+        "cta": "Prueba el Mix & Match Bundle"
+      },
+      {
+        "id": "byob",
+        "icon": "sparkles",
+        "tab": "Build Your Own Box",
+        "title": "Build Your Own Box",
+        "description": "Un creador paso a paso que permite a los clientes elegir una caja, añadir productos y tarjetas de regalo, y personalizarla con formularios a medida.",
+        "howItWorks": "Diseña un flujo guiado de varios pasos: elegir una caja, añadir artículos y recopilar detalles personalizados antes de agregar al carrito.",
+        "benefits": "Convierte los regalos en una experiencia premium que eleva el AOV: los clientes arman una caja personalizada, añaden una tarjeta y dejan un mensaje, todo en un mismo flujo guiado.",
+        "flexibility": "Configura cada paso (cajas, productos, tarjetas y campos de formulario personalizados) y luego reordena o elimina pasos para adaptarte a cualquier flujo de regalo o suscripción.",
+        "cta": "Prueba el BYOB Bundle"
+      }
+    ]
+  },
+  "spotlights": {
+    "items": [
+      {
+        "icon": "layers",
+        "eyebrow": "Mix & Match",
+        "title": "Deja que tus clientes armen su propia caja",
+        "body": "Ofrece a tus clientes una experiencia guiada de selección con un toque para armar su propio pack con los productos que elijas. Perfecto para sets de cuidado de la piel, combinaciones de suplementos, regalos seleccionados y kits de inicio, con el descuento aplicado automáticamente a medida que se llena la caja.",
+        "points": [
+          "Creador de cajas con selección por toque, sin arrastrar",
+          "Vende la misma combinación en distintos tamaños de pack",
+          "El total y el ahorro se actualizan en vivo mientras eligen",
+          "Define mínimos, máximos y límites por variante"
+        ]
+      },
+      {
+        "icon": "shield",
+        "eyebrow": "B2B y Volumen",
+        "title": "Precios mayoristas que escalan con el carrito",
+        "body": "Convierte a los compradores ocasionales en compradores al por mayor con niveles por volumen, y muestra bundles exclusivos para mayoristas a las cuentas B2B etiquetadas. Premia automáticamente los pedidos más grandes para que tus mejores clientes siempre obtengan tu mejor precio.",
+        "points": [
+          "Descuentos por volumen escalonados según la cantidad",
+          "Segmentación por etiqueta de cliente y cliente específico",
+          "Reglas porcentuales, fijas o basadas en cantidad",
+          "Ideal para venta mayorista, membresías y clientes VIP"
+        ]
+      },
+      {
+        "icon": "gauge",
+        "eyebrow": "Diseñado para la velocidad",
+        "title": "Rápido, nativo y fácil para el comercio",
+        "body": "PushBundle está hecho para Shopify: los bundles pasan por el checkout nativo, cargan rápido en el móvil y se instalan sin tocar el código de tu tema. Configura tu primer bundle en minutos y mantén el control total del diseño con estilos básicos o CSS personalizado.",
+        "points": [
+          "Configuración sin código, activo en minutos",
+          "Checkout nativo, Plus, POS y Markets",
+          "Optimizado para la adaptabilidad móvil",
+          "Estilo acorde a tu marca con CSS personalizado"
+        ]
+      }
+    ]
+  },
+  "freePlan": {
+    "badge": "Plan gratuito disponible",
+    "title": "Empieza a crear bundles gratis y mejora tu plan solo cuando crezcas",
+    "body": "Lanza tu primer bundle en el plan gratuito y luego desbloquea Mix & Match, segmentación B2B y descuentos avanzados en PushBundle cuando estés listo."
+  }
+}

@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { LocaleLink as Link } from "@/components/ui/locale-link";
-import { cms, DEFAULT_LOCALE } from "@/lib/cms";
+import { cms } from "@/lib/cms";
 import { pageMetadata } from "@/lib/seo/metadata";
-import type { Locale } from "@/i18n/config";
+import { isLocale, type Locale } from "@/i18n/config";
+import { getCommon, getFeaturesContent } from "@/i18n/content";
 import { PageHero } from "@/components/sections/page-hero";
 import { Section } from "@/components/ui/section";
 import { Card, CardDescription, CardTitle } from "@/components/ui/card";
@@ -19,24 +20,20 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { breadcrumbLd } from "@/lib/seo/structured-data";
 import { site } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
-import {
-  featuresCopy,
-  featureCategories,
-  featureSpotlights,
-} from "@/lib/content/features";
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ lang: string }>;
-}): Promise<Metadata> {
+const toLocale = (lang: string): Locale => (isLocale(lang) ? lang : "en");
+
+type Props = { params: Promise<{ lang: string }> };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang } = await params;
+  const locale = toLocale(lang);
+  const { meta } = await getFeaturesContent(locale);
   return pageMetadata({
-    title: "Features — The Complete Shopify Bundle Toolkit",
-    description:
-      "Explore every PushBundle feature: mix & match build-a-box, fixed and volume bundles, B2B pricing, live previews, native checkout, and more — all no-code.",
+    title: meta.title,
+    description: meta.description,
     path: "/features",
-    locale: lang as Locale,
+    locale,
   });
 }
 
@@ -55,13 +52,19 @@ function Check() {
 }
 
 /** Features page (docs/PLAN.md §5 — new page). */
-export default async function FeaturesPage() {
-  const locale = DEFAULT_LOCALE;
-  const [rating, reviews, faqs] = await Promise.all([
+export default async function FeaturesPage({ params }: Props) {
+  const { lang } = await params;
+  const locale = toLocale(lang);
+
+  const [content, common, rating, reviews, faqs] = await Promise.all([
+    getFeaturesContent(locale),
+    getCommon(locale),
     cms.getAggregateRating(),
     cms.listReviews({ locale, limit: 12 }),
     cms.listFaqs({ locale, limit: 4 }),
   ]);
+
+  const { hero, catalogue, demos, spotlights, freePlan } = content;
 
   return (
     <>
@@ -73,22 +76,22 @@ export default async function FeaturesPage() {
       />
 
       <PageHero
-        eyebrow={featuresCopy.eyebrow}
-        title={featuresCopy.title}
-        subtitle={featuresCopy.subtitle}
+        eyebrow={hero.eyebrow}
+        title={hero.title}
+        subtitle={hero.subtitle}
       >
         <div className="flex flex-wrap gap-4">
           <a
             href={site.shopifyAppUrl}
             className={buttonStyles({ variant: "gradient", size: "lg" })}
           >
-            Install Free on Shopify
+            {common.ctas.installFree}
           </a>
           <Link
             href="/pricing"
             className={buttonStyles({ variant: "secondary", size: "lg" })}
           >
-            See pricing
+            {common.ctas.seePricing}
           </Link>
         </div>
       </PageHero>
@@ -96,17 +99,15 @@ export default async function FeaturesPage() {
       {/* Feature catalogue */}
       <Section tone="wash">
         <div className="max-w-2xl">
-          <Eyebrow>{featureCategories.eyebrow}</Eyebrow>
+          <Eyebrow>{catalogue.eyebrow}</Eyebrow>
           <h2 className="mt-3 text-display-md text-balance">
-            {featureCategories.title}
+            {catalogue.title}
           </h2>
-          <p className="mt-4 text-lg text-muted">
-            {featureCategories.subtitle}
-          </p>
+          <p className="mt-4 text-lg text-muted">{catalogue.subtitle}</p>
         </div>
 
         <ul className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {featureCategories.items.map((item, i) => (
+          {catalogue.items.map((item, i) => (
             <li key={item.title} className="h-full">
               <AnimateIn delay={(i % 3) * 0.08} className="h-full">
                 <Card className="flex h-full flex-col">
@@ -133,10 +134,10 @@ export default async function FeaturesPage() {
       </Section>
 
       {/* Each bundle type as its own section: live demo + copy, alternating */}
-      <FeatureDemos />
+      <FeatureDemos features={demos.items} labels={common.demoLabels} />
 
       {/* Spotlights — alternating text + checklist panel */}
-      {featureSpotlights.map((s, i) => (
+      {spotlights.items.map((s, i) => (
         <Section key={s.title} tone={i % 2 === 1 ? "alt" : "default"}>
           <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
             <div className={cn(i % 2 === 1 && "lg:order-2")}>
@@ -148,7 +149,7 @@ export default async function FeaturesPage() {
                   href="/pricing"
                   className={buttonStyles({ variant: "secondary" })}
                 >
-                  See plans
+                  {common.ctas.seePlans}
                 </Link>
               </div>
             </div>
@@ -182,34 +183,43 @@ export default async function FeaturesPage() {
 
       {/* Free plan nudge */}
       <Section tone="subtle" className="text-center">
-        <Badge tone="brand">Free plan available</Badge>
+        <Badge tone="brand">{freePlan.badge}</Badge>
         <h2 className="mx-auto mt-4 max-w-2xl text-display-md text-balance">
-          Start bundling free — upgrade only when you grow
+          {freePlan.title}
         </h2>
         <p className="mx-auto mt-4 max-w-xl text-lg text-muted">
-          Launch your first bundle on the free plan, then unlock Mix &amp; Match,
-          B2B targeting, and advanced discounts on {site.name} when you&rsquo;re
-          ready.
+          {freePlan.body}
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-4">
           <a
             href={site.shopifyAppUrl}
             className={buttonStyles({ variant: "gradient", size: "lg" })}
           >
-            Install Free on Shopify
+            {common.ctas.installFree}
           </a>
           <Link
             href="/pricing"
             className={buttonStyles({ variant: "secondary", size: "lg" })}
           >
-            Compare plans
+            {common.ctas.comparePlans}
           </Link>
         </div>
       </Section>
 
-      <Reviews reviews={reviews} rating={rating} />
-      <TrialCta />
-      <FaqSection items={faqs} tone="subtle" />
+      <Reviews
+        reviews={reviews}
+        rating={rating}
+        eyebrow={common.reviews.eyebrow}
+        title={common.reviews.title}
+        subtitle={common.reviews.subtitle}
+      />
+      <TrialCta content={common.trialCta} />
+      <FaqSection
+        items={faqs}
+        eyebrow={common.faq.eyebrow}
+        title={common.faq.title}
+        tone="subtle"
+      />
     </>
   );
 }

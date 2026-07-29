@@ -1,0 +1,29 @@
+{
+  "ctas": {
+    "installFree": "Shopifyに無料でインストール",
+    "seePricing": "料金を見る",
+    "comparePlans": "プランを比較する",
+    "seePlans": "プランを見る"
+  },
+  "demoLabels": {
+    "howItWorks": "仕組み",
+    "benefits": "メリット",
+    "flexibility": "柔軟性",
+    "livePreview": "ライブプレビュー",
+    "opensNewTab": "（新しいタブで開きます）"
+  },
+  "reviews": {
+    "eyebrow": "お客様の声",
+    "title": "Shopifyマーチャントに選ばれています",
+    "subtitle": "PushBundleを毎日活用するストアからの本物のレビューです。"
+  },
+  "trialCta": {
+    "title": "PushBundleの実力を、ノーリスクで体感しましょう！",
+    "subtitle": "ワンクリックで始めて、賢いバンドルが売上をどう変えるかをぜひご体感ください。",
+    "cta": "14日間の無料トライアルを始める"
+  },
+  "faq": {
+    "eyebrow": "よくある質問",
+    "title": "よくあるご質問"
+  }
+}

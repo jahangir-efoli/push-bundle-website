@@ -1,0 +1,191 @@
+{
+  "meta": {
+    "title": "Fonctionnalités — La boîte à outils complète pour vos offres groupées Shopify",
+    "description": "Découvrez toutes les fonctionnalités de PushBundle : composez votre coffret Mix & Match, offres groupées fixes et par volume, tarifs B2B, aperçus en direct, paiement natif, et bien plus — le tout no-code."
+  },
+  "hero": {
+    "eyebrow": "Fonctionnalités",
+    "title": "Tout ce qu'il vous faut pour créer des offres groupées qui convertissent",
+    "subtitle": "Du coffret Mix & Match aux tarifs B2B par volume, PushBundle offre aux marchands Shopify une boîte à outils complète et no-code — conçue pour augmenter le panier moyen sans ralentir votre boutique."
+  },
+  "catalogue": {
+    "eyebrow": "La boîte à outils",
+    "title": "Une seule app, tous les types d'offres groupées",
+    "subtitle": "Combinez les blocs ci-dessous pour lancer n'importe quelle promotion en quelques minutes — sans développeur, sans modifier votre thème.",
+    "items": [
+      {
+        "icon": "layers",
+        "title": "Tous les types d'offres groupées",
+        "description": "Proposez tous les formats d'offres groupées que vos clients attendent, du coffret guidé aux lots fixes et aux packs par volume à paliers.",
+        "points": [
+          "Mix & Match — Composez votre coffret",
+          "Offres groupées de produits fixes",
+          "Offres groupées par volume",
+          "Offres groupées multipacks",
+          "Offres groupées multi-produits",
+          "Variantes à quantité fixe"
+        ]
+      },
+      {
+        "icon": "sparkles",
+        "title": "Remises flexibles",
+        "description": "Récompensez les paniers plus importants à votre façon grâce à des règles de remise superposées, adaptées à la structure tarifaire de votre catalogue.",
+        "points": [
+          "Remise en pourcentage",
+          "Remise fixe sur le total",
+          "Remise sur quantité fixe",
+          "Plage de quantité personnalisée",
+          "Remise multipack"
+        ]
+      },
+      {
+        "icon": "shield",
+        "title": "B2B et ciblage",
+        "description": "Servez vos acheteurs grossistes et vos VIP avec des offres groupées et des tarifs que seuls les bons clients peuvent voir.",
+        "points": [
+          "Offres groupées par étiquette client",
+          "Offres groupées par client spécifique",
+          "Restriction de variantes",
+          "Limite de quantité par variante"
+        ]
+      },
+      {
+        "icon": "wand",
+        "title": "Expérience en boutique",
+        "description": "Un créateur d'offres groupées à forte conversion et fidèle à votre marque, avec un aperçu en direct au fur et à mesure des choix — directement sur votre page produit.",
+        "points": [
+          "Aperçu de l'offre groupée en direct",
+          "Affichages dynamiques des offres groupées",
+          "Icône d'offre groupée personnalisée",
+          "Personnalisation de base",
+          "CSS personnalisé"
+        ]
+      },
+      {
+        "icon": "cart",
+        "title": "Paiement fluide",
+        "description": "Les offres groupées passent par le paiement natif de Shopify — sans contournement, sans remises cassées, sans code de thème.",
+        "points": [
+          "Paiement natif Shopify",
+          "Compatible avec Shopify Plus",
+          "Prêt pour POS et Shopify Markets",
+          "Aucune modification du code du thème"
+        ]
+      },
+      {
+        "icon": "calendar",
+        "title": "Planification et contrôle",
+        "description": "Planifiez vos promotions à l'avance et créez un sentiment d'urgence avec des offres programmées, en édition limitée et en quantité limitée.",
+        "points": [
+          "Programmer les offres groupées",
+          "Offres groupées en édition limitée",
+          "Lancements en quantité limitée"
+        ]
+      }
+    ]
+  },
+  "demos": {
+    "items": [
+      {
+        "id": "volume",
+        "icon": "gauge",
+        "tab": "Volume Bundle",
+        "title": "Volume Bundle",
+        "description": "Récompensez les clients qui achètent plus. Proposez des remises par paliers de quantité — plus le pack est grand, plus la remise est élevée — et laissez les clients composer le pack avec n'importe quel mélange de variantes.",
+        "howItWorks": "Définissez des paliers comme Achetez 5 / 10 / 15, chacun avec sa propre remise. Le client choisit un palier, sélectionne les variantes pour composer le pack, et le total ainsi que les économies se mettent à jour en direct avant l'ajout au panier.",
+        "benefits": "Augmentez le panier moyen grâce à des remises sur quantité qui récompensent les paniers plus importants — idéal pour la vente en gros, les multipacks et les produits de réassort — tout en gardant le contrôle total sur chaque palier et chaque remise.",
+        "flexibility": "Affichez les paliers sous forme de liste compacte ou de cartes, sur la page produit ou sur une page d'offre groupée dédiée, en disposition verticale ou horizontale — le tout stylisé pour s'harmoniser avec votre thème.",
+        "cta": "Découvrir le Volume Bundle"
+      },
+      {
+        "id": "cross-sell",
+        "icon": "cart",
+        "tab": "Cross-Sell",
+        "title": "Cross-Sell Bundle",
+        "description": "Combinez des articles complémentaires en une seule offre groupée et proposez des produits associés pour un achat fluide et à plus forte valeur, directement sur la page produit.",
+        "howItWorks": "Regroupez des produits qui se vendent bien ensemble et appliquez une remise sur l'offre groupée — les clients ajoutent l'ensemble complet en un seul clic.",
+        "benefits": "Augmentez l'AOV en associant des produits complémentaires à un prix groupé — une vente incitative éprouvée qui transforme un simple achat en un ensemble complet, sans clics supplémentaires.",
+        "flexibility": "Composez l'ensemble exact, fixez ou affichez les quantités, et laissez les clients choisir les variantes — présenté directement sur la page produit ou sous forme de bloc « fréquemment achetés ensemble ».",
+        "cta": "Découvrir le Cross-Sell Bundle"
+      },
+      {
+        "id": "mix-single",
+        "icon": "wand",
+        "tab": "Mix & Match (produit unique)",
+        "title": "Mix & Match — Produit unique",
+        "description": "Laissez vos clients composer un pack en mélangeant différentes variantes d'un même produit — couleurs, tailles et options selon leurs goûts.",
+        "howItWorks": "Choisissez un produit, définissez les tailles de pack, et les clients composent leur propre mélange avec la remise appliquée au fur et à mesure que le coffret se remplit.",
+        "benefits": "Boostez l'engagement et l'AOV en laissant les clients composer leur propre pack à partir des variantes d'un seul produit — parfait pour les packs de couleurs, les coffrets d'échantillons et les box par abonnement.",
+        "flexibility": "Définissez les tailles de pack et les tarifs par paliers, plafonnez les quantités par variante, et affichez le tout sous forme de grille compacte ou de page complète — en disposition verticale ou horizontale pour s'adapter à tout thème.",
+        "cta": "Découvrir le Mix & Match Bundle"
+      },
+      {
+        "id": "mix-multi",
+        "icon": "layers",
+        "tab": "Mix & Match (multi)",
+        "title": "Mix & Match — Plusieurs produits",
+        "description": "Laissez vos clients mélanger des variantes de plusieurs produits dans une seule offre groupée personnalisée, avec un contrôle total sur les règles, les limites et les tarifs.",
+        "howItWorks": "Sélectionnez les produits, définissez les minimums/maximums et les limites par variante, et les clients composent une offre groupée multi-produits personnalisée.",
+        "benefits": "Augmentez la taille du panier grâce à des ensembles multi-produits entièrement personnalisables — parfaits pour les collections sélectionnées et les kits sur mesure — tout en gardant le contrôle des règles et des limites.",
+        "flexibility": "Sélectionnez le catalogue, définissez les minimums/maximums et les limites par variante, et proposez les options de variantes en ligne — sous forme de widget intégré ou de page d'offre groupée autonome.",
+        "cta": "Découvrir le Mix & Match Bundle"
+      },
+      {
+        "id": "byob",
+        "icon": "sparkles",
+        "tab": "Build Your Own Box",
+        "title": "Build Your Own Box",
+        "description": "Un créateur étape par étape qui permet aux clients de choisir un coffret, d'ajouter des produits et des cartes cadeaux, et de le personnaliser avec des formulaires sur mesure.",
+        "howItWorks": "Concevez un parcours guidé en plusieurs étapes — choisir un coffret, ajouter des articles et recueillir des informations personnalisées avant l'ajout au panier.",
+        "benefits": "Transformez le cadeau en une expérience premium qui augmente l'AOV — les clients composent un coffret personnalisé, ajoutent une carte et laissent un message, le tout dans un parcours guidé unique.",
+        "flexibility": "Configurez chaque étape — coffrets, produits, cartes et champs de formulaire personnalisés — puis réorganisez ou supprimez des étapes pour s'adapter à tout parcours de cadeau ou d'abonnement.",
+        "cta": "Découvrir le BYOB Bundle"
+      }
+    ]
+  },
+  "spotlights": {
+    "items": [
+      {
+        "icon": "layers",
+        "eyebrow": "Mix & Match",
+        "title": "Laissez vos clients composer leur propre coffret",
+        "body": "Offrez à vos clients une expérience guidée, en un simple toucher, pour composer leur propre pack à partir des produits que vous choisissez. Parfait pour les routines de soin, les cures de compléments, les cadeaux sélectionnés et les kits de démarrage — avec la remise appliquée automatiquement au fur et à mesure que le coffret se remplit.",
+        "points": [
+          "Créateur de coffret par simple toucher, sans glisser-déposer",
+          "Vendez le même mélange en différentes tailles de pack",
+          "Total et économies mis à jour en direct à chaque choix",
+          "Définissez des minimums, des maximums et des limites par variante"
+        ]
+      },
+      {
+        "icon": "shield",
+        "eyebrow": "B2B et volume",
+        "title": "Des tarifs de gros qui évoluent avec le panier",
+        "body": "Transformez les clients occasionnels en acheteurs en gros grâce à des paliers de volume, et présentez des offres groupées réservées aux grossistes à vos comptes B2B étiquetés. Récompensez automatiquement les commandes plus importantes pour que vos meilleurs clients bénéficient toujours de votre meilleur prix.",
+        "points": [
+          "Remises par paliers de volume selon la quantité",
+          "Ciblage par étiquette client et par client spécifique",
+          "Règles en pourcentage, fixes ou basées sur la quantité",
+          "Idéal pour la vente en gros, les adhésions et les VIP"
+        ]
+      },
+      {
+        "icon": "gauge",
+        "eyebrow": "Conçu pour la vitesse",
+        "title": "Rapide, natif et pensé pour les marchands",
+        "body": "PushBundle est conçu pour Shopify — les offres groupées passent par le paiement natif, se chargent rapidement sur mobile et s'installent sans toucher au code de votre thème. Configurez votre première offre groupée en quelques minutes et gardez le contrôle total de son apparence avec un style de base ou du CSS personnalisé.",
+        "points": [
+          "Configuration no-code — en ligne en quelques minutes",
+          "Paiement natif, Plus, POS et Shopify Markets",
+          "Optimisé pour la réactivité mobile",
+          "Style fidèle à votre marque avec du CSS personnalisé"
+        ]
+      }
+    ]
+  },
+  "freePlan": {
+    "badge": "Forfait gratuit disponible",
+    "title": "Commencez à créer des offres groupées gratuitement — passez à un forfait supérieur uniquement quand vous grandissez",
+    "body": "Lancez votre première offre groupée avec le forfait gratuit, puis débloquez le Mix & Match, le ciblage B2B et les remises avancées de PushBundle quand vous êtes prêt."
+  }
+}

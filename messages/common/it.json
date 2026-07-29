@@ -1,0 +1,29 @@
+{
+  "ctas": {
+    "installFree": "Installa gratis su Shopify",
+    "seePricing": "Scopri i prezzi",
+    "comparePlans": "Confronta i piani",
+    "seePlans": "Vedi i piani"
+  },
+  "demoLabels": {
+    "howItWorks": "Come funziona",
+    "benefits": "Vantaggi",
+    "flexibility": "Flessibilità",
+    "livePreview": "anteprima live",
+    "opensNewTab": "(si apre in una nuova scheda)"
+  },
+  "reviews": {
+    "eyebrow": "Riprova sociale",
+    "title": "Amato dai merchant Shopify",
+    "subtitle": "Recensioni reali di store che usano PushBundle ogni giorno."
+  },
+  "trialCta": {
+    "title": "Sfrutta tutto il potenziale di PushBundle – Senza rischi!",
+    "subtitle": "Inizia con un clic e scopri come un bundling più intelligente può trasformare le tue vendite.",
+    "cta": "Inizia la prova gratuita di 14 giorni"
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "title": "Domande frequenti"
+  }
+}

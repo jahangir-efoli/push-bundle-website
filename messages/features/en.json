@@ -1,0 +1,191 @@
+{
+  "meta": {
+    "title": "Features — The Complete Shopify Bundle Toolkit",
+    "description": "Explore every PushBundle feature: mix & match build-a-box, fixed and volume bundles, B2B pricing, live previews, native checkout, and more — all no-code."
+  },
+  "hero": {
+    "eyebrow": "Features",
+    "title": "Everything you need to build bundles that convert",
+    "subtitle": "From mix & match build-a-box to B2B volume pricing, PushBundle gives Shopify merchants a complete, no-code bundling toolkit — designed to lift average order value without slowing your store down."
+  },
+  "catalogue": {
+    "eyebrow": "The toolkit",
+    "title": "One app, every kind of bundle",
+    "subtitle": "Mix and match the building blocks below to launch any bundle promotion in minutes — no developer, no theme edits.",
+    "items": [
+      {
+        "icon": "layers",
+        "title": "Every bundle type",
+        "description": "Ship any bundle format shoppers expect, from a guided build-a-box to fixed sets and tiered volume packs.",
+        "points": [
+          "Mix & Match — Build a box",
+          "Fixed product bundles",
+          "Volume bundles",
+          "Multipack bundles",
+          "Mixed-product bundles",
+          "Variant fixed-quantity"
+        ]
+      },
+      {
+        "icon": "sparkles",
+        "title": "Flexible discounts",
+        "description": "Reward bigger carts your way with layered discount rules that map to how your catalogue is priced.",
+        "points": [
+          "Percentage discount",
+          "Fixed discount on total",
+          "Discount on fixed quantity",
+          "Custom quantity range",
+          "Multipack discount"
+        ]
+      },
+      {
+        "icon": "shield",
+        "title": "B2B & targeting",
+        "description": "Serve wholesale buyers and VIPs with bundles and pricing that only the right customers ever see.",
+        "points": [
+          "Customer-tag bundles",
+          "Specific-client bundles",
+          "Variant restriction",
+          "Limit qty per variant"
+        ]
+      },
+      {
+        "icon": "wand",
+        "title": "Storefront experience",
+        "description": "A high-converting, on-brand bundle builder that previews live as shoppers pick — right on your product page.",
+        "points": [
+          "Live bundle preview",
+          "Dynamic bundle displays",
+          "Custom bundle icon",
+          "Basic customization",
+          "Custom CSS"
+        ]
+      },
+      {
+        "icon": "cart",
+        "title": "Seamless checkout",
+        "description": "Bundles flow through Shopify's native checkout — no workarounds, no broken discounts, no theme code.",
+        "points": [
+          "Native Shopify checkout",
+          "Works with Shopify Plus",
+          "POS & Markets ready",
+          "No theme code edits"
+        ]
+      },
+      {
+        "icon": "calendar",
+        "title": "Scheduling & control",
+        "description": "Plan promotions ahead and create urgency with scheduled, limited-edition, and limited-quantity drops.",
+        "points": [
+          "Schedule bundles",
+          "Limited-edition bundles",
+          "Limited-quantity drops"
+        ]
+      }
+    ]
+  },
+  "demos": {
+    "items": [
+      {
+        "id": "volume",
+        "icon": "gauge",
+        "tab": "Volume Bundle",
+        "title": "Volume Bundle",
+        "description": "Reward shoppers for buying more. Offer tiered quantity discounts — the bigger the pack, the bigger the % off — and let customers fill the pack with any mix of variants.",
+        "howItWorks": "Set tiers like Buy 5 / 10 / 15, each with its own discount. The shopper picks a tier, chooses variants to fill the pack, and the total + savings update live before adding to cart.",
+        "benefits": "Lift average order value with quantity breaks that reward bigger carts — ideal for wholesale, multipacks, and stock-up staples — while you keep full control over every tier and discount.",
+        "flexibility": "Show tiers as a compact list or cards, on the product page or a dedicated bundle page, in portrait or horizontal layouts — all styled to match your theme.",
+        "cta": "Experience Volume Bundle"
+      },
+      {
+        "id": "cross-sell",
+        "icon": "cart",
+        "tab": "Cross-Sell",
+        "title": "Cross-Sell Bundle",
+        "description": "Combine related items into one bundle and offer complementary products for a seamless, higher-value purchase right on the product page.",
+        "howItWorks": "Group products that sell well together and apply a bundle discount — customers add the whole set in a single click.",
+        "benefits": "Increase AOV by pairing complementary products at a bundled price — a proven upsell that turns one purchase into a complete set without extra clicks.",
+        "flexibility": "Curate the exact set, fix or expose quantities, and let shoppers choose variants — shown right on the product page or as a 'frequently bought together' block.",
+        "cta": "Experience Cross-Sell Bundle"
+      },
+      {
+        "id": "mix-single",
+        "icon": "wand",
+        "tab": "Mix & Match (Single)",
+        "title": "Mix & Match — Single Product",
+        "description": "Let shoppers build a pack by mixing different variants of one product — colours, sizes, and options to match their taste.",
+        "howItWorks": "Pick a product, choose the pack sizes, and shoppers assemble their own mix with the discount applied as the box fills.",
+        "benefits": "Boost engagement and AOV by letting shoppers build their own pack from one product's variants — perfect for colour packs, sample sets, and subscription-style boxes.",
+        "flexibility": "Set pack sizes and tiered pricing, cap quantities per variant, and display it as a compact grid or a full page — portrait or horizontal to fit any theme.",
+        "cta": "Experience Mix & Match Bundle"
+      },
+      {
+        "id": "mix-multi",
+        "icon": "layers",
+        "tab": "Mix & Match (Multi)",
+        "title": "Mix & Match — Multiple Products",
+        "description": "Let shoppers mix variants across multiple products into one custom bundle, with full control over rules, limits, and pricing.",
+        "howItWorks": "Curate the products, set min/max and per-variant limits, and customers build a personalized multi-product bundle.",
+        "benefits": "Grow basket size with fully customizable multi-product sets — great for curated collections and custom kits — while you keep control over rules and limits.",
+        "flexibility": "Curate the catalog, set min/max and per-variant limits, and offer variant options inline — as an embedded widget or a standalone bundle page.",
+        "cta": "Experience Mix & Match Bundle"
+      },
+      {
+        "id": "byob",
+        "icon": "sparkles",
+        "tab": "Build Your Own Box",
+        "title": "Build Your Own Box",
+        "description": "A step-by-step builder that lets customers pick a box, add products and gift cards, and personalize with custom forms.",
+        "howItWorks": "Design a guided, multi-step flow — choose a box, add items, and collect custom details before adding to cart.",
+        "benefits": "Turn gifting into a premium experience that lifts AOV — shoppers assemble a personalized box, add a card, and leave a message, all in one guided flow.",
+        "flexibility": "Configure each step — boxes, products, cards, and custom form fields — then reorder or drop steps to fit any gifting or subscription flow.",
+        "cta": "Experience BYOB Bundle"
+      }
+    ]
+  },
+  "spotlights": {
+    "items": [
+      {
+        "icon": "layers",
+        "eyebrow": "Mix & Match",
+        "title": "Let shoppers build their own box",
+        "body": "Give customers a guided, tap-to-select experience to assemble their own pack from the products you choose. Perfect for skincare sets, supplement stacks, curated gifts, and starter kits — with the discount applied automatically as the box fills.",
+        "points": [
+          "Drag-free, tap-to-select box builder",
+          "Sell the same mix in different pack sizes",
+          "Live total and savings update as they pick",
+          "Set minimums, maximums, and per-variant limits"
+        ]
+      },
+      {
+        "icon": "shield",
+        "eyebrow": "B2B & Volume",
+        "title": "Wholesale pricing that scales with the cart",
+        "body": "Turn casual shoppers into bulk buyers with volume tiers, and show wholesale-only bundles to tagged B2B accounts. Reward larger orders automatically so your best customers always get your best price.",
+        "points": [
+          "Tiered volume discounts on quantity",
+          "Customer-tag & specific-client targeting",
+          "Percentage, fixed, or quantity-based rules",
+          "Great for wholesale, memberships, and VIPs"
+        ]
+      },
+      {
+        "icon": "gauge",
+        "eyebrow": "Built for speed",
+        "title": "Fast, native, and merchant-friendly",
+        "body": "PushBundle is built for Shopify — bundles run through the native checkout, load fast on mobile, and install without touching your theme code. Set up your first bundle in minutes and keep full control of the look with basic styling or custom CSS.",
+        "points": [
+          "No-code setup — live in minutes",
+          "Native checkout, Plus, POS & Markets",
+          "Optimised for mobile responsiveness",
+          "On-brand styling with custom CSS"
+        ]
+      }
+    ]
+  },
+  "freePlan": {
+    "badge": "Free plan available",
+    "title": "Start bundling free — upgrade only when you grow",
+    "body": "Launch your first bundle on the free plan, then unlock Mix & Match, B2B targeting, and advanced discounts on PushBundle when you're ready."
+  }
+}

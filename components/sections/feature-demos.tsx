@@ -19,23 +19,60 @@ const DEMOS: Record<string, React.ComponentType> = {
   byob: ByobStage,
 };
 
+/** Copy for one bundle demo (localized; the live demo is keyed by `id`). */
+export type FeatureDemoItem = {
+  id: string;
+  icon: string;
+  tab: string;
+  title: string;
+  description: string;
+  howItWorks: string;
+  benefits: string;
+  flexibility: string;
+  cta: string;
+};
+
+/** Section labels + a11y strings shared by every demo (localized). */
+export type FeatureDemoLabels = {
+  howItWorks: string;
+  benefits: string;
+  flexibility: string;
+  /** Rendered as "{title} — {livePreview}". */
+  livePreview: string;
+  opensNewTab: string;
+};
+
+const DEFAULT_LABELS: FeatureDemoLabels = {
+  howItWorks: "How it Works",
+  benefits: "Benefits",
+  flexibility: "Flexibility",
+  livePreview: "live preview",
+  opensNewTab: "(opens in a new tab)",
+};
+
 /**
  * Features page — each bundle type gets its own full section: the live,
  * interactive demo on one side and its copy on the other, alternating
  * left/right down the page. The preview sits in a white app-window frame
  * (`pb-light`) so it reads as a real storefront regardless of theme.
  */
-export function FeatureDemos() {
+export function FeatureDemos({
+  features = showcase.features,
+  labels = DEFAULT_LABELS,
+}: {
+  features?: readonly FeatureDemoItem[];
+  labels?: FeatureDemoLabels;
+} = {}) {
   return (
     <>
-      {showcase.features.map((f, i) => {
+      {features.map((f, i) => {
         const Demo = DEMOS[f.id];
         if (!Demo) return null;
         const reverse = i % 2 === 1;
         const sections = [
-          { label: "How it Works", body: f.howItWorks },
-          { label: "Benefits", body: f.benefits },
-          { label: "Flexibility", body: f.flexibility },
+          { label: labels.howItWorks, body: f.howItWorks },
+          { label: labels.benefits, body: f.benefits },
+          { label: labels.flexibility, body: f.flexibility },
         ];
         return (
           <Section key={f.id} tone={reverse ? "alt" : "default"}>
@@ -58,7 +95,7 @@ export function FeatureDemos() {
                         <span className="size-2.5 rounded-full bg-success/70" />
                       </span>
                       <span className="ml-2 truncate text-xs text-muted">
-                        {f.title} — live preview
+                        {f.title} — {labels.livePreview}
                       </span>
                     </div>
                     {/* data-lenis-prevent: native scroll inside the box. */}
@@ -102,7 +139,7 @@ export function FeatureDemos() {
                     className={buttonStyles({ variant: "gradient" })}
                   >
                     {f.cta}
-                    <span className="sr-only"> (opens in a new tab)</span>
+                    <span className="sr-only"> {labels.opensNewTab}</span>
                     <svg
                       aria-hidden="true"
                       viewBox="0 0 24 24"

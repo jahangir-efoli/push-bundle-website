@@ -1,0 +1,29 @@
+{
+  "ctas": {
+    "installFree": "在 Shopify 上免费安装",
+    "seePricing": "查看价格",
+    "comparePlans": "比较套餐",
+    "seePlans": "查看套餐"
+  },
+  "demoLabels": {
+    "howItWorks": "运作方式",
+    "benefits": "优势",
+    "flexibility": "灵活性",
+    "livePreview": "实时预览",
+    "opensNewTab": "（在新标签页中打开）"
+  },
+  "reviews": {
+    "eyebrow": "客户口碑",
+    "title": "深受 Shopify 商家喜爱",
+    "subtitle": "来自每天使用 PushBundle 的店铺的真实评价。"
+  },
+  "trialCta": {
+    "title": "释放 PushBundle 的全部潜能——零风险！",
+    "subtitle": "一键即可开始，探索更智能的捆绑销售如何转变您的销售业绩。",
+    "cta": "开始 14 天免费试用"
+  },
+  "faq": {
+    "eyebrow": "常见问题",
+    "title": "常见问题解答"
+  }
+}
