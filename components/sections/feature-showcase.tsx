@@ -265,7 +265,7 @@ export function FeatureShowcase({
                 couple of tiers to show the preview is live, then invites the
                 visitor to take over. */}
             {meta[active].id === "volume" && (
-              <AutoCursor containerRef={previewRef} tierQtys={[2, 4]} />
+              <AutoCursor containerRef={previewRef} tierQtys={[2, 4]} autoFill />
             )}
 
             {/* Slide-in cart drawer — opens over the storefront when a bundle is

@@ -15,10 +15,14 @@ import { useEffect, useRef, type RefObject } from "react";
 export function AutoCursor({
   containerRef,
   tierQtys = [2, 4],
+  autoFill = false,
 }: {
   containerRef: RefObject<HTMLElement | null>;
   /** `data-tier-qty` values to auto-click, in order. */
   tierQtys?: number[];
+  /** After the last tier is selected, auto-fill its pack via the variant
+      `<select>` so the bundle reads as complete. */
+  autoFill?: boolean;
 }) {
   const ghostRef = useRef<HTMLDivElement>(null);
   const rippleRef = useRef<HTMLDivElement>(null);
@@ -79,6 +83,27 @@ export function AutoCursor({
     };
     container.addEventListener("pointerdown", stop, { once: true });
 
+    // Fill the selected tier's pack by driving its variant <select>: dispatch a
+    // native change per unit so React's onChange adds each variant, leaving the
+    // bundle "complete". Uses the last tier's qty as the item count.
+    const fillPack = () => {
+      const sel = container.querySelector<HTMLSelectElement>("select");
+      if (!sel) return;
+      const count = tierQtys[tierQtys.length - 1];
+      const opts = Array.from(sel.options).filter((o) => !o.disabled && o.value);
+      if (!opts.length) return;
+      const setVal = Object.getOwnPropertyDescriptor(
+        HTMLSelectElement.prototype,
+        "value",
+      )?.set;
+      for (let i = 0; i < count; i++) {
+        const v = opts[i % opts.length].value;
+        if (setVal) setVal.call(sel, v);
+        else sel.value = v;
+        sel.dispatchEvent(new Event("change", { bubbles: true }));
+      }
+    };
+
     const run = () => {
       if (done) return;
       ghost.style.transform = `translate(${container.clientWidth * 0.5}px,${container.clientHeight * 0.7}px)`;
@@ -89,8 +114,23 @@ export function AutoCursor({
       at(2750, () => moveTo(t1));
       at(3850, () => tap(t1));
       at(3980, () => t1.click());
-      at(4650, () => (ghost.style.opacity = "0"));
-      at(5000, () => nudge.classList.add("show"));
+      if (autoFill) {
+        // Move to the variant picker, tap it, then auto-fill the pack.
+        at(4350, () => {
+          const s = container.querySelector<HTMLSelectElement>("select");
+          if (s) moveTo(s);
+        });
+        at(4700, () => {
+          const s = container.querySelector<HTMLSelectElement>("select");
+          if (s) tap(s);
+        });
+        at(4850, fillPack);
+        at(5350, () => (ghost.style.opacity = "0"));
+        at(5650, () => nudge.classList.add("show"));
+      } else {
+        at(4650, () => (ghost.style.opacity = "0"));
+        at(5000, () => nudge.classList.add("show"));
+      }
     };
 
     let io: IntersectionObserver | null = null;
