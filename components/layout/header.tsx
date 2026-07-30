@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -13,6 +13,12 @@ import { site } from "@/lib/site-config";
 import { isLocale, localizePath, type Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries";
 import { cn } from "@/lib/utils";
+
+// Run before paint on the client (so we can read scroll position and set the
+// correct initial look), but fall back to useEffect during SSR where there is
+// no layout phase.
+const useIsoLayoutEffect =
+  typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
 /**
  * Site header (docs/PLAN.md §4.2, §5.1, §8).
@@ -27,15 +33,25 @@ export function Header({
   dict: Dictionary;
 }) {
   const [scrolled, setScrolled] = useState(false);
+  // `ready` gates the transitions: it stays false through the first paint (and
+  // the pre-paint scroll correction below) so a reload while scrolled SNAPS to
+  // the bar instead of flashing the pill and animating. It flips true on the
+  // next frame, enabling smooth morphs for every subsequent scroll.
+  const [ready, setReady] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const pathname = usePathname();
 
-  useEffect(() => {
+  useIsoLayoutEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
+    onScroll(); // correct the initial state before the browser paints
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const id = requestAnimationFrame(() => setReady(true));
+    return () => cancelAnimationFrame(id);
   }, []);
 
   const homeHref = localizePath("/", locale);
@@ -76,7 +92,9 @@ export function Header({
           The pill layer only exists at `lg`, so mobile is always the bar. */}
       <header
         className={cn(
-          "sticky top-0 z-40 transition-[height] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
+          "sticky top-0 z-40",
+          ready &&
+            "transition-[height] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
           scrolled ? "h-16" : "h-16 lg:h-24",
         )}
       >
@@ -85,17 +103,22 @@ export function Header({
         <div
           aria-hidden="true"
           className={cn(
-            "absolute inset-0 border-b border-border bg-surface/95 backdrop-blur-md transition-opacity duration-500 ease-out",
+            "absolute inset-0 border-b border-border bg-surface/95 backdrop-blur-md",
+            ready && "transition-opacity duration-500 ease-out",
             scrolled ? "opacity-100" : "opacity-100 lg:opacity-0",
           )}
         />
-        {/* PILL background — a capped capsule inset with a top + side gap, so the
-            hero shows through around it. Desktop only; fades opposite the bar. */}
+        {/* PILL background — a capped capsule with a SYMMETRIC inset (inset-y-3),
+            so its centre lines up with the vertically-centred content. Desktop
+            only. As you scroll it fades AND gently expands upward (scale +
+            lift), so the morph reads as the pill spreading into the bar rather
+            than a plain cross-fade. */}
         <div
           aria-hidden="true"
           className={cn(
-            "pointer-events-none absolute inset-x-gutter top-4 bottom-0 mx-auto hidden max-w-site rounded-2xl border border-border bg-surface/95 shadow-soft backdrop-blur-md transition-opacity duration-500 ease-out lg:block",
-            scrolled ? "opacity-0" : "opacity-100",
+            "pointer-events-none absolute inset-x-gutter inset-y-3 mx-auto hidden max-w-site origin-top rounded-2xl border border-border bg-surface/95 shadow-soft backdrop-blur-md lg:block",
+            ready && "transition-[opacity,transform] duration-500 ease-out",
+            scrolled ? "scale-[1.03] opacity-0" : "scale-100 opacity-100",
           )}
         />
       <div

@@ -54,7 +54,7 @@ export const whyPushbundle = {
     "Create flexible bundle experiences for retail, DTC, and wholesale customers — all from one app.",
   items: [
     {
-      title: "Multiple bundle types in one app",
+      title: "Tiered discount",
       image: "/images/why/why-1.png",
       features: [
         "Create volume, cross-sell, fixed-pack, Mix & Match, and Build Your Own bundles",
@@ -63,7 +63,7 @@ export const whyPushbundle = {
       ],
     },
     {
-      title: "Build Your Own Bundle experiences",
+      title: "Free Gift, Free shipping with all bundles",
       image: "/images/why/why-2.png",
       features: [
         "Let shoppers choose their preferred products, variants, and quantities",
@@ -72,7 +72,7 @@ export const whyPushbundle = {
       ],
     },
     {
-      title: "Flexible bundle pricing",
+      title: "Fixed Price or Preset Bundle price",
       image: "/images/why/why-3.png",
       features: [
         "Offer fixed, percentage, tiered, and volume-based discounts",
@@ -81,7 +81,7 @@ export const whyPushbundle = {
       ],
     },
     {
-      title: "No-code storefront customization",
+      title: "Insight driven Analytics",
       image: "/images/why/why-4.png",
       features: [
         "Preview bundle displays while creating your offer",
@@ -90,7 +90,7 @@ export const whyPushbundle = {
       ],
     },
     {
-      title: "Built for Shopify stores",
+      title: "Multi Language and currency",
       image: "/images/why/why-5.png",
       features: [
         "Works with Shopify Checkout, POS, Admin, Markets, and multi-currency",
@@ -99,8 +99,44 @@ export const whyPushbundle = {
       ],
     },
     {
-      title: "24/7 human support and guided setup",
+      title: "Template Library",
       image: "/images/why/why-6.png",
+      features: [
+        "Works with Shopify Checkout, POS, Admin, Markets, and multi-currency",
+        "Display the bundle as one organized item in the cart",
+        "Keep component inventory tracked and synchronized",
+      ],
+    },
+    {
+      title: "Easy Customization",
+      image: "/images/why/why-7.png",
+      features: [
+        "Works with Shopify Checkout, POS, Admin, Markets, and multi-currency",
+        "Display the bundle as one organized item in the cart",
+        "Keep component inventory tracked and synchronized",
+      ],
+    },
+    {
+      title: "No code Required",
+      image: "/images/why/why-8.png",
+      features: [
+        "Works with Shopify Checkout, POS, Admin, Markets, and multi-currency",
+        "Display the bundle as one organized item in the cart",
+        "Keep component inventory tracked and synchronized",
+      ],
+    },
+    {
+      title: "24/7 human support and guided setup",
+      image: "/images/why/why-9.png",
+      features: [
+        "Get 24/7 human assistance through live chat",
+        "Receive free setup and troubleshooting support",
+        "Connect through email or book a one-on-one Google Meet for hands-on guidance",
+      ],
+    },
+    {
+      title: "Customer eligibility",
+      image: "/images/why/why-10.png",
       features: [
         "Get 24/7 human assistance through live chat",
         "Receive free setup and troubleshooting support",
