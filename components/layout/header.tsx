@@ -64,36 +64,43 @@ export function Header({
 
   return (
     <>
-      {/* The header morphs between two looks, with a smooth transition:
-          • MOBILE (any scroll) and DESKTOP once scrolled → a flush, full-bleed
-            docked bar with a bottom border.
-          • DESKTOP at the top of the page → a floating "pill" capsule that
-            hovers above the hero (side + top gap, all-round border, rounded,
-            shadow). The outer <header> supplies the floating gap; the shell
-            div supplies the chrome; the inner div keeps content capped/centred.
-          The `lg:` pill classes only apply when NOT scrolled, so scrolling down
-          (or any mobile viewport) collapses it back to the docked bar. */}
+      {/* The header morphs between two looks. To keep the morph perfectly
+          smooth we DON'T animate any geometry that snaps (width, border-radius,
+          margins): instead two fixed background layers cross-fade by opacity,
+          and only the header HEIGHT eases. Content is vertically centred so it
+          never jumps as the height changes.
+          • MOBILE (any scroll) + DESKTOP once scrolled → BAR layer (full-bleed,
+            bottom border).
+          • DESKTOP at the top of the page → PILL layer (capped capsule that
+            floats above the hero with a gap, rounded, all-round border, shadow).
+          The pill layer only exists at `lg`, so mobile is always the bar. */}
       <header
         className={cn(
-          "sticky top-0 z-40 transition-all duration-300 ease-out",
-          scrolled ? "px-0 pt-0" : "px-0 pt-0 lg:px-gutter lg:pt-4",
+          "sticky top-0 z-40 transition-[height] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
+          scrolled ? "h-16" : "h-16 lg:h-24",
         )}
       >
+        {/* BAR background — full-bleed; the only chrome on mobile. Fades OUT on
+            desktop while at the top, fades IN as you scroll. */}
+        <div
+          aria-hidden="true"
+          className={cn(
+            "absolute inset-0 border-b border-border bg-surface/95 backdrop-blur-md transition-opacity duration-500 ease-out",
+            scrolled ? "opacity-100" : "opacity-100 lg:opacity-0",
+          )}
+        />
+        {/* PILL background — a capped capsule inset with a top + side gap, so the
+            hero shows through around it. Desktop only; fades opposite the bar. */}
+        <div
+          aria-hidden="true"
+          className={cn(
+            "pointer-events-none absolute inset-x-gutter top-4 bottom-0 mx-auto hidden max-w-site rounded-2xl border border-border bg-surface/95 shadow-soft backdrop-blur-md transition-opacity duration-500 ease-out lg:block",
+            scrolled ? "opacity-0" : "opacity-100",
+          )}
+        />
       <div
         className={cn(
-          "border-border bg-surface/95 backdrop-blur-md transition-all duration-300 ease-out",
-          // BAR chrome — mobile always, and desktop when scrolled.
-          "border-b",
-          // PILL chrome — desktop only, at the top of the page.
-          scrolled
-            ? "shadow-soft"
-            : "shadow-none lg:mx-auto lg:max-w-site lg:rounded-2xl lg:border lg:shadow-soft",
-        )}
-      >
-      <div
-        className={cn(
-          "mx-auto flex w-full max-w-site items-center gap-3 px-gutter transition-all duration-300 ease-out",
-          scrolled ? "h-16" : "h-16 lg:h-20",
+          "relative mx-auto flex h-full w-full max-w-site items-center gap-3 px-gutter",
         )}
       >
         <div className="flex flex-1 items-center">
@@ -179,7 +186,6 @@ export function Header({
               <path d="M4 7h16M4 12h16M4 17h16" />
             </svg>
           </button>
-        </div>
         </div>
         </div>
       </header>
