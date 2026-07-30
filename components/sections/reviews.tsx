@@ -1,5 +1,5 @@
 import { Section } from "@/components/ui/section";
-import { site } from "@/lib/site-config";
+import { installUrl } from "@/lib/site-config";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { reviewsSection } from "@/lib/content/home";
 import type { AggregateRating, Review } from "@/lib/cms";
@@ -66,7 +66,7 @@ export function Reviews({
         </div>
 
         <a
-          href={site.shopifyAppUrl}
+          href={installUrl("reviews")}
           target="_blank"
           rel="noopener noreferrer"
           className="group/rating flex items-center gap-2 text-muted transition-colors hover:text-foreground"

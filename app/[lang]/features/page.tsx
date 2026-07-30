@@ -18,7 +18,7 @@ import { TrialCta } from "@/components/sections/trial-cta";
 import { FaqSection } from "@/components/sections/faq-section";
 import { JsonLd } from "@/components/seo/json-ld";
 import { breadcrumbLd } from "@/lib/seo/structured-data";
-import { site } from "@/lib/site-config";
+import { installUrl } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 
 const toLocale = (lang: string): Locale => (isLocale(lang) ? lang : "en");
@@ -82,10 +82,13 @@ export default async function FeaturesPage({ params }: Props) {
       >
         <div className="flex flex-wrap gap-4">
           <a
-            href={site.shopifyAppUrl}
+            href={installUrl("features-hero")}
+            target="_blank"
+            rel="noopener noreferrer"
             className={buttonStyles({ variant: "gradient", size: "lg" })}
           >
             {common.ctas.installFree}
+            <span className="sr-only"> (opens in a new tab)</span>
           </a>
           <Link
             href="/pricing"
@@ -192,10 +195,13 @@ export default async function FeaturesPage({ params }: Props) {
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-4">
           <a
-            href={site.shopifyAppUrl}
+            href={installUrl("features-bottom")}
+            target="_blank"
+            rel="noopener noreferrer"
             className={buttonStyles({ variant: "gradient", size: "lg" })}
           >
             {common.ctas.installFree}
+            <span className="sr-only"> (opens in a new tab)</span>
           </a>
           <Link
             href="/pricing"

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { buttonStyles } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { site } from "@/lib/site-config";
+import { installUrl } from "@/lib/site-config";
 import { plans as defaultPlans, pricingCopy, type Plan } from "@/lib/content/pricing";
 import { cn } from "@/lib/utils";
 
@@ -138,13 +138,16 @@ export function PricingPlans({
               </p>
 
               <a
-                href={site.shopifyAppUrl}
+                href={installUrl(`pricing-${plan.name.toLowerCase()}`)}
+                target="_blank"
+                rel="noopener noreferrer"
                 className={buttonStyles({
                   variant: plan.featured ? "gradient" : "secondary",
                   className: "mt-6 w-full",
                 })}
               >
                 {plan.cta}
+                <span className="sr-only"> (opens in a new tab)</span>
               </a>
 
               <ul className="mt-7 space-y-3 border-t border-border pt-6">

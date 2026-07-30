@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import { buttonStyles } from "@/components/ui/button";
 import { HeroSlider } from "@/components/sections/hero-slider";
 import { ShopifyMark } from "@/components/ui/shopify-mark";
-import { site } from "@/lib/site-config";
+import { site, installUrl } from "@/lib/site-config";
 import { hero } from "@/lib/content/home";
 import type { AggregateRating } from "@/lib/cms";
 
@@ -116,7 +116,7 @@ export function Hero({ rating }: { rating: AggregateRating }) {
 
             {/* Pill 2 — Trusted & secure + live rating (links to the listing) */}
             <a
-              href={site.shopifyAppUrl}
+              href={installUrl("hero-rating")}
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`Trusted and secure — rated ${rating.score} out of 5 on the Shopify App Store (opens in a new tab)`}
@@ -174,10 +174,13 @@ export function Hero({ rating }: { rating: AggregateRating }) {
 
           <div className="mt-6 flex flex-wrap gap-3">
             <a
-              href={site.shopifyAppUrl}
+              href={installUrl("hero")}
+              target="_blank"
+              rel="noopener noreferrer"
               className={buttonStyles({ variant: "gradient", size: "lg" })}
             >
               {hero.primaryCta}
+              <span className="sr-only"> (opens in a new tab)</span>
             </a>
             {/* Live demo storefront — new tab so the site isn't lost. */}
             <a

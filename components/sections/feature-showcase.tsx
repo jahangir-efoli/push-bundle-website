@@ -10,7 +10,7 @@ import { MixMatchSingleStage } from "@/components/demos/mix-match-single-stage";
 import { MixMatchMultiStage } from "@/components/demos/mix-match-multi-stage";
 import { CrossSellStage } from "@/components/demos/cross-sell-stage";
 import { ByobStage } from "@/components/demos/byob-stage";
-import { site } from "@/lib/site-config";
+import { installUrl } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 import { showcase } from "@/lib/content/showcase";
 
@@ -208,7 +208,7 @@ export function FeatureShowcase() {
 
           <div className="mt-8">
             <a
-              href={site.shopifyAppUrl}
+              href={installUrl("feature-showcase")}
               target="_blank"
               rel="noopener noreferrer"
               className={buttonStyles({ variant: "gradient" })}

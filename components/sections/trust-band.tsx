@@ -1,5 +1,5 @@
 import { Container } from "@/components/ui/container";
-import { site } from "@/lib/site-config";
+import { installUrl } from "@/lib/site-config";
 import type { AggregateRating } from "@/lib/cms";
 
 /** Localized trust-strip copy (defaults are English). */
@@ -46,10 +46,13 @@ export function TrustBand({
         </span>
         <span>{content.compatibility}</span>
         <a
-          href={site.shopifyAppUrl}
+          href={installUrl("trust-band")}
+          target="_blank"
+          rel="noopener noreferrer"
           className="font-semibold text-primary underline underline-offset-4"
         >
           {content.viewOnAppStore}
+          <span className="sr-only"> (opens in a new tab)</span>
         </a>
       </Container>
     </section>

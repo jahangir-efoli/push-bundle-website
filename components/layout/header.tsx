@@ -9,7 +9,7 @@ import { buttonStyles } from "@/components/ui/button";
 import { ThemeToggle } from "./theme-toggle";
 import { MobileNav } from "./mobile-nav";
 import { LocaleSwitcher } from "./locale-switcher";
-import { site } from "@/lib/site-config";
+import { installUrl } from "@/lib/site-config";
 import { isLocale, localizePath, type Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries";
 import { cn } from "@/lib/utils";
@@ -182,7 +182,9 @@ export function Header({
               inline-flex, which beats `hidden` in Tailwind's source order). */}
           <span className="hidden sm:block">
             <a
-              href={site.shopifyAppUrl}
+              href={installUrl("header")}
+              target="_blank"
+              rel="noopener noreferrer"
               className={buttonStyles({ variant: "gradient", size: "sm" })}
             >
               {dict.cta.install}

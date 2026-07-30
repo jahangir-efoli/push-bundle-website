@@ -1,7 +1,7 @@
 import { Section } from "@/components/ui/section";
 import { Icon, type IconName } from "@/components/ui/icon";
 import { buttonStyles } from "@/components/ui/button";
-import { site } from "@/lib/site-config";
+import { installUrl } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 import { showcase } from "@/lib/content/showcase";
 import { VolumeBundleStage } from "@/components/demos/volume-bundle-stage";
@@ -133,7 +133,7 @@ export function FeatureDemos({
 
                 <div className="mt-7">
                   <a
-                    href={site.shopifyAppUrl}
+                    href={installUrl("feature-demos")}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={buttonStyles({ variant: "gradient" })}

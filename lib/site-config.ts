@@ -20,6 +20,24 @@ export const site = {
   rating: { score: 4.9, count: 16 },
 } as const;
 
+/**
+ * Build the Shopify App Store install URL with UTM attribution. Use this for
+ * every user-facing "Install"/listing link so we can attribute traffic by
+ * placement. Keep the bare `site.shopifyAppUrl` (no UTM) for structured
+ * data / JSON-LD `installUrl`, which must stay canonical.
+ *
+ * @param placement short slug for where the click came from (→ utm_content),
+ *   e.g. "hero", "header", "pricing".
+ */
+export function installUrl(placement: string): string {
+  const url = new URL(site.shopifyAppUrl);
+  url.searchParams.set("utm_source", "pushbundle.com");
+  url.searchParams.set("utm_medium", "website");
+  url.searchParams.set("utm_campaign", "install");
+  url.searchParams.set("utm_content", placement);
+  return url.toString();
+}
+
 /** Primary nav (docs/PLAN.md §4.2 — Changelog lives under Resources). */
 export const mainNav = [
   { label: "Home", href: "/" },

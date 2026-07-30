@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
-import { site } from "@/lib/site-config";
+import { installUrl } from "@/lib/site-config";
 import { buttonStyles } from "@/components/ui/button";
 import { LocaleSwitcher } from "./locale-switcher";
 import { localizePath, type Locale } from "@/i18n/config";
@@ -163,7 +163,9 @@ export function MobileNav({
         </nav>
 
         <a
-          href={site.shopifyAppUrl}
+          href={installUrl("mobile-nav")}
+          target="_blank"
+          rel="noopener noreferrer"
           className={buttonStyles({ variant: "gradient", className: "mt-8 w-full" })}
         >
           {dict.cta.install}

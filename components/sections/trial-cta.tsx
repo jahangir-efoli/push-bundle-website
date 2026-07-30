@@ -1,5 +1,5 @@
 import { buttonStyles } from "@/components/ui/button";
-import { site } from "@/lib/site-config";
+import { installUrl } from "@/lib/site-config";
 import { trialCta } from "@/lib/content/home";
 
 /**
@@ -47,7 +47,9 @@ export function TrialCta({
             {content.subtitle}
           </p>
           <a
-            href={site.shopifyAppUrl}
+            href={installUrl("trial-cta")}
+            target="_blank"
+            rel="noopener noreferrer"
             className={buttonStyles({
               variant: "inverse",
               size: "lg",
@@ -55,6 +57,7 @@ export function TrialCta({
             })}
           >
             {content.cta}
+            <span className="sr-only"> (opens in a new tab)</span>
           </a>
         </div>
       </div>
