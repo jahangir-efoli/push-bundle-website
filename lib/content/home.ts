@@ -97,8 +97,18 @@ export const whyPushbundle = {
         "Display the bundle as one organized item in the cart",
         "Keep component inventory tracked and synchronized",
       ],
-    },
-    {
+    }
+  ],
+} as const;
+
+/** Second "why" section — reversed layout (image on the right). */
+export const whyBeyond = {
+  eyebrow: "Beyond the basics",
+  title: "Everything you need to grow with bundles",
+  subtitle:
+    "Build smarter bundle campaigns with flexible rules, customer targeting, and storefront controls.",
+  items: [
+   {
       title: "Template Library",
       image: "/images/why/why-6.png",
       features: [
@@ -141,61 +151,6 @@ export const whyPushbundle = {
         "Get 24/7 human assistance through live chat",
         "Receive free setup and troubleshooting support",
         "Connect through email or book a one-on-one Google Meet for hands-on guidance",
-      ],
-    },
-  ],
-} as const;
-
-/** Second "why" section — reversed layout (image on the right). */
-export const whyBeyond = {
-  eyebrow: "Beyond the basics",
-  title: "Everything you need to grow with bundles",
-  subtitle:
-    "Build smarter bundle campaigns with flexible rules, customer targeting, and storefront controls.",
-  items: [
-    {
-      title: "Build Your Own Bundle",
-      image: "/images/why/beyond-1.png",
-      features: [
-        "Let customers select products and create their own personalized bundle",
-        "Set the total number of products required to complete the bundle",
-        "Allow shoppers to combine products and variants within one offer",
-      ],
-    },
-    {
-      title: "Quantity and variant rules",
-      image: "/images/why/beyond-2.png",
-      features: [
-        "Set minimum and maximum bundle quantities",
-        "Control how many units of each variant shoppers can select",
-        "Create custom quantity packs for retail or wholesale orders",
-      ],
-    },
-    {
-      title: "Customer eligibility",
-      image: "/images/why/beyond-3.png",
-      features: [
-        "Make bundles available to all customers",
-        "Target offers using customer tags or specific customer groups",
-        "Create exclusive bundle experiences for selected buyers",
-      ],
-    },
-    {
-      title: "Scheduled bundle campaigns",
-      image: "/images/why/beyond-4.png",
-      features: [
-        "Set automatic start and end dates for bundle offers",
-        "Prepare seasonal, holiday, and limited-time campaigns in advance",
-        "Control when each bundle becomes available on your storefront",
-      ],
-    },
-    {
-      title: "Discounts that fit your offer",
-      image: "/images/why/beyond-5.png",
-      features: [
-        "Apply fixed or percentage discounts",
-        "Create tiered savings and quantity-break offers",
-        "Set box-specific and multipack pricing rules",
       ],
     },
   ],
