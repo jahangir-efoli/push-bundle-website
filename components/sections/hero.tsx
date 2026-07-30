@@ -96,9 +96,10 @@ export function Hero({ rating }: { rating: AggregateRating }) {
               Built for Shopify
             </span>
             <span aria-hidden="true" className="h-4 w-px bg-border" />
-            <span className="text-muted">
-              {rating.score} <span className="text-warning">★</span> ·{" "}
-              {rating.count} reviews
+            <span className="flex items-center gap-1">
+              <span className="text-warning">★</span>
+              <span className="font-bold text-foreground">{rating.score}</span>
+              <span className="text-muted">/ 5</span>
             </span>
           </div>
 
