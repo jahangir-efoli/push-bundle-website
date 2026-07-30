@@ -1,4 +1,5 @@
 import { Section } from "@/components/ui/section";
+import { site } from "@/lib/site-config";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { reviewsSection } from "@/lib/content/home";
 import type { AggregateRating, Review } from "@/lib/cms";
@@ -64,13 +65,21 @@ export function Reviews({
           <p className="mt-4 text-muted">{subtitle}</p>
         </div>
 
-        <p className="flex items-center gap-2 text-muted">
+        <a
+          href={site.shopifyAppUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group/rating flex items-center gap-2 text-muted transition-colors hover:text-foreground"
+          aria-label={`Rated ${rating.score} out of 5 — read reviews on the Shopify App Store (opens in a new tab)`}
+        >
           <span className="text-2xl leading-none text-warning">★</span>
           <span className="font-display text-display-sm font-bold text-foreground">
             {rating.score}
           </span>
-          <span className="text-lg">/ 5</span>
-        </p>
+          <span className="text-lg group-hover/rating:underline group-hover/rating:underline-offset-4">
+            / 5
+          </span>
+        </a>
       </div>
 
       {/* Auto-scrolling marquee. Cards are rendered twice (the copy is
