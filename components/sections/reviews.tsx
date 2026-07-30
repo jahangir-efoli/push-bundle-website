@@ -1,5 +1,4 @@
 import { Section } from "@/components/ui/section";
-import { site } from "@/lib/site-config";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { reviewsSection } from "@/lib/content/home";
 import type { AggregateRating, Review } from "@/lib/cms";
@@ -65,17 +64,12 @@ export function Reviews({
           <p className="mt-4 text-muted">{subtitle}</p>
         </div>
 
-        <p className="text-muted">
+        <p className="flex items-center gap-2 text-muted">
+          <span className="text-2xl leading-none text-warning">★</span>
           <span className="font-display text-display-sm font-bold text-foreground">
             {rating.score}
-          </span>{" "}
-          out of 5 ·{" "}
-          <a
-            href={site.shopifyAppUrl}
-            className="text-primary underline underline-offset-4"
-          >
-            {rating.count} reviews
-          </a>
+          </span>
+          <span className="text-lg">/ 5</span>
         </p>
       </div>
 
