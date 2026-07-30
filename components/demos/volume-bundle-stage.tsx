@@ -39,6 +39,11 @@ export function VolumeBundleStage() {
             ]}
             popularQty={4}
             variants={["Walnut", "Oak", "Espresso", "Natural Ash"]}
+            gifts={[
+              { label: "Free Coaster Set", unlockAt: 2, icon: "gift" },
+              { label: "Free Drawer Liners", unlockAt: 4, icon: "sparkles" },
+              { label: "Free Shipping", unlockAt: 6, icon: "shipping" },
+            ]}
           />
         </div>
       </div>

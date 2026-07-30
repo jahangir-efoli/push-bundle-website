@@ -13,6 +13,45 @@ import { cn } from "@/lib/utils";
  * cart" (demo only — no real cart). Styled in the PushBundle brand.
  */
 export type VolumeTier = { qty: number; discount: number };
+/** A free reward that unlocks once the selected tier reaches `unlockAt` units. */
+export type VolumeGift = {
+  label: string;
+  unlockAt: number;
+  icon?: "gift" | "shipping" | "sparkles";
+};
+
+/** Small inline glyphs for the free-gift tiles. */
+function GiftGlyph({ name }: { name: VolumeGift["icon"] }) {
+  const common = {
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: 1.7,
+    strokeLinecap: "round" as const,
+    strokeLinejoin: "round" as const,
+    className: "size-full",
+  };
+  if (name === "shipping")
+    return (
+      <svg {...common}>
+        <path d="M1.5 5h13v10.5h-13z" />
+        <path d="M14.5 8.5h4L22 12v3.5h-7.5z" />
+        <circle cx="5.5" cy="17.8" r="2.1" />
+        <circle cx="17.8" cy="17.8" r="2.1" />
+      </svg>
+    );
+  if (name === "sparkles")
+    return (
+      <svg {...common}>
+        <path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M18 6l-2.5 2.5M8.5 15.5 6 18" />
+      </svg>
+    );
+  return (
+    <svg {...common}>
+      <path d="M20 12v8a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-8M2 7h20v5H2zM12 21V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z" />
+    </svg>
+  );
+}
 
 const usd = (n: number) =>
   new Intl.NumberFormat("en-US", {
@@ -39,6 +78,8 @@ export function VolumeBundleDemo({
     "Dune Pearl",
   ],
   popularQty = 10,
+  gifts = [],
+  giftsHeading = "Free gifts & shipping with your order",
   heading = "Save more on bulk purchases",
   icon,
   /** Embedded in a ProductStage: hide the product header + drop outer padding
@@ -51,6 +92,9 @@ export function VolumeBundleDemo({
   tiers?: VolumeTier[];
   variants?: string[];
   popularQty?: number;
+  /** Free rewards that unlock as the chosen tier grows (empty = none shown). */
+  gifts?: VolumeGift[];
+  giftsHeading?: string;
   heading?: string;
   /** Product thumbnail — a custom node/image; defaults to a t-shirt icon. */
   icon?: React.ReactNode;
@@ -198,6 +242,7 @@ export function VolumeBundleDemo({
                 type="button"
                 onClick={() => selectTier(i)}
                 aria-pressed={isSel}
+                data-tier-qty={t.qty}
                 className="flex w-full items-center justify-between gap-2 px-3 py-3 text-left"
               >
                 <span className="flex min-w-0 items-center gap-1.5">
@@ -339,6 +384,62 @@ export function VolumeBundleDemo({
           );
         })}
       </div>
+
+      {/* Free gifts & shipping — unlock automatically as the chosen tier grows.
+          Clicking a locked reward jumps to the tier that unlocks it. */}
+      {gifts.length > 0 && (
+        <div className="mt-4 rounded-xl border border-success/30 bg-success/10 p-3">
+          <p className="mb-2.5 text-xs font-bold text-success-foreground">
+            {giftsHeading}
+          </p>
+          <div className="grid grid-cols-3 gap-2">
+            {gifts.map((g) => {
+              const unlocked = tier.qty >= g.unlockAt;
+              const unlockIdx = tiers.findIndex((t) => t.qty === g.unlockAt);
+              return (
+                <button
+                  key={g.label}
+                  type="button"
+                  onClick={() => unlockIdx >= 0 && selectTier(unlockIdx)}
+                  className={cn(
+                    "relative flex flex-col items-center gap-1.5 rounded-lg border p-2 text-center transition-colors",
+                    unlocked
+                      ? "border-success/50 bg-success/15"
+                      : "border-border bg-surface hover:border-success/40",
+                  )}
+                >
+                  {!unlocked && (
+                    <span
+                      aria-hidden="true"
+                      className="absolute right-1.5 top-1.5 text-[10px] opacity-55"
+                    >
+                      🔒
+                    </span>
+                  )}
+                  <span
+                    className={cn(
+                      "size-8 transition-colors",
+                      unlocked
+                        ? "text-success-foreground"
+                        : "text-muted opacity-55",
+                    )}
+                  >
+                    <GiftGlyph name={g.icon} />
+                  </span>
+                  <span
+                    className={cn(
+                      "text-[10.5px] leading-tight font-semibold",
+                      unlocked ? "text-success-foreground" : "text-muted",
+                    )}
+                  >
+                    {g.label}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
 
       {/* Success notification — auto-dismisses; the pack resets on add. */}
       {notice && (

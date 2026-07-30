@@ -10,6 +10,7 @@ import { MixMatchSingleStage } from "@/components/demos/mix-match-single-stage";
 import { MixMatchMultiStage } from "@/components/demos/mix-match-multi-stage";
 import { CrossSellStage } from "@/components/demos/cross-sell-stage";
 import { ByobStage } from "@/components/demos/byob-stage";
+import { AutoCursor } from "@/components/demos/auto-cursor";
 import { installUrl } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 import { showcase } from "@/lib/content/showcase";
@@ -83,6 +84,7 @@ export function FeatureShowcase({
   const baseId = useId();
   const [active, setActive] = useState(0);
   const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
+  const previewRef = useRef<HTMLDivElement>(null);
   // Localized text comes from `content`; icons + demo components stay keyed in
   // code (`showcase.features`) and are matched to the text by index.
   const meta = showcase.features;
@@ -190,7 +192,10 @@ export function FeatureShowcase({
             `pb-light` pins the preview to the light token set so it always reads
             as a real (white) storefront, even when the site is in dark mode. */}
         <div className="rounded-2xl bg-gradient-border p-1.5 shadow-lift">
-          <div className="pb-light overflow-hidden rounded-[0.9rem] bg-surface text-foreground">
+          <div
+            ref={previewRef}
+            className="pb-light relative overflow-hidden rounded-[0.9rem] bg-surface text-foreground"
+          >
             {/* Faux app chrome */}
             <div className="flex items-center gap-2 border-b border-border px-4 py-3">
               <span className="flex gap-1.5" aria-hidden="true">
@@ -214,7 +219,16 @@ export function FeatureShowcase({
                 {/* Demos pad themselves so a sticky footer can sit flush. */}
                 <Demo />
               </div>
-            ) : (
+            ) : null}
+
+            {/* Ghost-cursor auto-demo — only on the Volume tab; auto-clicks a
+                couple of tiers to show the preview is live, then invites the
+                visitor to take over. */}
+            {meta[active].id === "volume" && (
+              <AutoCursor containerRef={previewRef} tierQtys={[2, 4]} />
+            )}
+
+            {!Demo && (
               <div className="relative flex aspect-16/10 flex-col items-center justify-center gap-5 overflow-hidden p-8 text-center">
                 <div
                   aria-hidden="true"
