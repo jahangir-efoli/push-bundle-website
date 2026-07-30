@@ -2,6 +2,7 @@
 
 import { ProductStage } from "@/components/demos/product-stage";
 import { CrossSellDemo } from "@/components/demos/cross-sell-demo";
+import type { CartBundle } from "@/components/demos/cart-drawer";
 
 /**
  * Cross-Sell Bundle presented as a Shopify product page: the ProductStage shows
@@ -9,7 +10,11 @@ import { CrossSellDemo } from "@/components/demos/cross-sell-demo";
  * pairs complementary items below (matches the shared reference). Uses the same
  * product image as the Volume stage.
  */
-export function CrossSellStage() {
+export function CrossSellStage({
+  onAddToCart,
+}: {
+  onAddToCart?: (bundle: CartBundle) => void;
+} = {}) {
   return (
     <ProductStage
       image="/images/products/cross-sell.png"
@@ -31,6 +36,9 @@ export function CrossSellStage() {
             embedded
             heading=""
             discount={10}
+            bundleTitle="Teal accent dresser · Cross-Sell Bundle"
+            bundleImage="/images/products/cross-sell.png"
+            onAddToCart={onAddToCart}
             products={[
               {
                 name: "Terracotta Bud Vase",

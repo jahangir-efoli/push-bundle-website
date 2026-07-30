@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { buttonStyles } from "@/components/ui/button";
 import { ProductThumb } from "@/components/demos/product-thumb";
+import type { CartBundle } from "@/components/demos/cart-drawer";
 import { cn } from "@/lib/utils";
 
 /**
@@ -46,12 +47,18 @@ export function CrossSellDemo({
   /** Embedded in a ProductStage: drop outer padding + heading, and the footer
       sits inline (not sticky) since the host card isn't a scroll container. */
   embedded = false,
+  bundleTitle = "Cross-Sell Bundle",
+  bundleImage,
+  onAddToCart,
   className,
 }: {
   products?: CrossProduct[];
   discount?: number;
   heading?: string;
   embedded?: boolean;
+  bundleTitle?: string;
+  bundleImage?: string;
+  onAddToCart?: (bundle: CartBundle) => void;
   className?: string;
 }) {
   const initial = () => products.map((p) => p.variants[0]);
@@ -67,6 +74,25 @@ export function CrossSellDemo({
     setPicked((prev) => prev.map((x, idx) => (idx === i ? v : x)));
 
   const addToCart = () => {
+    if (onAddToCart) {
+      const items = products.flatMap((p, i) =>
+        Array.from({ length: p.qty }, () => ({
+          name: p.name,
+          variant: picked[i],
+          img: p.image,
+        })),
+      );
+      onAddToCart({
+        title: bundleTitle,
+        id: "CROSS",
+        img: bundleImage ?? products[0]?.image,
+        price: total,
+        subtotal: total,
+        items,
+      });
+      setPicked(initial());
+      return;
+    }
     setNotice(`Bundle added to cart · ${usd(total)} (saved ${discount}%)`);
     setPicked(initial());
     window.clearTimeout(noticeTimer.current);

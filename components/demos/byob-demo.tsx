@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ProductThumb } from "@/components/demos/product-thumb";
+import type { CartBundle } from "@/components/demos/cart-drawer";
 import { cn } from "@/lib/utils";
 
 /**
@@ -91,6 +92,7 @@ export function ByobDemo({
   cardMax = 2,
   fields = DEFAULT_FIELDS,
   discount = 10,
+  onAddToCart,
   className,
 }: {
   title?: string;
@@ -105,6 +107,7 @@ export function ByobDemo({
   cardMax?: number;
   fields?: ByobField[];
   discount?: number;
+  onAddToCart?: (bundle: CartBundle) => void;
   className?: string;
 }) {
   const [step, setStep] = useState(0);
@@ -218,6 +221,30 @@ export function ByobDemo({
     if (!canAdvance) return;
     if (!isLast) {
       setStep((s) => s + 1);
+      return;
+    }
+    if (onAddToCart) {
+      const selectedBox = box !== null ? boxes[box] : null;
+      const items = [
+        ...(selectedBox
+          ? [{ name: selectedBox.name, img: selectedBox.image }]
+          : []),
+        ...flatUnits.map((l) => ({
+          name: l.name,
+          variant: l.variant,
+          img: l.image,
+        })),
+        ...cardPicks.map((i) => ({ name: cards[i].name, img: cards[i].image })),
+      ];
+      onAddToCart({
+        title: "Build Your Own Box",
+        id: "BYOB",
+        img: selectedBox?.image ?? flatUnits[0]?.image,
+        price: total,
+        subtotal: total,
+        items,
+      });
+      reset();
       return;
     }
     setNotice(`Gift box added to cart · ${usd(total)} (saved ${discount}%)`);

@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ProductThumb } from "@/components/demos/product-thumb";
+import type { CartBundle } from "@/components/demos/cart-drawer";
 import { cn } from "@/lib/utils";
 
 /**
@@ -50,10 +51,12 @@ const DEFAULT_PRODUCTS: CatalogProduct[] = [
 export function MixMatchMultiDemo({
   boxes = DEFAULT_BOXES,
   products = DEFAULT_PRODUCTS,
+  onAddToCart,
   className,
 }: {
   boxes?: MultiBox[];
   products?: CatalogProduct[];
+  onAddToCart?: (bundle: CartBundle) => void;
   className?: string;
 }) {
   const categories = useMemo(
@@ -102,6 +105,24 @@ export function MixMatchMultiDemo({
 
   const addToCart = () => {
     if (!full) return;
+    if (onAddToCart) {
+      const items = selectedItems.flatMap(([name, q]) =>
+        Array.from({ length: q }, () => ({
+          name,
+          img: find(name)?.image,
+        })),
+      );
+      onAddToCart({
+        title: `Mix & Match Box of ${target}`,
+        id: `MIX-${target}BOX`,
+        img: items[0]?.img,
+        price: total,
+        subtotal: total,
+        items,
+      });
+      setQty({});
+      return;
+    }
     setNotice(`Box of ${target} added to cart · ${usd(total)}`);
     setQty({});
     window.clearTimeout(noticeTimer.current);

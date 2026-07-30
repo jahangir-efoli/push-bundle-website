@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { buttonStyles } from "@/components/ui/button";
 import { ProductThumb } from "@/components/demos/product-thumb";
+import type { CartBundle } from "@/components/demos/cart-drawer";
 import { cn } from "@/lib/utils";
 
 /**
@@ -71,6 +72,8 @@ export function MixMatchSingleDemo({
   unitNoun = "item",
   /** Embedded in a ProductStage: drop outer padding + inline (non-sticky) cart. */
   embedded = false,
+  bundleImage,
+  onAddToCart,
   className,
 }: {
   productName?: string;
@@ -79,6 +82,8 @@ export function MixMatchSingleDemo({
   variants?: MixVariant[];
   unitNoun?: string;
   embedded?: boolean;
+  bundleImage?: string;
+  onAddToCart?: (bundle: CartBundle) => void;
   className?: string;
 }) {
   const [packIndex, setPackIndex] = useState(0);
@@ -125,6 +130,25 @@ export function MixMatchSingleDemo({
 
   const addToCart = () => {
     if (!full) return;
+    if (onAddToCart) {
+      const variantImg = (name: string) =>
+        variants.find((v) => v.name === name)?.image;
+      const items = flatUnits.map((name) => ({
+        name: productName,
+        variant: name,
+        img: variantImg(name) ?? bundleImage,
+      }));
+      onAddToCart({
+        title: `${productName} · ${target}-pack`,
+        id: `MIX-${target}`,
+        img: bundleImage,
+        price: total,
+        subtotal: total,
+        items,
+      });
+      setPicks({});
+      return;
+    }
     setNotice(`Added ${target} × ${productName} to cart · ${usd(total)}`);
     setPicks({});
     window.clearTimeout(noticeTimer.current);

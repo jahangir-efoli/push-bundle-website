@@ -2,6 +2,7 @@
 
 import { ProductStage } from "@/components/demos/product-stage";
 import { MixMatchSingleDemo } from "@/components/demos/mix-match-single-demo";
+import type { CartBundle } from "@/components/demos/cart-drawer";
 
 /**
  * Mix & Match (Single Product) as a Shopify product page: the ProductStage shows
@@ -9,7 +10,11 @@ import { MixMatchSingleDemo } from "@/components/demos/mix-match-single-demo";
  * berry-accented card — pick a pack size, then fill it with any mix of colours,
  * with the per-shirt price dropping on bigger packs. Matches the shared reference.
  */
-export function MixMatchSingleStage() {
+export function MixMatchSingleStage({
+  onAddToCart,
+}: {
+  onAddToCart?: (bundle: CartBundle) => void;
+} = {}) {
   return (
     <ProductStage
       image="/images/products/mix-single.png"
@@ -23,6 +28,8 @@ export function MixMatchSingleStage() {
           productName="Full Sleeve T-shirt"
           basePrice={24}
           unitNoun="shirt"
+          bundleImage="/images/products/mix-single.png"
+          onAddToCart={onAddToCart}
           packs={[
             { qty: 4, discount: 0, pricePerUnit: 24 },
             { qty: 6, discount: 8, pricePerUnit: 22 },
