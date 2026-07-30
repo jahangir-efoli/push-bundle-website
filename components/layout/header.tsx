@@ -64,15 +64,36 @@ export function Header({
 
   return (
     <>
-      <header className="sticky top-0 z-40 px-gutter pt-3 sm:pt-4">
-      {/* Floating "pill": a self-contained capsule that hovers above the page,
-          so it no longer needs to align to the (full-bleed) hero edges. Capped
-          at max-w-site to stay consistent with the rest of the site's content.
-          Three parts: logo (left) · nav (centered) · actions (right). */}
+      {/* The header morphs between two looks, with a smooth transition:
+          • MOBILE (any scroll) and DESKTOP once scrolled → a flush, full-bleed
+            docked bar with a bottom border.
+          • DESKTOP at the top of the page → a floating "pill" capsule that
+            hovers above the hero (side + top gap, all-round border, rounded,
+            shadow). The outer <header> supplies the floating gap; the shell
+            div supplies the chrome; the inner div keeps content capped/centred.
+          The `lg:` pill classes only apply when NOT scrolled, so scrolling down
+          (or any mobile viewport) collapses it back to the docked bar. */}
+      <header
+        className={cn(
+          "sticky top-0 z-40 transition-all duration-300 ease-out",
+          scrolled ? "px-0 pt-0" : "px-0 pt-0 lg:px-gutter lg:pt-4",
+        )}
+      >
       <div
         className={cn(
-          "mx-auto flex h-20 w-full max-w-site items-center gap-3 rounded-2xl border border-border bg-surface/95 px-4 backdrop-blur-md transition-shadow duration-200 sm:px-6",
-          scrolled ? "shadow-lift" : "shadow-soft",
+          "border-border bg-surface/95 backdrop-blur-md transition-all duration-300 ease-out",
+          // BAR chrome — mobile always, and desktop when scrolled.
+          "border-b",
+          // PILL chrome — desktop only, at the top of the page.
+          scrolled
+            ? "shadow-soft"
+            : "shadow-none lg:mx-auto lg:max-w-site lg:rounded-2xl lg:border lg:shadow-soft",
+        )}
+      >
+      <div
+        className={cn(
+          "mx-auto flex w-full max-w-site items-center gap-3 px-gutter transition-all duration-300 ease-out",
+          scrolled ? "h-16" : "h-16 lg:h-20",
         )}
       >
         <div className="flex flex-1 items-center">
@@ -158,6 +179,7 @@ export function Header({
               <path d="M4 7h16M4 12h16M4 17h16" />
             </svg>
           </button>
+        </div>
         </div>
         </div>
       </header>
