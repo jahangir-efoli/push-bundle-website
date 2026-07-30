@@ -89,18 +89,50 @@ export function Hero({ rating }: { rating: AggregateRating }) {
           breathes against the screen edges. */}
       <div className="relative grid w-full items-center gap-8 px-6 pt-8 pb-16 sm:px-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-10 lg:px-20 lg:pt-10 lg:pb-20 xl:px-28">
         <div>
-          {/* Trust pill: badge + live rating */}
-          <div className="inline-flex flex-wrap items-center gap-x-3 gap-y-1 rounded-full border border-border bg-surface px-4 py-2 text-sm font-semibold shadow-soft">
-            <span className="flex items-center gap-1.5">
-              <ShopifyMark className="size-4" />
+          {/* Trust signals — two distinct pills:
+              1) the official "Built for Shopify" badge (brand-tinted highlight)
+              2) a "Trusted & secure" pill carrying the live rating, linked to
+                 the Shopify App Store listing. */}
+          <div className="flex flex-wrap items-center gap-3">
+            {/* Pill 1 — Built for Shopify (highlighted) */}
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-4 py-2 text-sm font-semibold text-primary ring-1 ring-inset ring-primary/25 shadow-soft">
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 16 14"
+                className="h-3.5 w-auto"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="m13 0-1 5-4 9 8-9.5L13 0ZM3 0l1 5 4 9-8-9.5L3 0Z" fill="#1495CC" />
+                <path d="m3 0 1 5 4 9 4-9 1-5H3Z" fill="#58B7DF" />
+                <path d="M8 14 4 5l-4-.5L8 14ZM8 14l4-9 4-.5L8 14Z" fill="#035F86" />
+                <path d="M8 5.5 4 5l4 9 4-9-4 .5Z" fill="#1495CC" />
+                <path d="m4 5 4-5 4 5-4.001.5L4 5Z" fill="#A9DEF4" />
+                <path d="M4 5 3 0h5L4 5ZM12 5l1-5H8l4 5Z" fill="#58B7DF" />
+                <path d="M4 5 3 0 0 4.5 4 5ZM12 5l1-5 3 4.5-4 .5Z" fill="#1495CC" />
+              </svg>
               Built for Shopify
             </span>
-            <span aria-hidden="true" className="h-4 w-px bg-border" />
-            <span className="flex items-center gap-1">
-              <span className="text-warning">★</span>
-              <span className="font-bold text-foreground">{rating.score}</span>
-              <span className="text-muted">/ 5</span>
-            </span>
+
+            {/* Pill 2 — Trusted & secure + live rating (links to the listing) */}
+            <a
+              href={site.shopifyAppUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Trusted and secure — rated ${rating.score} out of 5 on the Shopify App Store (opens in a new tab)`}
+              className="group/trust inline-flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-2 text-sm font-semibold shadow-soft transition-colors hover:border-primary/40"
+            >
+              <ShopifyMark className="size-4" />
+              <span className="text-muted group-hover/trust:text-foreground">
+                Trusted &amp; secure
+              </span>
+              <span aria-hidden="true" className="h-4 w-px bg-border" />
+              <span className="flex items-center gap-1">
+                <span className="text-warning">★</span>
+                <span className="font-bold text-foreground">{rating.score}</span>
+                <span className="text-muted">/ 5</span>
+              </span>
+            </a>
           </div>
 
           {/* Title reveals character-by-character once on load (pb-write-char),
