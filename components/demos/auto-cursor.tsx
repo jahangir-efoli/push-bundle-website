@@ -42,6 +42,21 @@ export function AutoCursor({
     if (targets.some((t) => !t)) return;
     const [t0, t1] = targets as HTMLElement[];
 
+    // The demo body scrolls inside a fixed-height box (max-h-…/overflow-y-auto).
+    // As tiers expand and the pack fills, new rows render below the fold — keep
+    // them in view by scrolling that box (NOT the page) as the cursor works.
+    const scroller =
+      container.querySelector<HTMLElement>("[data-lenis-prevent]") ?? container;
+    const scrollInto = (el: HTMLElement) => {
+      const sr = scroller.getBoundingClientRect();
+      const er = el.getBoundingClientRect();
+      let top = scroller.scrollTop;
+      if (er.bottom > sr.bottom) top += er.bottom - sr.bottom + 20;
+      else if (er.top < sr.top) top += er.top - sr.top - 20;
+      else return;
+      scroller.scrollTo({ top, behavior: "smooth" });
+    };
+
     let done = false;
     const timers: number[] = [];
     const at = (ms: number, fn: () => void) => {
@@ -111,22 +126,36 @@ export function AutoCursor({
       at(650, () => moveTo(t0));
       at(1750, () => tap(t0));
       at(1880, () => t0.click());
+      // Selecting a tier expands its panel and can push the next tier below the
+      // fold — scroll it back into view before the cursor moves to it.
+      at(2350, () => scrollInto(t1));
       at(2750, () => moveTo(t1));
       at(3850, () => tap(t1));
       at(3980, () => t1.click());
       if (autoFill) {
-        // Move to the variant picker, tap it, then auto-fill the pack.
-        at(4350, () => {
+        // Reveal the variant picker, move to it, tap it, then auto-fill the pack.
+        at(4300, () => {
+          const s = container.querySelector<HTMLSelectElement>("select");
+          if (s) scrollInto(s);
+        });
+        at(4600, () => {
           const s = container.querySelector<HTMLSelectElement>("select");
           if (s) moveTo(s);
         });
-        at(4700, () => {
+        at(4950, () => {
           const s = container.querySelector<HTMLSelectElement>("select");
           if (s) tap(s);
         });
-        at(4850, fillPack);
-        at(5350, () => (ghost.style.opacity = "0"));
-        at(5650, () => nudge.classList.add("show"));
+        at(5100, fillPack);
+        // The filled items + "pack complete" note render below the picker —
+        // scroll the panel's bottom into view so the completed pack is visible.
+        at(5450, () => {
+          const s = container.querySelector<HTMLSelectElement>("select");
+          const panel = s?.parentElement?.parentElement;
+          if (panel) scrollInto(panel);
+        });
+        at(6000, () => (ghost.style.opacity = "0"));
+        at(6300, () => nudge.classList.add("show"));
       } else {
         at(4650, () => (ghost.style.opacity = "0"));
         at(5000, () => nudge.classList.add("show"));
