@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { buttonStyles } from "@/components/ui/button";
+import type { CartBundle } from "@/components/demos/cart-drawer";
 import { cn } from "@/lib/utils";
 
 /**
@@ -85,6 +86,11 @@ export function VolumeBundleDemo({
   /** Embedded in a ProductStage: hide the product header + drop outer padding
       (the stage already shows the product identity and provides spacing). */
   embedded = false,
+  /** Product image used for the cart thumbnails when a cart drawer is wired. */
+  productImage,
+  /** When provided, "Add to cart" opens a cart drawer with the bundle instead
+      of showing the inline success notice. */
+  onAddToCart,
   className,
 }: {
   productName?: string;
@@ -99,6 +105,8 @@ export function VolumeBundleDemo({
   /** Product thumbnail — a custom node/image; defaults to a t-shirt icon. */
   icon?: React.ReactNode;
   embedded?: boolean;
+  productImage?: string;
+  onAddToCart?: (bundle: CartBundle) => void;
   className?: string;
 }) {
   const [selected, setSelected] = useState(() => {
@@ -158,6 +166,26 @@ export function VolumeBundleDemo({
 
   const addToCart = () => {
     if (!full) return;
+    // Cart drawer wired → show the bundle as one line item with nested units.
+    if (onAddToCart) {
+      const units = items.flatMap((it) =>
+        Array.from({ length: it.qty }, () => ({
+          name: productName,
+          variant: it.variant,
+          img: productImage,
+        })),
+      );
+      onAddToCart({
+        title: `${productName} · ${target}-pack bundle`,
+        id: `VOL-${target}`,
+        img: productImage,
+        price: price(tier),
+        subtotal: price(tier),
+        items: units,
+      });
+      setItems([]); // reset so the pack can be built again
+      return;
+    }
     setNotice(`Added ${target} × ${productName} to cart · ${usd(price(tier))}`);
     setItems([]); // reset so the pack can be built again
     window.clearTimeout(noticeTimer.current);

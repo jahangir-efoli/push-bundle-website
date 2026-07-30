@@ -1,8 +1,7 @@
 "use client";
 
-import { useId, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { Section } from "@/components/ui/section";
-import { Eyebrow } from "@/components/ui/eyebrow";
 import { Icon, IconTile, type IconName } from "@/components/ui/icon";
 import { buttonStyles } from "@/components/ui/button";
 import { VolumeBundleStage } from "@/components/demos/volume-bundle-stage";
@@ -11,12 +10,16 @@ import { MixMatchMultiStage } from "@/components/demos/mix-match-multi-stage";
 import { CrossSellStage } from "@/components/demos/cross-sell-stage";
 import { ByobStage } from "@/components/demos/byob-stage";
 import { AutoCursor } from "@/components/demos/auto-cursor";
+import { CartDrawer, type CartBundle } from "@/components/demos/cart-drawer";
 import { installUrl } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 import { showcase } from "@/lib/content/showcase";
 
+/** Props the demo stages may accept (only some wire the cart drawer). */
+type DemoProps = { onAddToCart?: (bundle: CartBundle) => void };
+
 /** Interactive demos keyed by feature id (others show a placeholder for now). */
-const DEMOS: Record<string, React.ComponentType> = {
+const DEMOS: Record<string, React.ComponentType<DemoProps>> = {
   volume: VolumeBundleStage,
   "cross-sell": CrossSellStage,
   "mix-single": MixMatchSingleStage,
@@ -83,8 +86,30 @@ export function FeatureShowcase({
 } = {}) {
   const baseId = useId();
   const [active, setActive] = useState(0);
+  const [cart, setCart] = useState<CartBundle | null>(null);
+  const [cue, setCue] = useState(false);
   const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const previewRef = useRef<HTMLDivElement>(null);
+  const tabbarRef = useRef<HTMLDivElement>(null);
+
+  // Fire the tab-bar entrance attention pulse once, when it scrolls into view.
+  useEffect(() => {
+    const el = tabbarRef.current;
+    if (!el || !("IntersectionObserver" in window)) return;
+    const io = new IntersectionObserver(
+      (ents) => {
+        ents.forEach((e) => {
+          if (e.isIntersecting) {
+            setCue(true);
+            io.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0, rootMargin: "0px 0px -45% 0px" },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
   // Localized text comes from `content`; icons + demo components stay keyed in
   // code (`showcase.features`) and are matched to the text by index.
   const meta = showcase.features;
@@ -120,63 +145,78 @@ export function FeatureShowcase({
   };
 
   return (
-    <Section tone="default" className="showcase-glow">
+    <Section
+      tone="default"
+      className="border-y border-[#ece6dc] bg-[#f4efe7] text-[#23201c]"
+    >
       <div className="mx-auto max-w-2xl text-center">
-        <Eyebrow>{content.eyebrow}</Eyebrow>
-        <h2 className="mt-3 text-display-md text-balance">{content.title}</h2>
-        <p className="mt-4 text-lg text-muted">{content.subtitle}</p>
+        <span className="text-xs font-semibold tracking-[0.16em] text-[#2f5d50] uppercase">
+          {content.eyebrow}
+        </span>
+        <h2 className="mt-3 text-display-md text-balance text-[#23201c]">
+          {content.title}
+        </h2>
+        <p className="mt-4 text-lg text-[#6f685c]">{content.subtitle}</p>
       </div>
 
-      {/* Tabs — a segmented control, so it clearly reads as clickable tabs that
-          switch the live preview below (not static chips). */}
-      <div className="mt-10 flex justify-center">
-        <div
-          role="tablist"
-          aria-label="Bundle types"
-          onKeyDown={onKeyDown}
-          className="inline-flex max-w-full flex-wrap justify-center gap-1 rounded-2xl border border-border bg-surface/70 p-1.5 shadow-soft backdrop-blur-sm"
-        >
-          {features.map((f, i) => {
-            const selected = i === active;
-            return (
-              <button
-                key={meta[i].id}
-                ref={(el) => {
-                  tabRefs.current[i] = el;
-                }}
-                type="button"
-                role="tab"
-                id={`${baseId}-tab-${i}`}
-                aria-selected={selected}
-                aria-controls={`${baseId}-panel`}
-                tabIndex={selected ? 0 : -1}
-                onClick={() => setActive(i)}
+      {/* Tabs — individual pills; the active one is the blue→cyan gradient. The
+          whole bar plays a one-time entrance pulse when it scrolls into view. */}
+      <div
+        ref={tabbarRef}
+        role="tablist"
+        aria-label="Bundle types"
+        onKeyDown={onKeyDown}
+        className={cn(
+          "mt-10 flex flex-wrap justify-center gap-2.5",
+          cue && "pbfs-cue",
+        )}
+      >
+        {features.map((f, i) => {
+          const selected = i === active;
+          return (
+            <button
+              key={meta[i].id}
+              ref={(el) => {
+                tabRefs.current[i] = el;
+              }}
+              type="button"
+              role="tab"
+              id={`${baseId}-tab-${i}`}
+              aria-selected={selected}
+              aria-controls={`${baseId}-panel`}
+              tabIndex={selected ? 0 : -1}
+              onClick={() => setActive(i)}
+              style={
+                selected
+                  ? { backgroundImage: "linear-gradient(90deg,#3b82f6,#22d3ee)" }
+                  : undefined
+              }
+              className={cn(
+                "pbfs-tab inline-flex cursor-pointer items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-semibold transition-colors duration-200",
+                selected
+                  ? "border-transparent text-white shadow-[0_8px_18px_rgba(59,130,246,0.26)]"
+                  : "border-[#ece6dc] bg-white text-[#6f685c] hover:border-[#d8cfc0] hover:text-[#23201c]",
+                selected && "pbfs-glow",
+              )}
+            >
+              <Icon
+                name={meta[i].icon as IconName}
                 className={cn(
-                  "flex cursor-pointer items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-[color,background-color,box-shadow] duration-200",
-                  selected
-                    ? "bg-primary text-primary-foreground shadow-glow"
-                    : "text-muted hover:bg-surface-subtle hover:text-foreground",
+                  "size-4 shrink-0",
+                  selected ? "text-white" : "text-[#3b82f6]",
                 )}
-              >
-                <Icon
-                  name={meta[i].icon as IconName}
-                  className={cn(
-                    "size-4 shrink-0",
-                    selected ? "text-primary-foreground" : "text-primary",
-                  )}
-                />
-                {f.tab}
-              </button>
-            );
-          })}
-        </div>
+              />
+              {f.tab}
+            </button>
+          );
+        })}
       </div>
 
       {/* Cue: the tabs drive the live, interactive preview below. */}
-      <p className="mt-4 flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-wide text-muted">
+      <p className="mt-5 flex items-center justify-center gap-2 text-xs font-semibold tracking-wide text-[#6f685c] uppercase">
         <span className="relative flex size-2" aria-hidden="true">
-          <span className="absolute inline-flex size-full animate-ping rounded-full bg-primary/60" />
-          <span className="relative inline-flex size-2 rounded-full bg-primary" />
+          <span className="absolute inline-flex size-full animate-ping rounded-full bg-[#3b82f6]/60" />
+          <span className="relative inline-flex size-2 rounded-full bg-[#3b82f6]" />
         </span>
         {content.livePreview}
       </p>
@@ -217,7 +257,7 @@ export function FeatureShowcase({
                 className="scrollbar-brand max-h-128 overflow-y-auto"
               >
                 {/* Demos pad themselves so a sticky footer can sit flush. */}
-                <Demo />
+                <Demo onAddToCart={setCart} />
               </div>
             ) : null}
 
@@ -227,6 +267,10 @@ export function FeatureShowcase({
             {meta[active].id === "volume" && (
               <AutoCursor containerRef={previewRef} tierQtys={[2, 4]} />
             )}
+
+            {/* Slide-in cart drawer — opens over the storefront when a bundle is
+                added to cart, showing it as one line item with nested units. */}
+            <CartDrawer bundle={cart} onClose={() => setCart(null)} />
 
             {!Demo && (
               <div className="relative flex aspect-16/10 flex-col items-center justify-center gap-5 overflow-hidden p-8 text-center">
@@ -254,19 +298,23 @@ export function FeatureShowcase({
           </div>
         </div>
 
-        {/* RIGHT — compact feature copy */}
+        {/* RIGHT — compact feature copy (reference palette) */}
         <div>
-          <h3 className="text-display-sm text-balance">{feature.title}</h3>
+          <h3 className="text-display-sm text-balance text-[#23201c]">
+            {feature.title}
+          </h3>
 
-          <div className="mt-6 space-y-6">
+          <div className="mt-6 space-y-5">
             {[
               { label: labels.howItWorks, body: feature.howItWorks },
               { label: labels.benefits, body: feature.benefits },
               { label: labels.flexibility, body: feature.flexibility },
             ].map((s) => (
               <div key={s.label}>
-                <h4 className="text-base font-bold text-foreground">{s.label}</h4>
-                <p className="mt-2 text-base leading-relaxed text-muted">
+                <h4 className="text-xs font-bold tracking-[0.12em] text-[#2f5d50] uppercase">
+                  {s.label}
+                </h4>
+                <p className="mt-1.5 text-base leading-relaxed text-[#6f685c]">
                   {s.body}
                 </p>
               </div>

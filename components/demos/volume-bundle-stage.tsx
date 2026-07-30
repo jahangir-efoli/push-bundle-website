@@ -2,6 +2,7 @@
 
 import { ProductStage } from "@/components/demos/product-stage";
 import { VolumeBundleDemo } from "@/components/demos/volume-bundle-demo";
+import type { CartBundle } from "@/components/demos/cart-drawer";
 
 /**
  * Volume Bundle presented as a Shopify product page: the ProductStage supplies
@@ -9,7 +10,11 @@ import { VolumeBundleDemo } from "@/components/demos/volume-bundle-demo";
  * the volume tier selector sits below inside a berry-accented bundle card that
  * mirrors the live PushBundle widget. Product identity matches the product image.
  */
-export function VolumeBundleStage() {
+export function VolumeBundleStage({
+  onAddToCart,
+}: {
+  onAddToCart?: (bundle: CartBundle) => void;
+} = {}) {
   return (
     <ProductStage
       image="/images/products/volume.png"
@@ -38,6 +43,8 @@ export function VolumeBundleStage() {
               { qty: 6, discount: 15 },
             ]}
             popularQty={4}
+            productImage="/images/products/volume.png"
+            onAddToCart={onAddToCart}
             variants={["Walnut", "Oak", "Espresso", "Natural Ash"]}
             gifts={[
               { label: "Free Coaster Set", unlockAt: 2, icon: "gift" },
