@@ -1,0 +1,185 @@
+{
+  "hero": {
+    "title": "Turn More Products Into Bigger Shopify Orders",
+    "subtitle": "Whether selling to retail shoppers or wholesale buyers, Push Bundle gives you mix & match, volume discounts, upsells, and B2B bundle tools. All designed to convert.",
+    "primaryCta": "Install Free on Shopify",
+    "secondaryCta": "View Demo",
+    "trustedSecure": "Trusted & secure",
+    "microcopy": "Free plan available · 14-day trial · No credit card"
+  },
+  "showcase": {
+    "eyebrow": "Interactive demo",
+    "title": "Your all-in-one bundle builder",
+    "subtitle": "Every bundle type shoppers love — in one app. Pick a tab to explore each one, then try it live.",
+    "livePreview": "Live, interactive preview — try it below",
+    "chromeLabel": "live preview",
+    "features": [
+      {
+        "tab": "Volume Bundle",
+        "title": "Volume Bundle",
+        "howItWorks": "Set tiers like Buy 5 / 10 / 15, each with its own discount. The shopper picks a tier, chooses variants to fill the pack, and the total + savings update live before adding to cart.",
+        "benefits": "Lift average order value with quantity breaks that reward bigger carts — ideal for wholesale, multipacks, and stock-up staples — while you keep full control over every tier and discount.",
+        "flexibility": "Show tiers as a compact list or cards, on the product page or a dedicated bundle page, in portrait or horizontal layouts — all styled to match your theme.",
+        "cta": "Experience Volume Bundle"
+      },
+      {
+        "tab": "Cross-Sell",
+        "title": "Cross-Sell Bundle",
+        "howItWorks": "Group products that sell well together and apply a bundle discount — customers add the whole set in a single click.",
+        "benefits": "Increase AOV by pairing complementary products at a bundled price — a proven upsell that turns one purchase into a complete set without extra clicks.",
+        "flexibility": "Curate the exact set, fix or expose quantities, and let shoppers choose variants — shown right on the product page or as a 'frequently bought together' block.",
+        "cta": "Experience Cross-Sell Bundle"
+      },
+      {
+        "tab": "Mix & Match (Single)",
+        "title": "Mix & Match — Single Product",
+        "howItWorks": "Pick a product, choose the pack sizes, and shoppers assemble their own mix with the discount applied as the box fills.",
+        "benefits": "Boost engagement and AOV by letting shoppers build their own pack from one product's variants — perfect for colour packs, sample sets, and subscription-style boxes.",
+        "flexibility": "Set pack sizes and tiered pricing, cap quantities per variant, and display it as a compact grid or a full page — portrait or horizontal to fit any theme.",
+        "cta": "Experience Mix & Match Bundle"
+      },
+      {
+        "tab": "Mix & Match (Multi)",
+        "title": "Mix & Match — Multiple Products",
+        "howItWorks": "Curate the products, set min/max and per-variant limits, and customers build a personalized multi-product bundle.",
+        "benefits": "Grow basket size with fully customizable multi-product sets — great for curated collections and custom kits — while you keep control over rules and limits.",
+        "flexibility": "Curate the catalog, set min/max and per-variant limits, and offer variant options inline — as an embedded widget or a standalone bundle page.",
+        "cta": "Experience Mix & Match Bundle"
+      },
+      {
+        "tab": "Build Your Own Box",
+        "title": "Build Your Own Box",
+        "howItWorks": "Design a guided, multi-step flow — choose a box, add items, and collect custom details before adding to cart.",
+        "benefits": "Turn gifting into a premium experience that lifts AOV — shoppers assemble a personalized box, add a card, and leave a message, all in one guided flow.",
+        "flexibility": "Configure each step — boxes, products, cards, and custom form fields — then reorder or drop steps to fit any gifting or subscription flow.",
+        "cta": "Experience BYOB Bundle"
+      }
+    ]
+  },
+  "why": {
+    "eyebrow": "Why PushBundle",
+    "title": "Why merchants choose PushBundle",
+    "subtitle": "Create flexible bundle experiences for retail, DTC, and wholesale customers — all from one app.",
+    "items": [
+      {
+        "title": "Customer Eligibility",
+        "features": [
+          "Show bundle offers only to selected customers",
+          "Target shoppers using customer tags or account status",
+          "Create separate offers for retail and B2B buyers"
+        ]
+      },
+      {
+        "title": "Tiered Discounts",
+        "features": [
+          "Offer bigger savings as customers add more products",
+          "Create multiple discount levels based on bundle quantity",
+          "Encourage shoppers to unlock the next savings tier"
+        ]
+      },
+      {
+        "title": "Free Gift, Free shipping with all bundles",
+        "features": [
+          "Add free gifts or free shipping to any bundle offer",
+          "Set clear purchase conditions for each reward",
+          "Give customers more reasons to complete larger orders"
+        ]
+      },
+      {
+        "title": "Fixed Price or Preset Bundle price",
+        "features": [
+          "Set one fixed price for the complete bundle",
+          "Create preset prices for different bundle sizes",
+          "Make bundle savings clear before customers add to cart"
+        ]
+      },
+      {
+        "title": "Insight-Driven Analytics",
+        "features": [
+          "Track bundle views, sales, and customer engagement",
+          "Identify which bundle offers perform best",
+          "Use real data to improve future promotions"
+        ]
+      }
+    ]
+  },
+  "whyBeyond": {
+    "eyebrow": "Beyond the basics",
+    "title": "Everything you need to grow with bundles",
+    "subtitle": "Build smarter bundle campaigns with flexible rules, customer targeting, and storefront controls.",
+    "items": [
+      {
+        "title": "Multi Language and currency",
+        "features": [
+          "Present bundle offers in different languages",
+          "Display prices in customers' local currencies",
+          "Create a smoother experience for international shoppers"
+        ]
+      },
+      {
+        "title": "Template Library",
+        "features": [
+          "Choose from ready-made templates for different bundle types",
+          "Launch professional bundle offers more quickly",
+          "Select layouts that match your products and store style"
+        ]
+      },
+      {
+        "title": "Easy Customisation",
+        "features": [
+          "Adjust colours, text, buttons, and layouts",
+          "Match every bundle widget with your store branding",
+          "Preview changes before publishing them to your store"
+        ]
+      },
+      {
+        "title": "No Code Required",
+        "features": [
+          "Create and publish bundles without writing code",
+          "Manage every offer from a simple dashboard",
+          "Update bundle settings without developer assistance"
+        ]
+      },
+      {
+        "title": "24/7 Human Support and Guided Setup",
+        "features": [
+          "Get help from a real support team whenever needed",
+          "Receive guidance while creating your first bundle",
+          "Solve setup and display issues with expert assistance"
+        ]
+      }
+    ]
+  },
+  "mobile": {
+    "eyebrow": "Mobile-first",
+    "title": "Seamless Mobile Bundling Experience",
+    "cta": "See More",
+    "items": [
+      {
+        "title": "Flawless Mobile Responsiveness",
+        "description": "Every bundle display auto-adapts to all screen sizes for a pixel-perfect shopping experience on any device."
+      },
+      {
+        "title": "Intuitive Tap-to-Select Design",
+        "description": "Browse bundle options with thumb-friendly navigation, customize packs in 2–3 taps, and check out in seconds."
+      },
+      {
+        "title": "Lightning-Fast Performance",
+        "description": "Instant bundle loading (under 2s), zero lag when switching variants, and smooth scrolling through options."
+      }
+    ]
+  },
+  "blogTeaser": {
+    "eyebrow": "From the blog",
+    "title": "Expert Reads",
+    "subtitle": "Discover B2B strategies in our latest articles, where expert knowledge meets real-world results. These aren't just blog posts, they're your roadmap to higher conversions and smarter bundling on Shopify.",
+    "cta": "View All"
+  },
+  "faqTeaser": {
+    "title": "Have you got any questions?",
+    "subtitle": "Get expert answers to all your PushBundle questions. From setting up custom bundles to maximizing discounts and seamless integrations, this FAQ section is here to answer all your burning questions.",
+    "cta": "More FAQ",
+    "supportPrompt": "Didn't find the answer you are looking for?",
+    "supportCta": "Contact Our Support"
+  }
+}

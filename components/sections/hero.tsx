@@ -47,7 +47,32 @@ const HERO_SLIDES = [
  * Vertical rhythm is deliberately tight: the full hero (including the
  * compatibility chips) must fit above the fold on ~650px-tall viewports.
  */
-export function Hero({ rating }: { rating: AggregateRating }) {
+export type HeroContent = {
+  title: string;
+  subtitle: string;
+  primaryCta: string;
+  secondaryCta: string;
+  trustedSecure: string;
+  microcopy: string;
+};
+
+/** English defaults so pages that don't pass localized copy still render. */
+const DEFAULT_HERO: HeroContent = {
+  title: hero.title,
+  subtitle: hero.subtitle,
+  primaryCta: hero.primaryCta,
+  secondaryCta: hero.secondaryCta,
+  trustedSecure: "Trusted & secure",
+  microcopy: "Free plan available · 14-day trial · No credit card",
+};
+
+export function Hero({
+  rating,
+  content = DEFAULT_HERO,
+}: {
+  rating: AggregateRating;
+  content?: HeroContent;
+}) {
   return (
     // Pull up under the floating header (-mt-24) so the hero background fills
     // the whole top of the viewport, behind the transparent pill — no seam.
@@ -124,7 +149,7 @@ export function Hero({ rating }: { rating: AggregateRating }) {
             >
               <ShopifyMark className="size-4" />
               <span className="text-muted group-hover/trust:text-foreground">
-                Trusted &amp; secure
+                {content.trustedSecure}
               </span>
               <span aria-hidden="true" className="h-4 w-px bg-border" />
               <span className="flex items-center gap-1">
@@ -140,12 +165,12 @@ export function Hero({ rating }: { rating: AggregateRating }) {
               aria-label gives assistive tech the clean title; the fragmented
               visual spans are aria-hidden so they aren't read as "T u r n …". */}
           <h1
-            aria-label={hero.title}
+            aria-label={content.title}
             className="mt-4 max-w-[24ch] pb-[0.08em] leading-[1.12] text-[clamp(1.75rem,0.5rem+2.05vw,3rem)]"
           >
             <span aria-hidden="true">
               {(() => {
-                const words = hero.title.split(" ");
+                const words = content.title.split(" ");
                 let ci = 0;
                 return words.map((word, wi) => (
                   <Fragment key={wi}>
@@ -170,7 +195,7 @@ export function Hero({ rating }: { rating: AggregateRating }) {
             </span>
           </h1>
 
-          <p className="mt-6 max-w-xl text-lg text-muted">{hero.subtitle}</p>
+          <p className="mt-6 max-w-xl text-lg text-muted">{content.subtitle}</p>
 
           <div className="mt-6 flex flex-wrap gap-3">
             <a
@@ -179,7 +204,7 @@ export function Hero({ rating }: { rating: AggregateRating }) {
               rel="noopener noreferrer"
               className={buttonStyles({ variant: "gradient", size: "lg" })}
             >
-              {hero.primaryCta}
+              {content.primaryCta}
               <span className="sr-only"> (opens in a new tab)</span>
             </a>
             {/* Live demo storefront — new tab so the site isn't lost. */}
@@ -189,7 +214,7 @@ export function Hero({ rating }: { rating: AggregateRating }) {
               rel="noopener noreferrer"
               className={buttonStyles({ variant: "secondary", size: "lg" })}
             >
-              {hero.secondaryCta}
+              {content.secondaryCta}
               <span className="sr-only"> (opens in a new tab)</span>
               <svg
                 aria-hidden="true"
@@ -207,9 +232,7 @@ export function Hero({ rating }: { rating: AggregateRating }) {
           </div>
 
           {/* Microcopy */}
-          <p className="mt-4 text-sm text-muted">
-            Free plan available · 14-day trial · No credit card
-          </p>
+          <p className="mt-4 text-sm text-muted">{content.microcopy}</p>
         </div>
 
         {/* Feature preview slider — landscape, fills its column. The slider

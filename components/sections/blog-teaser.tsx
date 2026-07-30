@@ -7,20 +7,36 @@ import { Eyebrow } from "@/components/ui/eyebrow";
 import { blogTeaser } from "@/lib/content/home";
 import type { Category, Post } from "@/lib/cms";
 
+export type BlogTeaserContent = {
+  eyebrow: string;
+  title: string;
+  subtitle: string;
+  cta: string;
+};
+
+const DEFAULT_BLOG_TEASER: BlogTeaserContent = {
+  eyebrow: "From the blog",
+  title: blogTeaser.title,
+  subtitle: blogTeaser.subtitle,
+  cta: blogTeaser.cta,
+};
+
 /** "Expert Reads" blog teaser (docs/PLAN.md §5.1 §9) — CMS-driven. */
 export function BlogTeaser({
   posts,
   categories,
+  content = DEFAULT_BLOG_TEASER,
 }: {
   posts: Post[];
   categories: Category[];
+  content?: BlogTeaserContent;
 }) {
   return (
     <Section tone="alt">
       <div className="max-w-3xl">
-        <Eyebrow>From the blog</Eyebrow>
-        <h2 className="mt-3 text-display-md">{blogTeaser.title}</h2>
-        <p className="mt-4 text-muted">{blogTeaser.subtitle}</p>
+        <Eyebrow>{content.eyebrow}</Eyebrow>
+        <h2 className="mt-3 text-display-md">{content.title}</h2>
+        <p className="mt-4 text-muted">{content.subtitle}</p>
       </div>
 
       {/* Same card as the blog listing so the design stays consistent. */}
@@ -36,7 +52,7 @@ export function BlogTeaser({
 
       <div className="mt-10">
         <Link href="/blog" className={buttonStyles({ variant: "secondary" })}>
-          {blogTeaser.cta}
+          {content.cta}
         </Link>
       </div>
     </Section>

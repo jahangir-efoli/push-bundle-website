@@ -1,0 +1,185 @@
+{
+  "hero": {
+    "title": "Convierte más productos en pedidos de Shopify más grandes",
+    "subtitle": "Ya vendas a compradores minoristas o mayoristas, Push Bundle te ofrece mix & match, descuentos por volumen, ventas adicionales y herramientas de paquetes B2B. Todo diseñado para convertir.",
+    "primaryCta": "Instálalo gratis en Shopify",
+    "secondaryCta": "Ver demo",
+    "trustedSecure": "Fiable y seguro",
+    "microcopy": "Plan gratuito disponible · Prueba de 14-day · Sin tarjeta de crédito"
+  },
+  "showcase": {
+    "eyebrow": "Demo interactiva",
+    "title": "Tu creador de paquetes todo en uno",
+    "subtitle": "Todos los tipos de paquete que encantan a los compradores — en una sola app. Elige una pestaña para explorar cada uno y luego pruébalo en vivo.",
+    "livePreview": "Vista previa interactiva y en vivo — pruébala abajo",
+    "chromeLabel": "vista previa en vivo",
+    "features": [
+      {
+        "tab": "Volume Bundle",
+        "title": "Volume Bundle",
+        "howItWorks": "Configura niveles como Buy 5 / 10 / 15, cada uno con su propio descuento. El comprador elige un nivel, selecciona las variantes para completar el pack, y el total + el ahorro se actualizan en vivo antes de añadir al carrito.",
+        "benefits": "Aumenta el valor medio del pedido con descuentos por cantidad que premian los carritos más grandes — ideal para venta mayorista, multipacks y productos básicos de aprovisionamiento — mientras mantienes el control total sobre cada nivel y descuento.",
+        "flexibility": "Muestra los niveles como una lista compacta o como tarjetas, en la página de producto o en una página de paquete dedicada, en diseño vertical u horizontal — todo estilizado para combinar con tu tema.",
+        "cta": "Descubre Volume Bundle"
+      },
+      {
+        "tab": "Cross-Sell",
+        "title": "Paquete Cross-Sell",
+        "howItWorks": "Agrupa productos que se venden bien juntos y aplica un descuento de paquete — los clientes añaden el conjunto completo con un solo clic.",
+        "benefits": "Aumenta el AOV combinando productos complementarios a un precio de paquete — una venta adicional probada que convierte una compra en un conjunto completo sin clics adicionales.",
+        "flexibility": "Selecciona el conjunto exacto, fija o muestra las cantidades y deja que los compradores elijan variantes — mostrado directamente en la página de producto o como un bloque de «comprados juntos habitualmente».",
+        "cta": "Descubre el paquete Cross-Sell"
+      },
+      {
+        "tab": "Mix & Match (Single)",
+        "title": "Mix & Match — Producto único",
+        "howItWorks": "Elige un producto, selecciona los tamaños de pack y los compradores montan su propia combinación con el descuento aplicado a medida que se llena la caja.",
+        "benefits": "Impulsa la interacción y el AOV dejando que los compradores creen su propio pack a partir de las variantes de un solo producto — perfecto para packs de colores, sets de muestras y cajas tipo suscripción.",
+        "flexibility": "Configura los tamaños de pack y los precios por niveles, limita las cantidades por variante y muéstralo como una cuadrícula compacta o una página completa — en vertical u horizontal para adaptarse a cualquier tema.",
+        "cta": "Descubre el paquete Mix & Match"
+      },
+      {
+        "tab": "Mix & Match (Multi)",
+        "title": "Mix & Match — Varios productos",
+        "howItWorks": "Selecciona los productos, define los límites mínimo/máximo y por variante, y los clientes crean un paquete personalizado de varios productos.",
+        "benefits": "Aumenta el tamaño de la cesta con conjuntos de varios productos totalmente personalizables — ideales para colecciones seleccionadas y kits a medida — mientras mantienes el control sobre las reglas y los límites.",
+        "flexibility": "Selecciona el catálogo, define los límites mínimo/máximo y por variante, y ofrece opciones de variante en línea — como widget integrado o como página de paquete independiente.",
+        "cta": "Descubre el paquete Mix & Match"
+      },
+      {
+        "tab": "Build Your Own Box",
+        "title": "Build Your Own Box",
+        "howItWorks": "Diseña un flujo guiado de varios pasos — elige una caja, añade artículos y recoge datos personalizados antes de añadir al carrito.",
+        "benefits": "Convierte los regalos en una experiencia premium que aumenta el AOV — los compradores montan una caja personalizada, añaden una tarjeta y dejan un mensaje, todo en un único flujo guiado.",
+        "flexibility": "Configura cada paso — cajas, productos, tarjetas y campos de formulario personalizados — y luego reordena o elimina pasos para adaptarlos a cualquier flujo de regalo o suscripción.",
+        "cta": "Descubre el paquete BYOB"
+      }
+    ]
+  },
+  "why": {
+    "eyebrow": "Por qué PushBundle",
+    "title": "Por qué los comerciantes eligen PushBundle",
+    "subtitle": "Crea experiencias de paquete flexibles para clientes minoristas, DTC y mayoristas — todo desde una sola app.",
+    "items": [
+      {
+        "title": "Elegibilidad de clientes",
+        "features": [
+          "Muestra las ofertas de paquetes solo a clientes seleccionados",
+          "Segmenta a los compradores mediante etiquetas de cliente o estado de la cuenta",
+          "Crea ofertas independientes para compradores minoristas y B2B"
+        ]
+      },
+      {
+        "title": "Descuentos por niveles",
+        "features": [
+          "Ofrece mayores ahorros a medida que los clientes añaden más productos",
+          "Crea varios niveles de descuento según la cantidad del paquete",
+          "Anima a los compradores a desbloquear el siguiente nivel de ahorro"
+        ]
+      },
+      {
+        "title": "Regalo gratis y envío gratis con todos los paquetes",
+        "features": [
+          "Añade regalos gratis o envío gratis a cualquier oferta de paquete",
+          "Define condiciones de compra claras para cada recompensa",
+          "Dales a los clientes más motivos para completar pedidos más grandes"
+        ]
+      },
+      {
+        "title": "Precio fijo o precio de paquete preestablecido",
+        "features": [
+          "Establece un precio fijo único para el paquete completo",
+          "Crea precios preestablecidos para diferentes tamaños de paquete",
+          "Deja claro el ahorro del paquete antes de que los clientes añadan al carrito"
+        ]
+      },
+      {
+        "title": "Analíticas basadas en datos",
+        "features": [
+          "Haz seguimiento de las vistas, ventas e interacción de los paquetes",
+          "Identifica qué ofertas de paquete rinden mejor",
+          "Usa datos reales para mejorar tus futuras promociones"
+        ]
+      }
+    ]
+  },
+  "whyBeyond": {
+    "eyebrow": "Más allá de lo básico",
+    "title": "Todo lo que necesitas para crecer con paquetes",
+    "subtitle": "Crea campañas de paquetes más inteligentes con reglas flexibles, segmentación de clientes y controles del escaparate.",
+    "items": [
+      {
+        "title": "Varios idiomas y monedas",
+        "features": [
+          "Presenta las ofertas de paquete en distintos idiomas",
+          "Muestra los precios en las monedas locales de los clientes",
+          "Crea una experiencia más fluida para los compradores internacionales"
+        ]
+      },
+      {
+        "title": "Biblioteca de plantillas",
+        "features": [
+          "Elige entre plantillas prediseñadas para distintos tipos de paquete",
+          "Lanza ofertas de paquete profesionales con mayor rapidez",
+          "Selecciona diseños que combinen con tus productos y el estilo de tu tienda"
+        ]
+      },
+      {
+        "title": "Personalización sencilla",
+        "features": [
+          "Ajusta colores, textos, botones y diseños",
+          "Adapta cada widget de paquete a la imagen de marca de tu tienda",
+          "Previsualiza los cambios antes de publicarlos en tu tienda"
+        ]
+      },
+      {
+        "title": "Sin necesidad de código",
+        "features": [
+          "Crea y publica paquetes sin escribir código",
+          "Gestiona cada oferta desde un panel sencillo",
+          "Actualiza la configuración de los paquetes sin ayuda de desarrolladores"
+        ]
+      },
+      {
+        "title": "Soporte humano 24/7 y configuración guiada",
+        "features": [
+          "Recibe ayuda de un equipo de soporte real siempre que lo necesites",
+          "Recibe orientación mientras creas tu primer paquete",
+          "Resuelve problemas de configuración y visualización con asistencia experta"
+        ]
+      }
+    ]
+  },
+  "mobile": {
+    "eyebrow": "Diseño mobile-first",
+    "title": "Experiencia de paquetes fluida en móvil",
+    "cta": "Ver más",
+    "items": [
+      {
+        "title": "Respuesta móvil impecable",
+        "description": "Cada visualización de paquete se adapta automáticamente a todos los tamaños de pantalla para una experiencia de compra perfecta al píxel en cualquier dispositivo."
+      },
+      {
+        "title": "Diseño intuitivo de tocar para seleccionar",
+        "description": "Explora las opciones de paquete con una navegación cómoda para el pulgar, personaliza los packs en 2–3 taps y finaliza la compra en segundos."
+      },
+      {
+        "title": "Rendimiento ultrarrápido",
+        "description": "Carga instantánea de paquetes (under 2s), cero retraso al cambiar de variante y desplazamiento fluido entre las opciones."
+      }
+    ]
+  },
+  "blogTeaser": {
+    "eyebrow": "Del blog",
+    "title": "Lecturas de expertos",
+    "subtitle": "Descubre estrategias B2B en nuestros últimos artículos, donde el conocimiento experto se une a resultados del mundo real. No son solo entradas de blog, son tu hoja de ruta hacia mayores conversiones y paquetes más inteligentes en Shopify.",
+    "cta": "Ver todos"
+  },
+  "faqTeaser": {
+    "title": "¿Tienes alguna pregunta?",
+    "subtitle": "Obtén respuestas de expertos a todas tus preguntas sobre PushBundle. Desde configurar paquetes personalizados hasta maximizar descuentos e integraciones sin fricciones, esta sección de preguntas frecuentes está aquí para responder todas tus dudas más urgentes.",
+    "cta": "Más preguntas frecuentes",
+    "supportPrompt": "¿No encontraste la respuesta que buscabas?",
+    "supportCta": "Contacta con nuestro soporte"
+  }
+}

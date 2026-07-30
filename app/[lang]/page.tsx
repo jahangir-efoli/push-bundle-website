@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import { cms, DEFAULT_LOCALE } from "@/lib/cms";
+import { cms } from "@/lib/cms";
+import { isLocale, type Locale } from "@/i18n/config";
+import { getHomeContent, getCommon } from "@/i18n/content";
 import { Hero } from "@/components/sections/hero";
 import { FeatureShowcase } from "@/components/sections/feature-showcase";
 // Hidden on the home page (kept for easy re-enable):
@@ -19,6 +21,10 @@ import {
 } from "@/lib/seo/structured-data";
 import { hero, whyPushbundle, whyBeyond } from "@/lib/content/home";
 
+const toLocale = (lang: string): Locale => (isLocale(lang) ? lang : "en");
+
+type Props = { params: Promise<{ lang: string }> };
+
 export const metadata: Metadata = {
   title: "PushBundle — Boost Your AOV with the Best Shopify Bundle App",
   description: hero.subtitle,
@@ -28,17 +34,41 @@ export const metadata: Metadata = {
  * Home page (docs/PLAN.md §5.1).
  * Server Component: content is fetched from the CMS adapter and the whole page
  * renders as HTML. Only the scroll reveals and accordion ship client JS.
+ *
+ * Static copy is localized via `messages/home/<locale>.json`; images/icons stay
+ * in `lib/content/home.ts` and are merged by index. CMS-driven content (posts,
+ * reviews, FAQs) is fetched in the active locale by the adapter.
  */
-export default async function Home() {
-  const locale = DEFAULT_LOCALE;
+export default async function Home({ params }: Props) {
+  const { lang } = await params;
+  const locale = toLocale(lang);
 
-  const [latestPosts, categories, faqItems, reviews, rating] = await Promise.all([
-    cms.listPosts({ locale, perPage: 3 }),
-    cms.listCategories({ locale }),
-    cms.listFaqs({ locale, limit: 5 }),
-    cms.listReviews({ locale, limit: 12 }),
-    cms.getAggregateRating(),
-  ]);
+  const [home, common, latestPosts, categories, faqItems, reviews, rating] =
+    await Promise.all([
+      getHomeContent(locale),
+      getCommon(locale),
+      cms.listPosts({ locale, perPage: 3 }),
+      cms.listCategories({ locale }),
+      cms.listFaqs({ locale, limit: 5 }),
+      cms.listReviews({ locale, limit: 12 }),
+      cms.getAggregateRating(),
+    ]);
+
+  // Merge translated why-section text with the image paths (kept in code).
+  const whyContent = {
+    ...home.why,
+    items: home.why.items.map((it, i) => ({
+      ...it,
+      image: whyPushbundle.items[i]?.image ?? "",
+    })),
+  };
+  const whyBeyondContent = {
+    ...home.whyBeyond,
+    items: home.whyBeyond.items.map((it, i) => ({
+      ...it,
+      image: whyBeyond.items[i]?.image ?? "",
+    })),
+  };
 
   return (
     <>
@@ -46,17 +76,34 @@ export default async function Home() {
       <JsonLd data={softwareApplicationLd({ rating, reviews })} />
       <JsonLd data={faqPageLd(faqItems)} />
 
-      <Hero rating={rating} />
-      <FeatureShowcase />
+      <Hero rating={rating} content={home.hero} />
+      <FeatureShowcase
+        content={home.showcase}
+        labels={{
+          howItWorks: common.demoLabels.howItWorks,
+          benefits: common.demoLabels.benefits,
+          flexibility: common.demoLabels.flexibility,
+        }}
+      />
       {/* <FeatureTrio /> — hidden per request */}
-      <WhyPushbundle content={whyPushbundle} />
-      <WhyPushbundle content={whyBeyond} reverse tone="alt" />
+      <WhyPushbundle content={whyContent} />
+      <WhyPushbundle content={whyBeyondContent} reverse tone="alt" />
       {/* <StorefrontPersonalization /> — hidden per request */}
-      <MobileExperience />
-      <Reviews reviews={reviews} rating={rating} />
-      <BlogTeaser posts={latestPosts.items} categories={categories} />
-      <FaqTeaser items={faqItems} />
-      <TrialCta />
+      <MobileExperience content={home.mobile} />
+      <Reviews
+        reviews={reviews}
+        rating={rating}
+        eyebrow={common.reviews.eyebrow}
+        title={common.reviews.title}
+        subtitle={common.reviews.subtitle}
+      />
+      <BlogTeaser
+        posts={latestPosts.items}
+        categories={categories}
+        content={home.blogTeaser}
+      />
+      <FaqTeaser items={faqItems} content={home.faqTeaser} />
+      <TrialCta content={common.trialCta} />
     </>
   );
 }

@@ -211,6 +211,19 @@ export const getFaqContent = makeLoader<FaqContent>({
   zh: () => import("@/messages/faq/zh.json"),
 });
 
+// --- home -----------------------------------------------------------------
+import type homeEn from "@/messages/home/en.json";
+export type HomeContent = typeof homeEn;
+export const getHomeContent = makeLoader<HomeContent>({
+  en: () => import("@/messages/home/en.json"),
+  de: () => import("@/messages/home/de.json"),
+  fr: () => import("@/messages/home/fr.json"),
+  es: () => import("@/messages/home/es.json"),
+  it: () => import("@/messages/home/it.json"),
+  ja: () => import("@/messages/home/ja.json"),
+  zh: () => import("@/messages/home/zh.json"),
+});
+
 // --- partner --------------------------------------------------------------
 import type partnerEn from "@/messages/partner/en.json";
 export type PartnerContent = typeof partnerEn;

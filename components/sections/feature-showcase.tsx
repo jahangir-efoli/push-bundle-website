@@ -23,19 +23,72 @@ const DEMOS: Record<string, React.ComponentType> = {
   byob: ByobStage,
 };
 
+export type ShowcaseFeatureCopy = {
+  tab: string;
+  title: string;
+  howItWorks: string;
+  benefits: string;
+  flexibility: string;
+  cta: string;
+};
+export type ShowcaseContent = {
+  eyebrow: string;
+  title: string;
+  subtitle: string;
+  livePreview: string;
+  chromeLabel: string;
+  features: readonly ShowcaseFeatureCopy[];
+};
+export type ShowcaseLabels = {
+  howItWorks: string;
+  benefits: string;
+  flexibility: string;
+};
+
+/** English defaults so the section renders without localized copy. */
+const DEFAULT_CONTENT: ShowcaseContent = {
+  eyebrow: showcase.eyebrow,
+  title: showcase.title,
+  subtitle: showcase.subtitle,
+  livePreview: "Live, interactive preview — try it below",
+  chromeLabel: "live preview",
+  features: showcase.features.map((f) => ({
+    tab: f.tab,
+    title: f.title,
+    howItWorks: f.howItWorks,
+    benefits: f.benefits,
+    flexibility: f.flexibility,
+    cta: f.cta,
+  })),
+};
+const DEFAULT_LABELS: ShowcaseLabels = {
+  howItWorks: "How it Works",
+  benefits: "Benefits",
+  flexibility: "Flexibility",
+};
+
 /**
  * Interactive feature showcase (docs/PLAN.md §5.1) — a WAI-ARIA tabbed section
  * below the hero. Icon tab pills switch the panel; the LEFT panel is a large
  * app-window placeholder that each feature's live interactive preview replaces
  * later. Roving tabindex + Arrow/Home/End keyboard nav.
  */
-export function FeatureShowcase() {
+export function FeatureShowcase({
+  content = DEFAULT_CONTENT,
+  labels = DEFAULT_LABELS,
+}: {
+  content?: ShowcaseContent;
+  labels?: ShowcaseLabels;
+} = {}) {
   const baseId = useId();
   const [active, setActive] = useState(0);
   const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
-  const features = showcase.features;
+  // Localized text comes from `content`; icons + demo components stay keyed in
+  // code (`showcase.features`) and are matched to the text by index.
+  const meta = showcase.features;
+  const features = content.features;
   const feature = features[active];
-  const Demo = DEMOS[feature.id];
+  const Demo = DEMOS[meta[active].id];
 
   const focusTab = (index: number) => {
     const next = (index + features.length) % features.length;
@@ -67,9 +120,9 @@ export function FeatureShowcase() {
   return (
     <Section tone="default" className="showcase-glow">
       <div className="mx-auto max-w-2xl text-center">
-        <Eyebrow>{showcase.eyebrow}</Eyebrow>
-        <h2 className="mt-3 text-display-md text-balance">{showcase.title}</h2>
-        <p className="mt-4 text-lg text-muted">{showcase.subtitle}</p>
+        <Eyebrow>{content.eyebrow}</Eyebrow>
+        <h2 className="mt-3 text-display-md text-balance">{content.title}</h2>
+        <p className="mt-4 text-lg text-muted">{content.subtitle}</p>
       </div>
 
       {/* Tabs — a segmented control, so it clearly reads as clickable tabs that
@@ -85,7 +138,7 @@ export function FeatureShowcase() {
             const selected = i === active;
             return (
               <button
-                key={f.id}
+                key={meta[i].id}
                 ref={(el) => {
                   tabRefs.current[i] = el;
                 }}
@@ -104,7 +157,7 @@ export function FeatureShowcase() {
                 )}
               >
                 <Icon
-                  name={f.icon as IconName}
+                  name={meta[i].icon as IconName}
                   className={cn(
                     "size-4 shrink-0",
                     selected ? "text-primary-foreground" : "text-primary",
@@ -123,7 +176,7 @@ export function FeatureShowcase() {
           <span className="absolute inline-flex size-full animate-ping rounded-full bg-primary/60" />
           <span className="relative inline-flex size-2 rounded-full bg-primary" />
         </span>
-        Live, interactive preview — try it below
+        {content.livePreview}
       </p>
 
       {/* Panel — preview is the star; copy is the supporting column. */}
@@ -146,7 +199,7 @@ export function FeatureShowcase() {
                 <span className="size-2.5 rounded-full bg-success/70" />
               </span>
               <span className="ml-2 truncate text-xs text-muted">
-                {feature.title} — live preview
+                {feature.title} — {content.chromeLabel}
               </span>
             </div>
 
@@ -173,7 +226,7 @@ export function FeatureShowcase() {
                   }}
                 />
                 <div className="relative flex flex-col items-center gap-5">
-                  <IconTile name={feature.icon as IconName} className="size-16" />
+                  <IconTile name={meta[active].icon as IconName} className="size-16" />
                   <p className="font-display text-xl font-bold">
                     {feature.title}
                   </p>
@@ -193,9 +246,9 @@ export function FeatureShowcase() {
 
           <div className="mt-6 space-y-6">
             {[
-              { label: "How it Works", body: feature.howItWorks },
-              { label: "Benefits", body: feature.benefits },
-              { label: "Flexibility", body: feature.flexibility },
+              { label: labels.howItWorks, body: feature.howItWorks },
+              { label: labels.benefits, body: feature.benefits },
+              { label: labels.flexibility, body: feature.flexibility },
             ].map((s) => (
               <div key={s.label}>
                 <h4 className="text-base font-bold text-foreground">{s.label}</h4>

@@ -5,31 +5,45 @@ import { buttonStyles } from "@/components/ui/button";
 import { faqTeaser } from "@/lib/content/home";
 import type { FaqItem } from "@/lib/cms";
 
+export type FaqTeaserContent = {
+  title: string;
+  subtitle: string;
+  cta: string;
+  supportPrompt: string;
+  supportCta: string;
+};
+
 /**
  * FAQ teaser (docs/PLAN.md §5.1 §11) — CMS-driven, same source as /faq.
  * Shared with Pricing / About / Contact.
  */
-export function FaqTeaser({ items }: { items: FaqItem[] }) {
+export function FaqTeaser({
+  items,
+  content = faqTeaser,
+}: {
+  items: FaqItem[];
+  content?: FaqTeaserContent;
+}) {
   return (
     <Section tone="subtle">
       <div className="grid gap-12 lg:grid-cols-[1fr_1.4fr]">
         <div>
-          <h2 className="text-display-md">{faqTeaser.title}</h2>
-          <p className="mt-4 text-muted">{faqTeaser.subtitle}</p>
+          <h2 className="text-display-md">{content.title}</h2>
+          <p className="mt-4 text-muted">{content.subtitle}</p>
 
           <div className="mt-8 flex flex-wrap gap-4">
             <Link href="/faq" className={buttonStyles({ variant: "secondary" })}>
-              {faqTeaser.cta}
+              {content.cta}
             </Link>
           </div>
 
           <p className="mt-8 text-sm text-muted">
-            {faqTeaser.supportPrompt}{" "}
+            {content.supportPrompt}{" "}
             <Link
               href="/contact-us"
               className="text-primary underline underline-offset-4"
             >
-              {faqTeaser.supportCta}
+              {content.supportCta}
             </Link>
           </p>
         </div>

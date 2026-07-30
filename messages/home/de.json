@@ -1,0 +1,185 @@
+{
+  "hero": {
+    "title": "Machen Sie aus mehr Produkten größere Shopify-Bestellungen",
+    "subtitle": "Ob Sie an Endkunden oder Großhandelskäufer verkaufen — Push Bundle bietet Ihnen Mix & Match, Mengenrabatte, Upsells und B2B-Bundle-Tools. Alles darauf ausgelegt, zu konvertieren.",
+    "primaryCta": "Kostenlos bei Shopify installieren",
+    "secondaryCta": "Demo ansehen",
+    "trustedSecure": "Vertrauenswürdig & sicher",
+    "microcopy": "Kostenloser Tarif verfügbar · 14-day Testphase · Keine Kreditkarte"
+  },
+  "showcase": {
+    "eyebrow": "Interaktive Demo",
+    "title": "Ihr All-in-One-Bundle-Builder",
+    "subtitle": "Jeder Bundle-Typ, den Ihre Kunden lieben — in einer App. Wählen Sie einen Tab, um jeden einzelnen zu erkunden, und testen Sie ihn dann live.",
+    "livePreview": "Live, interaktive Vorschau — probieren Sie es unten aus",
+    "chromeLabel": "Live-Vorschau",
+    "features": [
+      {
+        "tab": "Volume Bundle",
+        "title": "Volume Bundle",
+        "howItWorks": "Legen Sie Stufen wie Buy 5 / 10 / 15 fest, jede mit eigenem Rabatt. Der Kunde wählt eine Stufe, sucht Varianten zum Befüllen des Pakets aus, und die Gesamtsumme + Ersparnis aktualisieren sich live, bevor er in den Warenkorb legt.",
+        "benefits": "Steigern Sie den durchschnittlichen Bestellwert mit Mengenstaffeln, die größere Warenkörbe belohnen — ideal für Großhandel, Multipacks und Vorratsartikel — während Sie die volle Kontrolle über jede Stufe und jeden Rabatt behalten.",
+        "flexibility": "Zeigen Sie Stufen als kompakte Liste oder als Karten an, auf der Produktseite oder einer eigenen Bundle-Seite, im Hoch- oder Querformat — alles passend zu Ihrem Theme gestaltet.",
+        "cta": "Volume Bundle erleben"
+      },
+      {
+        "tab": "Cross-Sell",
+        "title": "Cross-Sell Bundle",
+        "howItWorks": "Fassen Sie Produkte zusammen, die sich gut gemeinsam verkaufen, und wenden Sie einen Bundle-Rabatt an — Kunden fügen das komplette Set mit einem einzigen Klick hinzu.",
+        "benefits": "Erhöhen Sie den AOV, indem Sie ergänzende Produkte zu einem Bundle-Preis kombinieren — ein bewährter Upsell, der aus einem Kauf ein komplettes Set macht, ohne zusätzliche Klicks.",
+        "flexibility": "Stellen Sie das exakte Set zusammen, fixieren oder zeigen Sie Mengen an und lassen Sie Kunden Varianten wählen — direkt auf der Produktseite oder als Block „Häufig zusammen gekauft“.",
+        "cta": "Cross-Sell Bundle erleben"
+      },
+      {
+        "tab": "Mix & Match (Single)",
+        "title": "Mix & Match — Einzelprodukt",
+        "howItWorks": "Wählen Sie ein Produkt, legen Sie die Packungsgrößen fest, und Kunden stellen ihre eigene Mischung zusammen — der Rabatt wird angewendet, sobald sich die Box füllt.",
+        "benefits": "Steigern Sie Engagement und AOV, indem Sie Kunden ihr eigenes Paket aus den Varianten eines Produkts zusammenstellen lassen — perfekt für Farbpakete, Probier-Sets und abonnementartige Boxen.",
+        "flexibility": "Legen Sie Packungsgrößen und gestaffelte Preise fest, begrenzen Sie Mengen pro Variante und zeigen Sie es als kompaktes Raster oder als ganze Seite an — im Hoch- oder Querformat, passend zu jedem Theme.",
+        "cta": "Mix & Match Bundle erleben"
+      },
+      {
+        "tab": "Mix & Match (Multi)",
+        "title": "Mix & Match — Mehrere Produkte",
+        "howItWorks": "Stellen Sie die Produkte zusammen, legen Sie Min./Max.- und Limits pro Variante fest, und Kunden bauen ein personalisiertes Bundle aus mehreren Produkten.",
+        "benefits": "Vergrößern Sie den Warenkorb mit vollständig anpassbaren Sets aus mehreren Produkten — ideal für kuratierte Kollektionen und individuelle Kits — während Sie die Kontrolle über Regeln und Limits behalten.",
+        "flexibility": "Kuratieren Sie den Katalog, legen Sie Min./Max.- und Limits pro Variante fest und bieten Sie Variantenoptionen direkt an — als eingebettetes Widget oder als eigenständige Bundle-Seite.",
+        "cta": "Mix & Match Bundle erleben"
+      },
+      {
+        "tab": "Build Your Own Box",
+        "title": "Build Your Own Box",
+        "howItWorks": "Gestalten Sie einen geführten, mehrstufigen Ablauf — Box wählen, Artikel hinzufügen und individuelle Angaben erfassen, bevor in den Warenkorb gelegt wird.",
+        "benefits": "Machen Sie aus dem Schenken ein Premium-Erlebnis, das den AOV steigert — Kunden stellen eine personalisierte Box zusammen, legen eine Karte bei und hinterlassen eine Nachricht, alles in einem geführten Ablauf.",
+        "flexibility": "Konfigurieren Sie jeden Schritt — Boxen, Produkte, Karten und individuelle Formularfelder — und ordnen Sie Schritte dann neu an oder entfernen Sie sie, um zu jedem Geschenk- oder Abonnementablauf zu passen.",
+        "cta": "BYOB Bundle erleben"
+      }
+    ]
+  },
+  "why": {
+    "eyebrow": "Warum PushBundle",
+    "title": "Warum sich Händler für PushBundle entscheiden",
+    "subtitle": "Erstellen Sie flexible Bundle-Erlebnisse für Endkunden, DTC- und Großhandelskunden — alles aus einer App.",
+    "items": [
+      {
+        "title": "Kundenberechtigung",
+        "features": [
+          "Zeigen Sie Bundle-Angebote nur ausgewählten Kunden",
+          "Sprechen Sie Kunden über Kunden-Tags oder Kontostatus gezielt an",
+          "Erstellen Sie separate Angebote für Endkunden und B2B-Käufer"
+        ]
+      },
+      {
+        "title": "Gestaffelte Rabatte",
+        "features": [
+          "Bieten Sie größere Ersparnisse, je mehr Produkte Kunden hinzufügen",
+          "Erstellen Sie mehrere Rabattstufen basierend auf der Bundle-Menge",
+          "Motivieren Sie Kunden, die nächste Rabattstufe freizuschalten"
+        ]
+      },
+      {
+        "title": "Gratisgeschenk und kostenloser Versand bei allen Bundles",
+        "features": [
+          "Fügen Sie jedem Bundle-Angebot Gratisgeschenke oder kostenlosen Versand hinzu",
+          "Legen Sie klare Kaufbedingungen für jede Prämie fest",
+          "Geben Sie Kunden mehr Gründe, größere Bestellungen abzuschließen"
+        ]
+      },
+      {
+        "title": "Festpreis oder voreingestellter Bundle-Preis",
+        "features": [
+          "Legen Sie einen Festpreis für das komplette Bundle fest",
+          "Erstellen Sie voreingestellte Preise für verschiedene Bundle-Größen",
+          "Machen Sie Bundle-Ersparnisse deutlich, bevor Kunden in den Warenkorb legen"
+        ]
+      },
+      {
+        "title": "Erkenntnisgestützte Analysen",
+        "features": [
+          "Verfolgen Sie Bundle-Aufrufe, Verkäufe und Kundenengagement",
+          "Erkennen Sie, welche Bundle-Angebote am besten abschneiden",
+          "Nutzen Sie echte Daten, um künftige Aktionen zu verbessern"
+        ]
+      }
+    ]
+  },
+  "whyBeyond": {
+    "eyebrow": "Über die Grundlagen hinaus",
+    "title": "Alles, was Sie brauchen, um mit Bundles zu wachsen",
+    "subtitle": "Erstellen Sie smartere Bundle-Kampagnen mit flexiblen Regeln, gezielter Kundenansprache und Storefront-Steuerung.",
+    "items": [
+      {
+        "title": "Mehrsprachigkeit und Mehrwährungsfähigkeit",
+        "features": [
+          "Präsentieren Sie Bundle-Angebote in verschiedenen Sprachen",
+          "Zeigen Sie Preise in der lokalen Währung Ihrer Kunden an",
+          "Schaffen Sie ein reibungsloseres Erlebnis für internationale Kunden"
+        ]
+      },
+      {
+        "title": "Vorlagenbibliothek",
+        "features": [
+          "Wählen Sie aus fertigen Vorlagen für verschiedene Bundle-Typen",
+          "Starten Sie professionelle Bundle-Angebote schneller",
+          "Wählen Sie Layouts, die zu Ihren Produkten und Ihrem Shop-Stil passen"
+        ]
+      },
+      {
+        "title": "Einfache Anpassung",
+        "features": [
+          "Passen Sie Farben, Texte, Buttons und Layouts an",
+          "Stimmen Sie jedes Bundle-Widget auf Ihr Shop-Branding ab",
+          "Sehen Sie Änderungen in der Vorschau, bevor Sie sie in Ihrem Shop veröffentlichen"
+        ]
+      },
+      {
+        "title": "Kein Code erforderlich",
+        "features": [
+          "Erstellen und veröffentlichen Sie Bundles, ohne Code zu schreiben",
+          "Verwalten Sie jedes Angebot über ein einfaches Dashboard",
+          "Aktualisieren Sie Bundle-Einstellungen ohne Unterstützung von Entwicklern"
+        ]
+      },
+      {
+        "title": "24/7 menschlicher Support und geführte Einrichtung",
+        "features": [
+          "Erhalten Sie Hilfe von einem echten Support-Team, wann immer Sie sie brauchen",
+          "Werden Sie beim Erstellen Ihres ersten Bundles begleitet",
+          "Lösen Sie Einrichtungs- und Anzeigeprobleme mit fachkundiger Unterstützung"
+        ]
+      }
+    ]
+  },
+  "mobile": {
+    "eyebrow": "Mobile-first",
+    "title": "Nahtloses mobiles Bundling-Erlebnis",
+    "cta": "Mehr ansehen",
+    "items": [
+      {
+        "title": "Makellose mobile Responsivität",
+        "description": "Jede Bundle-Anzeige passt sich automatisch an alle Bildschirmgrößen an — für ein pixelgenaues Einkaufserlebnis auf jedem Gerät."
+      },
+      {
+        "title": "Intuitives Design zum Auswählen per Tipp",
+        "description": "Durchstöbern Sie Bundle-Optionen mit daumenfreundlicher Navigation, stellen Sie Pakete in 2–3 taps zusammen und schließen Sie den Kauf in Sekunden ab."
+      },
+      {
+        "title": "Blitzschnelle Performance",
+        "description": "Sofortiges Laden von Bundles (under 2s), keinerlei Verzögerung beim Wechseln von Varianten und flüssiges Scrollen durch die Optionen."
+      }
+    ]
+  },
+  "blogTeaser": {
+    "eyebrow": "Aus dem Blog",
+    "title": "Expertenlektüre",
+    "subtitle": "Entdecken Sie B2B-Strategien in unseren neuesten Artikeln, in denen Expertenwissen auf reale Ergebnisse trifft. Das sind nicht nur Blogbeiträge — sie sind Ihr Fahrplan zu höheren Conversions und smarterem Bundling auf Shopify.",
+    "cta": "Alle ansehen"
+  },
+  "faqTeaser": {
+    "title": "Haben Sie noch Fragen?",
+    "subtitle": "Erhalten Sie fachkundige Antworten auf alle Ihre Fragen zu PushBundle. Vom Einrichten individueller Bundles über das Maximieren von Rabatten bis hin zu nahtlosen Integrationen — dieser FAQ-Bereich beantwortet all Ihre brennenden Fragen.",
+    "cta": "Mehr FAQ",
+    "supportPrompt": "Haben Sie nicht die gesuchte Antwort gefunden?",
+    "supportCta": "Kontaktieren Sie unseren Support"
+  }
+}
