@@ -54,48 +54,48 @@ export const whyPushbundle = {
     "Create flexible bundle experiences for retail, DTC, and wholesale customers — all from one app.",
   items: [
     {
-      title: "Tiered discount",
+      title: "Customer Eligibility",
       image: "/images/why/why-1.png",
       features: [
-        "Create volume, cross-sell, fixed-pack, Mix & Match, and Build Your Own bundles",
-        "Manage different bundle campaigns from one dashboard",
-        "Use the right bundle style for every product and selling strategy",
+        "Show bundle offers only to selected customers",
+        "Target shoppers using customer tags or account status",
+        "Create separate offers for retail and B2B buyers",
+      ],
+    },
+    {
+      title: "Tiered Discounts",
+      image: "/images/why/why-2.png",
+      features: [
+        "Offer bigger savings as customers add more products",
+        "Create multiple discount levels based on bundle quantity",
+        "Encourage shoppers to unlock the next savings tier",
       ],
     },
     {
       title: "Free Gift, Free shipping with all bundles",
-      image: "/images/why/why-2.png",
+      image: "/images/why/why-3.png",
       features: [
-        "Let shoppers choose their preferred products, variants, and quantities",
-        "Create single-product or multi-product bundle-building experiences",
-        "Set minimum and maximum bundle requirements",
+        "Add free gifts or free shipping to any bundle offer",
+        "Set clear purchase conditions for each reward",
+        "Give customers more reasons to complete larger orders",
       ],
     },
     {
       title: "Fixed Price or Preset Bundle price",
-      image: "/images/why/why-3.png",
-      features: [
-        "Offer fixed, percentage, tiered, and volume-based discounts",
-        "Set different discounts for specific bundle sizes",
-        "Encourage customers to add more products before unlocking savings",
-      ],
-    },
-    {
-      title: "Insight driven Analytics",
       image: "/images/why/why-4.png",
       features: [
-        "Preview bundle displays while creating your offer",
-        "Choose built-in layouts that fit your product page",
-        "Match your branding with styling controls, custom icons, and CSS",
+        "Set one fixed price for the complete bundle",
+        "Create preset prices for different bundle sizes",
+        "Make bundle savings clear before customers add to cart",
       ],
     },
     {
-      title: "Multi Language and currency",
+      title: "Insight-Driven Analytics",
       image: "/images/why/why-5.png",
       features: [
-        "Works with Shopify Checkout, POS, Admin, Markets, and multi-currency",
-        "Display the bundle as one organized item in the cart",
-        "Keep component inventory tracked and synchronized",
+        "Track bundle views, sales, and customer engagement",
+        "Identify which bundle offers perform best",
+        "Use real data to improve future promotions",
       ],
     }
   ],
@@ -108,49 +108,49 @@ export const whyBeyond = {
   subtitle:
     "Build smarter bundle campaigns with flexible rules, customer targeting, and storefront controls.",
   items: [
-   {
-      title: "Template Library",
+    {
+      title: "Multi Language and currency",
       image: "/images/why/why-6.png",
       features: [
-        "Works with Shopify Checkout, POS, Admin, Markets, and multi-currency",
-        "Display the bundle as one organized item in the cart",
-        "Keep component inventory tracked and synchronized",
+        "Present bundle offers in different languages",
+        "Display prices in customers’ local currencies",
+        "Create a smoother experience for international shoppers",
       ],
     },
     {
-      title: "Easy Customization",
+      title: "Template Library",
       image: "/images/why/why-7.png",
       features: [
-        "Works with Shopify Checkout, POS, Admin, Markets, and multi-currency",
-        "Display the bundle as one organized item in the cart",
-        "Keep component inventory tracked and synchronized",
+        "Choose from ready-made templates for different bundle types",
+        "Launch professional bundle offers more quickly",
+        "Select layouts that match your products and store style",
       ],
     },
     {
-      title: "No code Required",
+      title: "Easy Customisation",
       image: "/images/why/why-8.png",
       features: [
-        "Works with Shopify Checkout, POS, Admin, Markets, and multi-currency",
-        "Display the bundle as one organized item in the cart",
-        "Keep component inventory tracked and synchronized",
+        "Adjust colours, text, buttons, and layouts",
+        "Match every bundle widget with your store branding",
+        "Preview changes before publishing them to your store",
       ],
     },
     {
-      title: "24/7 human support and guided setup",
+      title: "No Code Required",
       image: "/images/why/why-9.png",
       features: [
-        "Get 24/7 human assistance through live chat",
-        "Receive free setup and troubleshooting support",
-        "Connect through email or book a one-on-one Google Meet for hands-on guidance",
+        "Create and publish bundles without writing code",
+        "Manage every offer from a simple dashboard",
+        "Update bundle settings without developer assistance",
       ],
     },
     {
-      title: "Customer eligibility",
+      title: "24/7 Human Support and Guided Setup",
       image: "/images/why/why-10.png",
       features: [
-        "Get 24/7 human assistance through live chat",
-        "Receive free setup and troubleshooting support",
-        "Connect through email or book a one-on-one Google Meet for hands-on guidance",
+        "Get help from a real support team whenever needed",
+        "Receive guidance while creating your first bundle",
+        "Solve setup and display issues with expert assistance",
       ],
     },
   ],
