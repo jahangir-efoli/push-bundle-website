@@ -3,7 +3,7 @@ import { cms } from "@/lib/cms";
 import { isLocale, type Locale } from "@/i18n/config";
 import { getHomeContent, getCommon } from "@/i18n/content";
 import { Hero } from "@/components/sections/hero";
-import { FeatureShowcase } from "@/components/sections/feature-showcase";
+import { FeatureShowcaseLive } from "@/components/sections/feature-showcase-live";
 // Hidden on the home page (kept for easy re-enable):
 // import { FeatureTrio } from "@/components/sections/feature-trio";
 import { WhyPushbundle } from "@/components/sections/why-pushbundle";
@@ -77,14 +77,7 @@ export default async function Home({ params }: Props) {
       <JsonLd data={faqPageLd(faqItems)} />
 
       <Hero rating={rating} content={home.hero} />
-      <FeatureShowcase
-        content={home.showcase}
-        labels={{
-          howItWorks: common.demoLabels.howItWorks,
-          benefits: common.demoLabels.benefits,
-          flexibility: common.demoLabels.flexibility,
-        }}
-      />
+      <FeatureShowcaseLive />
       {/* <FeatureTrio /> — hidden per request */}
       <WhyPushbundle content={whyContent} />
       <WhyPushbundle content={whyBeyondContent} reverse tone="alt" />
