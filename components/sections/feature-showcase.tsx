@@ -54,7 +54,7 @@ const DEFAULT_CONTENT: ShowcaseContent = {
   eyebrow: showcase.eyebrow,
   title: showcase.title,
   subtitle: showcase.subtitle,
-  livePreview: "Live, interactive preview — try it below",
+  livePreview: "Live — try it below",
   chromeLabel: "live preview",
   features: showcase.features.map((f) => ({
     tab: f.tab,
@@ -188,13 +188,13 @@ export function FeatureShowcase({
               onClick={() => setActive(i)}
               style={
                 selected
-                  ? { backgroundImage: "linear-gradient(90deg,#3b82f6,#22d3ee)" }
+                  ? { backgroundImage: "linear-gradient(90deg,#d81b60,#9c164f)" }
                   : undefined
               }
               className={cn(
-                "pbfs-tab inline-flex cursor-pointer items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-semibold transition-colors duration-200",
+                "pbfs-tab inline-flex cursor-pointer items-center gap-2 rounded-md border px-5 py-2.5 text-sm font-semibold transition-colors duration-200",
                 selected
-                  ? "border-transparent text-white shadow-[0_8px_18px_rgba(59,130,246,0.26)]"
+                  ? "border-transparent text-white shadow-[0_8px_18px_rgba(200,30,99,0.28)]"
                   : "border-[#ece6dc] bg-white text-[#6f685c] hover:border-[#d8cfc0] hover:text-[#23201c]",
                 selected && "pbfs-glow",
               )}
@@ -203,7 +203,7 @@ export function FeatureShowcase({
                 name={meta[i].icon as IconName}
                 className={cn(
                   "size-4 shrink-0",
-                  selected ? "text-white" : "text-[#3b82f6]",
+                  selected ? "text-white" : "text-[#c81e63]",
                 )}
               />
               {f.tab}
@@ -222,7 +222,7 @@ export function FeatureShowcase({
         {/* LEFT — large app-window placeholder (live preview goes here later).
             `pb-light` pins the preview to the light token set so it always reads
             as a real (white) storefront, even when the site is in dark mode. */}
-        <div className="rounded-2xl bg-gradient-border p-1.5 shadow-lift">
+        <div className="rounded-2xl bg-gradient-border p-1.5">
           <div
             ref={previewRef}
             className="pb-light relative overflow-hidden rounded-[0.9rem] bg-surface text-foreground"
@@ -238,7 +238,7 @@ export function FeatureShowcase({
               <span className="ml-2 truncate text-xs text-muted">
                 {feature.title} — {content.chromeLabel}
               </span>
-              <span className="ml-auto hidden shrink-0 items-center gap-1.5 text-[11px] font-semibold tracking-wide whitespace-nowrap text-primary uppercase sm:flex">
+              <span className="ml-auto hidden shrink-0 items-center gap-1.5 text-[11px] font-semibold whitespace-nowrap text-primary sm:flex">
                 <span className="relative flex size-2" aria-hidden="true">
                   <span className="absolute inline-flex size-full animate-ping rounded-full bg-primary/60" />
                   <span className="relative inline-flex size-2 rounded-full bg-primary" />
