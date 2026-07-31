@@ -13,7 +13,7 @@ export type HeroSlide = { src: string; alt: string };
  * the lightbox is open (not on hover — a portal-covered hover could leave it
  * stuck paused). Dots jump to a slide; respects reduced-motion.
  *
- * Landscape frames sized to the source screenshots (2007×1565 — upload all five
+ * Landscape frames sized to the source screenshots (1975×1308 — upload all five
  * at the same size so they display uniformly). Until the real images land at
  * each `src`, a branded placeholder is shown so the hero never looks broken.
  * Clicking a slide (when present) opens it enlarged in a lightbox.
@@ -88,9 +88,9 @@ export function HeroSlider({
       {/* Frameless + floating: the preview screenshots are self-contained
           compositions, so no surface fill, border, or rounding. The box gently
           bobs up and down (pb-float) as a single unit. Aspect ratio matches the
-          source images (2007×1565); object-contain guarantees the whole image
+          source images (1975×1308); object-contain guarantees the whole image
           shows un-cropped even if a slide's ratio differs slightly. */}
-      <div className="relative aspect-2007/1565 overflow-hidden animate-[pb-float_5s_ease-in-out_infinite] motion-reduce:animate-none">
+      <div className="relative aspect-1975/1308 overflow-hidden animate-[pb-float_5s_ease-in-out_infinite] motion-reduce:animate-none">
         {/* Trigger layer — holds the slides + hint plus the open/pause handlers.
             The lightbox portal is a SIBLING of this (not a child), so React
             portal event-bubbling can't route the portal's clicks/focus back into
@@ -114,7 +114,11 @@ export function HeroSlider({
                 fill
                 priority={i === 0}
                 quality={90}
-                sizes="(min-width: 1024px) 48rem, (min-width: 640px) 40rem, 92vw"
+                // The hero is full-bleed and the image column is ~57% of it on
+                // lg+, so a small fixed px hint made the browser under-fetch and
+                // upscale (soft/pixelated) on wide + non-retina displays. Track
+                // the real rendered width so it pulls the sharp candidate.
+                sizes="(min-width: 1024px) 60vw, (min-width: 640px) 42rem, 92vw"
                 onError={() =>
                   setImgOk((prev) =>
                     prev.map((v, idx) => (idx === i ? false : v)),
@@ -183,7 +187,7 @@ export function HeroSlider({
           >
             <div
               onClick={(e) => e.stopPropagation()}
-              className="relative aspect-2007/1565 max-h-[86vh] w-[92vw] max-w-6xl cursor-default"
+              className="relative aspect-1975/1308 max-h-[86vh] w-[92vw] max-w-6xl cursor-default"
             >
               <Image
                 src={current.src}
