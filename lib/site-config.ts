@@ -25,6 +25,22 @@ export const site = {
 } as const;
 
 /**
+ * Add PushBundle's standard UTM attribution to any external URL — the shared
+ * core behind `installUrl` and the footer's sibling-app links.
+ */
+export function withUtm(
+  rawUrl: string,
+  { campaign, content }: { campaign: string; content: string },
+): string {
+  const url = new URL(rawUrl);
+  url.searchParams.set("utm_source", "pushbundle.com");
+  url.searchParams.set("utm_medium", "website");
+  url.searchParams.set("utm_campaign", campaign);
+  url.searchParams.set("utm_content", content);
+  return url.toString();
+}
+
+/**
  * Build the Shopify App Store install URL with UTM attribution. Use this for
  * every user-facing "Install"/listing link so we can attribute traffic by
  * placement. Keep the bare `site.shopifyAppUrl` (no UTM) for structured
@@ -34,12 +50,7 @@ export const site = {
  *   e.g. "hero", "header", "pricing".
  */
 export function installUrl(placement: string): string {
-  const url = new URL(site.shopifyAppUrl);
-  url.searchParams.set("utm_source", "pushbundle.com");
-  url.searchParams.set("utm_medium", "website");
-  url.searchParams.set("utm_campaign", "install");
-  url.searchParams.set("utm_content", placement);
-  return url.toString();
+  return withUtm(site.shopifyAppUrl, { campaign: "install", content: placement });
 }
 
 /** Primary nav (docs/PLAN.md §4.2 — Changelog lives under Resources). */
@@ -64,13 +75,16 @@ export const footerLinks = [
   { label: "Changelog", href: "/changelog" },
 ] as const;
 
-/** Sibling apps by the same company (docs/PLAN.md §3). */
+/**
+ * Sibling apps by the same company (docs/PLAN.md §3). `utm` is the
+ * utm_content slug used when the footer links out (campaign "cross-promo").
+ */
 export const whenlabApps = [
-  { label: "MultiVariants – Bulk Order", href: "https://apps.shopify.com/multivariants" },
-  { label: "DiscountRay – B2B Discounts", href: "https://apps.shopify.com/discountray" },
-  { label: "Order Rules", href: "https://apps.shopify.com/order-rules" },
-  { label: "Quotway", href: "https://apps.shopify.com/quotway" },
-  { label: "Embedup", href: "https://apps.shopify.com/embedup" },
+  { label: "MultiVariants – Bulk Order", href: "https://apps.shopify.com/multivariants", utm: "multivariants" },
+  { label: "DiscountRay – B2B Discounts", href: "https://apps.shopify.com/discountray", utm: "discountray" },
+  { label: "Order Rules", href: "https://apps.shopify.com/orderrules-limit-sales", utm: "order-rules" },
+  { label: "Quotway", href: "https://apps.shopify.com/quotway", utm: "quotway" },
+  { label: "Embedup", href: "https://apps.shopify.com/embedup", utm: "embedup" },
 ] as const;
 
 export const socialLinks = [

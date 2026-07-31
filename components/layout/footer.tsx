@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Container } from "@/components/ui/container";
-import { site, socialLinks, whenlabApps } from "@/lib/site-config";
+import { site, socialLinks, whenlabApps, withUtm } from "@/lib/site-config";
 import { localizePath, type Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries";
 
@@ -107,7 +107,12 @@ export function Footer({
               {whenlabApps.map((item) => (
                 <li key={item.href}>
                   <a
-                    href={item.href}
+                    href={withUtm(item.href, {
+                      campaign: "cross-promo",
+                      content: `footer-${item.utm}`,
+                    })}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex min-h-11 items-center text-sm opacity-80 transition-opacity hover:opacity-100 hover:underline"
                   >
                     {item.label}
