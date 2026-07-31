@@ -167,7 +167,7 @@ export function FeatureShowcase({
         aria-label="Bundle types"
         onKeyDown={onKeyDown}
         className={cn(
-          "mt-10 flex flex-wrap justify-center gap-2.5",
+          "mt-16 flex flex-wrap justify-center gap-2.5",
           cue && "pbfs-cue",
         )}
       >
@@ -217,7 +217,7 @@ export function FeatureShowcase({
         id={`${baseId}-panel`}
         role="tabpanel"
         aria-labelledby={`${baseId}-tab-${active}`}
-        className="mt-10 grid grid-cols-1 items-start gap-8 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)] lg:gap-12"
+        className="mt-16 grid grid-cols-1 items-start gap-8 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)] lg:items-center lg:gap-12"
       >
         {/* LEFT — large app-window placeholder (live preview goes here later).
             `pb-light` pins the preview to the light token set so it always reads
