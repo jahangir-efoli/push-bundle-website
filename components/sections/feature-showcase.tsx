@@ -240,8 +240,8 @@ export function FeatureShowcase({
               </span>
               <span className="ml-auto hidden shrink-0 items-center gap-1.5 text-[11px] font-semibold whitespace-nowrap text-primary sm:flex">
                 <span className="relative flex size-2" aria-hidden="true">
-                  <span className="absolute inline-flex size-full animate-ping rounded-full bg-primary/60" />
-                  <span className="relative inline-flex size-2 rounded-full bg-primary" />
+                  <span className="absolute inline-flex size-full animate-ping rounded-full bg-[#c81e63]/60" />
+                  <span className="relative inline-flex size-2 rounded-full bg-[#c81e63]" />
                 </span>
                 {content.livePreview}
               </span>
