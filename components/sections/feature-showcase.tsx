@@ -188,13 +188,13 @@ export function FeatureShowcase({
               onClick={() => setActive(i)}
               style={
                 selected
-                  ? { backgroundImage: "linear-gradient(90deg,#d81b60,#9c164f)" }
+                  ? { backgroundImage: "linear-gradient(90deg,#3b82f6,#22d3ee)" }
                   : undefined
               }
               className={cn(
                 "pbfs-tab inline-flex cursor-pointer items-center gap-2 rounded-md border px-5 py-2.5 text-sm font-semibold transition-colors duration-200",
                 selected
-                  ? "border-transparent text-white shadow-[0_8px_18px_rgba(200,30,99,0.28)]"
+                  ? "border-transparent text-white shadow-[0_8px_18px_rgba(59,130,246,0.26)]"
                   : "border-[#ece6dc] bg-white text-[#6f685c] hover:border-[#d8cfc0] hover:text-[#23201c]",
                 selected && "pbfs-glow",
               )}
@@ -203,7 +203,7 @@ export function FeatureShowcase({
                 name={meta[i].icon as IconName}
                 className={cn(
                   "size-4 shrink-0",
-                  selected ? "text-white" : "text-[#c81e63]",
+                  selected ? "text-white" : "text-[#3b82f6]",
                 )}
               />
               {f.tab}
