@@ -212,21 +212,12 @@ export function FeatureShowcase({
         })}
       </div>
 
-      {/* Cue: the tabs drive the live, interactive preview below. */}
-      <p className="mt-5 flex items-center justify-center gap-2 text-xs font-semibold tracking-wide text-[#6f685c] uppercase">
-        <span className="relative flex size-2" aria-hidden="true">
-          <span className="absolute inline-flex size-full animate-ping rounded-full bg-[#3b82f6]/60" />
-          <span className="relative inline-flex size-2 rounded-full bg-[#3b82f6]" />
-        </span>
-        {content.livePreview}
-      </p>
-
       {/* Panel — preview is the star; copy is the supporting column. */}
       <div
         id={`${baseId}-panel`}
         role="tabpanel"
         aria-labelledby={`${baseId}-tab-${active}`}
-        className="mt-8 grid grid-cols-1 items-start gap-8 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)] lg:gap-12"
+        className="mt-10 grid grid-cols-1 items-start gap-8 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)] lg:gap-12"
       >
         {/* LEFT — large app-window placeholder (live preview goes here later).
             `pb-light` pins the preview to the light token set so it always reads
@@ -236,7 +227,8 @@ export function FeatureShowcase({
             ref={previewRef}
             className="pb-light relative overflow-hidden rounded-[0.9rem] bg-surface text-foreground"
           >
-            {/* Faux app chrome */}
+            {/* Faux app chrome — traffic lights + window title on the left, the
+                live-preview cue on the right (its home in the header). */}
             <div className="flex items-center gap-2 border-b border-border px-4 py-3">
               <span className="flex gap-1.5" aria-hidden="true">
                 <span className="size-2.5 rounded-full bg-warm/70" />
@@ -245,6 +237,13 @@ export function FeatureShowcase({
               </span>
               <span className="ml-2 truncate text-xs text-muted">
                 {feature.title} — {content.chromeLabel}
+              </span>
+              <span className="ml-auto hidden shrink-0 items-center gap-1.5 text-[11px] font-semibold tracking-wide whitespace-nowrap text-primary uppercase sm:flex">
+                <span className="relative flex size-2" aria-hidden="true">
+                  <span className="absolute inline-flex size-full animate-ping rounded-full bg-primary/60" />
+                  <span className="relative inline-flex size-2 rounded-full bg-primary" />
+                </span>
+                {content.livePreview}
               </span>
             </div>
 
