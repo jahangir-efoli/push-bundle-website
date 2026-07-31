@@ -147,7 +147,7 @@ export function FeatureShowcase({
   return (
     <Section
       tone="default"
-      className="border-y border-[#ece6dc] bg-[#f4efe7] text-[#23201c]"
+      className="border-y border-[#ece6dc] bg-[#F6F5F0] text-[#23201c]"
     >
       <div className="mx-auto max-w-2xl text-center">
         <span className="text-xs font-semibold tracking-[0.16em] text-[#2f5d50] uppercase">
