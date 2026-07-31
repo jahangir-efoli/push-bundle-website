@@ -54,12 +54,12 @@ export const whyPushbundle = {
     "Create flexible bundle experiences for retail, DTC, and wholesale customers — all from one app.",
   items: [
     {
-      title: "Customer Eligibility",
+      title: "Customer targeting",
       image: "/images/why/why-1.png",
       features: [
-        "Show bundle offers only to selected customers",
-        "Target shoppers using customer tags or account status",
-        "Create separate offers for retail and B2B buyers",
+        "Deliver the right offer to the right shopper",
+        "Segment by tags, groups, or individual customers",
+        "Personalize bundles without extra apps",
       ],
     },
     {

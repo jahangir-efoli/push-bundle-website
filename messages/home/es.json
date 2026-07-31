@@ -62,11 +62,11 @@
     "subtitle": "Crea experiencias de paquete flexibles para clientes minoristas, DTC y mayoristas — todo desde una sola app.",
     "items": [
       {
-        "title": "Elegibilidad de clientes",
+        "title": "Segmentación de clientes",
         "features": [
-          "Muestra las ofertas de paquetes solo a clientes seleccionados",
-          "Segmenta a los compradores mediante etiquetas de cliente o estado de la cuenta",
-          "Crea ofertas independientes para compradores minoristas y B2B"
+          "Ofrece la promoción adecuada al comprador adecuado",
+          "Segmenta por etiquetas, grupos o clientes individuales",
+          "Personaliza los paquetes sin apps adicionales"
         ]
       },
       {

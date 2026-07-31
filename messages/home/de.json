@@ -62,11 +62,11 @@
     "subtitle": "Erstellen Sie flexible Bundle-Erlebnisse für Endkunden, DTC- und Großhandelskunden — alles aus einer App.",
     "items": [
       {
-        "title": "Kundenberechtigung",
+        "title": "Kundenansprache",
         "features": [
-          "Zeigen Sie Bundle-Angebote nur ausgewählten Kunden",
-          "Sprechen Sie Kunden über Kunden-Tags oder Kontostatus gezielt an",
-          "Erstellen Sie separate Angebote für Endkunden und B2B-Käufer"
+          "Liefern Sie das richtige Angebot an den richtigen Käufer",
+          "Segmentieren Sie nach Tags, Gruppen oder einzelnen Kunden",
+          "Personalisieren Sie Bundles ohne zusätzliche Apps"
         ]
       },
       {

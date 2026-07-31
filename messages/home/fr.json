@@ -62,11 +62,11 @@
     "subtitle": "Créez des expériences de bundle flexibles pour vos clients retail, DTC et grossistes — le tout depuis une seule app.",
     "items": [
       {
-        "title": "Éligibilité des clients",
+        "title": "Ciblage des clients",
         "features": [
-          "Affichez les offres de bundle uniquement à certains clients",
-          "Ciblez les clients à l'aide de tags client ou du statut de compte",
-          "Créez des offres distinctes pour les acheteurs retail et B2B"
+          "Proposez la bonne offre au bon client",
+          "Segmentez par tags, groupes ou clients individuels",
+          "Personnalisez les bundles sans applications supplémentaires"
         ]
       },
       {
