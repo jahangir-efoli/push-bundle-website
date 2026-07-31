@@ -1,4 +1,5 @@
 import { Section } from "@/components/ui/section";
+import { DemoWindow } from "@/components/sections/demo-window";
 import { Icon, type IconName } from "@/components/ui/icon";
 import { buttonStyles } from "@/components/ui/button";
 import { installUrl } from "@/lib/site-config";
@@ -84,29 +85,13 @@ export function FeatureDemos({
                   : "lg:grid-cols-[1.7fr_minmax(0,1fr)]",
               )}
             >
-              {/* Live demo in an app-window frame */}
+              {/* Live demo in an app-window frame (with its own cart drawer) */}
               <div className={cn("min-w-0", reverse && "lg:order-2")}>
-                <div className="rounded-2xl bg-gradient-border p-1.5 shadow-lift">
-                  <div className="pb-light overflow-hidden rounded-[0.9rem] bg-surface text-foreground">
-                    <div className="flex items-center gap-2 border-b border-border px-4 py-3">
-                      <span className="flex gap-1.5" aria-hidden="true">
-                        <span className="size-2.5 rounded-full bg-warm/70" />
-                        <span className="size-2.5 rounded-full bg-warning/70" />
-                        <span className="size-2.5 rounded-full bg-success/70" />
-                      </span>
-                      <span className="ml-2 truncate text-xs text-muted">
-                        {f.title} — {labels.livePreview}
-                      </span>
-                    </div>
-                    {/* data-lenis-prevent: native scroll inside the box. */}
-                    <div
-                      data-lenis-prevent
-                      className="scrollbar-brand max-h-128 overflow-y-auto"
-                    >
-                      <Demo />
-                    </div>
-                  </div>
-                </div>
+                <DemoWindow
+                  Demo={Demo}
+                  title={f.title}
+                  livePreview={labels.livePreview}
+                />
               </div>
 
               {/* Copy */}
