@@ -59,6 +59,9 @@
     },
     "successTitle": "Thanks — message received!",
     "successBody": "We'll get back to you within 24 hours.",
-    "sendAnother": "Send another message"
+    "sendAnother": "Send another message",
+    "sending": "Sending…",
+    "submitError": "Something went wrong. Please try again.",
+    "captchaRequired": "Please complete the anti-bot check."
   }
 }

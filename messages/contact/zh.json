@@ -59,6 +59,9 @@
     },
     "successTitle": "谢谢 — 我们已收到你的留言！",
     "successBody": "我们将在 24 小时内回复你。",
-    "sendAnother": "再发一条留言"
+    "sendAnother": "再发一条留言",
+    "sending": "发送中…",
+    "submitError": "出了点问题，请重试。",
+    "captchaRequired": "请完成人机验证。"
   }
 }

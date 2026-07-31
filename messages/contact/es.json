@@ -59,6 +59,9 @@
     },
     "successTitle": "¡Gracias, mensaje recibido!",
     "successBody": "Te responderemos en menos de 24 horas.",
-    "sendAnother": "Enviar otro mensaje"
+    "sendAnother": "Enviar otro mensaje",
+    "sending": "Enviando…",
+    "submitError": "Algo salió mal. Inténtalo de nuevo.",
+    "captchaRequired": "Completa la verificación anti-bot."
   }
 }

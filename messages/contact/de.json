@@ -59,6 +59,9 @@
     },
     "successTitle": "Danke — Ihre Nachricht ist angekommen!",
     "successBody": "Wir melden uns innerhalb von 24 Stunden bei Ihnen.",
-    "sendAnother": "Weitere Nachricht senden"
+    "sendAnother": "Weitere Nachricht senden",
+    "sending": "Wird gesendet…",
+    "submitError": "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut.",
+    "captchaRequired": "Bitte schließen Sie die Anti-Bot-Prüfung ab."
   }
 }

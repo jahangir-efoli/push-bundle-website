@@ -7,6 +7,7 @@ import { PageHero } from "@/components/sections/page-hero";
 import { Section } from "@/components/ui/section";
 import { IconTile, type IconName } from "@/components/ui/icon";
 import { ContactForm } from "@/components/sections/contact-form";
+import { getContactConfig } from "@/lib/cms/contact";
 import { FaqSection } from "@/components/sections/faq-section";
 import { TrialCta } from "@/components/sections/trial-cta";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -57,10 +58,11 @@ export default async function ContactPage({ params }: Props) {
   const { lang } = await params;
   const locale = toLocale(lang);
 
-  const [content, common, faqs] = await Promise.all([
+  const [content, common, faqs, contactConfig] = await Promise.all([
     getContactContent(locale),
     getCommon(locale),
     cms.listFaqs({ locale, limit: 4 }),
+    getContactConfig(),
   ]);
 
   const { hero, sidebar, methods, form } = content;
@@ -84,7 +86,13 @@ export default async function ContactPage({ params }: Props) {
       {/* pt-0: the PageHero already provides the top gap — avoid a double one. */}
       <Section className="pt-0!">
         <div className="grid gap-10 lg:grid-cols-[1.3fr_1fr] lg:items-start">
-          <ContactForm content={form} />
+          <ContactForm
+            content={form}
+            hcaptcha={{
+              enabled: contactConfig.hcaptchaEnabled,
+              siteKey: contactConfig.hcaptchaSiteKey,
+            }}
+          />
 
           <div>
             <h2 className="font-display text-xl font-bold">{sidebar.tagline}</h2>

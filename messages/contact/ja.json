@@ -59,6 +59,9 @@
     },
     "successTitle": "ありがとうございます — メッセージを受け付けました!",
     "successBody": "24時間以内にご返信いたします。",
-    "sendAnother": "別のメッセージを送る"
+    "sendAnother": "別のメッセージを送る",
+    "sending": "送信中…",
+    "submitError": "問題が発生しました。もう一度お試しください。",
+    "captchaRequired": "ボット対策の確認を完了してください。"
   }
 }
