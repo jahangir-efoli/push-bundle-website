@@ -7,9 +7,10 @@ import { hero } from "@/lib/content/home";
 import type { AggregateRating } from "@/lib/cms";
 
 /**
- * Feature previews shown in the hero slider — LANDSCAPE (4:3) screenshots at
+ * Feature previews shown in the hero slider — LANDSCAPE screenshots at
  * /images/hero/hero-1..5.png. Until those assets are added, each slide shows a
- * branded placeholder (see HeroSlider). Recommended size: 1600×1200 (4:3).
+ * branded placeholder (see HeroSlider). Recommended size: 2007×1565 (all five
+ * at the SAME size so the slider frame fits them exactly, un-cropped).
  */
 const HERO_SLIDES = [
   {

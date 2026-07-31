@@ -13,9 +13,10 @@ export type HeroSlide = { src: string; alt: string };
  * the lightbox is open (not on hover — a portal-covered hover could leave it
  * stuck paused). Dots jump to a slide; respects reduced-motion.
  *
- * Landscape frames sized to the source screenshots (2570×1636). Until the real
- * images land at each `src`, a branded placeholder is shown so the hero never
- * looks broken. Clicking a slide (when present) opens it enlarged in a lightbox.
+ * Landscape frames sized to the source screenshots (2007×1565 — upload all five
+ * at the same size so they display uniformly). Until the real images land at
+ * each `src`, a branded placeholder is shown so the hero never looks broken.
+ * Clicking a slide (when present) opens it enlarged in a lightbox.
  */
 function SlidePlaceholder({ label }: { label: string }) {
   return (
@@ -87,8 +88,9 @@ export function HeroSlider({
       {/* Frameless + floating: the preview screenshots are self-contained
           compositions, so no surface fill, border, or rounding. The box gently
           bobs up and down (pb-float) as a single unit. Aspect ratio matches the
-          source images (2570×1636) so object-cover shows them fully, un-cropped. */}
-      <div className="relative aspect-2570/1636 overflow-hidden animate-[pb-float_5s_ease-in-out_infinite] motion-reduce:animate-none">
+          source images (2007×1565); object-contain guarantees the whole image
+          shows un-cropped even if a slide's ratio differs slightly. */}
+      <div className="relative aspect-2007/1565 overflow-hidden animate-[pb-float_5s_ease-in-out_infinite] motion-reduce:animate-none">
         {/* Trigger layer — holds the slides + hint plus the open/pause handlers.
             The lightbox portal is a SIBLING of this (not a child), so React
             portal event-bubbling can't route the portal's clicks/focus back into
@@ -119,7 +121,7 @@ export function HeroSlider({
                   )
                 }
                 className={cn(
-                  "object-cover transition-opacity duration-700 ease-out motion-reduce:transition-none",
+                  "object-contain transition-opacity duration-700 ease-out motion-reduce:transition-none",
                   i === index ? "opacity-100" : "opacity-0",
                 )}
               />
@@ -181,7 +183,7 @@ export function HeroSlider({
           >
             <div
               onClick={(e) => e.stopPropagation()}
-              className="relative aspect-2570/1636 max-h-[86vh] w-[92vw] max-w-6xl cursor-default"
+              className="relative aspect-2007/1565 max-h-[86vh] w-[92vw] max-w-6xl cursor-default"
             >
               <Image
                 src={current.src}
