@@ -7,6 +7,7 @@ import { PageHero } from "@/components/sections/page-hero";
 import { Section } from "@/components/ui/section";
 import { IconTile, type IconName } from "@/components/ui/icon";
 import { ContactForm } from "@/components/sections/contact-form";
+import { CalendlyLink } from "@/components/integrations/calendly-link";
 import { getContactConfig } from "@/lib/cms/contact";
 import { FaqSection } from "@/components/sections/faq-section";
 import { TrialCta } from "@/components/sections/trial-cta";
@@ -127,20 +128,33 @@ export default async function ContactPage({ params }: Props) {
                   {method.title}
                 </h3>
                 <p className="mt-2 flex-1 text-muted">{method.body}</p>
-                {/* chat → Tawk.to floating widget; meeting → Calendly deferred. */}
-                <a
-                  href={
-                    method.kind === "email"
-                      ? `mailto:${contactDetails.email}`
-                      : "#"
-                  }
-                  className="mt-4 inline-flex min-h-11 items-center font-semibold text-primary underline underline-offset-4"
-                >
-                  {method.action}
-                  <span aria-hidden="true" className="ml-1">
-                    →
-                  </span>
-                </a>
+                {/* meeting → Calendly popup (stays on-site); email → mailto;
+                    chat → Tawk.to floating widget (deferred). */}
+                {method.kind === "meeting" ? (
+                  <CalendlyLink
+                    url={site.calendlyUrl}
+                    className="mt-4 inline-flex min-h-11 items-center font-semibold text-primary underline underline-offset-4"
+                  >
+                    {method.action}
+                    <span aria-hidden="true" className="ml-1">
+                      →
+                    </span>
+                  </CalendlyLink>
+                ) : (
+                  <a
+                    href={
+                      method.kind === "email"
+                        ? `mailto:${contactDetails.email}`
+                        : "#"
+                    }
+                    className="mt-4 inline-flex min-h-11 items-center font-semibold text-primary underline underline-offset-4"
+                  >
+                    {method.action}
+                    <span aria-hidden="true" className="ml-1">
+                      →
+                    </span>
+                  </a>
+                )}
               </div>
             </li>
           ))}

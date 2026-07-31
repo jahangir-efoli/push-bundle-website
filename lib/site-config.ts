@@ -18,6 +18,10 @@ export const site = {
     "https://pushbundle.myshopify.com/?_bt=BAh7BkkiC19yYWlscwY6BkVUewhJIglkYXRhBjsAVEkiHXB1c2hidW5kbGUubXlzaG9waWZ5LmNvbQY7AEZJIghleHAGOwBUSSIdMjAyNi0wNy0yMVQxMToyMTo1Ny43NjJaBjsAVEkiCHB1cgY7AFRJIh5wZXJtYW5lbnRfcGFzc3dvcmRfYnlwYXNzBjsARg%3D%3D--ec16fa8d82b8ac659673ef08e754a8e0ae5754c9",
   legalEntity: "WhenLab F.Z.C",
   rating: { score: 4.9, count: 16 },
+  /** Calendly scheduling link — opened in Calendly's in-page popup overlay
+      (see components/integrations/calendly-link.tsx) so visitors book without
+      leaving the site; falls back to a new tab if the widget can't load. */
+  calendlyUrl: "https://calendly.com/whenlab-support",
 } as const;
 
 /**
