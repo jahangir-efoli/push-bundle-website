@@ -101,25 +101,6 @@ export default async function ContactPage({ params }: Props) {
             <dl className="mt-6 space-y-4 text-sm">
               <div>
                 <dt className="font-semibold text-foreground">
-                  {sidebar.emailLabel}
-                </dt>
-                <dd>
-                  <a
-                    href={`mailto:${contactDetails.email}`}
-                    className="text-primary underline underline-offset-4"
-                  >
-                    {contactDetails.email}
-                  </a>
-                </dd>
-              </div>
-              <div>
-                <dt className="font-semibold text-foreground">
-                  {sidebar.phoneLabel}
-                </dt>
-                <dd className="text-muted">{contactDetails.phone}</dd>
-              </div>
-              <div>
-                <dt className="font-semibold text-foreground">
                   {sidebar.addressLabel}
                 </dt>
                 <dd className="text-muted">{contactDetails.address}</dd>
