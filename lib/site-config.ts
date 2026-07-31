@@ -83,7 +83,7 @@ export const whenlabApps = [
   { label: "MultiVariants – Bulk Order", href: "https://apps.shopify.com/multivariants", utm: "multivariants" },
   { label: "DiscountRay – B2B Discounts", href: "https://apps.shopify.com/discountray", utm: "discountray" },
   { label: "Order Rules", href: "https://apps.shopify.com/orderrules-limit-sales", utm: "order-rules" },
-  { label: "Quotway", href: "https://apps.shopify.com/quotway", utm: "quotway" },
+  { label: "Quotway", href: "https://apps.shopify.com/quotway-b2b-quote-negotiation", utm: "quotway" },
   { label: "Embedup", href: "https://apps.shopify.com/embedup", utm: "embedup" },
 ] as const;
 
