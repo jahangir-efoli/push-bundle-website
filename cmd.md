@@ -13,10 +13,11 @@ Every endpoint requires a `site` query parameter:
 
 | Slug | Site |
 | --- | --- |
-| `multivariants` | Multivariants |
 | `discountray` | DiscountRay |
-| `push-bundle` | Push Bundle |
 | `embedup` | EmbedUp |
+| `multivariants` | Multivariants |
+| `order-rules` | Order Rules |
+| `push-bundle` | Push Bundle |
 
 ### Errors
 
@@ -99,7 +100,7 @@ reshuffles the list.
 ### List
 
 ```
-GET https://efoli-cms.vercel.app/api/public/posts?site=multivariants&page=1&limit=10
+GET https://efoli-cms.vercel.app/api/public/posts?site=discountray&page=1&limit=10
 ```
 
 | Param | Required | Description |
@@ -156,7 +157,7 @@ Anything marked nullable really can be null — guard before rendering.
 ### Single post
 
 ```
-GET https://efoli-cms.vercel.app/api/public/posts/{slug}?site=multivariants
+GET https://efoli-cms.vercel.app/api/public/posts/{slug}?site=discountray
 ```
 
 Same as a list item plus `content` (full HTML), `metaTitle`, `metaDescription`,
@@ -235,9 +236,9 @@ Docs grouped into categories, plus any that have no category. Use it to build
 a knowledge-base index; fetch a single doc for the article page.
 
 ```
-GET https://efoli-cms.vercel.app/api/public/docs?site=multivariants
-GET https://efoli-cms.vercel.app/api/public/docs?site=multivariants&category=getting-started
-GET https://efoli-cms.vercel.app/api/public/docs/{slug}?site=multivariants
+GET https://efoli-cms.vercel.app/api/public/docs?site=discountray
+GET https://efoli-cms.vercel.app/api/public/docs?site=discountray&category=getting-started
+GET https://efoli-cms.vercel.app/api/public/docs/{slug}?site=discountray
 ```
 
 ```json
@@ -285,8 +286,8 @@ object, and `children` for sub-docs:
 Same category wrapper as docs. Answers are HTML.
 
 ```
-GET https://efoli-cms.vercel.app/api/public/faqs?site=multivariants
-GET https://efoli-cms.vercel.app/api/public/faqs?site=multivariants&category=billing
+GET https://efoli-cms.vercel.app/api/public/faqs?site=discountray
+GET https://efoli-cms.vercel.app/api/public/faqs?site=discountray&category=billing
 ```
 
 ```json
@@ -309,8 +310,8 @@ Good candidate for `FAQPage` structured data on the page that renders it.
 ### Clients (case studies)
 
 ```
-GET https://efoli-cms.vercel.app/api/public/clients?site=multivariants&page=1&limit=12
-GET https://efoli-cms.vercel.app/api/public/clients/{slug}?site=multivariants
+GET https://efoli-cms.vercel.app/api/public/clients?site=discountray&page=1&limit=12
+GET https://efoli-cms.vercel.app/api/public/clients/{slug}?site=discountray
 ```
 
 ```json
@@ -340,8 +341,8 @@ detail page; `link` is the customer's own site. Any of them can be null.
 ### Changelog
 
 ```
-GET https://efoli-cms.vercel.app/api/public/changelogs?site=multivariants&page=1&limit=20
-GET https://efoli-cms.vercel.app/api/public/changelogs/{slug}?site=multivariants
+GET https://efoli-cms.vercel.app/api/public/changelogs?site=discountray&page=1&limit=20
+GET https://efoli-cms.vercel.app/api/public/changelogs/{slug}?site=discountray
 ```
 
 ```json
@@ -366,7 +367,7 @@ timeline page needs no per-entry request.
 ### Partners
 
 ```
-GET https://efoli-cms.vercel.app/api/public/partners?site=multivariants
+GET https://efoli-cms.vercel.app/api/public/partners?site=discountray
 ```
 
 Returns a plain ARRAY, not a wrapper object:
@@ -386,7 +387,7 @@ Returns a plain ARRAY, not a wrapper object:
 ### Opinions (testimonials)
 
 ```
-GET https://efoli-cms.vercel.app/api/public/opinions?site=multivariants
+GET https://efoli-cms.vercel.app/api/public/opinions?site=discountray
 ```
 
 Also a plain ARRAY. `description` is plain text, not HTML:
@@ -405,7 +406,7 @@ Also a plain ARRAY. `description` is plain text, not HTML:
 ### Site config
 
 ```
-GET https://efoli-cms.vercel.app/api/public/site-config?site=multivariants
+GET https://efoli-cms.vercel.app/api/public/site-config?site=discountray
 ```
 
 ```json
@@ -435,7 +436,7 @@ POST https://efoli-cms.vercel.app/api/public/contact
 
 ```json
 {
-  "site": "multivariants",
+  "site": "discountray",
   "name": "Jane Doe",
   "email": "jane@example.com",
   "subject": "Pricing question",
@@ -456,7 +457,7 @@ are required`, `Invalid email format`, `hCaptcha verification required`,
 
 ```bash
 NEXT_PUBLIC_CMS_URL=https://efoli-cms.vercel.app
-CMS_SITE_SLUG=multivariants
+CMS_SITE_SLUG=discountray
 REVALIDATE_SECRET=<same value as in the CMS>
 PREVIEW_SECRET=<same value as in the CMS>
 ```
