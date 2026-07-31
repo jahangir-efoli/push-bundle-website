@@ -514,7 +514,7 @@ export default async function BlogIndex({
     </ul>
   )
 }
-```
+``` 
 
 ### Post page with correct canonical + hreflang
 
