@@ -147,16 +147,18 @@ export function FeatureShowcase({
   return (
     <Section
       tone="default"
-      className="border-y border-[#ece6dc] bg-white text-[#23201c]"
+      className="border-y border-[#ece6dc] bg-white text-[#23201c] dark:border-border dark:bg-background dark:text-foreground"
     >
       <div className="mx-auto max-w-2xl text-center">
-        <span className="text-xs font-semibold tracking-[0.16em] text-[#2f5d50] uppercase">
+        <span className="text-xs font-semibold tracking-[0.16em] text-[#2f5d50] uppercase dark:text-[#6cc0a6]">
           {content.eyebrow}
         </span>
-        <h2 className="mt-3 text-display-md text-balance text-[#23201c]">
+        <h2 className="mt-3 text-display-md text-balance text-[#23201c] dark:text-foreground">
           {content.title}
         </h2>
-        <p className="mt-4 text-lg text-[#6f685c]">{content.subtitle}</p>
+        <p className="mt-4 text-lg text-[#6f685c] dark:text-muted">
+          {content.subtitle}
+        </p>
       </div>
 
       {/* Tabs — individual pills; the active one is the blue→cyan gradient. The
@@ -195,7 +197,7 @@ export function FeatureShowcase({
                 "pbfs-tab inline-flex cursor-pointer items-center gap-2 rounded-md border px-5 py-2.5 text-sm font-semibold transition-colors duration-200",
                 selected
                   ? "border-transparent text-white shadow-[0_8px_18px_rgba(59,130,246,0.26)]"
-                  : "border-[#ece6dc] bg-[#F6F5F0] text-[#6f685c] hover:border-[#d8cfc0] hover:text-[#23201c]",
+                  : "border-[#ece6dc] bg-[#F6F5F0] text-[#6f685c] hover:border-[#d8cfc0] hover:text-[#23201c] dark:border-border dark:bg-surface dark:text-muted dark:hover:border-[#3a4170] dark:hover:text-foreground",
                 selected && "pbfs-glow",
               )}
             >
@@ -203,7 +205,7 @@ export function FeatureShowcase({
                 name={meta[i].icon as IconName}
                 className={cn(
                   "size-4 shrink-0",
-                  selected ? "text-white" : "text-[#3b82f6]",
+                  selected ? "text-white" : "text-[#3b82f6] dark:text-[#60a5fa]",
                 )}
               />
               {f.tab}
@@ -308,7 +310,7 @@ export function FeatureShowcase({
 
         {/* RIGHT — compact feature copy (reference palette) */}
         <div>
-          <h3 className="text-display-sm text-balance text-[#23201c]">
+          <h3 className="text-display-sm text-balance text-[#23201c] dark:text-foreground">
             {feature.title}
           </h3>
 
@@ -319,10 +321,10 @@ export function FeatureShowcase({
               { label: labels.flexibility, body: feature.flexibility },
             ].map((s) => (
               <div key={s.label}>
-                <h4 className="text-xs font-bold tracking-[0.12em] text-[#2f5d50] uppercase">
+                <h4 className="text-xs font-bold tracking-[0.12em] text-[#2f5d50] uppercase dark:text-[#6cc0a6]">
                   {s.label}
                 </h4>
-                <p className="mt-1.5 text-base leading-relaxed text-[#6f685c]">
+                <p className="mt-1.5 text-base leading-relaxed text-[#6f685c] dark:text-muted">
                   {s.body}
                 </p>
               </div>
