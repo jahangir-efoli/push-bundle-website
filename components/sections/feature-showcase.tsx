@@ -147,7 +147,7 @@ export function FeatureShowcase({
   return (
     <Section
       tone="default"
-      className="border-y border-[#ece6dc] bg-[#F6F5F0] text-[#23201c]"
+      className="border-y border-[#ece6dc] bg-white text-[#23201c]"
     >
       <div className="mx-auto max-w-2xl text-center">
         <span className="text-xs font-semibold tracking-[0.16em] text-[#2f5d50] uppercase">
@@ -195,7 +195,7 @@ export function FeatureShowcase({
                 "pbfs-tab inline-flex cursor-pointer items-center gap-2 rounded-md border px-5 py-2.5 text-sm font-semibold transition-colors duration-200",
                 selected
                   ? "border-transparent text-white shadow-[0_8px_18px_rgba(59,130,246,0.26)]"
-                  : "border-[#ece6dc] bg-white text-[#6f685c] hover:border-[#d8cfc0] hover:text-[#23201c]",
+                  : "border-[#ece6dc] bg-[#F6F5F0] text-[#6f685c] hover:border-[#d8cfc0] hover:text-[#23201c]",
                 selected && "pbfs-glow",
               )}
             >
