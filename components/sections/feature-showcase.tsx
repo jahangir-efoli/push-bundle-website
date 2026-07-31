@@ -197,7 +197,7 @@ export function FeatureShowcase({
                 "pbfs-tab inline-flex cursor-pointer items-center gap-2 rounded-md border px-5 py-2.5 text-sm font-semibold transition-colors duration-200",
                 selected
                   ? "border-transparent text-white shadow-[0_8px_18px_rgba(59,130,246,0.26)]"
-                  : "border-[#ece6dc] bg-[#F6F5F0] text-[#6f685c] hover:border-[#d8cfc0] hover:text-[#23201c] dark:border-border dark:bg-surface dark:text-muted dark:hover:border-[#3a4170] dark:hover:text-foreground",
+                  : "border-[#ece6dc] bg-[#F6F5F0] text-[#6f685c] hover:border-[#d8cfc0] hover:text-[#23201c] dark:border-transparent dark:bg-white dark:text-[#6f685c] dark:hover:text-[#23201c]",
                 selected && "pbfs-glow",
               )}
             >
@@ -205,7 +205,7 @@ export function FeatureShowcase({
                 name={meta[i].icon as IconName}
                 className={cn(
                   "size-4 shrink-0",
-                  selected ? "text-white" : "text-[#3b82f6] dark:text-[#60a5fa]",
+                  selected ? "text-white" : "text-[#3b82f6]",
                 )}
               />
               {f.tab}
