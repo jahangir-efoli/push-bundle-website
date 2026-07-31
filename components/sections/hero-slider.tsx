@@ -113,7 +113,7 @@ export function HeroSlider({
                 aria-hidden={i !== index}
                 fill
                 priority={i === 0}
-                quality={95}
+                quality={100}
                 // The hero is full-bleed and the image column is ~57% of it on
                 // lg+, so a small fixed px hint made the browser under-fetch and
                 // upscale (soft/pixelated) on wide + non-retina displays. Track
@@ -193,7 +193,7 @@ export function HeroSlider({
                 src={current.src}
                 alt={current.alt}
                 fill
-                quality={95}
+                quality={100}
                 sizes="92vw"
                 className="rounded-xl object-contain shadow-lift"
               />

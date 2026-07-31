@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
     // back to WebP, then the source. q90 keeps small type legible; Next 16
     // requires every `quality` prop value be allowlisted here.
     formats: ["image/avif", "image/webp"],
-    qualities: [75, 90, 95],
+    qualities: [75, 95, 100],
   },
   // URL scheme is no-trailing-slash (docs/PLAN.md §8). Next auto-301s old
   // trailing-slash URLs, so only non-trivial legacy redirects live here.
