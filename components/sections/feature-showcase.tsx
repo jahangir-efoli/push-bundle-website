@@ -222,7 +222,16 @@ export function FeatureShowcase({
         {/* LEFT — large app-window placeholder (live preview goes here later).
             `pb-light` pins the preview to the light token set so it always reads
             as a real (white) storefront, even when the site is in dark mode. */}
-        <div className="rounded-2xl bg-gradient-border p-1.5">
+        {/* Own gradient frame (not the shared bg-gradient-border, whose indigo
+            end reads as a dark shadow on the right/bottom) — a light cyan→teal
+            edge only, so the preview has no shadowed side. */}
+        <div
+          className="rounded-2xl p-1.5"
+          style={{
+            backgroundImage:
+              "linear-gradient(135deg, color-mix(in oklab, var(--pb-cyan-400) 45%, transparent), color-mix(in oklab, var(--pb-teal-500) 40%, transparent))",
+          }}
+        >
           <div
             ref={previewRef}
             className="pb-light relative overflow-hidden rounded-[0.9rem] bg-surface text-foreground"
