@@ -60,8 +60,13 @@ export function CartDrawer({
         aria-label="Your cart"
         aria-hidden={!open}
         className={cn(
-          "absolute top-0 right-0 z-40 flex h-full w-[86%] max-w-[340px] flex-col bg-white shadow-[-14px_0_44px_rgba(0,0,0,0.2)] transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]",
-          open ? "translate-x-0" : "translate-x-full",
+          "absolute top-0 right-0 z-40 flex h-full w-[86%] max-w-[340px] flex-col bg-white transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]",
+          // Only cast the leftward panel shadow while OPEN — when closed the
+          // panel parks at translate-x-full (just off the right edge) and its
+          // shadow would otherwise bleed left onto the preview's right side.
+          open
+            ? "translate-x-0 shadow-[-14px_0_44px_rgba(0,0,0,0.2)]"
+            : "translate-x-full",
         )}
       >
         <div className="flex items-center justify-between border-b border-[#eceef2] px-4 py-3.5 text-sm font-bold text-[#1f2430]">
