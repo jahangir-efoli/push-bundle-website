@@ -116,14 +116,19 @@ export function Header({
         <div
           aria-hidden="true"
           className={cn(
-            "pointer-events-none absolute inset-x-gutter inset-y-3 mx-auto hidden max-w-site origin-top rounded-2xl border border-border bg-surface/95 shadow-soft backdrop-blur-md lg:block",
+            "pointer-events-none absolute inset-x-gutter inset-y-3 mx-auto hidden max-w-6xl origin-top rounded-2xl border border-border bg-surface/95 shadow-soft backdrop-blur-md lg:block",
             ready && "transition-[opacity,transform] duration-500 ease-out",
             scrolled ? "scale-[1.03] opacity-0" : "scale-100 opacity-100",
           )}
         />
       <div
         className={cn(
-          "relative mx-auto flex h-full w-full max-w-site items-center gap-3 px-gutter",
+          "relative mx-auto flex h-full w-full items-center gap-3 px-gutter",
+          // Content tracks the active layer's width: it hugs the narrower
+          // floating pill, then eases out to full width as it docks to the bar.
+          ready &&
+            "transition-[max-width] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
+          scrolled ? "max-w-site" : "max-w-site lg:max-w-6xl",
         )}
       >
         <div className="flex flex-1 items-center">
