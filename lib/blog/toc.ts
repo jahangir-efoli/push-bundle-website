@@ -30,9 +30,19 @@ function slugify(s: string): string {
   );
 }
 
-/** Remove the CMS's inline "Table of Contents" heading + its following nav/ul. */
+/**
+ * Remove the CMS's inline "Table of Contents": an `<h2>` heading immediately
+ * followed by its list. Matched STRUCTURALLY — by the `<nav>` (or a `<ul>`/`<ol>`
+ * of in-page `#` anchors), NOT the heading text — so it works in every language.
+ * The old English-only text match ("table of contents") left the inline TOC in
+ * place on translated posts, so it showed twice (inline + sidebar).
+ *
+ * The tempered `<h2>` token `(?:(?!</h2>)[\s\S])*?` can't cross its own `</h2>`,
+ * so the match only ever spans the single TOC heading + its list, never the
+ * article content in between.
+ */
 const INLINE_TOC =
-  /<h2[^>]*>\s*table of contents\s*<\/h2>\s*(?:<nav[^>]*>[\s\S]*?<\/nav>|<ul[^>]*>[\s\S]*?<\/ul>)?/i;
+  /<h2[^>]*>(?:(?!<\/h2>)[\s\S])*?<\/h2>\s*(?:<nav[^>]*>[\s\S]*?<\/nav>|<(ul|ol)[^>]*>(?:(?!<\/\1>)[\s\S])*?href=["']#[\s\S]*?<\/\1>)/i;
 
 export function processArticle(html: string): { html: string; toc: TocItem[] } {
   let out = html.replace(INLINE_TOC, "");
