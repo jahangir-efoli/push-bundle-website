@@ -6,9 +6,11 @@ import { isLocale, type Locale } from "@/i18n/config";
 import { getCommon, getFeaturesContent } from "@/i18n/content";
 import { PageHero } from "@/components/sections/page-hero";
 import { Section } from "@/components/ui/section";
+import { Card, CardDescription, CardTitle } from "@/components/ui/card";
 import { IconTile, type IconName } from "@/components/ui/icon";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { Badge } from "@/components/ui/badge";
+import { AnimateIn } from "@/components/motion/animate-in";
 import { buttonStyles } from "@/components/ui/button";
 import { FeatureDemos } from "@/components/sections/feature-demos";
 import { Reviews } from "@/components/sections/reviews";
@@ -62,7 +64,7 @@ export default async function FeaturesPage({ params }: Props) {
     cms.listFaqs({ locale, limit: 4 }),
   ]);
 
-  const { hero, demos, spotlights, freePlan } = content;
+  const { hero, catalogue, demos, spotlights, freePlan } = content;
 
   // One spotlight = text + checklist panel; layout alternates by index.
   const renderSpotlight = (
@@ -145,11 +147,45 @@ export default async function FeaturesPage({ params }: Props) {
         </div>
       </PageHero>
 
-      {/* Mix & Match spotlight — the lead section (replaces the old toolkit). */}
-      {spotlights.items.length > 0 && renderSpotlight(spotlights.items[0], 0)}
-
       {/* Each bundle type as its own section: live demo + copy, alternating */}
       <FeatureDemos features={demos.items} labels={common.demoLabels} />
+
+      {/* Feature catalogue (the toolkit) — moved down, where Mix & Match was. */}
+      <Section tone="wash">
+        <div className="max-w-2xl">
+          <Eyebrow>{catalogue.eyebrow}</Eyebrow>
+          <h2 className="mt-3 text-display-md text-balance">
+            {catalogue.title}
+          </h2>
+          <p className="mt-4 text-lg text-muted">{catalogue.subtitle}</p>
+        </div>
+
+        <ul className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {catalogue.items.map((item, i) => (
+            <li key={item.title} className="h-full">
+              <AnimateIn delay={(i % 3) * 0.08} className="h-full">
+                <Card className="flex h-full flex-col">
+                  <IconTile name={item.icon as IconName} />
+                  <CardTitle as="h3" className="mt-5 text-lg">
+                    {item.title}
+                  </CardTitle>
+                  <CardDescription>{item.description}</CardDescription>
+                  <ul className="mt-5 flex flex-wrap gap-2 border-t border-border pt-5">
+                    {item.points.map((point) => (
+                      <li
+                        key={point}
+                        className="rounded-md bg-primary-subtle px-2.5 py-1 text-xs font-semibold text-primary"
+                      >
+                        {point}
+                      </li>
+                    ))}
+                  </ul>
+                </Card>
+              </AnimateIn>
+            </li>
+          ))}
+        </ul>
+      </Section>
 
       {/* Remaining spotlights — the lead one is shown above the demos. */}
       {spotlights.items.slice(1).map((s, i) => renderSpotlight(s, i + 1))}
