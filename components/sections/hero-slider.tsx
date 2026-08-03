@@ -46,7 +46,7 @@ function SlidePlaceholder({ label }: { label: string }) {
 
 export function HeroSlider({
   slides,
-  interval = 3200,
+  interval = 4200,
 }: {
   slides: HeroSlide[];
   interval?: number;
@@ -125,8 +125,15 @@ export function HeroSlider({
                   )
                 }
                 className={cn(
-                  "object-contain transition-opacity duration-700 ease-out motion-reduce:transition-none",
-                  i === index ? "opacity-100" : "opacity-0",
+                  // Gentle zoom-dissolve: the incoming slide eases from a
+                  // slightly zoomed state down to rest while fading in (and the
+                  // reverse on the way out), so the change reads as a soft
+                  // cross-dissolve rather than a hard cut. Scale stays ≥1 so the
+                  // overflow-hidden frame never reveals the background behind it.
+                  "object-contain transition-[opacity,scale] duration-1100 ease-in-out will-change-[opacity,scale] motion-reduce:scale-100 motion-reduce:transition-none",
+                  i === index
+                    ? "scale-100 opacity-100"
+                    : "scale-[1.05] opacity-0",
                 )}
               />
             ) : (
@@ -134,7 +141,7 @@ export function HeroSlider({
                 key={slide.src}
                 aria-hidden={i !== index}
                 className={cn(
-                  "transition-opacity duration-700 ease-out motion-reduce:transition-none",
+                  "transition-opacity duration-1100 ease-in-out motion-reduce:transition-none",
                   i === index ? "opacity-100" : "opacity-0",
                 )}
               >
