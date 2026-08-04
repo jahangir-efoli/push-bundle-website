@@ -62,19 +62,20 @@ export function WhyPushbundle({
         onFocusCapture={() => setPaused(true)}
         onBlurCapture={() => setPaused(false)}
       >
-        {/* Synced image — crossfades to the active item. The image brings its
-            own framing and drop shadow, so we show it whole (object-contain)
-            with no crop, no rounded corners, no container background or shadow;
-            the frame aspect matches the source (1700×1300 = 17:13) so it fills
-            without letterbox bars. No overflow clip, so the image's own shadow
-            isn't cut at the edges. */}
+        {/* Synced image — crossfades to the active item. The card is a
+            transparent-cornered PNG (no baked shadow), shown whole via
+            object-contain; the frame matches the source ratio (4800×3600 = 4:3)
+            so it fills without letterbox bars. The light shadow is a
+            drop-shadow FILTER on the image (not a box-shadow on the frame) so it
+            hugs the card's rounded outline instead of tracing a square. No
+            overflow clip, so the shadow isn't cut at the edges. */}
         <div
           className={cn(
             "min-w-0",
             reverse && "lg:order-2",
           )}
         >
-          <div className="relative aspect-[17/13]">
+          <div className="relative aspect-4/3">
             {items.map((item, i) => {
               const on = i === active;
               return imgOk[i] ? (
@@ -90,7 +91,7 @@ export function WhyPushbundle({
                   quality={100}
                   sizes="(min-width: 1024px) 44rem, 92vw"
                   className={cn(
-                    "object-contain transition-opacity duration-500 ease-out motion-reduce:transition-none",
+                    "object-contain drop-shadow-[0_10px_22px_rgba(13,16,48,0.12)] transition-opacity duration-500 ease-out motion-reduce:transition-none",
                     on ? "opacity-100" : "opacity-0",
                   )}
                   onError={() =>
