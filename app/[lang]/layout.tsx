@@ -10,6 +10,7 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { CookieConsent } from "@/components/layout/cookie-consent";
 import { LiveChat } from "@/components/integrations/live-chat";
+import { Analytics } from "@/components/integrations/analytics";
 import { JsonLd } from "@/components/seo/json-ld";
 import { rootGraph } from "@/lib/seo/root-graph";
 import { OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo/site";
@@ -114,6 +115,7 @@ export default async function LocaleLayout({
           <CookieConsent />
           <LiveChat />
         </SmoothScroll>
+        <Analytics />
       </body>
     </html>
   );

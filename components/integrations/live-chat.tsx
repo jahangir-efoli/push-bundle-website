@@ -8,13 +8,16 @@ import { useEffect } from "react";
  * Zero-dependency loader (the official React package peer-deps React ^18; we're
  * on 19). The widget script is injected only after the first user interaction
  * or a short idle fallback, so it has ~0 impact on Lighthouse/CWV — an audit
- * never interacts. Enabled only in production with `NEXT_PUBLIC_TAWK_SRC` set.
+ * never interacts. Enabled only in production; the embed URL defaults to the
+ * PushBundle property and can be overridden with `NEXT_PUBLIC_TAWK_SRC`.
  *
  * `openLiveChat()` lets the Contact "Let's Chat" button open the widget on
  * demand (the click itself loads it if it hasn't loaded yet).
  */
 
-const TAWK_SRC = process.env.NEXT_PUBLIC_TAWK_SRC;
+const TAWK_SRC =
+  process.env.NEXT_PUBLIC_TAWK_SRC ||
+  "https://embed.tawk.to/682f035d1d2c98977b26e200/1irrqaa2e";
 const ENABLED = process.env.NODE_ENV === "production" && Boolean(TAWK_SRC);
 
 type TawkApi = {
