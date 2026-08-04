@@ -62,16 +62,18 @@ export function WhyPushbundle({
         onFocusCapture={() => setPaused(true)}
         onBlurCapture={() => setPaused(false)}
       >
-        {/* Synced image — crossfades to the active item. No gradient frame and
-            no rounded corners: the real image brings its own framing edge to
-            edge; a soft elevation shadow lifts it off the page. */}
+        {/* Synced image — crossfades to the active item. The image brings its
+            own framing edge to edge, so we show it whole (object-contain) with
+            no crop or rounded corners; the frame aspect matches the source
+            (1700×1300 = 17:13) so it fills without letterbox bars. A soft
+            elevation shadow lifts it off the page. */}
         <div
           className={cn(
             "min-w-0",
             reverse && "lg:order-2",
           )}
         >
-          <div className="relative aspect-4/3 overflow-hidden bg-surface-subtle shadow-lift">
+          <div className="relative aspect-[17/13] overflow-hidden bg-surface-subtle shadow-lift">
             {items.map((item, i) => {
               const on = i === active;
               return imgOk[i] ? (
@@ -87,7 +89,7 @@ export function WhyPushbundle({
                   quality={95}
                   sizes="(min-width: 1024px) 44rem, 92vw"
                   className={cn(
-                    "object-cover transition-opacity duration-500 ease-out motion-reduce:transition-none",
+                    "object-contain transition-opacity duration-500 ease-out motion-reduce:transition-none",
                     on ? "opacity-100" : "opacity-0",
                   )}
                   onError={() =>
