@@ -190,7 +190,7 @@ export function FeatureShowcase({
               onClick={() => setActive(i)}
               style={
                 selected
-                  ? { backgroundImage: "linear-gradient(90deg,#3b82f6,#22d3ee)",borderColor: "#f4f3f3" }
+                  ? { backgroundImage: "linear-gradient(90deg,#3b82f6,#22d3ee)",borderWidth: "0px" }
                   : undefined
               }
               className={cn(
