@@ -81,6 +81,10 @@ export function WhyPushbundle({
                   alt={on ? item.title : ""}
                   aria-hidden={!on}
                   fill
+                  // Text-heavy UI screenshots go soft at the default q75 on
+                  // desktop, where this slot renders large; q95 keeps the type
+                  // and fine lines crisp.
+                  quality={95}
                   sizes="(min-width: 1024px) 44rem, 92vw"
                   className={cn(
                     "object-cover transition-opacity duration-500 ease-out motion-reduce:transition-none",
