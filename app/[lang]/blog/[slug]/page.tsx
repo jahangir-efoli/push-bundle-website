@@ -15,6 +15,7 @@ import { breadcrumbLd } from "@/lib/seo/structured-data";
 import { blogPostingLd } from "@/lib/seo/article-data";
 import { localeAlternates } from "@/lib/seo/metadata";
 import { processArticle } from "@/lib/blog/toc";
+import { REVIEW_DISCLOSURE } from "@/lib/blog/review";
 import { SITE_NAME } from "@/lib/seo/site";
 import { cn } from "@/lib/utils";
 import type { Person } from "@/lib/cms";
@@ -263,6 +264,40 @@ export default async function BlogPostPage({ params }: Props) {
               dangerouslySetInnerHTML={{ __html: html }}
             />
           )}
+        </Container>
+
+        {/* Editorial review disclosure — trust / E-E-A-T signal, mirrored in the
+            BlogPosting `reviewedBy` structured data. */}
+        <Container className="pb-8">
+          <div className="rounded-2xl border border-primary/20 bg-primary-subtle/50 p-6 sm:p-8">
+            <div className="flex items-start gap-4">
+              <span
+                aria-hidden="true"
+                className="grid size-10 shrink-0 place-items-center rounded-full bg-primary/10 text-primary"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  className="size-5"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M12 3 4 6v6c0 5 3.4 7.6 8 9 4.6-1.4 8-4 8-9V6l-8-3Z" />
+                  <path d="m9 12 2 2 4-4" />
+                </svg>
+              </span>
+              <div className="min-w-0">
+                <p className="text-xs font-semibold uppercase tracking-wider text-primary">
+                  Reviewed for accuracy
+                </p>
+                <p className="mt-2 text-pretty text-muted">
+                  {REVIEW_DISCLOSURE}
+                </p>
+              </div>
+            </div>
+          </div>
         </Container>
 
         {/* About the author */}
