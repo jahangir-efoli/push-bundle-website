@@ -198,7 +198,6 @@ export function FeatureShowcase({
                 selected
                   ? "border-transparent text-white shadow-[0_8px_16px_-6px_rgba(59,130,246,0.45)]"
                   : "border-[#E0D7FF] bg-[#F1EDFF] text-[#3C3C3C] hover:border-[#cdbdf5] hover:text-[#23201c] dark:border-transparent dark:bg-white dark:text-[#6f685c] dark:hover:text-[#23201c]",
-                selected && "pbfs-glow",
               )}
             >
               <Icon
