@@ -194,7 +194,7 @@ export function FeatureShowcase({
                   : undefined
               }
               className={cn(
-                "pbfs-tab inline-flex cursor-pointer items-center gap-2 rounded-md border px-5 py-2.5 text-sm font-semibold transition-colors duration-200",
+                "pbfs-tab inline-flex cursor-pointer items-center gap-2 rounded-md px-5 py-2.5 text-sm font-semibold transition-colors duration-200",
                 selected
                   ? "border-transparent text-white shadow-[0_8px_16px_-6px_rgba(59,130,246,0.45)]"
                   : "border-[#E0D7FF] bg-[#F1EDFF] text-[#3C3C3C] hover:border-[#cdbdf5] hover:text-[#23201c] dark:border-transparent dark:bg-white dark:text-[#6f685c] dark:hover:text-[#23201c]",
