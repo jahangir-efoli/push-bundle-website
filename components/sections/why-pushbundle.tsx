@@ -63,17 +63,18 @@ export function WhyPushbundle({
         onBlurCapture={() => setPaused(false)}
       >
         {/* Synced image — crossfades to the active item. The image brings its
-            own framing edge to edge, so we show it whole (object-contain) with
-            no crop or rounded corners; the frame aspect matches the source
-            (1700×1300 = 17:13) so it fills without letterbox bars. A soft
-            elevation shadow lifts it off the page. */}
+            own framing and drop shadow, so we show it whole (object-contain)
+            with no crop, no rounded corners, no container background or shadow;
+            the frame aspect matches the source (1700×1300 = 17:13) so it fills
+            without letterbox bars. No overflow clip, so the image's own shadow
+            isn't cut at the edges. */}
         <div
           className={cn(
             "min-w-0",
             reverse && "lg:order-2",
           )}
         >
-          <div className="relative aspect-[17/13] overflow-hidden">
+          <div className="relative aspect-[17/13]">
             {items.map((item, i) => {
               const on = i === active;
               return imgOk[i] ? (
