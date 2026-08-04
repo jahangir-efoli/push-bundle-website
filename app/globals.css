@@ -918,6 +918,16 @@ body {
     transform: scale(1.08);
   }
 }
+/* Keyboard-focus ring for the showcase tabs. The global :focus-visible rule
+   above is unlayered, so Tailwind utility overrides can't beat it — style it
+   here instead. The global 2px-offset outline floated OUTSIDE the tab and read
+   as a stray border on the active (gradient) tab; hug it as a crisp inset white
+   keyline instead. Focus always lands on the selected/gradient tab (selection
+   follows focus), so a white ring is always visible. */
+.pbfs-tab:focus-visible {
+  outline-color: #fff;
+  outline-offset: -3px;
+}
 .pbfs-cue .pbfs-tab {
   animation: pbfs-pop 0.5s ease both;
 }
