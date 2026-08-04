@@ -62,14 +62,15 @@ export function WhyPushbundle({
         onFocusCapture={() => setPaused(true)}
         onBlurCapture={() => setPaused(false)}
       >
-        {/* Synced image — crossfades to the active item */}
+        {/* Synced image — crossfades to the active item. No gradient frame; a
+            soft elevation shadow lifts the image off the page instead. */}
         <div
           className={cn(
-            "min-w-0 rounded-2xl bg-gradient-border p-1.5 shadow-lift",
+            "min-w-0",
             reverse && "lg:order-2",
           )}
         >
-          <div className="relative aspect-4/3 overflow-hidden rounded-[0.9rem] bg-surface-subtle">
+          <div className="relative aspect-4/3 overflow-hidden rounded-2xl bg-surface-subtle shadow-lift">
             {items.map((item, i) => {
               const on = i === active;
               return imgOk[i] ? (
