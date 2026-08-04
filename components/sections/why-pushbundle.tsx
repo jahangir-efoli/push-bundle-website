@@ -73,7 +73,7 @@ export function WhyPushbundle({
             reverse && "lg:order-2",
           )}
         >
-          <div className="relative aspect-[17/13] overflow-hidden bg-surface-subtle shadow-lift">
+          <div className="relative aspect-[17/13] overflow-hidden">
             {items.map((item, i) => {
               const on = i === active;
               return imgOk[i] ? (
