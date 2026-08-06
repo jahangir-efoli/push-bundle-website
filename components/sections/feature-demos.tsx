@@ -1,6 +1,5 @@
 import { Section } from "@/components/ui/section";
 import { DemoWindow } from "@/components/sections/demo-window";
-import { Icon, type IconName } from "@/components/ui/icon";
 import { buttonStyles } from "@/components/ui/button";
 import { installUrl } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
@@ -94,13 +93,9 @@ export function FeatureDemos({
                 />
               </div>
 
-              {/* Copy */}
+              {/* Copy — no eyebrow pill: it just repeated the title below. */}
               <div className={cn("min-w-0", reverse && "lg:order-1")}>
-                <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 text-xs font-semibold uppercase tracking-wide text-accent-foreground">
-                  <Icon name={f.icon as IconName} className="size-4" />
-                  {f.tab}
-                </span>
-                <h2 className="mt-4 text-display-md text-balance">{f.title}</h2>
+                <h2 className="text-display-md text-balance">{f.title}</h2>
                 <p className="mt-3 text-lg text-muted">{f.description}</p>
 
                 <div className="mt-6 space-y-5">
