@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { cms } from "@/lib/cms";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { isLocale, type Locale } from "@/i18n/config";
@@ -75,15 +76,15 @@ export default async function AboutPage({ params }: Props) {
             </p>
           </div>
           <div className="rounded-2xl bg-gradient-border p-1.5 shadow-lift">
-            <div className="relative grid aspect-16/10 place-items-center overflow-hidden rounded-[0.9rem] bg-surface-subtle">
-              <span className="flex flex-col items-center gap-2 text-sm text-muted">
-                <svg viewBox="0 0 24 24" className="size-9 text-muted/50" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="3" y="3" width="18" height="18" rx="2" />
-                  <circle cx="9" cy="9" r="2" />
-                  <path d="m21 15-3.6-3.6a2 2 0 0 0-2.8 0L6 20" />
-                </svg>
-                {whoWeAre.imagePlaceholder}
-              </span>
+            <div className="relative aspect-16/10 overflow-hidden rounded-[0.9rem] bg-surface-subtle">
+              <Image
+                src="/images/about/who-we-are.png"
+                alt={whoWeAre.title}
+                fill
+                quality={95}
+                sizes="(min-width: 1024px) 42rem, 92vw"
+                className="object-cover"
+              />
             </div>
           </div>
         </div>
