@@ -24,14 +24,14 @@ export function MobileVisual({ alt }: { alt: string }) {
   }
 
   return (
-    <div className="w-full">
+    <div className="mx-auto w-full max-w-[34rem]">
       <Image
         src="/images/mobile/mobile-experience.png"
         alt={alt}
         width={3342}
         height={3600}
         quality={95}
-        sizes="(min-width: 1024px) 48rem, 92vw"
+        sizes="(min-width: 1024px) 34rem, 92vw"
         className="h-auto w-full"
         onError={() => setOk(false)}
       />

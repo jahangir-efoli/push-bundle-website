@@ -32,7 +32,7 @@ export function MobileExperience({
 } = {}) {
   return (
     <Section tone="wash">
-      <div className="grid gap-8 lg:grid-cols-[1fr_1.3fr] lg:items-center lg:gap-10">
+      <div className="grid gap-8 lg:grid-cols-[1fr_1.1fr] lg:items-center lg:gap-10">
         <div>
           <Eyebrow>{content.eyebrow}</Eyebrow>
           <h2 className="mt-3 text-display-md">{content.title}</h2>
