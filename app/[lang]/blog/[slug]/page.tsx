@@ -16,10 +16,10 @@ import { blogPostingLd } from "@/lib/seo/article-data";
 import { localeAlternates } from "@/lib/seo/metadata";
 import { processArticle } from "@/lib/blog/toc";
 import { REVIEW_DISCLOSURE } from "@/lib/blog/review";
-import { SITE_NAME } from "@/lib/seo/site";
+import { SITE_NAME, SITE_URL } from "@/lib/seo/site";
 import { cn } from "@/lib/utils";
 import type { Person } from "@/lib/cms";
-import { isLocale, type Locale } from "@/i18n/config";
+import { defaultLocale, isLocale, type Locale } from "@/i18n/config";
 
 type Props = { params: Promise<{ lang: string; slug: string }> };
 
@@ -34,12 +34,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     : await cms.getPost({ locale, slug });
   if (!post) return {};
 
+  // A real per-locale translation self-canonicalizes; an English fallback served
+  // under a localized URL points its canonical back to the English original so
+  // it isn't indexed as a duplicate.
+  const alternates = localeAlternates(`/blog/${post.slug}`, locale);
+  if (locale !== defaultLocale && post.isTranslated === false) {
+    alternates.canonical = `${SITE_URL}/blog/${post.slug}`;
+  }
+
   return {
     title: post.seo?.metaTitle ?? `${post.title} | PushBundle Blog`,
     description: post.seo?.metaDescription ?? post.excerpt,
     // Draft previews must never be indexed (docs/cmd.md).
     robots: isPreview ? { index: false, follow: false } : undefined,
-    alternates: localeAlternates(`/blog/${post.slug}`, locale),
+    alternates,
     openGraph: {
       title: post.title,
       description: post.excerpt,

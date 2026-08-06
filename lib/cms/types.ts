@@ -47,6 +47,12 @@ export type Post = {
   updatedAt: string;
   readingMinutes: number;
   locale: Locale;
+  /**
+   * True when the CMS served a real translation for the requested locale, false
+   * when it fell back to English. Undefined for the English base. Used to point
+   * the canonical back to English when a localized URL is only a fallback.
+   */
+  isTranslated?: boolean;
   seo?: Seo;
 };
 

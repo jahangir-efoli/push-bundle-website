@@ -156,6 +156,7 @@ export function mapPost(p: ApiPost, locale: Locale): Post {
     updatedAt: p.updatedAt ?? p.publishedAt,
     readingMinutes: p.readingTimeMinutes ?? 5,
     locale,
+    isTranslated: p.isTranslated,
     seo: {
       metaTitle: p.metaTitle,
       metaDescription: p.metaDescription,
