@@ -144,13 +144,13 @@ export function Header({
               priority
               className="size-8 rounded-md"
             />
-            <span>
-              Push<span className="text-brand-gradient">Bundle</span>
-            </span>
+            {/* Solid wordmark (no gradient) — inherits text-foreground, so it's
+                black on the light header and white on the dark header. */}
+            <span>PushBundle</span>
           </Link>
         </div>
 
-        <nav aria-label="Main" className="hidden items-center gap-0.5 xl:flex">
+        <nav aria-label="Main" className="hidden items-center gap-1.5 xl:flex">
           {mainNav.map((item) => (
             <Link
               key={item.href}
