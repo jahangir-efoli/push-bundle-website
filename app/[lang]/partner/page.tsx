@@ -75,15 +75,18 @@ export default async function PartnerPage({ params }: Props) {
       <Container className="py-16">
         <PartnerGrid partners={partners} ui={content.ui} />
 
-        {/* Become a partner (light prompt, not a full program — §5.6) */}
-        <div className="mt-16 rounded-2xl bg-brand-gradient p-8 text-center text-white sm:p-12">
-          <h2 className="text-display-sm">{content.becomePartner.title}</h2>
-          <p className="mx-auto mt-3 max-w-xl text-white/90">
+        {/* Become a partner — same banner geometry as the TrialCta below so the
+            two CTA bands read as the same size (§5.6). */}
+        <div className="mt-16 rounded-3xl bg-brand-gradient px-6 py-16 text-center text-white shadow-lift sm:px-12 sm:py-20">
+          <h2 className="mx-auto max-w-3xl text-display-md text-balance">
+            {content.becomePartner.title}
+          </h2>
+          <p className="mx-auto mt-4 max-w-xl text-lg text-white/95">
             {content.becomePartner.body}
           </p>
           <a
             href={`mailto:${site.email}`}
-            className="mt-6 inline-flex min-h-11 items-center rounded-lg bg-white px-6 font-semibold text-(--pb-indigo-700) transition-colors hover:bg-white/90"
+            className="mt-8 inline-flex min-h-11 items-center rounded-lg bg-white px-6 font-semibold text-(--pb-indigo-700) transition-colors hover:bg-white/90"
           >
             {content.becomePartner.cta}
           </a>
