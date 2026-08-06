@@ -1,7 +1,7 @@
 import { LocaleLink as Link } from "@/components/ui/locale-link";
 import { Section } from "@/components/ui/section";
 import { AnimateIn } from "@/components/motion/animate-in";
-import { BundleMockup } from "@/components/visuals/bundle-mockup";
+import { MobileVisual } from "@/components/visuals/mobile-visual";
 import { IconTile, type IconName } from "@/components/ui/icon";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { mobileExperience } from "@/lib/content/home";
@@ -67,10 +67,9 @@ export function MobileExperience({
           </Link>
         </div>
 
-        {/* Phone frame */}
-        <div className="mx-auto w-full max-w-[18rem] rounded-[2rem] border-8 border-foreground/85 bg-brand-gradient p-3 shadow-lift">
-          <BundleMockup />
-        </div>
+        {/* Phone illustration (falls back to the code mockup until the image
+            is uploaded). */}
+        <MobileVisual alt={content.title} />
       </div>
     </Section>
   );
