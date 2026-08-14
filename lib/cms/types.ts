@@ -38,6 +38,8 @@ export type Post = {
   /** Rich text/HTML from the CMS. */
   body: string;
   coverImage?: string;
+  /** Alt text for the cover image; pages fall back to the title when empty. */
+  coverImageAlt?: string;
   category: string;
   tags: string[];
   /** E-E-A-T: posts carry both an author and a reviewer. */

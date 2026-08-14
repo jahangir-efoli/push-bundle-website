@@ -117,6 +117,7 @@ type ApiPost = {
   featuredImage?: unknown;
   thumbnail?: unknown;
   cover?: unknown;
+  coverImageAlt?: string | null;
   publishedAt: string;
   updatedAt?: string;
   readingTimeMinutes?: number;
@@ -152,6 +153,8 @@ export function mapPost(p: ApiPost, locale: Locale): Post {
       p.thumbnail,
       p.cover,
     ),
+    // CMS-provided alt; blank/null falls back to the post title at render.
+    coverImageAlt: decodeEntities(p.coverImageAlt).trim() || undefined,
     category: p.categories?.[0]?.slug ?? "uncategorized",
     tags: (p.tags ?? []).map((t) => t.slug),
     author: {

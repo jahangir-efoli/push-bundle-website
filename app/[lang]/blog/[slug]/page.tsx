@@ -239,7 +239,7 @@ export default async function BlogPostPage({ params }: Props) {
           <div className="-mt-8 overflow-hidden rounded-2xl shadow-lift ring-1 ring-border lg:-mt-14">
             <MediaHolder
               src={post.coverImage}
-              alt={post.title}
+              alt={post.coverImageAlt || post.title}
               ratio="aspect-[16/8]"
               icon="layers"
             />
