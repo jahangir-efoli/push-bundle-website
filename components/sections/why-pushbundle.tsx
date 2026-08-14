@@ -82,7 +82,9 @@ export function WhyPushbundle({
                 <Image
                   key={item.image}
                   src={item.image}
-                  alt={on ? item.title : ""}
+                  // Real alt on every panel image (image SEO); inactive panels
+                  // stay out of the a11y tree via aria-hidden.
+                  alt={item.title}
                   aria-hidden={!on}
                   fill
                   // Text-heavy UI screenshots go soft at the default q75 on

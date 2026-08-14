@@ -138,7 +138,7 @@ export function Header({
           >
             <Image
               src="/images/pb-logo.webp"
-              alt=""
+              alt="PushBundle"
               width={32}
               height={32}
               priority

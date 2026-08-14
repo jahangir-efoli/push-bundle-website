@@ -27,7 +27,7 @@ function AuthorAvatar({ person }: { person: Person }) {
       /* eslint-disable-next-line @next/next/no-img-element */
       <img
         src={person.avatar}
-        alt=""
+        alt={person.name}
         className="size-8 shrink-0 rounded-full object-cover"
         loading="lazy"
       />

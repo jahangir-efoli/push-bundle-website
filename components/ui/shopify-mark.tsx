@@ -16,8 +16,7 @@ export function ShopifyMark({ className }: { className?: string }) {
       // eslint-disable-next-line @next/next/no-img-element
       <img
         src="/images/shopify.png"
-        alt=""
-        aria-hidden="true"
+        alt="Shopify"
         className={cn("object-contain", className)}
         onError={() => setOk(false)}
       />

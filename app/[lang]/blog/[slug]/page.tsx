@@ -73,7 +73,7 @@ function Avatar({
       /* eslint-disable-next-line @next/next/no-img-element */
       <img
         src={person.avatar}
-        alt=""
+        alt={person.name}
         className={cn(
           "shrink-0 rounded-full object-cover ring-2 ring-white/20",
           box,

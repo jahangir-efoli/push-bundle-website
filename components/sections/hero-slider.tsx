@@ -109,7 +109,10 @@ export function HeroSlider({
               <Image
                 key={slide.src}
                 src={slide.src}
-                alt={i === index ? slide.alt : ""}
+                // Every slide carries its real alt (image SEO); inactive slides
+                // stay out of the a11y tree via aria-hidden, so nothing is
+                // double-announced.
+                alt={slide.alt}
                 aria-hidden={i !== index}
                 fill
                 priority={i === 0}

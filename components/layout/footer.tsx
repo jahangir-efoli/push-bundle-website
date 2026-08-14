@@ -48,7 +48,7 @@ export function Footer({
             <p className="flex items-center gap-2 font-display text-xl font-extrabold">
               <Image
                 src="/images/pb-logo.webp"
-                alt=""
+                alt="PushBundle"
                 width={32}
                 height={32}
                 className="size-8 rounded-md"
