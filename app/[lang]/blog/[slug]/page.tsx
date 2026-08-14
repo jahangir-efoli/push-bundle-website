@@ -16,7 +16,7 @@ import { blogPostingLd } from "@/lib/seo/article-data";
 import { localeAlternates } from "@/lib/seo/metadata";
 import { processArticle } from "@/lib/blog/toc";
 import { REVIEW_DISCLOSURE } from "@/lib/blog/review";
-import { SITE_NAME, SITE_URL } from "@/lib/seo/site";
+import { OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo/site";
 import { cn } from "@/lib/utils";
 import type { Person } from "@/lib/cms";
 import { defaultLocale, isLocale, type Locale } from "@/i18n/config";
@@ -42,6 +42,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     alternates.canonical = `${SITE_URL}/blog/${post.slug}`;
   }
 
+  // A page that defines its own `openGraph` does NOT inherit the root card, so
+  // og:image + og:url must be set explicitly or the share preview is incomplete.
+  // Prefer the post's own cover/OG image; fall back to the site card.
+  const ogImage = post.seo?.ogImage ?? post.coverImage ?? OG_IMAGE;
+
   return {
     title: post.seo?.metaTitle ?? `${post.title} | PushBundle Blog`,
     description: post.seo?.metaDescription ?? post.excerpt,
@@ -49,12 +54,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     robots: isPreview ? { index: false, follow: false } : undefined,
     alternates,
     openGraph: {
+      type: "article",
+      url: alternates.canonical,
+      siteName: SITE_NAME,
       title: post.title,
       description: post.excerpt,
-      type: "article",
       publishedTime: post.publishedAt,
       modifiedTime: post.updatedAt,
       authors: [post.author.name],
+      images: [ogImage],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.excerpt,
+      images: [ogImage],
     },
   };
 }
