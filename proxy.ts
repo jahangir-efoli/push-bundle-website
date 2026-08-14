@@ -39,6 +39,18 @@ export function proxy(req: NextRequest) {
     return withNoindex(NextResponse.next(), host);
   }
 
+  // Trailing slash → 301 permanent redirect to the canonical no-slash URL. Next
+  // core's normalization (a 308) is disabled via `skipTrailingSlashRedirect` so
+  // we can emit a 301 here. Query strings are preserved (`clone()` keeps search).
+  if (pathname !== "/" && pathname.endsWith("/")) {
+    // Build a plain WHATWG URL for the target: mutating a cloned NextURL's
+    // `.pathname` doesn't stick — NextURL re-appends the trailing slash when
+    // serialized to the `Location` header, causing a redirect loop.
+    const clean = pathname.replace(/\/+$/, "") || "/";
+    const target = new URL(`${clean}${req.nextUrl.search}`, req.nextUrl.origin);
+    return NextResponse.redirect(target, 301);
+  }
+
   // `/en` is the unprefixed default → 301 to strip the prefix.
   if (pathname === `/${defaultLocale}` || pathname.startsWith(`/${defaultLocale}/`)) {
     const url = req.nextUrl.clone();

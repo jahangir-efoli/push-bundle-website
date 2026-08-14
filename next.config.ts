@@ -1,6 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // The URL scheme is no-trailing-slash (docs/PLAN.md §8). Next's built-in
+  // trailing-slash normalization emits a 308; we want a 301, so we disable the
+  // core redirect here and issue our own 301 in `proxy.ts`.
+  skipTrailingSlashRedirect: true,
   images: {
     // Text-heavy UI mockups (hero slider) need sharp output: prefer AVIF, fall
     // back to WebP, then the source. q90 keeps small type legible; Next 16
