@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
 import { cms } from "@/lib/cms";
 import { getBlogContent } from "@/i18n/content";
+import { socialCard } from "@/lib/seo/metadata";
 import { BlogListing } from "@/components/blog/blog-listing";
 import { isLocale, type Locale } from "@/i18n/config";
 
@@ -13,9 +14,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang, n } = await params;
   const locale = toLocale(lang);
   const { pageTitleTemplate } = await getBlogContent(locale);
+  const canonical = `/blog/page/${n}`;
+  const title = `${pageTitleTemplate.replace("{n}", n)} | PushBundle Blog`;
   return {
-    title: `${pageTitleTemplate.replace("{n}", n)} | PushBundle Blog`,
-    alternates: { canonical: `/blog/page/${n}` },
+    title,
+    alternates: { canonical },
+    ...socialCard(canonical, title),
   };
 }
 

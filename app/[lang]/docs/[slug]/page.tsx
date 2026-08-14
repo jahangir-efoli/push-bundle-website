@@ -6,7 +6,7 @@ import { Container } from "@/components/ui/container";
 import { DocsSidebar } from "@/components/docs/docs-sidebar";
 import { JsonLd } from "@/components/seo/json-ld";
 import { breadcrumbLd } from "@/lib/seo/structured-data";
-import { localeAlternates } from "@/lib/seo/metadata";
+import { localeAlternates, socialCard } from "@/lib/seo/metadata";
 import { isLocale, type Locale } from "@/i18n/config";
 import { site } from "@/lib/site-config";
 
@@ -19,10 +19,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = toLocale(lang);
   const doc = await cms.getDoc({ locale, slug });
   if (!doc) return {};
+  const alternates = localeAlternates(`/docs/${doc.slug}`, locale);
+  const title = `${doc.title} | PushBundle Docs`;
+  const description = `How to ${doc.title.toLowerCase()} with PushBundle.`;
   return {
-    title: `${doc.title} | PushBundle Docs`,
-    description: `How to ${doc.title.toLowerCase()} with PushBundle.`,
-    alternates: localeAlternates(`/docs/${doc.slug}`, locale),
+    title,
+    description,
+    alternates,
+    ...socialCard(alternates.canonical, title, description),
   };
 }
 

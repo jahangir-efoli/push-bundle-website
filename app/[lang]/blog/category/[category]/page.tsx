@@ -5,7 +5,7 @@ import { getBlogContent } from "@/i18n/content";
 import { BlogListing } from "@/components/blog/blog-listing";
 import { JsonLd } from "@/components/seo/json-ld";
 import { breadcrumbLd } from "@/lib/seo/structured-data";
-import { localeAlternates } from "@/lib/seo/metadata";
+import { localeAlternates, socialCard } from "@/lib/seo/metadata";
 import { isLocale, type Locale } from "@/i18n/config";
 
 type Props = { params: Promise<{ lang: string; category: string }> };
@@ -22,10 +22,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = toLocale(lang);
   const found = await getCategory(category, locale);
   if (!found) return {};
+  const alternates = localeAlternates(`/blog/category/${category}`, locale);
+  const title = `${found.name} | PushBundle Blog`;
+  const description = `PushBundle — ${found.name}.`;
   return {
-    title: `${found.name} | PushBundle Blog`,
-    description: `PushBundle — ${found.name}.`,
-    alternates: localeAlternates(`/blog/category/${category}`, locale),
+    title,
+    description,
+    alternates,
+    ...socialCard(alternates.canonical, title, description),
   };
 }
 

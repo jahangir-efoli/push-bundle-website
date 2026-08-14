@@ -26,6 +26,36 @@ export function localeAlternates(barePath: string, locale: Locale) {
 }
 
 /**
+ * OG + Twitter card for pages that build their own `title`/`alternates` but would
+ * otherwise inherit the root layout's `openGraph` (whose `url` is the homepage),
+ * leaving og:url ≠ canonical and no page-specific card. Spread the result into
+ * the returned metadata. `canonical` should be the page's own canonical URL
+ * (relative is fine — resolved against `metadataBase`).
+ */
+export function socialCard(
+  canonical: string,
+  title: string,
+  description?: string,
+): Pick<Metadata, "openGraph" | "twitter"> {
+  return {
+    openGraph: {
+      type: "website",
+      url: canonical,
+      siteName: SITE_NAME,
+      title,
+      ...(description ? { description } : {}),
+      images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      ...(description ? { description } : {}),
+      images: [OG_IMAGE],
+    },
+  };
+}
+
+/**
  * Per-page metadata helper (docs/PLAN.md §7–8, per the nextjs-seo-website skill).
  *
  * Sets a unique OG image per page (a page defining its own `openGraph` does NOT
