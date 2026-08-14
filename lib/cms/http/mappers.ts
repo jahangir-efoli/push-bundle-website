@@ -46,6 +46,14 @@ const SANITIZE_OPTIONS: sanitizeHtmlLib.IOptions = {
   // `#anchor` and relative hrefs have no scheme and are kept automatically.
   allowedSchemes: ["http", "https", "mailto", "tel"],
   allowProtocolRelative: false,
+  transformTags: {
+    // The WordPress-migrated CMS bodies use <h1> for in-article section
+    // headings, but every page already renders the single page <h1> (post/doc
+    // title). Demote body h1 → h2 so a page never has multiple H1s (SEO). The
+    // string form preserves attributes, so heading `id` anchors survive and the
+    // demoted headings now also feed the TOC (which reads h2/h3).
+    h1: "h2",
+  },
 };
 
 export function sanitizeHtml(html: string | undefined | null): string {
