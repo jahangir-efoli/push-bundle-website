@@ -5,6 +5,7 @@ import { buttonStyles } from "@/components/ui/button";
 import { ProductThumb } from "@/components/demos/product-thumb";
 import type { CartBundle } from "@/components/demos/cart-drawer";
 import { cn } from "@/lib/utils";
+import { useDemoContent, fmt } from "@/lib/content/demo-content";
 
 /**
  * Mix & Match (Single Product) interactive demo — models the live PushBundle
@@ -86,6 +87,7 @@ export function MixMatchSingleDemo({
   onAddToCart?: (bundle: CartBundle) => void;
   className?: string;
 }) {
+  const t = useDemoContent();
   const [packIndex, setPackIndex] = useState(0);
   const [picks, setPicks] = useState<Record<string, number>>({});
   const [notice, setNotice] = useState<string | null>(null);
@@ -139,7 +141,7 @@ export function MixMatchSingleDemo({
         img: variantImg(name) ?? bundleImage,
       }));
       onAddToCart({
-        title: `${productName} · ${target}-pack`,
+        title: fmt(t.mixSingle.cartBundleTitle, { product: productName, n: target }),
         id: `MIX-${target}`,
         img: bundleImage,
         price: total,
@@ -149,7 +151,7 @@ export function MixMatchSingleDemo({
       setPicks({});
       return;
     }
-    setNotice(`Added ${target} × ${productName} to cart · ${usd(total)}`);
+    setNotice(fmt(t.ui.addedToCart, { n: target, product: productName, price: usd(total) }));
     setPicks({});
     window.clearTimeout(noticeTimer.current);
     noticeTimer.current = window.setTimeout(() => setNotice(null), 2800);
@@ -166,7 +168,7 @@ export function MixMatchSingleDemo({
       )}
     >
       {/* Choose a pack */}
-      <p className="text-sm font-semibold">Choose a pack</p>
+      <p className="text-sm font-semibold">{t.ui.chooseAPack}</p>
       <div className="mt-2 flex flex-wrap gap-2">
         {packs.map((pk, i) => {
           const sel = i === packIndex;
@@ -183,7 +185,7 @@ export function MixMatchSingleDemo({
                   : "border-border hover:border-primary/40",
               )}
             >
-              <span className="text-sm font-bold">Pack of {pk.qty}</span>
+              <span className="text-sm font-bold">{fmt(t.ui.packOf, { n: pk.qty })}</span>
               <span
                 className={cn(
                   "text-xs",
@@ -220,7 +222,7 @@ export function MixMatchSingleDemo({
                 <span className="font-semibold">{usd(unitPrice)}</span>
                 {discountPct > 0 && (
                   <span className="ml-1 rounded bg-primary-subtle px-1 py-0.5 text-[10px] font-semibold text-primary">
-                    {discountPct}% off
+                    {fmt(t.ui.percentOff, { d: discountPct })}
                   </span>
                 )}
               </p>
@@ -230,7 +232,7 @@ export function MixMatchSingleDemo({
                     <button
                       type="button"
                       onClick={() => changeQty(v.name, -1)}
-                      aria-label={`Decrease ${v.name}`}
+                      aria-label={fmt(t.ui.decrease, { name: v.name })}
                       className="grid size-7 place-items-center text-muted hover:text-foreground"
                     >
                       −
@@ -240,7 +242,7 @@ export function MixMatchSingleDemo({
                       type="button"
                       onClick={() => changeQty(v.name, 1)}
                       disabled={full}
-                      aria-label={`Increase ${v.name}`}
+                      aria-label={fmt(t.ui.increase, { name: v.name })}
                       className="grid size-7 place-items-center text-muted hover:text-foreground disabled:opacity-40"
                     >
                       +
@@ -253,7 +255,7 @@ export function MixMatchSingleDemo({
                     disabled={full}
                     className="w-full rounded-md border border-primary py-1.5 text-xs font-semibold text-primary transition-colors hover:bg-primary-subtle disabled:opacity-40"
                   >
-                    Add to bundle
+                    {t.ui.addToBundle}
                   </button>
                 )}
               </div>
@@ -285,7 +287,7 @@ export function MixMatchSingleDemo({
         )}
         <div className="flex items-center justify-between gap-3">
           <span className="text-sm font-semibold">
-            Selected products {selectedCount}/{target}
+            {fmt(t.ui.selectedProducts, { n: selectedCount, t: target })}
           </span>
           {selectedCount > 0 && (
             <span className="whitespace-nowrap text-xs text-muted line-through">
@@ -342,7 +344,7 @@ export function MixMatchSingleDemo({
           )}
         >
           <span className="flex w-full items-center justify-between">
-            <span>{full ? "Add to cart" : `Add ${remaining} more`}</span>
+            <span>{full ? t.ui.addToCartShort : fmt(t.ui.addMore, { n: remaining })}</span>
             <span>{usd(total)}</span>
           </span>
         </button>

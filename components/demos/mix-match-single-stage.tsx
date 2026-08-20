@@ -3,6 +3,7 @@
 import { ProductStage } from "@/components/demos/product-stage";
 import { MixMatchSingleDemo } from "@/components/demos/mix-match-single-demo";
 import type { CartBundle } from "@/components/demos/cart-drawer";
+import { useDemoContent } from "@/lib/content/demo-content";
 
 /**
  * Mix & Match (Single Product) as a Shopify product page: the ProductStage shows
@@ -15,19 +16,29 @@ export function MixMatchSingleStage({
 }: {
   onAddToCart?: (bundle: CartBundle) => void;
 } = {}) {
+  const { mixSingle } = useDemoContent();
+  // Fixed swatch colours + images; variant names come from content.
+  const swatch = [
+    { color: "#7f1d3a", image: "/images/demos/mix-single/maroon.png" },
+    { color: "#2547a3", image: "/images/demos/mix-single/blue.png" },
+    { color: "#556b2f", image: "/images/demos/mix-single/olive.png" },
+    { color: "#cbb393", image: "/images/demos/mix-single/tan.png" },
+    { color: "#3f4653", image: "/images/demos/mix-single/charcoal.png" },
+    { color: "#1f6b3b", image: "/images/demos/mix-single/forest.png" },
+  ];
   return (
     <ProductStage
       image="/images/products/mix-single.png"
-      imageAlt="Full Sleeve T-shirt — product photo"
-      title="Full Sleeve T-shirt"
+      imageAlt={mixSingle.imageAlt}
+      title={mixSingle.productName}
       price={24}
     >
       <div className="pb-berry rounded-xl border-2 border-primary/35 bg-white p-4">
         <MixMatchSingleDemo
           embedded
-          productName="Full Sleeve T-shirt"
+          productName={mixSingle.productName}
           basePrice={24}
-          unitNoun="shirt"
+          unitNoun={mixSingle.unitNoun}
           bundleImage="/images/products/mix-single.png"
           onAddToCart={onAddToCart}
           packs={[
@@ -35,14 +46,10 @@ export function MixMatchSingleStage({
             { qty: 6, discount: 8, pricePerUnit: 22 },
             { qty: 8, discount: 17, pricePerUnit: 20 },
           ]}
-          variants={[
-            { name: "Maroon", color: "#7f1d3a", image: "/images/demos/mix-single/maroon.png" },
-            { name: "Blue", color: "#2547a3", image: "/images/demos/mix-single/blue.png" },
-            { name: "Olive", color: "#556b2f", image: "/images/demos/mix-single/olive.png" },
-            { name: "Tan", color: "#cbb393", image: "/images/demos/mix-single/tan.png" },
-            { name: "Charcoal", color: "#3f4653", image: "/images/demos/mix-single/charcoal.png" },
-            { name: "Forest", color: "#1f6b3b", image: "/images/demos/mix-single/forest.png" },
-          ]}
+          variants={mixSingle.variants.map((name, i) => ({
+            name,
+            ...swatch[i],
+          }))}
         />
       </div>
     </ProductStage>

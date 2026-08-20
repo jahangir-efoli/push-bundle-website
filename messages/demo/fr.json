@@ -27,7 +27,25 @@
     "subtotal": "Sous-total",
     "checkout": "Commander",
     "showItems": "Afficher {n} articles ▼",
-    "hideItems": "Masquer {n} articles ▲"
+    "hideItems": "Masquer {n} articles ▲",
+    "quantitySetByStore": "La quantité est définie par la boutique",
+    "optionLabel": "Option {name}",
+    "total": "Total",
+    "itemsCount": "({n} articles)",
+    "addBundleSave": "Ajouter le lot et économiser {d}%",
+    "bundleAddedToCart": "Lot ajouté au panier · {price} ({d}% économisés)",
+    "chooseAPack": "Choisissez un lot",
+    "packOf": "Lot de {n}",
+    "addToBundle": "Ajouter au lot",
+    "selectedProducts": "Produits sélectionnés {n}/{t}",
+    "addToCartShort": "Ajouter au panier",
+    "addMore": "Ajouter {n} de plus",
+    "boxAddedToCart": "Box de {n} ajoutée au panier · {price}",
+    "boxOfItems": "Box de {n} articles",
+    "percentOffCaps": "{d}% DE RÉDUC.",
+    "regular": "Standard",
+    "myPack": "Mon lot",
+    "addMoreToBox": "Ajoutez {n} de plus pour remplir votre box"
   },
   "volume": {
     "productName": "Commode finition noyer",
@@ -35,7 +53,101 @@
     "bundleTitle": "Achetez plus et économisez jusqu'à 15%",
     "bundleSubtitle": "Commandez plusieurs unités de ce produit en une fois et débloquez une remise plus importante sur chaque pièce.",
     "heading": "Économisez plus sur les achats en gros",
-    "variants": ["Noyer", "Chêne", "Espresso", "Frêne naturel"],
-    "gifts": ["Set de dessous de verre offert", "Tapis de tiroir offerts", "Livraison offerte"]
+    "variants": [
+      "Noyer",
+      "Chêne",
+      "Espresso",
+      "Frêne naturel"
+    ],
+    "gifts": [
+      "Set de dessous de verre offert",
+      "Tapis de tiroir offerts",
+      "Livraison offerte"
+    ]
+  },
+  "crossSell": {
+    "productName": "Commode à accent bleu sarcelle",
+    "imageAlt": "Commode à accent bleu sarcelle — photo du produit",
+    "bundleTitle": "Achetez ensemble et économisez 10%",
+    "bundleSubtitle": "Profitez d'économies exclusives — achetez ces favoris ensemble en un seul lot et obtenez 10% sur votre total.",
+    "cartBundleTitle": "{product} · Lot de vente croisée",
+    "products": [
+      {
+        "name": "Vase à bourgeon en terre cuite",
+        "variants": [
+          "Petit",
+          "Grand"
+        ]
+      },
+      {
+        "name": "Lampe de table sarcelle",
+        "variants": [
+          "Sarcelle",
+          "Crème"
+        ]
+      },
+      {
+        "name": "Vase en céramique émeraude",
+        "variants": [
+          "Émeraude",
+          "Sauge"
+        ]
+      }
+    ]
+  },
+  "mixSingle": {
+    "productName": "T-shirt à manches longues",
+    "imageAlt": "T-shirt à manches longues — photo du produit",
+    "unitNoun": "t-shirt",
+    "cartBundleTitle": "{product} · lot de {n}",
+    "variants": [
+      "Bordeaux",
+      "Bleu",
+      "Olive",
+      "Beige",
+      "Anthracite",
+      "Vert forêt"
+    ]
+  },
+  "mixMulti": {
+    "cartBoxTitle": "Box Mix & Match de {n}",
+    "products": [
+      {
+        "name": "Chaise d'appoint — Rosé",
+        "category": "Mobilier"
+      },
+      {
+        "name": "Chaise d'appoint — Gris",
+        "category": "Mobilier"
+      },
+      {
+        "name": "Chaise d'appoint — Carreaux",
+        "category": "Mobilier"
+      },
+      {
+        "name": "Lampe de table texturée",
+        "category": "Décoration"
+      },
+      {
+        "name": "Lampe de table vague",
+        "category": "Décoration"
+      },
+      {
+        "name": "Vase à fleurs en céramique",
+        "category": "Décoration"
+      },
+      {
+        "name": "Panier tressé",
+        "category": "Accessoires"
+      },
+      {
+        "name": "Bougie parfumée",
+        "category": "Accessoires"
+      },
+      {
+        "name": "Cadre photo",
+        "category": "Accessoires"
+      }
+    ]
   }
 }

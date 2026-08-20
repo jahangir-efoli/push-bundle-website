@@ -27,7 +27,25 @@
     "subtotal": "Subtotale",
     "checkout": "Vai alla cassa",
     "showItems": "Mostra {n} articoli ▼",
-    "hideItems": "Nascondi {n} articoli ▲"
+    "hideItems": "Nascondi {n} articoli ▲",
+    "quantitySetByStore": "La quantità è impostata dal negozio",
+    "optionLabel": "Opzione {name}",
+    "total": "Totale",
+    "itemsCount": "({n} articoli)",
+    "addBundleSave": "Aggiungi bundle e risparmia {d}%",
+    "bundleAddedToCart": "Bundle aggiunto al carrello · {price} (risparmi {d}%)",
+    "chooseAPack": "Scegli una confezione",
+    "packOf": "Confezione da {n}",
+    "addToBundle": "Aggiungi al bundle",
+    "selectedProducts": "Prodotti selezionati {n}/{t}",
+    "addToCartShort": "Aggiungi al carrello",
+    "addMore": "Aggiungi altri {n}",
+    "boxAddedToCart": "Box da {n} aggiunta al carrello · {price}",
+    "boxOfItems": "Box da {n} articoli",
+    "percentOffCaps": "{d}% DI SCONTO",
+    "regular": "Standard",
+    "myPack": "Il mio pacchetto",
+    "addMoreToBox": "Aggiungi altri {n} per riempire la tua box"
   },
   "volume": {
     "productName": "Cassettiera finitura noce",
@@ -35,7 +53,101 @@
     "bundleTitle": "Compra di più e risparmia fino al 15%",
     "bundleSubtitle": "Ordina più unità di questo prodotto in una volta e sblocca uno sconto maggiore su ogni pezzo.",
     "heading": "Risparmia di più sugli acquisti in grandi quantità",
-    "variants": ["Noce", "Rovere", "Espresso", "Frassino naturale"],
-    "gifts": ["Set di sottobicchieri gratis", "Rivestimenti per cassetti gratis", "Spedizione gratuita"]
+    "variants": [
+      "Noce",
+      "Rovere",
+      "Espresso",
+      "Frassino naturale"
+    ],
+    "gifts": [
+      "Set di sottobicchieri gratis",
+      "Rivestimenti per cassetti gratis",
+      "Spedizione gratuita"
+    ]
+  },
+  "crossSell": {
+    "productName": "Cassettiera con dettaglio verde acqua",
+    "imageAlt": "Cassettiera con dettaglio verde acqua — foto del prodotto",
+    "bundleTitle": "Acquista insieme e risparmia il 10%",
+    "bundleSubtitle": "Approfitta di sconti esclusivi: acquista questi preferiti insieme in un unico bundle e ottieni il 10% sul totale.",
+    "cartBundleTitle": "{product} · Bundle cross-sell",
+    "products": [
+      {
+        "name": "Vaso a bocciolo in terracotta",
+        "variants": [
+          "Piccolo",
+          "Grande"
+        ]
+      },
+      {
+        "name": "Lampada da tavolo verde acqua",
+        "variants": [
+          "Verde acqua",
+          "Crema"
+        ]
+      },
+      {
+        "name": "Vaso in ceramica smeraldo",
+        "variants": [
+          "Smeraldo",
+          "Salvia"
+        ]
+      }
+    ]
+  },
+  "mixSingle": {
+    "productName": "Maglietta a maniche lunghe",
+    "imageAlt": "Maglietta a maniche lunghe — foto del prodotto",
+    "unitNoun": "maglietta",
+    "cartBundleTitle": "{product} · confezione da {n}",
+    "variants": [
+      "Bordeaux",
+      "Blu",
+      "Oliva",
+      "Beige",
+      "Antracite",
+      "Verde bosco"
+    ]
+  },
+  "mixMulti": {
+    "cartBoxTitle": "Box Mix & Match da {n}",
+    "products": [
+      {
+        "name": "Sedia d'accento — Rosa cipria",
+        "category": "Arredamento"
+      },
+      {
+        "name": "Sedia d'accento — Grigio",
+        "category": "Arredamento"
+      },
+      {
+        "name": "Sedia d'accento — Quadri",
+        "category": "Arredamento"
+      },
+      {
+        "name": "Lampada da tavolo testurizzata",
+        "category": "Decorazioni"
+      },
+      {
+        "name": "Lampada da tavolo a onde",
+        "category": "Decorazioni"
+      },
+      {
+        "name": "Vaso da fiori in ceramica",
+        "category": "Decorazioni"
+      },
+      {
+        "name": "Cesto intrecciato",
+        "category": "Accessori"
+      },
+      {
+        "name": "Candela profumata",
+        "category": "Accessori"
+      },
+      {
+        "name": "Cornice portafoto",
+        "category": "Accessori"
+      }
+    ]
   }
 }

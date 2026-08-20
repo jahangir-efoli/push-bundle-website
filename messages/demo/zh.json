@@ -27,7 +27,25 @@
     "subtotal": "小计",
     "checkout": "结账",
     "showItems": "显示 {n} 件商品 ▼",
-    "hideItems": "隐藏 {n} 件商品 ▲"
+    "hideItems": "隐藏 {n} 件商品 ▲",
+    "quantitySetByStore": "数量由商店设定",
+    "optionLabel": "{name} 选项",
+    "total": "合计",
+    "itemsCount": "（{n} 件）",
+    "addBundleSave": "添加套装并省 {d}%",
+    "bundleAddedToCart": "套装已加入购物车 · {price}（省 {d}%）",
+    "chooseAPack": "选择套装",
+    "packOf": "{n} 件装",
+    "addToBundle": "加入套装",
+    "selectedProducts": "已选商品 {n}/{t}",
+    "addToCartShort": "加入购物车",
+    "addMore": "再添加 {n} 件",
+    "boxAddedToCart": "{n} 件盒装已加入购物车 · {price}",
+    "boxOfItems": "{n} 件盒装",
+    "percentOffCaps": "省 {d}%",
+    "regular": "标准",
+    "myPack": "我的套装",
+    "addMoreToBox": "再添加 {n} 件即可装满您的盒子"
   },
   "volume": {
     "productName": "胡桃木饰面斗柜",
@@ -35,7 +53,101 @@
     "bundleTitle": "买得越多，最高省 15%",
     "bundleSubtitle": "一次订购更多此商品，即可为每件解锁更大的折扣。",
     "heading": "批量购买更省钱",
-    "variants": ["胡桃木", "橡木", "浓缩咖啡色", "天然白蜡木"],
-    "gifts": ["免费杯垫套装", "免费抽屉衬垫", "免费配送"]
+    "variants": [
+      "胡桃木",
+      "橡木",
+      "浓缩咖啡色",
+      "天然白蜡木"
+    ],
+    "gifts": [
+      "免费杯垫套装",
+      "免费抽屉衬垫",
+      "免费配送"
+    ]
+  },
+  "crossSell": {
+    "productName": "蓝绿色点缀斗柜",
+    "imageAlt": "蓝绿色点缀斗柜 — 商品照片",
+    "bundleTitle": "一起购买立省 10%",
+    "bundleSubtitle": "享受专属优惠——将这些热门商品组合购买，即可享总价 10% 的折扣。",
+    "cartBundleTitle": "{product} · 交叉销售套装",
+    "products": [
+      {
+        "name": "陶土花蕾花瓶",
+        "variants": [
+          "小",
+          "大"
+        ]
+      },
+      {
+        "name": "蓝绿色台灯",
+        "variants": [
+          "蓝绿色",
+          "奶油色"
+        ]
+      },
+      {
+        "name": "祖母绿陶瓷花瓶",
+        "variants": [
+          "祖母绿",
+          "鼠尾草绿"
+        ]
+      }
+    ]
+  },
+  "mixSingle": {
+    "productName": "长袖T恤",
+    "imageAlt": "长袖T恤 — 商品照片",
+    "unitNoun": "件",
+    "cartBundleTitle": "{product} · {n} 件装",
+    "variants": [
+      "栗色",
+      "蓝色",
+      "橄榄绿",
+      "棕褐色",
+      "炭灰色",
+      "森林绿"
+    ]
+  },
+  "mixMulti": {
+    "cartBoxTitle": "混搭 {n} 件盒装",
+    "products": [
+      {
+        "name": "装饰椅 — 腮红粉",
+        "category": "家具"
+      },
+      {
+        "name": "装饰椅 — 灰色",
+        "category": "家具"
+      },
+      {
+        "name": "装饰椅 — 格纹",
+        "category": "家具"
+      },
+      {
+        "name": "纹理台灯",
+        "category": "家居装饰"
+      },
+      {
+        "name": "波浪台灯",
+        "category": "家居装饰"
+      },
+      {
+        "name": "陶瓷花瓶",
+        "category": "家居装饰"
+      },
+      {
+        "name": "编织篮",
+        "category": "配饰"
+      },
+      {
+        "name": "香薰蜡烛",
+        "category": "配饰"
+      },
+      {
+        "name": "相框",
+        "category": "配饰"
+      }
+    ]
   }
 }

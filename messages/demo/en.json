@@ -27,7 +27,25 @@
     "subtotal": "Subtotal",
     "checkout": "Checkout",
     "showItems": "Show {n} items ▼",
-    "hideItems": "Hide {n} items ▲"
+    "hideItems": "Hide {n} items ▲",
+    "quantitySetByStore": "Quantity is set by the store",
+    "optionLabel": "{name} option",
+    "total": "Total",
+    "itemsCount": "({n} items)",
+    "addBundleSave": "Add bundle & save {d}%",
+    "bundleAddedToCart": "Bundle added to cart · {price} (saved {d}%)",
+    "chooseAPack": "Choose a pack",
+    "packOf": "Pack of {n}",
+    "addToBundle": "Add to bundle",
+    "selectedProducts": "Selected products {n}/{t}",
+    "addToCartShort": "Add to cart",
+    "addMore": "Add {n} more",
+    "boxAddedToCart": "Box of {n} added to cart · {price}",
+    "boxOfItems": "Box of {n} items",
+    "percentOffCaps": "{d}% OFF",
+    "regular": "Regular",
+    "myPack": "My Pack",
+    "addMoreToBox": "Add {n} more to fill your box"
   },
   "volume": {
     "productName": "Walnut finish dresser",
@@ -35,7 +53,101 @@
     "bundleTitle": "Buy more & save up to 15%",
     "bundleSubtitle": "Order more units of this product in one go and unlock a bigger discount on every piece.",
     "heading": "Save more on bulk purchases",
-    "variants": ["Walnut", "Oak", "Espresso", "Natural Ash"],
-    "gifts": ["Free Coaster Set", "Free Drawer Liners", "Free Shipping"]
+    "variants": [
+      "Walnut",
+      "Oak",
+      "Espresso",
+      "Natural Ash"
+    ],
+    "gifts": [
+      "Free Coaster Set",
+      "Free Drawer Liners",
+      "Free Shipping"
+    ]
+  },
+  "crossSell": {
+    "productName": "Teal accent dresser",
+    "imageAlt": "Teal accent dresser — product photo",
+    "bundleTitle": "Buy together and save 10%",
+    "bundleSubtitle": "Enjoy exclusive savings — buy these favourites together in one bundle and get 10% off your total.",
+    "cartBundleTitle": "{product} · Cross-Sell Bundle",
+    "products": [
+      {
+        "name": "Terracotta Bud Vase",
+        "variants": [
+          "Small",
+          "Large"
+        ]
+      },
+      {
+        "name": "Teal Table Lamp",
+        "variants": [
+          "Teal",
+          "Cream"
+        ]
+      },
+      {
+        "name": "Emerald Ceramic Vase",
+        "variants": [
+          "Emerald",
+          "Sage"
+        ]
+      }
+    ]
+  },
+  "mixSingle": {
+    "productName": "Full Sleeve T-shirt",
+    "imageAlt": "Full Sleeve T-shirt — product photo",
+    "unitNoun": "shirt",
+    "cartBundleTitle": "{product} · {n}-pack",
+    "variants": [
+      "Maroon",
+      "Blue",
+      "Olive",
+      "Tan",
+      "Charcoal",
+      "Forest"
+    ]
+  },
+  "mixMulti": {
+    "cartBoxTitle": "Mix & Match Box of {n}",
+    "products": [
+      {
+        "name": "Accent Chair — Blush",
+        "category": "Furniture"
+      },
+      {
+        "name": "Accent Chair — Grey",
+        "category": "Furniture"
+      },
+      {
+        "name": "Accent Chair — Check",
+        "category": "Furniture"
+      },
+      {
+        "name": "Texture Table Lamp",
+        "category": "Home Decor"
+      },
+      {
+        "name": "Wave Table Lamp",
+        "category": "Home Decor"
+      },
+      {
+        "name": "Ceramic Flower Vase",
+        "category": "Home Decor"
+      },
+      {
+        "name": "Woven Basket",
+        "category": "Accessories"
+      },
+      {
+        "name": "Scented Candle",
+        "category": "Accessories"
+      },
+      {
+        "name": "Photo Frame",
+        "category": "Accessories"
+      }
+    ]
   }
 }

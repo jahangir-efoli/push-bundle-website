@@ -27,7 +27,25 @@
     "subtotal": "Zwischensumme",
     "checkout": "Zur Kasse",
     "showItems": "{n} Artikel anzeigen ▼",
-    "hideItems": "{n} Artikel ausblenden ▲"
+    "hideItems": "{n} Artikel ausblenden ▲",
+    "quantitySetByStore": "Die Menge wird vom Shop festgelegt",
+    "optionLabel": "{name}-Option",
+    "total": "Gesamt",
+    "itemsCount": "({n} Artikel)",
+    "addBundleSave": "Bundle hinzufügen & {d}% sparen",
+    "bundleAddedToCart": "Bundle zum Warenkorb hinzugefügt · {price} ({d}% gespart)",
+    "chooseAPack": "Wähle ein Paket",
+    "packOf": "{n}er-Paket",
+    "addToBundle": "Zum Bundle hinzufügen",
+    "selectedProducts": "Ausgewählte Produkte {n}/{t}",
+    "addToCartShort": "In den Warenkorb",
+    "addMore": "Noch {n} hinzufügen",
+    "boxAddedToCart": "{n}er-Box zum Warenkorb hinzugefügt · {price}",
+    "boxOfItems": "Box mit {n} Artikeln",
+    "percentOffCaps": "{d}% RABATT",
+    "regular": "Regulär",
+    "myPack": "Mein Paket",
+    "addMoreToBox": "Füge {n} weitere hinzu, um deine Box zu füllen"
   },
   "volume": {
     "productName": "Kommode mit Walnuss-Finish",
@@ -35,7 +53,101 @@
     "bundleTitle": "Mehr kaufen & bis zu 15% sparen",
     "bundleSubtitle": "Bestelle mehr Einheiten dieses Produkts auf einmal und sichere dir einen größeren Rabatt auf jedes Stück.",
     "heading": "Spare mehr bei Mengenkäufen",
-    "variants": ["Walnuss", "Eiche", "Espresso", "Natur-Esche"],
-    "gifts": ["Gratis Untersetzer-Set", "Gratis Schubladeneinlagen", "Gratisversand"]
+    "variants": [
+      "Walnuss",
+      "Eiche",
+      "Espresso",
+      "Natur-Esche"
+    ],
+    "gifts": [
+      "Gratis Untersetzer-Set",
+      "Gratis Schubladeneinlagen",
+      "Gratisversand"
+    ]
+  },
+  "crossSell": {
+    "productName": "Kommode mit Petrol-Akzent",
+    "imageAlt": "Kommode mit Petrol-Akzent — Produktfoto",
+    "bundleTitle": "Zusammen kaufen und 10% sparen",
+    "bundleSubtitle": "Sichere dir exklusive Ersparnisse — kaufe diese Favoriten zusammen in einem Bundle und erhalte 10% auf deinen Gesamtbetrag.",
+    "cartBundleTitle": "{product} · Cross-Sell-Bundle",
+    "products": [
+      {
+        "name": "Terrakotta-Knospenvase",
+        "variants": [
+          "Klein",
+          "Groß"
+        ]
+      },
+      {
+        "name": "Petrol-Tischlampe",
+        "variants": [
+          "Petrol",
+          "Creme"
+        ]
+      },
+      {
+        "name": "Smaragdgrüne Keramikvase",
+        "variants": [
+          "Smaragd",
+          "Salbei"
+        ]
+      }
+    ]
+  },
+  "mixSingle": {
+    "productName": "Langarmshirt",
+    "imageAlt": "Langarmshirt — Produktfoto",
+    "unitNoun": "Shirt",
+    "cartBundleTitle": "{product} · {n}er-Pack",
+    "variants": [
+      "Kastanienbraun",
+      "Blau",
+      "Oliv",
+      "Sandbraun",
+      "Anthrazit",
+      "Waldgrün"
+    ]
+  },
+  "mixMulti": {
+    "cartBoxTitle": "Mix & Match Box mit {n}",
+    "products": [
+      {
+        "name": "Akzentstuhl — Rosé",
+        "category": "Möbel"
+      },
+      {
+        "name": "Akzentstuhl — Grau",
+        "category": "Möbel"
+      },
+      {
+        "name": "Akzentstuhl — Karo",
+        "category": "Möbel"
+      },
+      {
+        "name": "Struktur-Tischlampe",
+        "category": "Wohndeko"
+      },
+      {
+        "name": "Wellen-Tischlampe",
+        "category": "Wohndeko"
+      },
+      {
+        "name": "Keramik-Blumenvase",
+        "category": "Wohndeko"
+      },
+      {
+        "name": "Geflochtener Korb",
+        "category": "Accessoires"
+      },
+      {
+        "name": "Duftkerze",
+        "category": "Accessoires"
+      },
+      {
+        "name": "Bilderrahmen",
+        "category": "Accessoires"
+      }
+    ]
   }
 }

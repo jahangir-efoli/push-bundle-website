@@ -27,7 +27,25 @@
     "subtotal": "Subtotal",
     "checkout": "Finalizar compra",
     "showItems": "Mostrar {n} artículos ▼",
-    "hideItems": "Ocultar {n} artículos ▲"
+    "hideItems": "Ocultar {n} artículos ▲",
+    "quantitySetByStore": "La cantidad la define la tienda",
+    "optionLabel": "Opción de {name}",
+    "total": "Total",
+    "itemsCount": "({n} artículos)",
+    "addBundleSave": "Añadir pack y ahorrar {d}%",
+    "bundleAddedToCart": "Pack añadido al carrito · {price} (ahorras {d}%)",
+    "chooseAPack": "Elige un pack",
+    "packOf": "Pack de {n}",
+    "addToBundle": "Añadir al pack",
+    "selectedProducts": "Productos seleccionados {n}/{t}",
+    "addToCartShort": "Añadir al carrito",
+    "addMore": "Añadir {n} más",
+    "boxAddedToCart": "Caja de {n} añadida al carrito · {price}",
+    "boxOfItems": "Caja de {n} artículos",
+    "percentOffCaps": "{d}% DTO.",
+    "regular": "Normal",
+    "myPack": "Mi pack",
+    "addMoreToBox": "Añade {n} más para llenar tu caja"
   },
   "volume": {
     "productName": "Cómoda con acabado en nogal",
@@ -35,7 +53,101 @@
     "bundleTitle": "Compra más y ahorra hasta un 15%",
     "bundleSubtitle": "Pide más unidades de este producto de una vez y desbloquea un mayor descuento en cada pieza.",
     "heading": "Ahorra más en compras al por mayor",
-    "variants": ["Nogal", "Roble", "Espresso", "Fresno natural"],
-    "gifts": ["Set de posavasos gratis", "Forros de cajón gratis", "Envío gratis"]
+    "variants": [
+      "Nogal",
+      "Roble",
+      "Espresso",
+      "Fresno natural"
+    ],
+    "gifts": [
+      "Set de posavasos gratis",
+      "Forros de cajón gratis",
+      "Envío gratis"
+    ]
+  },
+  "crossSell": {
+    "productName": "Cómoda con acento verde azulado",
+    "imageAlt": "Cómoda con acento verde azulado — foto del producto",
+    "bundleTitle": "Compra juntos y ahorra un 10%",
+    "bundleSubtitle": "Disfruta de ahorros exclusivos: compra estos favoritos juntos en un pack y obtén un 10% en tu total.",
+    "cartBundleTitle": "{product} · Pack de venta cruzada",
+    "products": [
+      {
+        "name": "Jarrón de terracota",
+        "variants": [
+          "Pequeño",
+          "Grande"
+        ]
+      },
+      {
+        "name": "Lámpara de mesa verde azulado",
+        "variants": [
+          "Verde azulado",
+          "Crema"
+        ]
+      },
+      {
+        "name": "Jarrón de cerámica esmeralda",
+        "variants": [
+          "Esmeralda",
+          "Salvia"
+        ]
+      }
+    ]
+  },
+  "mixSingle": {
+    "productName": "Camiseta de manga larga",
+    "imageAlt": "Camiseta de manga larga — foto del producto",
+    "unitNoun": "camiseta",
+    "cartBundleTitle": "{product} · pack de {n}",
+    "variants": [
+      "Granate",
+      "Azul",
+      "Oliva",
+      "Tostado",
+      "Carbón",
+      "Verde bosque"
+    ]
+  },
+  "mixMulti": {
+    "cartBoxTitle": "Caja Mix & Match de {n}",
+    "products": [
+      {
+        "name": "Silla de acento — Rubor",
+        "category": "Muebles"
+      },
+      {
+        "name": "Silla de acento — Gris",
+        "category": "Muebles"
+      },
+      {
+        "name": "Silla de acento — Cuadros",
+        "category": "Muebles"
+      },
+      {
+        "name": "Lámpara de mesa texturizada",
+        "category": "Decoración"
+      },
+      {
+        "name": "Lámpara de mesa ondulada",
+        "category": "Decoración"
+      },
+      {
+        "name": "Jarrón de cerámica para flores",
+        "category": "Decoración"
+      },
+      {
+        "name": "Cesta tejida",
+        "category": "Accesorios"
+      },
+      {
+        "name": "Vela aromática",
+        "category": "Accesorios"
+      },
+      {
+        "name": "Marco de fotos",
+        "category": "Accesorios"
+      }
+    ]
   }
 }

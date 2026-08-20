@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { ProductThumb } from "@/components/demos/product-thumb";
 import type { CartBundle } from "@/components/demos/cart-drawer";
 import { cn } from "@/lib/utils";
+import { useDemoContent, fmt } from "@/lib/content/demo-content";
 
 /**
  * Mix & Match (Multiple Products) interactive demo — models the live PushBundle
@@ -50,7 +51,7 @@ const DEFAULT_PRODUCTS: CatalogProduct[] = [
 
 export function MixMatchMultiDemo({
   boxes = DEFAULT_BOXES,
-  products = DEFAULT_PRODUCTS,
+  products: productsProp,
   onAddToCart,
   className,
 }: {
@@ -59,6 +60,15 @@ export function MixMatchMultiDemo({
   onAddToCart?: (bundle: CartBundle) => void;
   className?: string;
 }) {
+  const content = useDemoContent();
+  // Names + categories are localized; prices/icons/images stay fixed.
+  const products =
+    productsProp ??
+    DEFAULT_PRODUCTS.map((p, i) => ({
+      ...p,
+      name: content.mixMulti.products[i].name,
+      category: content.mixMulti.products[i].category,
+    }));
   const categories = useMemo(
     () => [...new Set(products.map((p) => p.category))],
     [products],
@@ -113,7 +123,7 @@ export function MixMatchMultiDemo({
         })),
       );
       onAddToCart({
-        title: `Mix & Match Box of ${target}`,
+        title: fmt(content.mixMulti.cartBoxTitle, { n: target }),
         id: `MIX-${target}BOX`,
         img: items[0]?.img,
         price: total,
@@ -123,7 +133,7 @@ export function MixMatchMultiDemo({
       setQty({});
       return;
     }
-    setNotice(`Box of ${target} added to cart · ${usd(total)}`);
+    setNotice(fmt(content.ui.boxAddedToCart, { n: target, price: usd(total) }));
     setQty({});
     window.clearTimeout(noticeTimer.current);
     noticeTimer.current = window.setTimeout(() => setNotice(null), 2800);
@@ -172,14 +182,14 @@ export function MixMatchMultiDemo({
                   sel ? "text-background/70" : "text-muted",
                 )}
               >
-                Box of {bx.qty} items
+                {fmt(content.ui.boxOfItems, { n: bx.qty })}
               </span>
               {bx.discount > 0 ? (
                 <span className="mt-1 inline-block rounded bg-primary px-2 py-0.5 text-xs font-bold text-primary-foreground">
-                  {bx.discount}% OFF
+                  {fmt(content.ui.percentOffCaps, { d: bx.discount })}
                 </span>
               ) : (
-                <span className="mt-1 block text-sm font-bold">Regular</span>
+                <span className="mt-1 block text-sm font-bold">{content.ui.regular}</span>
               )}
             </button>
           );
@@ -225,7 +235,7 @@ export function MixMatchMultiDemo({
                       type="button"
                       onClick={() => changeQty(p.name, -1)}
                       disabled={q <= 0}
-                      aria-label={`Decrease ${p.name}`}
+                      aria-label={fmt(content.ui.decrease, { name: p.name })}
                       className="grid size-7 place-items-center text-muted hover:text-foreground disabled:opacity-40"
                     >
                       −
@@ -235,7 +245,7 @@ export function MixMatchMultiDemo({
                       type="button"
                       onClick={() => changeQty(p.name, 1)}
                       disabled={full}
-                      aria-label={`Increase ${p.name}`}
+                      aria-label={fmt(content.ui.increase, { name: p.name })}
                       className="grid size-7 place-items-center text-muted hover:text-foreground disabled:opacity-40"
                     >
                       +
@@ -251,7 +261,7 @@ export function MixMatchMultiDemo({
         <div className="rounded-xl border border-border bg-surface-subtle/50 p-3">
           <div className="flex items-center justify-between gap-2">
             <p className="flex items-center gap-1.5 text-sm font-bold">
-              My Pack
+              {content.ui.myPack}
               <span className="rounded bg-primary px-1.5 py-0.5 text-[11px] font-bold text-primary-foreground tabular-nums">
                 {selectedCount}/{target}
               </span>
@@ -276,9 +286,9 @@ export function MixMatchMultiDemo({
                   {name}
                 </span>
                 <span className="flex items-center rounded-md border border-border">
-                  <button type="button" onClick={() => changeQty(name, -1)} aria-label={`Decrease ${name}`} className="grid size-6 place-items-center text-muted hover:text-foreground">−</button>
+                  <button type="button" onClick={() => changeQty(name, -1)} aria-label={fmt(content.ui.decrease, { name })} className="grid size-6 place-items-center text-muted hover:text-foreground">−</button>
                   <span className="w-5 text-center text-xs tabular-nums">{q}</span>
-                  <button type="button" onClick={() => changeQty(name, 1)} disabled={full} aria-label={`Increase ${name}`} className="grid size-6 place-items-center text-muted hover:text-foreground disabled:opacity-40">+</button>
+                  <button type="button" onClick={() => changeQty(name, 1)} disabled={full} aria-label={fmt(content.ui.increase, { name })} className="grid size-6 place-items-center text-muted hover:text-foreground disabled:opacity-40">+</button>
                 </span>
               </li>
             ))}
@@ -287,7 +297,7 @@ export function MixMatchMultiDemo({
                 <span className="grid size-8 shrink-0 place-items-center rounded-md text-lg text-muted">
                   +
                 </span>
-                Add {remaining} more {remaining === 1 ? "product" : "products"} to fill your box
+                {fmt(content.ui.addMoreToBox, { n: remaining })}
               </li>
             )}
           </ul>
@@ -314,7 +324,7 @@ export function MixMatchMultiDemo({
             )}
           >
             <span className="flex w-full items-center justify-between">
-              <span>Add to Cart</span>
+              <span>{content.ui.addToCart}</span>
               <span>{usd(total)}</span>
             </span>
           </button>

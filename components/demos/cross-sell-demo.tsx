@@ -5,6 +5,7 @@ import { buttonStyles } from "@/components/ui/button";
 import { ProductThumb } from "@/components/demos/product-thumb";
 import type { CartBundle } from "@/components/demos/cart-drawer";
 import { cn } from "@/lib/utils";
+import { useDemoContent, fmt } from "@/lib/content/demo-content";
 
 /**
  * Cross-Sell / "frequently bought together" interactive demo — models the live
@@ -61,6 +62,7 @@ export function CrossSellDemo({
   onAddToCart?: (bundle: CartBundle) => void;
   className?: string;
 }) {
+  const t = useDemoContent();
   const initial = () => products.map((p) => p.variants[0]);
   const [picked, setPicked] = useState<string[]>(initial);
   const [notice, setNotice] = useState<string | null>(null);
@@ -93,7 +95,7 @@ export function CrossSellDemo({
       setPicked(initial());
       return;
     }
-    setNotice(`Bundle added to cart · ${usd(total)} (saved ${discount}%)`);
+    setNotice(fmt(t.ui.bundleAddedToCart, { price: usd(total), d: discount }));
     setPicked(initial());
     window.clearTimeout(noticeTimer.current);
     noticeTimer.current = window.setTimeout(() => setNotice(null), 2800);
@@ -136,7 +138,7 @@ export function CrossSellDemo({
                 <div className="mt-2 flex items-center gap-2">
                   {/* Admin-fixed quantity — read-only for the customer. */}
                   <span
-                    title="Quantity is set by the store"
+                    title={t.ui.quantitySetByStore}
                     className="shrink-0 rounded-md bg-surface-subtle px-2.5 py-1 text-xs font-semibold text-muted"
                   >
                     × {p.qty}
@@ -144,7 +146,7 @@ export function CrossSellDemo({
 
                   <div className="relative min-w-0 flex-1">
                     <label className="sr-only" htmlFor={`cs-${i}`}>
-                      {p.name} option
+                      {fmt(t.ui.optionLabel, { name: p.name })}
                     </label>
                     <select
                       id={`cs-${i}`}
@@ -207,8 +209,10 @@ export function CrossSellDemo({
         )}
         <div className="flex items-center justify-between gap-3">
           <span className="text-sm font-semibold">
-            Total{" "}
-            <span className="font-normal text-muted">({units} items)</span>
+            {t.ui.total}{" "}
+            <span className="font-normal text-muted">
+              {fmt(t.ui.itemsCount, { n: units })}
+            </span>
           </span>
           <span className="whitespace-nowrap text-sm">
             <span className="mr-1.5 text-muted line-through">{usd(original)}</span>
@@ -223,7 +227,7 @@ export function CrossSellDemo({
             "mt-2.5 w-full",
           )}
         >
-          Add bundle &amp; save {discount}%
+          {fmt(t.ui.addBundleSave, { d: discount })}
         </button>
       </div>
     </div>
