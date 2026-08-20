@@ -130,6 +130,12 @@ export const fixtureAdapter: CmsAdapter = {
     return doc ? withLocale([doc], locale)[0] : null;
   },
 
+  /** Fixtures are English-only, so a doc is canonical only in `en`. */
+  async getDocLocales({ slug }): Promise<Locale[]> {
+    void slug;
+    return ["en"];
+  },
+
   // ---- FAQ --------------------------------------------------------------
   async listFaqs({ locale, category, limit }): Promise<FaqItem[]> {
     const text = faqTextFor(locale).items as Record<

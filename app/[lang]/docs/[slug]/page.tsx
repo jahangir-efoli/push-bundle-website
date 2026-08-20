@@ -20,10 +20,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = toLocale(lang);
   const doc = await cms.getDoc({ locale, slug });
   if (!doc) return {};
-  // Docs are English-only (the CMS serves English for every locale), so a doc
-  // advertises just the English URL: localized doc URLs canonical back to English
-  // and hreflang never points at a non-canonical fallback.
-  const alternates = localeAlternates(`/docs/${doc.slug}`, locale, ["en"]);
+  // Advertise hreflang only for the locales this doc is really translated in
+  // (always including English). Docs are English-only today, so this yields just
+  // the English URL — a localized doc canonicals back to English — but the moment
+  // the CMS translates a doc, its localized URL auto-flows into hreflang here.
+  const availableLocales = await cms.getDocLocales({ slug: doc.slug });
+  const alternates = localeAlternates(`/docs/${doc.slug}`, locale, availableLocales);
   const title = `${doc.title} | PushBundle Docs`;
   const description = `How to ${doc.title.toLowerCase()} with PushBundle.`;
   return {

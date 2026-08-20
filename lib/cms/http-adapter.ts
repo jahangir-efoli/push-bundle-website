@@ -83,6 +83,40 @@ function readListEnvelope(
   };
 }
 
+/**
+ * Fold a set of per-locale item lists into canonical sitemap refs: a slug is
+ * listed in `en` (the base) plus every non-English locale where it's truly
+ * translated. Shared by blog posts and docs so both stay translation-aware.
+ */
+type Translatable = { slug: string; updatedAt: string; isTranslated?: boolean };
+function refsFromPerLocale(
+  perLocale: ReadonlyArray<readonly [Locale, Translatable[]]>,
+  pathFor: (slug: string) => string,
+): ContentRef[] {
+  const bySlug = new Map<string, { updatedAt: string; locales: Locale[] }>();
+  for (const [l, items] of perLocale) {
+    for (const it of items) {
+      // English is the base; other locales count only when truly translated.
+      if (l !== "en" && it.isTranslated !== true) continue;
+      const existing = bySlug.get(it.slug);
+      if (existing) {
+        if (!existing.locales.includes(l)) existing.locales.push(l);
+        if (l === "en") existing.updatedAt = it.updatedAt;
+      } else {
+        bySlug.set(it.slug, { updatedAt: it.updatedAt, locales: [l] });
+      }
+    }
+  }
+  const out: ContentRef[] = [];
+  for (const [slug, info] of bySlug) {
+    const locs = info.locales.includes("en")
+      ? info.locales
+      : ["en" as Locale, ...info.locales];
+    out.push({ path: pathFor(slug), updatedAt: info.updatedAt, locales: locs });
+  }
+  return out;
+}
+
 export const httpAdapter: CmsAdapter = {
   // ---- Blog ---------------------------------------------------------------
   async listPosts({ locale, page = 1, perPage = 10, category }: ListPostsParams) {
@@ -208,6 +242,23 @@ export const httpAdapter: CmsAdapter = {
     }
   },
 
+  async getDocLocales({ slug }): Promise<Locale[]> {
+    // Mirrors getPostLocales: probe each non-English docs list (shared, cached
+    // fetches) for a real translation of this slug.
+    const nonEn = locales.filter((l) => l !== "en");
+    const translated = await Promise.all(
+      nonEn.map(async (l): Promise<Locale | null> => {
+        try {
+          const list = await this.listDocs({ locale: l });
+          return list.find((d) => d.slug === slug)?.isTranslated === true ? l : null;
+        } catch {
+          return null;
+        }
+      }),
+    );
+    return ["en", ...translated.filter((l): l is Locale => l !== null)];
+  },
+
   // ---- FAQ ----------------------------------------------------------------
   async listFaqs({ locale, category, limit }): Promise<FaqItem[]> {
     try {
@@ -279,65 +330,62 @@ export const httpAdapter: CmsAdapter = {
 
   // ---- Sitemap ------------------------------------------------------------
   async listAllContentRefs({ locale }): Promise<ContentRef[]> {
-    const refs: ContentRef[] = [];
     try {
-      // Posts across EVERY locale so a blog URL is listed only in the locales it's
-      // really translated in (a fallback would be a non-canonical duplicate).
-      const perLocale = await Promise.all(
-        locales.map(async (l) => {
-          try {
-            const raw = await cmsFetch<unknown>("/api/public/posts", {
-              limit: 100,
-              locale: apiLocale(l),
-            });
-            const items = readListEnvelope(raw, "posts").items as Array<{
-              slug: string;
-              updatedAt?: string;
-              publishedAt: string;
-              isTranslated?: boolean;
-            }>;
-            return [l, items] as const;
-          } catch {
-            return [l, [] as Array<{ slug: string; updatedAt?: string; publishedAt: string; isTranslated?: boolean }>] as const;
-          }
-        }),
-      );
-
-      // slug → { updatedAt (from English base), canonical locales }
-      const bySlug = new Map<string, { updatedAt: string; locales: Locale[] }>();
-      for (const [l, items] of perLocale) {
-        for (const p of items) {
-          // English is the base; other locales count only when truly translated.
-          if (l !== "en" && p.isTranslated !== true) continue;
-          const existing = bySlug.get(p.slug);
-          if (existing) {
-            if (!existing.locales.includes(l)) existing.locales.push(l);
-            if (l === "en") existing.updatedAt = p.updatedAt ?? p.publishedAt;
-          } else {
-            bySlug.set(p.slug, {
-              updatedAt: p.updatedAt ?? p.publishedAt,
-              locales: [l],
-            });
-          }
-        }
-      }
-      for (const [slug, info] of bySlug) {
-        const locs = info.locales.includes("en")
-          ? info.locales
-          : ["en" as Locale, ...info.locales];
-        refs.push({ path: `/blog/${slug}`, updatedAt: info.updatedAt, locales: locs });
-      }
-
-      const [docs, categories] = await Promise.all([
-        this.listDocs({ locale }),
+      // Posts + docs across EVERY locale so each URL is listed only in the locales
+      // it's really translated in (a fallback would be a non-canonical duplicate).
+      const [perLocalePosts, perLocaleDocs, categories] = await Promise.all([
+        Promise.all(
+          locales.map(async (l): Promise<readonly [Locale, Translatable[]]> => {
+            try {
+              const raw = await cmsFetch<unknown>("/api/public/posts", {
+                limit: 100,
+                locale: apiLocale(l),
+              });
+              const items = readListEnvelope(raw, "posts").items as Array<{
+                slug: string;
+                updatedAt?: string;
+                publishedAt: string;
+                isTranslated?: boolean;
+              }>;
+              return [
+                l,
+                items.map((p) => ({
+                  slug: p.slug,
+                  updatedAt: p.updatedAt ?? p.publishedAt,
+                  isTranslated: p.isTranslated,
+                })),
+              ];
+            } catch {
+              return [l, []];
+            }
+          }),
+        ),
+        Promise.all(
+          locales.map(async (l): Promise<readonly [Locale, Translatable[]]> => {
+            try {
+              const list = await this.listDocs({ locale: l });
+              return [
+                l,
+                list.map((d) => ({
+                  slug: d.slug,
+                  updatedAt: d.updatedAt,
+                  isTranslated: d.isTranslated,
+                })),
+              ];
+            } catch {
+              return [l, []];
+            }
+          }),
+        ),
         this.listCategories({ locale }),
       ]);
+
+      const refs: ContentRef[] = [
+        ...refsFromPerLocale(perLocalePosts, (s) => `/blog/${s}`),
+        ...refsFromPerLocale(perLocaleDocs, (s) => `/docs/${s}`),
+      ];
       // Blog category archives are localized list pages → all locales (default).
       for (const c of categories) refs.push({ path: `/blog/category/${c.slug}`, updatedAt: "" });
-      // Docs are English-only → list only the English URL, never localized dupes.
-      for (const d of docs) {
-        refs.push({ path: `/docs/${d.slug}`, updatedAt: d.updatedAt, locales: ["en"] });
-      }
 
       return refs.length ? refs : fixtureAdapter.listAllContentRefs({ locale });
     } catch {

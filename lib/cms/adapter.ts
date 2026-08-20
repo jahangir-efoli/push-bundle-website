@@ -53,6 +53,11 @@ export interface CmsAdapter {
   // ---- Docs -------------------------------------------------------------
   listDocs(params: { locale: Locale }): Promise<DocArticle[]>;
   getDoc(params: { locale: Locale; slug: string }): Promise<DocArticle | null>;
+  /** Locales a doc has a REAL translation in (always includes `en`) — the docs
+   * counterpart of `getPostLocales`. Docs are English-only today, so this returns
+   * `["en"]` until the CMS starts translating them, at which point localized doc
+   * URLs auto-flow into the sitemap + hreflang with no further change. */
+  getDocLocales(params: { slug: string }): Promise<Locale[]>;
 
   // ---- FAQ --------------------------------------------------------------
   /** `limit` powers the FAQ teasers on Home/Pricing/About/Contact. */
