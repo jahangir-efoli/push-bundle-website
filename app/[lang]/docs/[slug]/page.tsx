@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { cms } from "@/lib/cms";
 import { Container } from "@/components/ui/container";
 import { DocsSidebar } from "@/components/docs/docs-sidebar";
+import { Icon } from "@/components/ui/icon";
 import { JsonLd } from "@/components/seo/json-ld";
 import { breadcrumbLd } from "@/lib/seo/structured-data";
 import { localeAlternates, socialCard } from "@/lib/seo/metadata";
@@ -158,21 +159,12 @@ export default async function DocArticlePage({ params }: Props) {
                     <li key={r.slug}>
                       <Link
                         href={`/docs/${r.slug}`}
-                        className="flex items-center gap-2 rounded-lg border border-border p-3 text-sm font-medium text-foreground transition-colors hover:border-primary/50 hover:bg-surface-subtle hover:text-primary"
+                        className="flex items-center gap-2.5 rounded-lg border border-border p-3 text-sm font-medium text-foreground transition-colors hover:border-primary/50 hover:bg-surface-subtle hover:text-primary"
                       >
-                        <svg
-                          aria-hidden="true"
-                          viewBox="0 0 24 24"
+                        <Icon
+                          name="file-text"
                           className="size-4 shrink-0 text-primary"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        >
-                          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                          <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" />
-                        </svg>
+                        />
                         <span className="min-w-0 flex-1 truncate">{r.title}</span>
                       </Link>
                     </li>
