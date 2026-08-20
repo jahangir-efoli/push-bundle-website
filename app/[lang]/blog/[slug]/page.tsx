@@ -16,10 +16,10 @@ import { blogPostingLd } from "@/lib/seo/article-data";
 import { localeAlternates } from "@/lib/seo/metadata";
 import { processArticle } from "@/lib/blog/toc";
 import { REVIEW_DISCLOSURE } from "@/lib/blog/review";
-import { OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo/site";
+import { OG_IMAGE, SITE_NAME } from "@/lib/seo/site";
 import { cn } from "@/lib/utils";
 import type { Person } from "@/lib/cms";
-import { defaultLocale, isLocale, type Locale } from "@/i18n/config";
+import { isLocale, type Locale } from "@/i18n/config";
 
 type Props = { params: Promise<{ lang: string; slug: string }> };
 
@@ -34,13 +34,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     : await cms.getPost({ locale, slug });
   if (!post) return {};
 
-  // A real per-locale translation self-canonicalizes; an English fallback served
-  // under a localized URL points its canonical back to the English original so
-  // it isn't indexed as a duplicate.
-  const alternates = localeAlternates(`/blog/${post.slug}`, locale);
-  if (locale !== defaultLocale && post.isTranslated === false) {
-    alternates.canonical = `${SITE_URL}/blog/${post.slug}`;
-  }
+  // Advertise hreflang only for the locales this post is really translated in
+  // (always including English). A fallback locale then canonicals back to the
+  // English original instead of being indexed as a duplicate. Preview posts skip
+  // the cross-locale probe — they're never indexed.
+  const availableLocales = isPreview
+    ? [locale]
+    : await cms.getPostLocales({ slug: post.slug });
+  const alternates = localeAlternates(`/blog/${post.slug}`, locale, availableLocales);
 
   // A page that defines its own `openGraph` does NOT inherit the root card, so
   // og:image + og:url must be set explicitly or the share preview is incomplete.

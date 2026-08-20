@@ -83,6 +83,12 @@ export const fixtureAdapter: CmsAdapter = {
     return post ? withLocale([post], locale)[0] : null;
   },
 
+  /** Fixtures are English-only, so a post is canonical only in `en`. */
+  async getPostLocales({ slug }): Promise<Locale[]> {
+    void slug;
+    return ["en"];
+  },
+
   async listRelatedPosts({ locale, slug, limit = 3 }) {
     const current = posts.find((p) => p.slug === slug);
     if (!current) return [];

@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { cms, DEFAULT_LOCALE } from "@/lib/cms";
 import { SITE_URL } from "@/lib/seo/site";
-import { locales, localizePath } from "@/i18n/config";
+import { locales, localizePath, type Locale } from "@/i18n/config";
 
 /**
  * XML sitemap (docs/PLAN.md §4.3). A plain `app/sitemap.ts` so browsers render
@@ -10,9 +10,12 @@ import { locales, localizePath } from "@/i18n/config";
  * refuse to pretty-print and drop to flat text. hreflang is still delivered on
  * every page's `<head>` (see `localeAlternates`), so nothing is lost for search.
  *
- * One `<url>` PER LOCALE for every path (the site is fully translated). Live CMS
- * content is pulled in (fetch tag "cms" → busted by /api/revalidate); a CMS blip
- * falls back to the static routes. `revalidate` keeps a bad generation short.
+ * A sitemap must list only CANONICAL URLs. Static + fully-translated paths expand
+ * to one `<url>` per locale; CMS refs that carry their own `locales` (English-only
+ * docs, or a blog post's real translated locales) expand to only those, so a
+ * localized fallback URL — which canonicals back to English — is never listed.
+ * Live CMS content is pulled in (fetch tag "cms" → busted by /api/revalidate); a
+ * CMS blip falls back to the static routes. `revalidate` keeps a bad generation short.
  */
 export const revalidate = 900;
 
@@ -48,6 +51,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified: Date;
     changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"];
     priority: number;
+    /** Canonical locales for this path; undefined → all locales. */
+    locales?: Locale[];
   }> = STATIC_PATHS.map((p) => ({
     path: p.path,
     lastModified: now,
@@ -63,15 +68,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         lastModified: ref.updatedAt ? new Date(ref.updatedAt) : now,
         changeFrequency: "monthly",
         priority: 0.5,
+        locales: ref.locales,
       });
     }
   } catch {
     // Resilience: a CMS blip shouldn't drop the static routes.
   }
 
-  // Expand every path into one entry per locale (fully translated site).
+  // Expand each path into one canonical `<url>` per locale it actually exists in.
   return entries.flatMap((e) =>
-    locales.map((locale) => ({
+    (e.locales ?? locales).map((locale) => ({
       url: absUrl(e.path, locale),
       lastModified: e.lastModified,
       changeFrequency: e.changeFrequency,

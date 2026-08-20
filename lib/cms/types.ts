@@ -152,4 +152,11 @@ export type Paginated<T> = {
 export type ContentRef = {
   path: string;
   updatedAt: string;
+  /**
+   * Locales this URL is CANONICAL in — the sitemap emits one `<loc>` per locale
+   * here. Omitted for fully-translated paths (the sitemap then expands all
+   * locales). Set to a subset for partially-translated content (e.g. `["en"]`
+   * for English-only docs) so the sitemap never lists a non-canonical duplicate.
+   */
+  locales?: Locale[];
 };

@@ -8,8 +8,7 @@ import { Icon } from "@/components/ui/icon";
 import { JsonLd } from "@/components/seo/json-ld";
 import { breadcrumbLd } from "@/lib/seo/structured-data";
 import { localeAlternates, socialCard } from "@/lib/seo/metadata";
-import { defaultLocale, isLocale, type Locale } from "@/i18n/config";
-import { SITE_URL } from "@/lib/seo/site";
+import { isLocale, type Locale } from "@/i18n/config";
 import { site } from "@/lib/site-config";
 
 type Props = { params: Promise<{ lang: string; slug: string }> };
@@ -21,12 +20,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = toLocale(lang);
   const doc = await cms.getDoc({ locale, slug });
   if (!doc) return {};
-  const alternates = localeAlternates(`/docs/${doc.slug}`, locale);
-  // An English fallback served under a localized URL points its canonical back to
-  // the English original so it isn't indexed as a duplicate (mirrors the blog).
-  if (locale !== defaultLocale && doc.isTranslated === false) {
-    alternates.canonical = `${SITE_URL}/docs/${doc.slug}`;
-  }
+  // Docs are English-only (the CMS serves English for every locale), so a doc
+  // advertises just the English URL: localized doc URLs canonical back to English
+  // and hreflang never points at a non-canonical fallback.
+  const alternates = localeAlternates(`/docs/${doc.slug}`, locale, ["en"]);
   const title = `${doc.title} | PushBundle Docs`;
   const description = `How to ${doc.title.toLowerCase()} with PushBundle.`;
   return {

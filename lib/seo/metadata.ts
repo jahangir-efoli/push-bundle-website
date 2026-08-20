@@ -9,18 +9,31 @@ import {
 } from "@/i18n/config";
 
 /**
- * hreflang alternates for a bare path across all locales (docs/PLAN.md §8).
- * `canonical` is the current locale's URL; `languages` covers every locale +
- * `x-default` → English. Generated from `i18n/config.ts` (one source).
+ * hreflang alternates for a bare path (docs/PLAN.md §8). `languages` advertises
+ * only the locales a translation actually EXISTS in (+ `x-default` → English),
+ * and `canonical` is the current locale's URL — unless that locale isn't in the
+ * available set (an English fallback served under a localized URL), in which case
+ * the canonical points back to the English original so the fallback isn't indexed
+ * as a duplicate and hreflang never points at a non-canonical page.
+ *
+ * `availableLocales` defaults to every locale (fully-translated pages). Pass a
+ * subset for partially-translated content — e.g. `["en"]` for English-only docs,
+ * or a blog post's real translated locales. It must include `defaultLocale`.
  */
-export function localeAlternates(barePath: string, locale: Locale) {
+export function localeAlternates(
+  barePath: string,
+  locale: Locale,
+  availableLocales: readonly Locale[] = locales,
+) {
   const languages: Record<string, string> = {};
   for (const l of locales) {
+    if (!availableLocales.includes(l)) continue;
     languages[localeMeta[l].hreflang] = `${SITE_URL}${localizePath(barePath, l)}`;
   }
   languages["x-default"] = `${SITE_URL}${localizePath(barePath, defaultLocale)}`;
+  const canonicalLocale = availableLocales.includes(locale) ? locale : defaultLocale;
   return {
-    canonical: `${SITE_URL}${localizePath(barePath, locale)}`,
+    canonical: `${SITE_URL}${localizePath(barePath, canonicalLocale)}`,
     languages,
   };
 }

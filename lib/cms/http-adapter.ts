@@ -25,6 +25,7 @@ import {
 } from "./http/mappers";
 import { fixtureAdapter } from "./fixture-adapter";
 import { site } from "@/lib/site-config";
+import { locales } from "@/i18n/config";
 
 /**
  * HTTP CMS adapter (docs/PLAN.md §7, Phase 9) — the efoli storefront API.
@@ -125,6 +126,31 @@ export const httpAdapter: CmsAdapter = {
       // Not in the CMS → maybe a fixture demo slug.
       return fixtureAdapter.getPost({ locale, slug });
     }
+  },
+
+  async getPostLocales({ slug }): Promise<Locale[]> {
+    // Probe the per-locale post LISTS (not per-slug endpoints): every post page
+    // requests the identical `?limit=100&locale=xx` URLs, so Next's data cache
+    // serves them — the whole build hits each locale's list at most once.
+    const nonEn = locales.filter((l) => l !== "en");
+    const translated = await Promise.all(
+      nonEn.map(async (l): Promise<Locale | null> => {
+        try {
+          const raw = await cmsFetch<unknown>("/api/public/posts", {
+            limit: 100,
+            locale: apiLocale(l),
+          });
+          const items = readListEnvelope(raw, "posts").items as Array<{
+            slug: string;
+            isTranslated?: boolean;
+          }>;
+          return items.find((p) => p.slug === slug)?.isTranslated === true ? l : null;
+        } catch {
+          return null;
+        }
+      }),
+    );
+    return ["en", ...translated.filter((l): l is Locale => l !== null)];
   },
 
   async listRelatedPosts({ locale, slug, limit = 3 }) {
@@ -255,23 +281,64 @@ export const httpAdapter: CmsAdapter = {
   async listAllContentRefs({ locale }): Promise<ContentRef[]> {
     const refs: ContentRef[] = [];
     try {
-      const [postsRaw, docs, changelog, categories] = await Promise.all([
-        cmsFetch<unknown>("/api/public/posts", { limit: 100, locale: apiLocale(locale) }),
+      // Posts across EVERY locale so a blog URL is listed only in the locales it's
+      // really translated in (a fallback would be a non-canonical duplicate).
+      const perLocale = await Promise.all(
+        locales.map(async (l) => {
+          try {
+            const raw = await cmsFetch<unknown>("/api/public/posts", {
+              limit: 100,
+              locale: apiLocale(l),
+            });
+            const items = readListEnvelope(raw, "posts").items as Array<{
+              slug: string;
+              updatedAt?: string;
+              publishedAt: string;
+              isTranslated?: boolean;
+            }>;
+            return [l, items] as const;
+          } catch {
+            return [l, [] as Array<{ slug: string; updatedAt?: string; publishedAt: string; isTranslated?: boolean }>] as const;
+          }
+        }),
+      );
+
+      // slug → { updatedAt (from English base), canonical locales }
+      const bySlug = new Map<string, { updatedAt: string; locales: Locale[] }>();
+      for (const [l, items] of perLocale) {
+        for (const p of items) {
+          // English is the base; other locales count only when truly translated.
+          if (l !== "en" && p.isTranslated !== true) continue;
+          const existing = bySlug.get(p.slug);
+          if (existing) {
+            if (!existing.locales.includes(l)) existing.locales.push(l);
+            if (l === "en") existing.updatedAt = p.updatedAt ?? p.publishedAt;
+          } else {
+            bySlug.set(p.slug, {
+              updatedAt: p.updatedAt ?? p.publishedAt,
+              locales: [l],
+            });
+          }
+        }
+      }
+      for (const [slug, info] of bySlug) {
+        const locs = info.locales.includes("en")
+          ? info.locales
+          : ["en" as Locale, ...info.locales];
+        refs.push({ path: `/blog/${slug}`, updatedAt: info.updatedAt, locales: locs });
+      }
+
+      const [docs, categories] = await Promise.all([
         this.listDocs({ locale }),
-        this.listChangelog({ locale }),
         this.listCategories({ locale }),
       ]);
-      const postItems = readListEnvelope(postsRaw, "posts").items as Array<{
-        slug: string;
-        updatedAt?: string;
-        publishedAt: string;
-      }>;
-      for (const p of postItems) {
-        refs.push({ path: `/blog/${p.slug}`, updatedAt: p.updatedAt ?? p.publishedAt });
-      }
+      // Blog category archives are localized list pages → all locales (default).
       for (const c of categories) refs.push({ path: `/blog/category/${c.slug}`, updatedAt: "" });
-      for (const d of docs) refs.push({ path: `/docs/${d.slug}`, updatedAt: d.updatedAt });
-      void changelog;
+      // Docs are English-only → list only the English URL, never localized dupes.
+      for (const d of docs) {
+        refs.push({ path: `/docs/${d.slug}`, updatedAt: d.updatedAt, locales: ["en"] });
+      }
+
       return refs.length ? refs : fixtureAdapter.listAllContentRefs({ locale });
     } catch {
       return fixtureAdapter.listAllContentRefs({ locale });

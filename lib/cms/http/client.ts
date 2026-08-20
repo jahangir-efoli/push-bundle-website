@@ -27,6 +27,12 @@ export const CMS_SITE = (process.env.CMS_SITE ?? "").trim();
 const FORCE_FIXTURES = /^(1|true)$/i.test(process.env.CMS_USE_FIXTURES ?? "");
 export const CMS_ENABLED = Boolean(CMS_BASE) && !FORCE_FIXTURES;
 
+/** Retries for transient upstream failures (network error / 5xx). A 4xx is
+ * definitive and never retried — a real 404 must stay a 404. One retry with a
+ * short backoff absorbs the brief blips a crawler otherwise records as broken
+ * pages (a chunk swap mid-redeploy, momentary CMS 5xx). */
+const CMS_RETRIES = 1;
+
 export async function cmsFetch<T>(
   path: string,
   params: Record<string, string | number | undefined> = {},
@@ -35,11 +41,29 @@ export async function cmsFetch<T>(
   for (const [k, v] of Object.entries(params)) {
     if (v !== undefined && v !== null && v !== "") qs.set(k, String(v));
   }
+  const url = `${CMS_BASE}${path}?${qs}`;
 
-  const res = await fetch(`${CMS_BASE}${path}?${qs}`, {
-    next: { tags: ["cms"] },
-    headers: { Accept: "application/json" },
-  });
-  if (!res.ok) throw new Error(`CMS ${res.status} on ${path}`);
-  return res.json() as Promise<T>;
+  for (let attempt = 0; ; attempt++) {
+    let res: Response;
+    try {
+      res = await fetch(url, {
+        next: { tags: ["cms"] },
+        headers: { Accept: "application/json" },
+      });
+    } catch (err) {
+      // Network-level failure — retry, then give up.
+      if (attempt < CMS_RETRIES) {
+        await new Promise((r) => setTimeout(r, 200 * (attempt + 1)));
+        continue;
+      }
+      throw err;
+    }
+    if (res.ok) return res.json() as Promise<T>;
+    // Transient server error — retry; a 4xx is definitive and falls straight through.
+    if (res.status >= 500 && attempt < CMS_RETRIES) {
+      await new Promise((r) => setTimeout(r, 200 * (attempt + 1)));
+      continue;
+    }
+    throw new Error(`CMS ${res.status} on ${path}`);
+  }
 }

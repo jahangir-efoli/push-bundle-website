@@ -36,6 +36,13 @@ export interface CmsAdapter {
   // ---- Blog -------------------------------------------------------------
   listPosts(params: ListPostsParams): Promise<Paginated<Post>>;
   getPost(params: { locale: Locale; slug: string }): Promise<Post | null>;
+  /**
+   * Locales a post has a REAL translation in (always includes `en`). Drives
+   * accurate blog hreflang/canonical so a fallback locale isn't advertised as its
+   * own alternate. Cheap at scale: the per-locale list fetches it reads are shared
+   * across every post via Next's data cache.
+   */
+  getPostLocales(params: { slug: string }): Promise<Locale[]>;
   listRelatedPosts(params: {
     locale: Locale;
     slug: string;
