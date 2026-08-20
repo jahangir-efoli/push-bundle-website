@@ -82,7 +82,7 @@ export default async function DocArticlePage({ params }: Props) {
       />
 
       <Container className="py-16">
-        <div className="grid gap-12 lg:grid-cols-[16rem_1fr]">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[16rem_minmax(0,1fr)]">
           {/* Sidebar */}
           <aside className="lg:sticky lg:top-24 lg:self-start">
             <DocsSidebar docs={docs} currentSlug={doc.slug} />
@@ -113,7 +113,7 @@ export default async function DocArticlePage({ params }: Props) {
             {(prev || next) && (
               <nav
                 aria-label="Article navigation"
-                className="mt-12 grid gap-4 border-t border-border pt-8 sm:grid-cols-2"
+                className="mt-12 grid grid-cols-1 gap-4 border-t border-border pt-8 sm:grid-cols-2"
               >
                 {prev ? (
                   <Link
@@ -154,7 +154,7 @@ export default async function DocArticlePage({ params }: Props) {
                 <h2 className="font-display text-lg font-bold text-foreground">
                   Related articles
                 </h2>
-                <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+                <ul className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
                   {related.map((r) => (
                     <li key={r.slug}>
                       <Link
