@@ -21,6 +21,7 @@ import {
   partners,
   reviews,
 } from "./fixtures/content";
+import { faqTextFor } from "./fixtures/faq-i18n";
 
 /**
  * Fixture-backed CMS (docs/PLAN.md §7, Phase 3).
@@ -125,17 +126,25 @@ export const fixtureAdapter: CmsAdapter = {
 
   // ---- FAQ --------------------------------------------------------------
   async listFaqs({ locale, category, limit }): Promise<FaqItem[]> {
+    const text = faqTextFor(locale).items as Record<
+      string,
+      { question: string; answer: string }
+    >;
     const filtered = faqs
       .filter((f) => !category || f.category === category)
       .slice()
-      .sort((a, b) => a.order - b.order);
+      .sort((a, b) => a.order - b.order)
+      .map((f) => {
+        const t = text[f.slug];
+        return t ? { ...f, question: t.question, answer: t.answer } : f;
+      });
 
     return withLocale(limit ? filtered.slice(0, limit) : filtered, locale);
   },
 
   async listFaqCategories({ locale }) {
-    void locale;
-    return faqCategories;
+    const names = faqTextFor(locale).categories as Record<string, string>;
+    return faqCategories.map((c) => ({ ...c, name: names[c.slug] ?? c.name }));
   },
 
   // ---- Changelog --------------------------------------------------------

@@ -1,0 +1,43 @@
+{
+  "categories": {
+    "getting-started": "Primeros pasos",
+    "bundles-features": "Paquetes y funciones",
+    "discounts-pricing": "Descuentos y precios",
+    "billing-plans": "Facturación y planes",
+    "compatibility-support": "Compatibilidad y soporte"
+  },
+  "items": {
+    "what-types-of-bundles": {
+      "question": "¿Qué tipos de paquetes puedo crear con PushBundle?",
+      "answer": "Puedes crear paquetes mix-and-match (arma tu caja), paquetes por volumen/niveles de cantidad, paquetes de productos fijos y paquetes de venta cruzada, todo sin código."
+    },
+    "shopper-chosen-variants": {
+      "question": "¿Pueden los compradores elegir sus propias variantes de producto para un paquete?",
+      "answer": "Sí. Los compradores arman su propio pack eligiendo variantes, mientras tú controlas el tamaño del pack, los límites de cantidad por variante y qué variantes son elegibles."
+    },
+    "bundle-discounts": {
+      "question": "¿PushBundle admite descuentos para paquetes?",
+      "answer": "Sí: descuentos porcentuales o fijos, descuentos sobre una cantidad fija y rangos de cantidad personalizados. También puedes aplicar un descuento total fijo o un descuento por variante."
+    },
+    "easy-to-set-up": {
+      "question": "¿Es fácil configurar PushBundle en mi tienda Shopify?",
+      "answer": "Instala la app desde la Shopify App Store, activa la inserción de la app y añade el bloque de PushBundle a tu tema. Una configuración guiada te acompaña paso a paso."
+    },
+    "limit-to-collections": {
+      "question": "¿Puedo limitar los descuentos de paquetes a colecciones o productos específicos?",
+      "answer": "Sí. Los paquetes se pueden segmentar por colección, producto, etiqueta, proveedor o tipo de producto, y restringir a clientes o etiquetas de cliente específicos."
+    },
+    "free-plan": {
+      "question": "¿Hay un plan gratuito?",
+      "answer": "Sí: el plan Starter es gratis para siempre e incluye paquetes por volumen, reglas de descuento, estilos de visualización y vista previa en vivo."
+    },
+    "free-trial": {
+      "question": "¿Cómo funciona la prueba gratuita de 14 días?",
+      "answer": "Cada tienda nueva obtiene una prueba gratuita de 14 días con acceso completo al plan Growth. No se te cobra hasta que finaliza la prueba."
+    },
+    "shopify-plus-pos": {
+      "question": "¿PushBundle funciona con Shopify Plus, POS y Markets?",
+      "answer": "Sí. PushBundle funciona con Checkout, Shopify POS, Shopify Admin y Markets (multidivisa), y es Built for Shopify."
+    }
+  }
+}

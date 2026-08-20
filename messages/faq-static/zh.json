@@ -1,0 +1,43 @@
+{
+  "categories": {
+    "getting-started": "入门指南",
+    "bundles-features": "套装与功能",
+    "discounts-pricing": "折扣与定价",
+    "billing-plans": "账单与套餐",
+    "compatibility-support": "兼容性与支持"
+  },
+  "items": {
+    "what-types-of-bundles": {
+      "question": "使用 PushBundle 可以创建哪些类型的套装？",
+      "answer": "您可以创建自由搭配（自选礼盒）套装、数量阶梯套装、固定商品套装和交叉销售套装——全部无需代码。"
+    },
+    "shopper-chosen-variants": {
+      "question": "顾客可以为套装自行选择商品款式吗？",
+      "answer": "可以。顾客通过挑选款式来组建自己的套装，而您可以控制套装数量、每种款式的数量上限以及哪些款式可选。"
+    },
+    "bundle-discounts": {
+      "question": "PushBundle 支持套装折扣吗？",
+      "answer": "支持——按百分比或固定金额折扣、固定数量折扣以及自定义数量区间。您还可以设置总价统一折扣或按款式折扣。"
+    },
+    "easy-to-set-up": {
+      "question": "在我的 Shopify 商店中设置 PushBundle 容易吗？",
+      "answer": "从 Shopify 应用商店安装，启用应用嵌入，然后将 PushBundle 应用区块添加到您的主题中。引导式设置会全程指导您。"
+    },
+    "limit-to-collections": {
+      "question": "我可以将套装折扣限定于特定的商品系列或商品吗？",
+      "answer": "可以。套装可按商品系列、商品、标签、供应商或商品类型进行定向，并可限定于特定客户或客户标签。"
+    },
+    "free-plan": {
+      "question": "有免费套餐吗？",
+      "answer": "有——Starter 套餐永久免费，包含数量套装、折扣规则、展示样式和实时预览。"
+    },
+    "free-trial": {
+      "question": "14 天免费试用如何运作？",
+      "answer": "每家新商店均可获得 14 天免费试用，可完整使用 Growth 套餐。试用结束前不会收费。"
+    },
+    "shopify-plus-pos": {
+      "question": "PushBundle 支持 Shopify Plus、POS 和 Markets 吗？",
+      "answer": "支持。PushBundle 兼容 Checkout、Shopify POS、Shopify Admin 和 Markets（多币种），并已获得 Built for Shopify 认证。"
+    }
+  }
+}

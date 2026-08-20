@@ -1,0 +1,43 @@
+{
+  "categories": {
+    "getting-started": "はじめに",
+    "bundles-features": "バンドルと機能",
+    "discounts-pricing": "割引と料金",
+    "billing-plans": "請求とプラン",
+    "compatibility-support": "互換性とサポート"
+  },
+  "items": {
+    "what-types-of-bundles": {
+      "question": "PushBundleではどのような種類のバンドルを作成できますか？",
+      "answer": "ミックス＆マッチ（ビルド・ア・ボックス）バンドル、数量・ボリューム階層バンドル、固定商品バンドル、クロスセルバンドルを、すべてコード不要で作成できます。"
+    },
+    "shopper-chosen-variants": {
+      "question": "購入者はバンドルの商品バリエーションを自分で選べますか？",
+      "answer": "はい。購入者はバリエーションを選んで自分だけのパックを作成できます。パックのサイズ、バリエーションごとの数量制限、対象となるバリエーションは、あなたが管理できます。"
+    },
+    "bundle-discounts": {
+      "question": "PushBundleはバンドルの割引に対応していますか？",
+      "answer": "はい。定率または定額の割引、固定数量への割引、カスタム数量範囲に対応しています。合計額への一律割引やバリエーションごとの割引も適用できます。"
+    },
+    "easy-to-set-up": {
+      "question": "PushBundleはShopifyストアに簡単に設定できますか？",
+      "answer": "Shopifyアプリストアからインストールし、アプリ埋め込みを有効にして、テーマにPushBundleアプリブロックを追加します。ガイド付きセットアップが手順を案内します。"
+    },
+    "limit-to-collections": {
+      "question": "バンドル割引を特定のコレクションや商品に限定できますか？",
+      "answer": "はい。バンドルはコレクション、商品、タグ、ベンダー、商品タイプで対象を指定でき、特定の顧客や顧客タグに限定することもできます。"
+    },
+    "free-plan": {
+      "question": "無料プランはありますか？",
+      "answer": "はい。Starterプランは永久無料で、数量バンドル、割引ルール、表示スタイル、ライブプレビューが含まれます。"
+    },
+    "free-trial": {
+      "question": "14日間の無料トライアルはどのように機能しますか？",
+      "answer": "すべての新規ストアに、Growthプランのすべての機能を利用できる14日間の無料トライアルが付きます。トライアル終了までは料金は発生しません。"
+    },
+    "shopify-plus-pos": {
+      "question": "PushBundleはShopify Plus、POS、Marketsで使えますか？",
+      "answer": "はい。PushBundleはCheckout、Shopify POS、Shopify Admin、Markets（多通貨）に対応しており、Built for Shopifyに認定されています。"
+    }
+  }
+}

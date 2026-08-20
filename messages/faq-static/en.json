@@ -1,0 +1,43 @@
+{
+  "categories": {
+    "getting-started": "Getting Started",
+    "bundles-features": "Bundles & Features",
+    "discounts-pricing": "Discounts & Pricing",
+    "billing-plans": "Billing & Plans",
+    "compatibility-support": "Compatibility & Support"
+  },
+  "items": {
+    "what-types-of-bundles": {
+      "question": "What types of bundles can I create with PushBundle?",
+      "answer": "You can create mix-and-match (build-a-box) bundles, volume/quantity-tier bundles, fixed product bundles, and cross-sell bundles — all without code."
+    },
+    "shopper-chosen-variants": {
+      "question": "Can shoppers choose their own product variants for a bundle?",
+      "answer": "Yes. Shoppers build their own pack by picking variants, while you control pack size, per-variant quantity limits, and which variants are eligible."
+    },
+    "bundle-discounts": {
+      "question": "Does PushBundle support discounts for bundles?",
+      "answer": "Yes — percentage or fixed discounts, discounts on a fixed quantity, and custom quantity ranges. You can also apply a flat total discount or a per-variant discount."
+    },
+    "easy-to-set-up": {
+      "question": "Is PushBundle easy to set up on my Shopify store?",
+      "answer": "Install from the Shopify App Store, enable the app embed, and add the PushBundle app block to your theme. A guided setup walks you through it."
+    },
+    "limit-to-collections": {
+      "question": "Can I limit bundle discounts to specific collections or products?",
+      "answer": "Yes. Bundles can be targeted by collection, product, tag, vendor, or product type, and restricted to specific customers or customer tags."
+    },
+    "free-plan": {
+      "question": "Is there a free plan?",
+      "answer": "Yes — the Starter plan is free forever and includes volume bundles, discount rules, display styles, and live preview."
+    },
+    "free-trial": {
+      "question": "How does the 14-day free trial work?",
+      "answer": "Every new store gets a 14-day free trial with full access to the Growth plan. You are not charged until the trial ends."
+    },
+    "shopify-plus-pos": {
+      "question": "Does PushBundle work with Shopify Plus, POS, and Markets?",
+      "answer": "Yes. PushBundle works with Checkout, Shopify POS, Shopify Admin, and Markets (multi-currency), and is Built for Shopify."
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "categories": {
+    "getting-started": "Prise en main",
+    "bundles-features": "Lots et fonctionnalités",
+    "discounts-pricing": "Remises et tarifs",
+    "billing-plans": "Facturation et forfaits",
+    "compatibility-support": "Compatibilité et assistance"
+  },
+  "items": {
+    "what-types-of-bundles": {
+      "question": "Quels types de lots puis-je créer avec PushBundle ?",
+      "answer": "Vous pouvez créer des lots Mix & Match (composez votre box), des lots par volume/paliers de quantité, des lots de produits fixes et des lots de vente croisée — le tout sans code."
+    },
+    "shopper-chosen-variants": {
+      "question": "Les clients peuvent-ils choisir leurs propres variantes de produit pour un lot ?",
+      "answer": "Oui. Les clients composent leur propre pack en choisissant des variantes, tandis que vous contrôlez la taille du pack, les limites de quantité par variante et les variantes éligibles."
+    },
+    "bundle-discounts": {
+      "question": "PushBundle prend-il en charge les remises sur les lots ?",
+      "answer": "Oui — remises en pourcentage ou fixes, remises sur une quantité fixe et plages de quantité personnalisées. Vous pouvez aussi appliquer une remise forfaitaire sur le total ou une remise par variante."
+    },
+    "easy-to-set-up": {
+      "question": "PushBundle est-il facile à configurer sur ma boutique Shopify ?",
+      "answer": "Installez l'application depuis le Shopify App Store, activez l'intégration de l'app et ajoutez le bloc PushBundle à votre thème. Une configuration guidée vous accompagne."
+    },
+    "limit-to-collections": {
+      "question": "Puis-je limiter les remises de lots à des collections ou produits spécifiques ?",
+      "answer": "Oui. Les lots peuvent être ciblés par collection, produit, étiquette, fournisseur ou type de produit, et restreints à des clients ou étiquettes clients spécifiques."
+    },
+    "free-plan": {
+      "question": "Existe-t-il un forfait gratuit ?",
+      "answer": "Oui — le forfait Starter est gratuit à vie et inclut les lots par volume, les règles de remise, les styles d'affichage et l'aperçu en direct."
+    },
+    "free-trial": {
+      "question": "Comment fonctionne l'essai gratuit de 14 jours ?",
+      "answer": "Chaque nouvelle boutique bénéficie d'un essai gratuit de 14 jours avec un accès complet au forfait Growth. Vous n'êtes facturé qu'à la fin de l'essai."
+    },
+    "shopify-plus-pos": {
+      "question": "PushBundle fonctionne-t-il avec Shopify Plus, POS et Markets ?",
+      "answer": "Oui. PushBundle fonctionne avec Checkout, Shopify POS, Shopify Admin et Markets (multidevise), et est Built for Shopify."
+    }
+  }
+}
