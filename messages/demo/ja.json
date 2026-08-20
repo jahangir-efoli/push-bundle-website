@@ -1,0 +1,41 @@
+{
+  "ui": {
+    "currency": "USD",
+    "perItem": "/ 個",
+    "quantity": "数量",
+    "decreaseQuantity": "数量を減らす",
+    "increaseQuantity": "数量を増やす",
+    "addToCart": "カートに追加",
+    "productImage": "商品画像",
+    "mostPopular": "一番人気",
+    "buy": "{n}個購入",
+    "percentOff": "{d}%オフ",
+    "selectOptions": "オプションを選択",
+    "packComplete": "パック完成",
+    "packDone": "パックが完成しました 🎉",
+    "addMoreToPack": "パックを完成させるにはあと{n}個追加してください",
+    "addMoreItems": "あと{n}個追加",
+    "addToCartPrice": "カートに追加 — {price}",
+    "giftsHeading": "ご注文で無料ギフト＆送料無料",
+    "addedToCart": "{n} × {product} をカートに追加しました · {price}",
+    "addedToCartSimple": "{n} × {product} をカートに追加しました",
+    "decrease": "{name}を減らす",
+    "increase": "{name}を増やす",
+    "remove": "{name}を削除",
+    "yourCart": "カート",
+    "closeCart": "カートを閉じる",
+    "subtotal": "小計",
+    "checkout": "レジに進む",
+    "showItems": "{n}点を表示 ▼",
+    "hideItems": "{n}点を非表示 ▲"
+  },
+  "volume": {
+    "productName": "ウォールナット仕上げのドレッサー",
+    "imageAlt": "ウォールナット仕上げのドレッサー — 商品写真",
+    "bundleTitle": "まとめ買いで最大15%オフ",
+    "bundleSubtitle": "この商品をまとめて注文すると、1点ごとにより大きな割引が適用されます。",
+    "heading": "まとめ買いでもっとお得に",
+    "variants": ["ウォールナット", "オーク", "エスプレッソ", "ナチュラルアッシュ"],
+    "gifts": ["コースターセット無料", "引き出しライナー無料", "送料無料"]
+  }
+}

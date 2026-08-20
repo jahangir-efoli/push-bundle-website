@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
+import { useDemoContent, fmt } from "@/lib/content/demo-content";
 
 export type CartItem = { name: string; variant?: string; img?: string };
 export type CartBundle = {
@@ -35,6 +36,7 @@ export function CartDrawer({
   bundle: CartBundle | null;
   onClose: () => void;
 }) {
+  const t = useDemoContent();
   const open = !!bundle;
   const [showItems, setShowItems] = useState(true);
 
@@ -57,7 +59,7 @@ export function CartDrawer({
       {/* Drawer */}
       <aside
         role="dialog"
-        aria-label="Your cart"
+        aria-label={t.ui.yourCart}
         aria-hidden={!open}
         className={cn(
           "absolute top-0 right-0 z-40 flex h-full w-[86%] max-w-[340px] flex-col bg-white transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]",
@@ -70,11 +72,11 @@ export function CartDrawer({
         )}
       >
         <div className="flex items-center justify-between border-b border-[#eceef2] px-4 py-3.5 text-sm font-bold text-[#1f2430]">
-          <span>Your cart</span>
+          <span>{t.ui.yourCart}</span>
           <button
             type="button"
             onClick={onClose}
-            aria-label="Close cart"
+            aria-label={t.ui.closeCart}
             className="cursor-pointer text-base leading-none text-[#9aa0ac] hover:text-[#1f2430]"
           >
             ✕
@@ -112,8 +114,8 @@ export function CartDrawer({
                 className="mt-2.5 cursor-pointer text-[11.5px] font-bold text-[#c81e63]"
               >
                 {showItems
-                  ? `Hide ${bundle.items.length} items ▲`
-                  : `Show ${bundle.items.length} items ▼`}
+                  ? fmt(t.ui.hideItems, { n: bundle.items.length })
+                  : fmt(t.ui.showItems, { n: bundle.items.length })}
               </button>
 
               {showItems && (
@@ -147,14 +149,14 @@ export function CartDrawer({
 
         <div className="border-t border-[#eceef2] p-4">
           <div className="mb-2.5 flex justify-between text-sm font-bold text-[#1f2430]">
-            <span>Subtotal</span>
+            <span>{t.ui.subtotal}</span>
             <span>{bundle ? usd(bundle.subtotal) : "$0.00"}</span>
           </div>
           <button
             type="button"
             className="block w-full cursor-pointer rounded-[10px] bg-[#1f2430] py-3 text-center text-sm font-semibold text-white hover:bg-black"
           >
-            Checkout
+            {t.ui.checkout}
           </button>
         </div>
       </aside>

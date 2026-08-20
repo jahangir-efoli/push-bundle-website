@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { buttonStyles } from "@/components/ui/button";
+import { useDemoContent, fmt } from "@/lib/content/demo-content";
 import type { CartBundle } from "@/components/demos/cart-drawer";
 import { cn } from "@/lib/utils";
 
@@ -80,7 +81,7 @@ export function VolumeBundleDemo({
   ],
   popularQty = 10,
   gifts = [],
-  giftsHeading = "Free gifts & shipping with your order",
+  giftsHeading,
   heading = "Save more on bulk purchases",
   icon,
   /** Embedded in a ProductStage: hide the product header + drop outer padding
@@ -109,6 +110,8 @@ export function VolumeBundleDemo({
   onAddToCart?: (bundle: CartBundle) => void;
   className?: string;
 }) {
+  const c = useDemoContent();
+  const giftsLabel = giftsHeading ?? c.ui.giftsHeading;
   const [selected, setSelected] = useState(() => {
     const i = tiers.findIndex((t) => t.qty === popularQty);
     return i >= 0 ? i : 0;
@@ -186,7 +189,13 @@ export function VolumeBundleDemo({
       setItems([]); // reset so the pack can be built again
       return;
     }
-    setNotice(`Added ${target} × ${productName} to cart · ${usd(price(tier))}`);
+    setNotice(
+      fmt(c.ui.addedToCart, {
+        n: target,
+        product: productName,
+        price: usd(price(tier)),
+      }),
+    );
     setItems([]); // reset so the pack can be built again
     window.clearTimeout(noticeTimer.current);
     noticeTimer.current = window.setTimeout(() => setNotice(null), 2800);
@@ -226,7 +235,7 @@ export function VolumeBundleDemo({
         </span>
         <div className="min-w-0">
           <p className="truncate font-semibold">{productName}</p>
-          <p className="text-sm text-muted">{usd(basePrice)} / item</p>
+          <p className="text-sm text-muted">{usd(basePrice)} {c.ui.perItem}</p>
         </div>
       </div>
       )}
@@ -262,7 +271,7 @@ export function VolumeBundleDemo({
             >
               {popular && (
                 <span className="absolute -top-2.5 right-3 rounded-full bg-primary px-2.5 py-0.5 text-[11px] font-semibold text-primary-foreground shadow-soft">
-                  Most popular
+                  {c.ui.mostPopular}
                 </span>
               )}
 
@@ -285,10 +294,10 @@ export function VolumeBundleDemo({
                     )}
                   </span>
                   <span className="font-semibold whitespace-nowrap">
-                    Buy {t.qty}
+                    {fmt(c.ui.buy, { n: t.qty })}
                   </span>
                   <span className="rounded bg-primary-subtle px-1 py-0.5 text-[10px] font-semibold whitespace-nowrap text-primary">
-                    {t.discount}% off
+                    {fmt(c.ui.percentOff, { d: t.discount })}
                   </span>
                 </span>
                 <span className="whitespace-nowrap text-right text-sm">
@@ -303,7 +312,7 @@ export function VolumeBundleDemo({
               {isSel && (
                 <div className="border-t border-primary/20 px-3.5 py-4">
                   <label className="sr-only" htmlFor={`vb-select-${t.qty}`}>
-                    Select options
+                    {c.ui.selectOptions}
                   </label>
                   <div className="relative">
                     <select
@@ -314,7 +323,7 @@ export function VolumeBundleDemo({
                       className="h-11 w-full appearance-none rounded-lg border border-border bg-surface pl-3 pr-10 text-sm text-foreground focus-visible:border-primary disabled:opacity-60"
                     >
                       <option value="" disabled>
-                        {full ? "Pack complete" : "Select options"}
+                        {full ? c.ui.packComplete : c.ui.selectOptions}
                       </option>
                       {variants.map((v) => (
                         <option key={v} value={v}>
@@ -353,7 +362,7 @@ export function VolumeBundleDemo({
                               <button
                                 type="button"
                                 onClick={() => changeQty(idx, -1)}
-                                aria-label={`Decrease ${it.variant}`}
+                                aria-label={fmt(c.ui.decrease, { name: it.variant })}
                                 className="grid size-8 place-items-center text-muted hover:text-foreground"
                               >
                                 −
@@ -365,7 +374,7 @@ export function VolumeBundleDemo({
                                 type="button"
                                 onClick={() => changeQty(idx, 1)}
                                 disabled={full}
-                                aria-label={`Increase ${it.variant}`}
+                                aria-label={fmt(c.ui.increase, { name: it.variant })}
                                 className="grid size-8 place-items-center text-muted hover:text-foreground disabled:opacity-40"
                               >
                                 +
@@ -374,7 +383,7 @@ export function VolumeBundleDemo({
                             <button
                               type="button"
                               onClick={() => remove(idx)}
-                              aria-label={`Remove ${it.variant}`}
+                              aria-label={fmt(c.ui.remove, { name: it.variant })}
                               className="grid size-8 place-items-center rounded-md text-muted hover:text-error-foreground"
                             >
                               <svg viewBox="0 0 24 24" className="size-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -402,8 +411,8 @@ export function VolumeBundleDemo({
                     </div>
                     <p className="mt-2 text-xs text-muted">
                       {full
-                        ? "Your pack is complete 🎉"
-                        : `Add ${remaining} more to complete your pack`}
+                        ? c.ui.packDone
+                        : fmt(c.ui.addMoreToPack, { n: remaining })}
                     </p>
                   </div>
                 </div>
@@ -418,7 +427,7 @@ export function VolumeBundleDemo({
       {gifts.length > 0 && (
         <div className="mt-4 rounded-xl border border-success/30 bg-success/10 p-3">
           <p className="mb-2.5 text-xs font-bold text-success-foreground">
-            {giftsHeading}
+            {giftsLabel}
           </p>
           <div className="grid grid-cols-3 gap-2">
             {gifts.map((g) => {
@@ -494,8 +503,8 @@ export function VolumeBundleDemo({
         )}
       >
         {full
-          ? `Add to cart — ${usd(price(tier))}`
-          : `Add ${remaining} more item${remaining === 1 ? "" : "s"}`}
+          ? fmt(c.ui.addToCartPrice, { price: usd(price(tier)) })
+          : fmt(c.ui.addMoreItems, { n: remaining, s: remaining === 1 ? "" : "s" })}
       </button>
     </div>
   );

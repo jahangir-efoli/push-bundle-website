@@ -1,0 +1,41 @@
+{
+  "ui": {
+    "currency": "USD",
+    "perItem": "/ item",
+    "quantity": "Quantity",
+    "decreaseQuantity": "Decrease quantity",
+    "increaseQuantity": "Increase quantity",
+    "addToCart": "Add to Cart",
+    "productImage": "Product image",
+    "mostPopular": "Most popular",
+    "buy": "Buy {n}",
+    "percentOff": "{d}% off",
+    "selectOptions": "Select options",
+    "packComplete": "Pack complete",
+    "packDone": "Your pack is complete 🎉",
+    "addMoreToPack": "Add {n} more to complete your pack",
+    "addMoreItems": "Add {n} more item{s}",
+    "addToCartPrice": "Add to cart — {price}",
+    "giftsHeading": "Free gifts & shipping with your order",
+    "addedToCart": "Added {n} × {product} to cart · {price}",
+    "addedToCartSimple": "Added {n} × {product} to cart",
+    "decrease": "Decrease {name}",
+    "increase": "Increase {name}",
+    "remove": "Remove {name}",
+    "yourCart": "Your cart",
+    "closeCart": "Close cart",
+    "subtotal": "Subtotal",
+    "checkout": "Checkout",
+    "showItems": "Show {n} items ▼",
+    "hideItems": "Hide {n} items ▲"
+  },
+  "volume": {
+    "productName": "Walnut finish dresser",
+    "imageAlt": "Walnut finish dresser — product photo",
+    "bundleTitle": "Buy more & save up to 15%",
+    "bundleSubtitle": "Order more units of this product in one go and unlock a bigger discount on every piece.",
+    "heading": "Save more on bulk purchases",
+    "variants": ["Walnut", "Oak", "Espresso", "Natural Ash"],
+    "gifts": ["Free Coaster Set", "Free Drawer Liners", "Free Shipping"]
+  }
+}

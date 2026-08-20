@@ -1,0 +1,41 @@
+{
+  "ui": {
+    "currency": "USD",
+    "perItem": "/ articolo",
+    "quantity": "Quantità",
+    "decreaseQuantity": "Riduci quantità",
+    "increaseQuantity": "Aumenta quantità",
+    "addToCart": "Aggiungi al carrello",
+    "productImage": "Immagine del prodotto",
+    "mostPopular": "Più popolare",
+    "buy": "Acquista {n}",
+    "percentOff": "{d}% di sconto",
+    "selectOptions": "Scegli le opzioni",
+    "packComplete": "Pacchetto completo",
+    "packDone": "Il tuo pacchetto è completo 🎉",
+    "addMoreToPack": "Aggiungi altri {n} per completare il tuo pacchetto",
+    "addMoreItems": "Aggiungi altri {n} articoli",
+    "addToCartPrice": "Aggiungi al carrello — {price}",
+    "giftsHeading": "Regali e spedizione gratis con il tuo ordine",
+    "addedToCart": "{n} × {product} aggiunto al carrello · {price}",
+    "addedToCartSimple": "{n} × {product} aggiunto al carrello",
+    "decrease": "Riduci {name}",
+    "increase": "Aumenta {name}",
+    "remove": "Rimuovi {name}",
+    "yourCart": "Il tuo carrello",
+    "closeCart": "Chiudi carrello",
+    "subtotal": "Subtotale",
+    "checkout": "Vai alla cassa",
+    "showItems": "Mostra {n} articoli ▼",
+    "hideItems": "Nascondi {n} articoli ▲"
+  },
+  "volume": {
+    "productName": "Cassettiera finitura noce",
+    "imageAlt": "Cassettiera finitura noce — foto del prodotto",
+    "bundleTitle": "Compra di più e risparmia fino al 15%",
+    "bundleSubtitle": "Ordina più unità di questo prodotto in una volta e sblocca uno sconto maggiore su ogni pezzo.",
+    "heading": "Risparmia di più sugli acquisti in grandi quantità",
+    "variants": ["Noce", "Rovere", "Espresso", "Frassino naturale"],
+    "gifts": ["Set di sottobicchieri gratis", "Rivestimenti per cassetti gratis", "Spedizione gratuita"]
+  }
+}

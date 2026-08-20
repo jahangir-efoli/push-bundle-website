@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Plus_Jakarta_Sans, Noto_Sans_JP, Noto_Sans_SC } from "next/font/google";
 import "../globals.css";
 import { SmoothScroll } from "@/components/providers/smooth-scroll";
+import { LocaleProvider } from "@/components/providers/locale-provider";
 import { ThemeScript } from "@/components/layout/theme-script";
 import { ThemeSync } from "@/components/layout/theme-sync";
 import { SkipLink } from "@/components/layout/skip-link";
@@ -105,6 +106,7 @@ export default async function LocaleLayout({
       </head>
       <body className={cn("flex min-h-full flex-col", cjk && "font-cjk")}>
         <ThemeSync />
+        <LocaleProvider locale={locale}>
         <SmoothScroll>
           <SkipLink label={dict.common.skipToContent} />
           <Header locale={locale} dict={dict} />
@@ -115,6 +117,7 @@ export default async function LocaleLayout({
           <CookieConsent />
           <LiveChat />
         </SmoothScroll>
+        </LocaleProvider>
         <Analytics />
       </body>
     </html>

@@ -1,0 +1,41 @@
+{
+  "ui": {
+    "currency": "USD",
+    "perItem": "/ 件",
+    "quantity": "数量",
+    "decreaseQuantity": "减少数量",
+    "increaseQuantity": "增加数量",
+    "addToCart": "加入购物车",
+    "productImage": "商品图片",
+    "mostPopular": "最受欢迎",
+    "buy": "购买 {n} 件",
+    "percentOff": "省 {d}%",
+    "selectOptions": "选择选项",
+    "packComplete": "套装已满",
+    "packDone": "您的套装已完成 🎉",
+    "addMoreToPack": "再添加 {n} 件即可完成套装",
+    "addMoreItems": "再添加 {n} 件",
+    "addToCartPrice": "加入购物车 — {price}",
+    "giftsHeading": "下单即享免费赠品和运费",
+    "addedToCart": "已将 {n} × {product} 加入购物车 · {price}",
+    "addedToCartSimple": "已将 {n} × {product} 加入购物车",
+    "decrease": "减少 {name}",
+    "increase": "增加 {name}",
+    "remove": "移除 {name}",
+    "yourCart": "购物车",
+    "closeCart": "关闭购物车",
+    "subtotal": "小计",
+    "checkout": "结账",
+    "showItems": "显示 {n} 件商品 ▼",
+    "hideItems": "隐藏 {n} 件商品 ▲"
+  },
+  "volume": {
+    "productName": "胡桃木饰面斗柜",
+    "imageAlt": "胡桃木饰面斗柜 — 商品照片",
+    "bundleTitle": "买得越多，最高省 15%",
+    "bundleSubtitle": "一次订购更多此商品，即可为每件解锁更大的折扣。",
+    "heading": "批量购买更省钱",
+    "variants": ["胡桃木", "橡木", "浓缩咖啡色", "天然白蜡木"],
+    "gifts": ["免费杯垫套装", "免费抽屉衬垫", "免费配送"]
+  }
+}

@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { useDemoContent, fmt } from "@/lib/content/demo-content";
 
 /**
  * Product-page "stage" — frames an interactive bundle demo like a real Shopify
@@ -35,13 +36,14 @@ export function ProductStage({
   children: React.ReactNode;
   className?: string;
 }) {
+  const t = useDemoContent();
   const [qty, setQty] = useState(1);
   const [imgOk, setImgOk] = useState(true);
   const [notice, setNotice] = useState<string | null>(null);
   const noticeTimer = useRef<number | undefined>(undefined);
 
   const addToCart = () => {
-    setNotice(`Added ${qty} × ${title} to cart`);
+    setNotice(fmt(t.ui.addedToCartSimple, { n: qty, product: title }));
     window.clearTimeout(noticeTimer.current);
     noticeTimer.current = window.setTimeout(() => setNotice(null), 2600);
   };
@@ -71,7 +73,7 @@ export function ProductStage({
                   <circle cx="9" cy="9" r="2" />
                   <path d="m21 15-3.6-3.6a2 2 0 0 0-2.8 0L6 20" />
                 </svg>
-                Product image
+                {t.ui.productImage}
               </span>
             </div>
           )}
@@ -81,17 +83,17 @@ export function ProductStage({
         <div>
           <h3 className="text-base font-bold leading-tight text-balance">{title}</h3>
           <p className="mt-1 text-sm font-semibold">
-            {usd(price)} <span className="text-xs font-normal text-muted">USD</span>
+            {usd(price)} <span className="text-xs font-normal text-muted">{t.ui.currency}</span>
           </p>
 
           {/* Quantity */}
           <div className="mt-3.5">
-            <p className="text-xs font-medium text-muted">Quantity</p>
+            <p className="text-xs font-medium text-muted">{t.ui.quantity}</p>
             <div className="mt-1 inline-flex items-center rounded-md border border-border">
               <button
                 type="button"
                 onClick={() => setQty((q) => Math.max(1, q - 1))}
-                aria-label="Decrease quantity"
+                aria-label={t.ui.decreaseQuantity}
                 className="grid size-8 place-items-center text-muted hover:text-foreground"
               >
                 −
@@ -100,7 +102,7 @@ export function ProductStage({
               <button
                 type="button"
                 onClick={() => setQty((q) => q + 1)}
-                aria-label="Increase quantity"
+                aria-label={t.ui.increaseQuantity}
                 className="grid size-8 place-items-center text-muted hover:text-foreground"
               >
                 +
@@ -114,7 +116,7 @@ export function ProductStage({
             onClick={addToCart}
             className="mt-3.5 w-full rounded-lg border border-foreground/75 bg-surface py-2.5 text-sm font-semibold text-foreground transition-colors hover:bg-surface-subtle"
           >
-            Add to Cart
+            {t.ui.addToCart}
           </button>
 
           {notice && (

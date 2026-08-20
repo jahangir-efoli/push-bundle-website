@@ -1,0 +1,41 @@
+{
+  "ui": {
+    "currency": "USD",
+    "perItem": "/ artículo",
+    "quantity": "Cantidad",
+    "decreaseQuantity": "Disminuir cantidad",
+    "increaseQuantity": "Aumentar cantidad",
+    "addToCart": "Añadir al carrito",
+    "productImage": "Imagen del producto",
+    "mostPopular": "Más popular",
+    "buy": "Compra {n}",
+    "percentOff": "{d}% de descuento",
+    "selectOptions": "Elegir opciones",
+    "packComplete": "Pack completo",
+    "packDone": "¡Tu pack está completo! 🎉",
+    "addMoreToPack": "Añade {n} más para completar tu pack",
+    "addMoreItems": "Añadir {n} artículo{s} más",
+    "addToCartPrice": "Añadir al carrito — {price}",
+    "giftsHeading": "Regalos y envío gratis con tu pedido",
+    "addedToCart": "{n} × {product} añadido al carrito · {price}",
+    "addedToCartSimple": "{n} × {product} añadido al carrito",
+    "decrease": "Disminuir {name}",
+    "increase": "Aumentar {name}",
+    "remove": "Quitar {name}",
+    "yourCart": "Tu carrito",
+    "closeCart": "Cerrar carrito",
+    "subtotal": "Subtotal",
+    "checkout": "Finalizar compra",
+    "showItems": "Mostrar {n} artículos ▼",
+    "hideItems": "Ocultar {n} artículos ▲"
+  },
+  "volume": {
+    "productName": "Cómoda con acabado en nogal",
+    "imageAlt": "Cómoda con acabado en nogal — foto del producto",
+    "bundleTitle": "Compra más y ahorra hasta un 15%",
+    "bundleSubtitle": "Pide más unidades de este producto de una vez y desbloquea un mayor descuento en cada pieza.",
+    "heading": "Ahorra más en compras al por mayor",
+    "variants": ["Nogal", "Roble", "Espresso", "Fresno natural"],
+    "gifts": ["Set de posavasos gratis", "Forros de cajón gratis", "Envío gratis"]
+  }
+}

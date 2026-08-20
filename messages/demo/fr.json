@@ -1,0 +1,41 @@
+{
+  "ui": {
+    "currency": "USD",
+    "perItem": "/ article",
+    "quantity": "Quantité",
+    "decreaseQuantity": "Diminuer la quantité",
+    "increaseQuantity": "Augmenter la quantité",
+    "addToCart": "Ajouter au panier",
+    "productImage": "Image du produit",
+    "mostPopular": "Le plus populaire",
+    "buy": "Achetez {n}",
+    "percentOff": "{d}% de réduction",
+    "selectOptions": "Choisir les options",
+    "packComplete": "Pack complet",
+    "packDone": "Votre pack est complet 🎉",
+    "addMoreToPack": "Ajoutez-en {n} de plus pour compléter votre pack",
+    "addMoreItems": "Ajouter {n} article{s} de plus",
+    "addToCartPrice": "Ajouter au panier — {price}",
+    "giftsHeading": "Cadeaux et livraison offerts avec votre commande",
+    "addedToCart": "{n} × {product} ajouté au panier · {price}",
+    "addedToCartSimple": "{n} × {product} ajouté au panier",
+    "decrease": "Diminuer {name}",
+    "increase": "Augmenter {name}",
+    "remove": "Retirer {name}",
+    "yourCart": "Votre panier",
+    "closeCart": "Fermer le panier",
+    "subtotal": "Sous-total",
+    "checkout": "Commander",
+    "showItems": "Afficher {n} articles ▼",
+    "hideItems": "Masquer {n} articles ▲"
+  },
+  "volume": {
+    "productName": "Commode finition noyer",
+    "imageAlt": "Commode finition noyer — photo du produit",
+    "bundleTitle": "Achetez plus et économisez jusqu'à 15%",
+    "bundleSubtitle": "Commandez plusieurs unités de ce produit en une fois et débloquez une remise plus importante sur chaque pièce.",
+    "heading": "Économisez plus sur les achats en gros",
+    "variants": ["Noyer", "Chêne", "Espresso", "Frêne naturel"],
+    "gifts": ["Set de dessous de verre offert", "Tapis de tiroir offerts", "Livraison offerte"]
+  }
+}

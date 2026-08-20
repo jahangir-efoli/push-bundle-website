@@ -1,0 +1,41 @@
+{
+  "ui": {
+    "currency": "USD",
+    "perItem": "/ Stück",
+    "quantity": "Menge",
+    "decreaseQuantity": "Menge verringern",
+    "increaseQuantity": "Menge erhöhen",
+    "addToCart": "In den Warenkorb",
+    "productImage": "Produktbild",
+    "mostPopular": "Am beliebtesten",
+    "buy": "{n} kaufen",
+    "percentOff": "{d}% Rabatt",
+    "selectOptions": "Optionen wählen",
+    "packComplete": "Paket komplett",
+    "packDone": "Dein Paket ist komplett 🎉",
+    "addMoreToPack": "Füge noch {n} hinzu, um dein Paket zu vervollständigen",
+    "addMoreItems": "Noch {n} Stück hinzufügen",
+    "addToCartPrice": "In den Warenkorb — {price}",
+    "giftsHeading": "Gratisgeschenke & Versand zu deiner Bestellung",
+    "addedToCart": "{n} × {product} zum Warenkorb hinzugefügt · {price}",
+    "addedToCartSimple": "{n} × {product} zum Warenkorb hinzugefügt",
+    "decrease": "{name} verringern",
+    "increase": "{name} erhöhen",
+    "remove": "{name} entfernen",
+    "yourCart": "Dein Warenkorb",
+    "closeCart": "Warenkorb schließen",
+    "subtotal": "Zwischensumme",
+    "checkout": "Zur Kasse",
+    "showItems": "{n} Artikel anzeigen ▼",
+    "hideItems": "{n} Artikel ausblenden ▲"
+  },
+  "volume": {
+    "productName": "Kommode mit Walnuss-Finish",
+    "imageAlt": "Kommode mit Walnuss-Finish — Produktfoto",
+    "bundleTitle": "Mehr kaufen & bis zu 15% sparen",
+    "bundleSubtitle": "Bestelle mehr Einheiten dieses Produkts auf einmal und sichere dir einen größeren Rabatt auf jedes Stück.",
+    "heading": "Spare mehr bei Mengenkäufen",
+    "variants": ["Walnuss", "Eiche", "Espresso", "Natur-Esche"],
+    "gifts": ["Gratis Untersetzer-Set", "Gratis Schubladeneinlagen", "Gratisversand"]
+  }
+}
