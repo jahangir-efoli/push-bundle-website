@@ -160,8 +160,10 @@ export const httpAdapter: CmsAdapter = {
   // ---- Docs ---------------------------------------------------------------
   async listDocs({ locale }): Promise<DocArticle[]> {
     try {
-      const data = await cmsFetch<Parameters<typeof mapDocs>[0]>("/api/public/docs");
-      const docs = mapDocs(data);
+      const data = await cmsFetch<Parameters<typeof mapDocs>[0]>("/api/public/docs", {
+        locale: apiLocale(locale),
+      });
+      const docs = mapDocs(data, locale);
       return docs.length ? docs : fixtureAdapter.listDocs({ locale });
     } catch {
       return fixtureAdapter.listDocs({ locale });
@@ -170,8 +172,11 @@ export const httpAdapter: CmsAdapter = {
 
   async getDoc({ locale, slug }) {
     try {
-      const d = await cmsFetch<Parameters<typeof mapDoc>[0]>(`/api/public/docs/${slug}`);
-      return mapDoc(d);
+      const d = await cmsFetch<Parameters<typeof mapDoc>[0]>(
+        `/api/public/docs/${slug}`,
+        { locale: apiLocale(locale) },
+      );
+      return mapDoc(d, undefined, undefined, locale);
     } catch {
       return fixtureAdapter.getDoc({ locale, slug });
     }

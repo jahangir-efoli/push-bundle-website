@@ -7,7 +7,8 @@ import { DocsSidebar } from "@/components/docs/docs-sidebar";
 import { JsonLd } from "@/components/seo/json-ld";
 import { breadcrumbLd } from "@/lib/seo/structured-data";
 import { localeAlternates, socialCard } from "@/lib/seo/metadata";
-import { isLocale, type Locale } from "@/i18n/config";
+import { defaultLocale, isLocale, type Locale } from "@/i18n/config";
+import { SITE_URL } from "@/lib/seo/site";
 import { site } from "@/lib/site-config";
 
 type Props = { params: Promise<{ lang: string; slug: string }> };
@@ -20,6 +21,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const doc = await cms.getDoc({ locale, slug });
   if (!doc) return {};
   const alternates = localeAlternates(`/docs/${doc.slug}`, locale);
+  // An English fallback served under a localized URL points its canonical back to
+  // the English original so it isn't indexed as a duplicate (mirrors the blog).
+  if (locale !== defaultLocale && doc.isTranslated === false) {
+    alternates.canonical = `${SITE_URL}/docs/${doc.slug}`;
+  }
   const title = `${doc.title} | PushBundle Docs`;
   const description = `How to ${doc.title.toLowerCase()} with PushBundle.`;
   return {

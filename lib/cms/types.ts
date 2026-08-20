@@ -70,6 +70,13 @@ export type DocArticle = {
   order: number;
   updatedAt: string;
   locale: Locale;
+  /**
+   * True when the CMS served a real translation for the requested locale, false
+   * when it fell back to English. Undefined for the English base or when the CMS
+   * doesn't report it. Mirrors `Post.isTranslated` — used to canonical a fallback
+   * doc back to English.
+   */
+  isTranslated?: boolean;
   seo?: Seo;
 };
 

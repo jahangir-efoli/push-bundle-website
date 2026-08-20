@@ -27,6 +27,9 @@ const SANITIZE_OPTIONS: sanitizeHtmlLib.IOptions = {
   allowedTags: [
     "h1", "h2", "h3", "h4", "h5", "h6",
     "p", "a", "ul", "ol", "li", "nav", "blockquote",
+    // `details`/`summary` power the CMS FAQ accordion (FAQ answers, and FAQ
+    // blocks embedded in posts/docs) — keep them so the disclosure survives.
+    "details", "summary",
     "b", "i", "strong", "em", "u", "s", "code", "pre", "kbd", "mark",
     "small", "sub", "sup", "abbr",
     "span", "div", "br", "hr", "figure", "figcaption",
@@ -39,6 +42,8 @@ const SANITIZE_OPTIONS: sanitizeHtmlLib.IOptions = {
     a: ["href", "name", "target", "rel", "title"],
     img: ["src", "alt", "title", "width", "height", "loading", "srcset", "sizes"],
     source: ["src", "srcset", "type", "media", "sizes"],
+    // `open` lets an FAQ item render expanded by default.
+    details: ["open"],
     td: ["colspan", "rowspan"],
     th: ["colspan", "rowspan", "scope"],
     col: ["span"],
@@ -196,13 +201,18 @@ type ApiDoc = {
   content?: string;
   updatedAt?: string;
   readingTimeMinutes?: number;
+  /** True when the CMS served a real translation for the requested locale. */
+  isTranslated?: boolean;
 };
 type ApiDocCategory = { name: string; slug: string; order?: number; docs: ApiDoc[] };
 
-export function mapDocs(payload: {
-  categories?: ApiDocCategory[];
-  uncategorized?: ApiDoc[];
-}): DocArticle[] {
+export function mapDocs(
+  payload: {
+    categories?: ApiDocCategory[];
+    uncategorized?: ApiDoc[];
+  },
+  locale: Locale = "en",
+): DocArticle[] {
   const out: DocArticle[] = [];
   for (const cat of payload.categories ?? []) {
     cat.docs.forEach((d, i) =>
@@ -214,35 +224,43 @@ export function mapDocs(payload: {
         categoryName: decodeEntities(cat.name),
         order: i,
         updatedAt: d.updatedAt ?? "",
-        locale: "en",
+        locale,
+        isTranslated: d.isTranslated,
       }),
     );
   }
   (payload.uncategorized ?? []).forEach((d, i) =>
     out.push({
       slug: d.slug,
-      title: d.title,
+      title: decodeEntities(d.title),
       body: sanitizeHtml(d.content),
       category: "general",
       categoryName: "General",
       order: i,
       updatedAt: d.updatedAt ?? "",
-      locale: "en",
+      locale,
+      isTranslated: d.isTranslated,
     }),
   );
   return out;
 }
 
-export function mapDoc(d: ApiDoc, categoryName = "General", categorySlug = "general"): DocArticle {
+export function mapDoc(
+  d: ApiDoc,
+  categoryName = "General",
+  categorySlug = "general",
+  locale: Locale = "en",
+): DocArticle {
   return {
     slug: d.slug,
-    title: d.title,
+    title: decodeEntities(d.title),
     body: sanitizeHtml(d.content),
     category: categorySlug,
     categoryName,
     order: 0,
     updatedAt: d.updatedAt ?? "",
-    locale: "en",
+    locale,
+    isTranslated: d.isTranslated,
   };
 }
 
