@@ -89,24 +89,24 @@
       {
         "id": "volume",
         "icon": "gauge",
-        "tab": "Volume Bundle",
-        "title": "Volume Bundle",
+        "tab": "Mengen-Bundle",
+        "title": "Mengen-Bundle",
         "description": "Belohne Kunden fürs Mehrkaufen. Biete gestaffelte Mengenrabatte — je größer das Paket, desto höher der Rabatt — und lass Kunden das Paket mit einer beliebigen Kombination aus Varianten füllen.",
         "howItWorks": "Lege Staffeln wie Kaufe 5 / 10 / 15 fest, jede mit ihrem eigenen Rabatt. Der Kunde wählt eine Staffel, füllt das Paket mit Varianten, und Gesamtsumme + Ersparnis aktualisieren sich live vor dem Hinzufügen zum Warenkorb.",
         "benefits": "Steigere den durchschnittlichen Bestellwert mit Mengenstaffeln, die größere Warenkörbe belohnen — ideal für Großhandel, Multipacks und Vorratsartikel — während du die volle Kontrolle über jede Staffel und jeden Rabatt behältst.",
         "flexibility": "Zeige Staffeln als kompakte Liste oder als Karten, auf der Produktseite oder einer eigenen Bundle-Seite, im Hoch- oder Querformat — alles passend zu deinem Theme gestaltet.",
-        "cta": "Volume Bundle erleben"
+        "cta": "Mengen-Bundle erleben"
       },
       {
         "id": "cross-sell",
         "icon": "cart",
         "tab": "Cross-Sell",
-        "title": "Cross-Sell Bundle",
+        "title": "Cross-Sell-Bundle",
         "description": "Kombiniere passende Artikel zu einem Bundle und biete ergänzende Produkte für einen nahtlosen, hochwertigeren Einkauf direkt auf der Produktseite.",
         "howItWorks": "Gruppiere Produkte, die sich gut zusammen verkaufen, und wende einen Bundle-Rabatt an — Kunden fügen das ganze Set mit einem Klick hinzu.",
         "benefits": "Steigere den AOV, indem du ergänzende Produkte zu einem Bundle-Preis zusammenstellst — ein bewährter Upsell, der aus einem einzelnen Kauf ein komplettes Set macht, ganz ohne zusätzliche Klicks.",
         "flexibility": "Stelle das genaue Set zusammen, lege Mengen fest oder gib sie frei, und lass Kunden Varianten wählen — angezeigt direkt auf der Produktseite oder als \"Wird häufig zusammen gekauft\"-Block.",
-        "cta": "Cross-Sell Bundle erleben"
+        "cta": "Cross-Sell-Bundle erleben"
       },
       {
         "id": "mix-single",
@@ -117,7 +117,7 @@
         "howItWorks": "Wähle ein Produkt, lege die Paketgrößen fest, und Kunden stellen ihre eigene Mischung zusammen, während der Rabatt beim Füllen der Box angewendet wird.",
         "benefits": "Steigere Engagement und AOV, indem Kunden ihr eigenes Paket aus den Varianten eines Produkts zusammenstellen — perfekt für Farbpakete, Sample-Sets und Boxen im Abo-Stil.",
         "flexibility": "Lege Paketgrößen und gestaffelte Preise fest, begrenze die Menge pro Variante und zeige alles als kompaktes Raster oder ganze Seite an — im Hoch- oder Querformat, passend zu jedem Theme.",
-        "cta": "Mix & Match Bundle erleben"
+        "cta": "Mix & Match-Bundle erleben"
       },
       {
         "id": "mix-multi",
@@ -128,18 +128,18 @@
         "howItWorks": "Stelle die Produkte zusammen, lege Min/Max- und Limits pro Variante fest, und Kunden bauen ein personalisiertes Bundle aus mehreren Produkten.",
         "benefits": "Vergrößere den Warenkorb mit vollständig anpassbaren Sets aus mehreren Produkten — ideal für kuratierte Kollektionen und individuelle Kits — während du die Kontrolle über Regeln und Limits behältst.",
         "flexibility": "Kuratiere den Katalog, lege Min/Max- und Limits pro Variante fest und biete Variantenoptionen direkt an — als eingebettetes Widget oder eigenständige Bundle-Seite.",
-        "cta": "Mix & Match Bundle erleben"
+        "cta": "Mix & Match-Bundle erleben"
       },
       {
         "id": "byob",
         "icon": "sparkles",
-        "tab": "Build Your Own Box",
-        "title": "Build Your Own Box",
+        "tab": "Eigene Box",
+        "title": "Eigene Box zusammenstellen",
         "description": "Ein Schritt-für-Schritt-Builder, mit dem Kunden eine Box wählen, Produkte und Geschenkkarten hinzufügen und mit individuellen Formularen personalisieren können.",
         "howItWorks": "Gestalte einen geführten, mehrstufigen Ablauf — Box wählen, Artikel hinzufügen und individuelle Angaben erfassen, bevor es in den Warenkorb geht.",
         "benefits": "Mach aus dem Schenken ein Premium-Erlebnis, das den AOV steigert — Kunden stellen eine personalisierte Box zusammen, fügen eine Karte hinzu und hinterlassen eine Nachricht, alles in einem geführten Ablauf.",
         "flexibility": "Konfiguriere jeden Schritt — Boxen, Produkte, Karten und individuelle Formularfelder — und ordne Schritte neu an oder lass sie weg, passend zu jedem Geschenk- oder Abo-Ablauf.",
-        "cta": "BYOB Bundle erleben"
+        "cta": "Eigene Box erleben"
       }
     ]
   },

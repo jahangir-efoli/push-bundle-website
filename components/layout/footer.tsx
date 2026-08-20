@@ -55,7 +55,9 @@ export function Footer({
               />
               PushBundle
             </p>
-            <p className="mt-4 max-w-xs text-sm opacity-70">{site.tagline}</p>
+            <p className="mt-4 max-w-xs text-sm opacity-70">
+              {dict.common.footerTagline}
+            </p>
             <p className="mt-6 text-sm opacity-70">
               <a href={`mailto:${site.email}`} className="underline">
                 {site.email}
@@ -125,7 +127,9 @@ export function Footer({
 
         <div className="mt-12 flex flex-col gap-6 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm opacity-60">
-            Copyright @{site.legalEntity} 2026. All Rights Reserved.
+            {dict.common.copyright
+              .replace("{entity}", site.legalEntity)
+              .replace("{year}", "2026")}
           </p>
 
           <ul className="flex items-center gap-1">

@@ -34,7 +34,9 @@
     "newsletterTitle": "Abonniere unseren Newsletter",
     "newsletterBody": "Erhalte die neuesten Strategien, Angebote und Tipps zur Bundle-Optimierung direkt in dein Postfach.",
     "usefulLinks": "Nützliche Links",
-    "ourApps": "Unsere Shopify-Apps"
+    "ourApps": "Unsere Shopify-Apps",
+    "footerTagline": "Erstelle hochkonvertierende Mix-&-Match-Bundles und individuelle Produktpakete, die Kunden lieben – und steigere automatisch deinen durchschnittlichen Bestellwert.",
+    "copyright": "Copyright @{entity} {year}. Alle Rechte vorbehalten."
   },
   "langSwitcher": {
     "label": "Sprache ändern",

@@ -15,23 +15,23 @@
     "chromeLabel": "vista previa en vivo",
     "features": [
       {
-        "tab": "Volume Bundle",
-        "title": "Volume Bundle",
+        "tab": "Paquete por volumen",
+        "title": "Paquete por volumen",
         "howItWorks": "Configura niveles como Buy 5 / 10 / 15, cada uno con su propio descuento. El comprador elige un nivel, selecciona las variantes para completar el pack, y el total + el ahorro se actualizan en vivo antes de añadir al carrito.",
         "benefits": "Aumenta el valor medio del pedido con descuentos por cantidad que premian los carritos más grandes — ideal para venta mayorista, multipacks y productos básicos de aprovisionamiento — mientras mantienes el control total sobre cada nivel y descuento.",
         "flexibility": "Muestra los niveles como una lista compacta o como tarjetas, en la página de producto o en una página de paquete dedicada, en diseño vertical u horizontal — todo estilizado para combinar con tu tema.",
-        "cta": "Descubre Volume Bundle"
+        "cta": "Descubre el paquete por volumen"
       },
       {
-        "tab": "Cross-Sell",
-        "title": "Paquete Cross-Sell",
+        "tab": "Venta cruzada",
+        "title": "Paquete de venta cruzada",
         "howItWorks": "Agrupa productos que se venden bien juntos y aplica un descuento de paquete — los clientes añaden el conjunto completo con un solo clic.",
         "benefits": "Aumenta el AOV combinando productos complementarios a un precio de paquete — una venta adicional probada que convierte una compra en un conjunto completo sin clics adicionales.",
         "flexibility": "Selecciona el conjunto exacto, fija o muestra las cantidades y deja que los compradores elijan variantes — mostrado directamente en la página de producto o como un bloque de «comprados juntos habitualmente».",
-        "cta": "Descubre el paquete Cross-Sell"
+        "cta": "Descubre el paquete de venta cruzada"
       },
       {
-        "tab": "Mix & Match (Single)",
+        "tab": "Mix & Match (individual)",
         "title": "Mix & Match — Producto único",
         "howItWorks": "Elige un producto, selecciona los tamaños de pack y los compradores montan su propia combinación con el descuento aplicado a medida que se llena la caja.",
         "benefits": "Impulsa la interacción y el AOV dejando que los compradores creen su propio pack a partir de las variantes de un solo producto — perfecto para packs de colores, sets de muestras y cajas tipo suscripción.",
@@ -39,7 +39,7 @@
         "cta": "Descubre el paquete Mix & Match"
       },
       {
-        "tab": "Mix & Match (Multi)",
+        "tab": "Mix & Match (múltiple)",
         "title": "Mix & Match — Varios productos",
         "howItWorks": "Selecciona los productos, define los límites mínimo/máximo y por variante, y los clientes crean un paquete personalizado de varios productos.",
         "benefits": "Aumenta el tamaño de la cesta con conjuntos de varios productos totalmente personalizables — ideales para colecciones seleccionadas y kits a medida — mientras mantienes el control sobre las reglas y los límites.",
@@ -47,12 +47,12 @@
         "cta": "Descubre el paquete Mix & Match"
       },
       {
-        "tab": "Build Your Own Box",
-        "title": "Build Your Own Box",
+        "tab": "Arma tu caja",
+        "title": "Arma tu propia caja",
         "howItWorks": "Diseña un flujo guiado de varios pasos — elige una caja, añade artículos y recoge datos personalizados antes de añadir al carrito.",
         "benefits": "Convierte los regalos en una experiencia premium que aumenta el AOV — los compradores montan una caja personalizada, añaden una tarjeta y dejan un mensaje, todo en un único flujo guiado.",
         "flexibility": "Configura cada paso — cajas, productos, tarjetas y campos de formulario personalizados — y luego reordena o elimina pasos para adaptarlos a cualquier flujo de regalo o suscripción.",
-        "cta": "Descubre el paquete BYOB"
+        "cta": "Descubre «Arma tu caja»"
       }
     ]
   },

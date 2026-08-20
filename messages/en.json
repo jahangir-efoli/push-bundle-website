@@ -34,7 +34,9 @@
     "newsletterTitle": "Subscribe to our Newsletter",
     "newsletterBody": "Get the latest strategies, deals, and bundle optimization tips delivered straight to your inbox.",
     "usefulLinks": "Useful Links",
-    "ourApps": "Our Shopify Apps"
+    "ourApps": "Our Shopify Apps",
+    "footerTagline": "Create high-converting Mix & Match bundles and custom product packs that shoppers love while automatically increasing your average order value",
+    "copyright": "Copyright @{entity} {year}. All Rights Reserved."
   },
   "langSwitcher": {
     "label": "Change language",

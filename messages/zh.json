@@ -34,7 +34,9 @@
     "newsletterTitle": "订阅我们的新闻通讯",
     "newsletterBody": "将最新的策略、优惠和捆绑优化技巧直接发送到您的收件箱。",
     "usefulLinks": "实用链接",
-    "ourApps": "我们的 Shopify 应用"
+    "ourApps": "我们的 Shopify 应用",
+    "footerTagline": "打造深受顾客喜爱、高转化的混搭套装和自定义商品包，同时自动提升您的平均订单金额。",
+    "copyright": "Copyright @{entity} {year}. 版权所有。"
   },
   "langSwitcher": {
     "label": "切换语言",

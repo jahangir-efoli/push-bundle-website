@@ -15,44 +15,44 @@
     "chromeLabel": "aperçu en direct",
     "features": [
       {
-        "tab": "Volume Bundle",
-        "title": "Volume Bundle",
+        "tab": "Lot par volume",
+        "title": "Lot par volume",
         "howItWorks": "Définissez des paliers comme Buy 5 / 10 / 15, chacun avec sa propre remise. Le client choisit un palier, sélectionne les variantes pour composer le pack, et le total + les économies se mettent à jour en direct avant l'ajout au panier.",
         "benefits": "Augmentez le panier moyen grâce à des remises par quantité qui récompensent les paniers plus importants — idéal pour la vente en gros, les multipacks et les produits d'approvisionnement — tout en gardant un contrôle total sur chaque palier et chaque remise.",
         "flexibility": "Affichez les paliers sous forme de liste compacte ou de cartes, sur la page produit ou sur une page de bundle dédiée, en disposition portrait ou horizontale — le tout stylisé pour s'accorder à votre thème.",
-        "cta": "Découvrir Volume Bundle"
+        "cta": "Découvrir le lot par volume"
       },
       {
-        "tab": "Cross-Sell",
-        "title": "Cross-Sell Bundle",
+        "tab": "Vente croisée",
+        "title": "Lot de vente croisée",
         "howItWorks": "Regroupez des produits qui se vendent bien ensemble et appliquez une remise de bundle — les clients ajoutent l'ensemble complet en un seul clic.",
         "benefits": "Augmentez l'AOV en associant des produits complémentaires à un prix groupé — un upsell éprouvé qui transforme un seul achat en un ensemble complet, sans clics supplémentaires.",
         "flexibility": "Composez l'ensemble exact, fixez ou affichez les quantités, et laissez les clients choisir les variantes — présenté directement sur la page produit ou sous forme de bloc « fréquemment achetés ensemble ».",
-        "cta": "Découvrir Cross-Sell Bundle"
+        "cta": "Découvrir le lot de vente croisée"
       },
       {
-        "tab": "Mix & Match (Single)",
+        "tab": "Mix & Match (unique)",
         "title": "Mix & Match — Produit unique",
         "howItWorks": "Choisissez un produit, définissez les tailles de pack, et vos clients composent leur propre mélange avec la remise appliquée au fur et à mesure que la boîte se remplit.",
         "benefits": "Boostez l'engagement et l'AOV en laissant vos clients composer leur propre pack à partir des variantes d'un seul produit — parfait pour les packs de couleurs, les coffrets d'échantillons et les boîtes de type abonnement.",
         "flexibility": "Définissez les tailles de pack et les tarifs par palier, plafonnez les quantités par variante, et affichez le tout sous forme de grille compacte ou de page complète — en portrait ou horizontal pour s'adapter à n'importe quel thème.",
-        "cta": "Découvrir Mix & Match Bundle"
+        "cta": "Découvrir le lot Mix & Match"
       },
       {
-        "tab": "Mix & Match (Multi)",
-        "title": "Mix & Match — Produits multiples",
+        "tab": "Mix & Match (multiple)",
+        "title": "Mix & Match — Plusieurs produits",
         "howItWorks": "Sélectionnez les produits, définissez les limites min/max et par variante, et vos clients composent un bundle multi-produits personnalisé.",
         "benefits": "Augmentez la taille du panier grâce à des ensembles multi-produits entièrement personnalisables — parfait pour les collections sélectionnées et les kits sur mesure — tout en gardant le contrôle sur les règles et les limites.",
         "flexibility": "Sélectionnez le catalogue, définissez les limites min/max et par variante, et proposez des options de variantes en ligne — sous forme de widget intégré ou de page de bundle autonome.",
-        "cta": "Découvrir Mix & Match Bundle"
+        "cta": "Découvrir le lot Mix & Match"
       },
       {
-        "tab": "Build Your Own Box",
-        "title": "Build Your Own Box",
+        "tab": "Composez votre box",
+        "title": "Composez votre box",
         "howItWorks": "Concevez un parcours guidé en plusieurs étapes — choisir une boîte, ajouter des articles et recueillir des informations personnalisées avant l'ajout au panier.",
         "benefits": "Transformez l'offre de cadeaux en une expérience premium qui augmente l'AOV — vos clients composent une boîte personnalisée, ajoutent une carte et laissent un message, le tout dans un parcours guidé unique.",
         "flexibility": "Configurez chaque étape — boîtes, produits, cartes et champs de formulaire personnalisés — puis réorganisez ou supprimez des étapes pour s'adapter à tout parcours de cadeau ou d'abonnement.",
-        "cta": "Découvrir BYOB Bundle"
+        "cta": "Découvrir « Composez votre box »"
       }
     ]
   },

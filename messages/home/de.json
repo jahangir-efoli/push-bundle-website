@@ -15,44 +15,44 @@
     "chromeLabel": "Live-Vorschau",
     "features": [
       {
-        "tab": "Volume Bundle",
-        "title": "Volume Bundle",
+        "tab": "Mengen-Bundle",
+        "title": "Mengen-Bundle",
         "howItWorks": "Legen Sie Stufen wie Buy 5 / 10 / 15 fest, jede mit eigenem Rabatt. Der Kunde wählt eine Stufe, sucht Varianten zum Befüllen des Pakets aus, und die Gesamtsumme + Ersparnis aktualisieren sich live, bevor er in den Warenkorb legt.",
         "benefits": "Steigern Sie den durchschnittlichen Bestellwert mit Mengenstaffeln, die größere Warenkörbe belohnen — ideal für Großhandel, Multipacks und Vorratsartikel — während Sie die volle Kontrolle über jede Stufe und jeden Rabatt behalten.",
         "flexibility": "Zeigen Sie Stufen als kompakte Liste oder als Karten an, auf der Produktseite oder einer eigenen Bundle-Seite, im Hoch- oder Querformat — alles passend zu Ihrem Theme gestaltet.",
-        "cta": "Volume Bundle erleben"
+        "cta": "Mengen-Bundle erleben"
       },
       {
         "tab": "Cross-Sell",
-        "title": "Cross-Sell Bundle",
+        "title": "Cross-Sell-Bundle",
         "howItWorks": "Fassen Sie Produkte zusammen, die sich gut gemeinsam verkaufen, und wenden Sie einen Bundle-Rabatt an — Kunden fügen das komplette Set mit einem einzigen Klick hinzu.",
         "benefits": "Erhöhen Sie den AOV, indem Sie ergänzende Produkte zu einem Bundle-Preis kombinieren — ein bewährter Upsell, der aus einem Kauf ein komplettes Set macht, ohne zusätzliche Klicks.",
         "flexibility": "Stellen Sie das exakte Set zusammen, fixieren oder zeigen Sie Mengen an und lassen Sie Kunden Varianten wählen — direkt auf der Produktseite oder als Block „Häufig zusammen gekauft“.",
-        "cta": "Cross-Sell Bundle erleben"
+        "cta": "Cross-Sell-Bundle erleben"
       },
       {
-        "tab": "Mix & Match (Single)",
+        "tab": "Mix & Match (Einzeln)",
         "title": "Mix & Match — Einzelprodukt",
         "howItWorks": "Wählen Sie ein Produkt, legen Sie die Packungsgrößen fest, und Kunden stellen ihre eigene Mischung zusammen — der Rabatt wird angewendet, sobald sich die Box füllt.",
         "benefits": "Steigern Sie Engagement und AOV, indem Sie Kunden ihr eigenes Paket aus den Varianten eines Produkts zusammenstellen lassen — perfekt für Farbpakete, Probier-Sets und abonnementartige Boxen.",
         "flexibility": "Legen Sie Packungsgrößen und gestaffelte Preise fest, begrenzen Sie Mengen pro Variante und zeigen Sie es als kompaktes Raster oder als ganze Seite an — im Hoch- oder Querformat, passend zu jedem Theme.",
-        "cta": "Mix & Match Bundle erleben"
+        "cta": "Mix & Match-Bundle erleben"
       },
       {
-        "tab": "Mix & Match (Multi)",
+        "tab": "Mix & Match (Mehrere)",
         "title": "Mix & Match — Mehrere Produkte",
         "howItWorks": "Stellen Sie die Produkte zusammen, legen Sie Min./Max.- und Limits pro Variante fest, und Kunden bauen ein personalisiertes Bundle aus mehreren Produkten.",
         "benefits": "Vergrößern Sie den Warenkorb mit vollständig anpassbaren Sets aus mehreren Produkten — ideal für kuratierte Kollektionen und individuelle Kits — während Sie die Kontrolle über Regeln und Limits behalten.",
         "flexibility": "Kuratieren Sie den Katalog, legen Sie Min./Max.- und Limits pro Variante fest und bieten Sie Variantenoptionen direkt an — als eingebettetes Widget oder als eigenständige Bundle-Seite.",
-        "cta": "Mix & Match Bundle erleben"
+        "cta": "Mix & Match-Bundle erleben"
       },
       {
-        "tab": "Build Your Own Box",
-        "title": "Build Your Own Box",
+        "tab": "Eigene Box",
+        "title": "Eigene Box zusammenstellen",
         "howItWorks": "Gestalten Sie einen geführten, mehrstufigen Ablauf — Box wählen, Artikel hinzufügen und individuelle Angaben erfassen, bevor in den Warenkorb gelegt wird.",
         "benefits": "Machen Sie aus dem Schenken ein Premium-Erlebnis, das den AOV steigert — Kunden stellen eine personalisierte Box zusammen, legen eine Karte bei und hinterlassen eine Nachricht, alles in einem geführten Ablauf.",
         "flexibility": "Konfigurieren Sie jeden Schritt — Boxen, Produkte, Karten und individuelle Formularfelder — und ordnen Sie Schritte dann neu an oder entfernen Sie sie, um zu jedem Geschenk- oder Abonnementablauf zu passen.",
-        "cta": "BYOB Bundle erleben"
+        "cta": "Eigene Box erleben"
       }
     ]
   },

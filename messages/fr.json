@@ -34,7 +34,9 @@
     "newsletterTitle": "Abonnez-vous à notre newsletter",
     "newsletterBody": "Recevez les dernières stratégies, offres et astuces d'optimisation des offres groupées directement dans votre boîte mail.",
     "usefulLinks": "Liens utiles",
-    "ourApps": "Nos applications Shopify"
+    "ourApps": "Nos applications Shopify",
+    "footerTagline": "Créez des lots Mix & Match et des packs de produits personnalisés à forte conversion que les clients adorent, tout en augmentant automatiquement votre panier moyen.",
+    "copyright": "Copyright @{entity} {year}. Tous droits réservés."
   },
   "langSwitcher": {
     "label": "Changer de langue",

@@ -34,7 +34,9 @@
     "newsletterTitle": "Suscríbete a nuestro boletín",
     "newsletterBody": "Recibe las últimas estrategias, ofertas y consejos de optimización de bundles directamente en tu bandeja de entrada.",
     "usefulLinks": "Enlaces útiles",
-    "ourApps": "Nuestras apps de Shopify"
+    "ourApps": "Nuestras apps de Shopify",
+    "footerTagline": "Crea paquetes Mix & Match de alta conversión y packs de productos personalizados que encantan a los clientes, aumentando automáticamente tu valor medio de pedido.",
+    "copyright": "Copyright @{entity} {year}. Todos los derechos reservados."
   },
   "langSwitcher": {
     "label": "Cambiar idioma",

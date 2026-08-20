@@ -34,7 +34,9 @@
     "newsletterTitle": "ニュースレターを購読",
     "newsletterBody": "最新の戦略、お得な情報、バンドル最適化のヒントをメールで直接お届けします。",
     "usefulLinks": "便利なリンク",
-    "ourApps": "当社のShopifyアプリ"
+    "ourApps": "当社のShopifyアプリ",
+    "footerTagline": "顧客に愛される高コンバージョンのミックス＆マッチバンドルやカスタム商品パックを作成し、平均注文額を自動的に高めましょう。",
+    "copyright": "Copyright @{entity} {year}. 無断転載を禁じます。"
   },
   "langSwitcher": {
     "label": "言語を変更",

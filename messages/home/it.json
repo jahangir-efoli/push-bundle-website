@@ -15,44 +15,44 @@
     "chromeLabel": "anteprima dal vivo",
     "features": [
       {
-        "tab": "Volume Bundle",
-        "title": "Volume Bundle",
+        "tab": "Bundle a volume",
+        "title": "Bundle a volume",
         "howItWorks": "Imposta soglie come Buy 5 / 10 / 15, ognuna con il proprio sconto. Il cliente sceglie una soglia, seleziona le varianti per comporre il pacco e il totale + il risparmio si aggiornano dal vivo prima di aggiungere al carrello.",
         "benefits": "Aumenta il valore medio dell'ordine con riduzioni sulla quantità che premiano i carrelli più grandi — ideale per la vendita all'ingrosso, i multipack e i prodotti da scorta — mantenendo il pieno controllo su ogni soglia e sconto.",
         "flexibility": "Mostra le soglie come elenco compatto o come schede, sulla pagina prodotto o su una pagina bundle dedicata, con layout verticali o orizzontali — tutti personalizzati per abbinarsi al tuo tema.",
-        "cta": "Prova Volume Bundle"
+        "cta": "Prova il Bundle a volume"
       },
       {
-        "tab": "Cross-Sell",
-        "title": "Cross-Sell Bundle",
+        "tab": "Cross-sell",
+        "title": "Bundle cross-sell",
         "howItWorks": "Raggruppa i prodotti che si vendono bene insieme e applica uno sconto bundle — i clienti aggiungono l'intero set con un solo clic.",
         "benefits": "Aumenta l'AOV abbinando prodotti complementari a un prezzo bundle — un upsell collaudato che trasforma un singolo acquisto in un set completo senza clic aggiuntivi.",
         "flexibility": "Componi il set esatto, fissa o mostra le quantità e lascia che i clienti scelgano le varianti — mostrato direttamente sulla pagina prodotto o come blocco 'spesso acquistati insieme'.",
-        "cta": "Prova Cross-Sell Bundle"
+        "cta": "Prova il Bundle cross-sell"
       },
       {
-        "tab": "Mix & Match (Single)",
+        "tab": "Mix & Match (singolo)",
         "title": "Mix & Match — Prodotto singolo",
         "howItWorks": "Scegli un prodotto, seleziona le dimensioni dei pacchi e i clienti compongono il proprio mix con lo sconto applicato man mano che la confezione si riempie.",
         "benefits": "Aumenta il coinvolgimento e l'AOV lasciando che i clienti creino il proprio pacco a partire dalle varianti di un singolo prodotto — perfetto per pacchi di colori, set campione e box in stile abbonamento.",
         "flexibility": "Imposta le dimensioni dei pacchi e i prezzi a soglie, limita le quantità per ogni variante e mostralo come griglia compatta o pagina intera — verticale o orizzontale per adattarsi a qualsiasi tema.",
-        "cta": "Prova Mix & Match Bundle"
+        "cta": "Prova il Bundle Mix & Match"
       },
       {
-        "tab": "Mix & Match (Multi)",
-        "title": "Mix & Match — Prodotti multipli",
+        "tab": "Mix & Match (multiplo)",
+        "title": "Mix & Match — Più prodotti",
         "howItWorks": "Seleziona i prodotti, imposta min/max e i limiti per ogni variante e i clienti compongono un bundle multi-prodotto personalizzato.",
         "benefits": "Aumenta le dimensioni del carrello con set multi-prodotto completamente personalizzabili — ottimi per collezioni curate e kit su misura — mantenendo il controllo su regole e limiti.",
         "flexibility": "Cura il catalogo, imposta min/max e i limiti per ogni variante e offri le opzioni di variante in linea — come widget integrato o come pagina bundle autonoma.",
-        "cta": "Prova Mix & Match Bundle"
+        "cta": "Prova il Bundle Mix & Match"
       },
       {
-        "tab": "Build Your Own Box",
-        "title": "Build Your Own Box",
+        "tab": "Crea la tua box",
+        "title": "Crea la tua box",
         "howItWorks": "Progetta un percorso guidato in più passaggi — scegli una box, aggiungi articoli e raccogli dettagli personalizzati prima di aggiungere al carrello.",
         "benefits": "Trasforma il regalo in un'esperienza premium che aumenta l'AOV — i clienti compongono una box personalizzata, aggiungono un biglietto e lasciano un messaggio, tutto in un unico percorso guidato.",
         "flexibility": "Configura ogni passaggio — box, prodotti, biglietti e campi modulo personalizzati — poi riordina o elimina i passaggi per adattarti a qualsiasi flusso di regalo o abbonamento.",
-        "cta": "Prova BYOB Bundle"
+        "cta": "Prova «Crea la tua box»"
       }
     ]
   },
