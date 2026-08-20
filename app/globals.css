@@ -445,6 +445,72 @@ button:disabled,
   font-style: italic;
 }
 
+/* FAQ accordion — CMS `<details>`/`<summary>` disclosures embedded in docs and
+   blog posts. Styled as a clickable card with a rotating chevron so it reads as
+   a real FAQ instead of the browser's default triangle list. */
+.prose-pb details {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  background: var(--surface);
+  padding: 0 1.25rem;
+  transition: border-color 0.15s ease;
+}
+.prose-pb details[open] {
+  border-color: color-mix(in oklab, var(--primary) 40%, var(--border));
+  padding-bottom: 1.15rem;
+}
+/* Consecutive questions read as one list rather than spaced-out blocks. */
+.prose-pb details + details {
+  margin-top: 0.75rem;
+}
+.prose-pb summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  cursor: pointer;
+  list-style: none;
+  padding: 1.15rem 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--foreground);
+  transition: color 0.15s ease;
+}
+.prose-pb summary::-webkit-details-marker {
+  display: none;
+}
+.prose-pb summary:hover {
+  color: var(--primary);
+}
+/* Chevron marker — rotates from ▸ (closed) to ▾ (open). */
+.prose-pb summary::after {
+  content: "";
+  flex: none;
+  width: 0.6rem;
+  height: 0.6rem;
+  border-right: 2px solid var(--muted);
+  border-bottom: 2px solid var(--muted);
+  transform: rotate(-45deg);
+  transition: transform 0.2s ease, border-color 0.15s ease;
+}
+.prose-pb details[open] summary::after {
+  transform: rotate(45deg);
+}
+.prose-pb summary:hover::after,
+.prose-pb details[open] summary::after {
+  border-color: var(--primary);
+}
+/* Answer body — the elements after the summary. */
+.prose-pb details > *:not(summary) {
+  color: var(--muted);
+}
+.prose-pb details > summary + *:not(summary) {
+  margin-top: 0;
+}
+.prose-pb details > *:not(summary) + *:not(summary) {
+  margin-top: 0.75em;
+}
+
 /* Tables (docs/PLAN.md §5.7c) — CMS tables have no <thead>/<th>; the first row
    is the header. Wrapped in `.prose-table` (lib/blog/toc.ts) so wide tables
    scroll horizontally on narrow screens instead of overflowing the page. */
