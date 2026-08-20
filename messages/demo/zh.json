@@ -45,7 +45,23 @@
     "percentOffCaps": "省 {d}%",
     "regular": "标准",
     "myPack": "我的套装",
-    "addMoreToBox": "再添加 {n} 件即可装满您的盒子"
+    "addMoreToBox": "再添加 {n} 件即可装满您的盒子",
+    "chooseGiftBox": "选择您的礼盒",
+    "chooseProducts": "选择商品",
+    "addGreetingCard": "添加贺卡",
+    "giftDetails": "礼物详情",
+    "selectRange": "选择 {min}–{max} 件 • 已选 {n} 件",
+    "boxEmpty": "您的盒子是空的",
+    "totalLabel": "合计：",
+    "close": "关闭",
+    "addAnother": "再加一个",
+    "seeOptions": "查看选项",
+    "addToBox": "加入盒子",
+    "back": "返回",
+    "next": "下一步",
+    "finishAddToCart": "完成 — 加入购物车",
+    "fieldPlaceholder": "请输入{field}…",
+    "giftBoxAddedToCart": "礼盒已加入购物车 · {price}（省 {d}%）"
   },
   "volume": {
     "productName": "胡桃木饰面斗柜",
@@ -147,6 +163,99 @@
       {
         "name": "相框",
         "category": "配饰"
+      }
+    ]
+  },
+  "byob": {
+    "title": "定制您的专属礼盒",
+    "subtitle": "只需几个简单步骤，即可打造附带专属留言的礼盒。",
+    "cartTitle": "自由搭配礼盒",
+    "stepLabels": {
+      "box": "选择盒子",
+      "products": "选择商品",
+      "card": "选择卡片",
+      "form": "填写表单"
+    },
+    "boxes": [
+      {
+        "name": "牛皮纸礼盒"
+      },
+      {
+        "name": "招牌礼盒"
+      }
+    ],
+    "products": [
+      {
+        "name": "香薰蜡烛",
+        "options": [
+          {
+            "name": "香型",
+            "values": [
+              "香草",
+              "雪松",
+              "柑橘"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "手工巧克力"
+      },
+      {
+        "name": "陶瓷马克杯",
+        "options": [
+          {
+            "name": "颜色",
+            "values": [
+              "奶油色",
+              "炭灰色"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "沐浴球套装"
+      },
+      {
+        "name": "茶叶品鉴装",
+        "options": [
+          {
+            "name": "拼配",
+            "values": [
+              "绿茶",
+              "花草",
+              "红茶"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "迷你多肉植物"
+      }
+    ],
+    "cards": [
+      {
+        "name": "感谢卡"
+      },
+      {
+        "name": "生日卡"
+      },
+      {
+        "name": "心意卡"
+      }
+    ],
+    "fields": [
+      {
+        "label": "寄件人"
+      },
+      {
+        "label": "收件人"
+      },
+      {
+        "label": "收件人邮箱"
+      },
+      {
+        "label": "留言"
       }
     ]
   }

@@ -45,7 +45,23 @@
     "percentOffCaps": "{d}%オフ",
     "regular": "通常",
     "myPack": "マイパック",
-    "addMoreToBox": "ボックスを埋めるにはあと{n}個追加してください"
+    "addMoreToBox": "ボックスを埋めるにはあと{n}個追加してください",
+    "chooseGiftBox": "ギフトボックスを選択",
+    "chooseProducts": "商品を選ぶ",
+    "addGreetingCard": "グリーティングカードを追加",
+    "giftDetails": "ギフトの詳細",
+    "selectRange": "{min}〜{max}個を選択 • {n}個選択済み",
+    "boxEmpty": "ボックスは空です",
+    "totalLabel": "合計：",
+    "close": "閉じる",
+    "addAnother": "もう一つ追加",
+    "seeOptions": "オプションを見る",
+    "addToBox": "ボックスに追加",
+    "back": "戻る",
+    "next": "次へ",
+    "finishAddToCart": "完了 — カートに追加",
+    "fieldPlaceholder": "{field}を入力…",
+    "giftBoxAddedToCart": "ギフトボックスをカートに追加しました · {price}（{d}%お得）"
   },
   "volume": {
     "productName": "ウォールナット仕上げのドレッサー",
@@ -147,6 +163,99 @@
       {
         "name": "フォトフレーム",
         "category": "アクセサリー"
+      }
+    ]
+  },
+  "byob": {
+    "title": "オリジナルギフトボックスを作ろう",
+    "subtitle": "数ステップで、メッセージ付きのオリジナルボックスを作成できます。",
+    "cartTitle": "自分だけのボックスを作る",
+    "stepLabels": {
+      "box": "ボックスを選択",
+      "products": "商品を選ぶ",
+      "card": "カードを選択",
+      "form": "フォーム入力"
+    },
+    "boxes": [
+      {
+        "name": "クラフトギフトボックス"
+      },
+      {
+        "name": "シグネチャーギフトボックス"
+      }
+    ],
+    "products": [
+      {
+        "name": "アロマキャンドル",
+        "options": [
+          {
+            "name": "香り",
+            "values": [
+              "バニラ",
+              "シダー",
+              "シトラス"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "職人のチョコレート"
+      },
+      {
+        "name": "セラミックマグ",
+        "options": [
+          {
+            "name": "色",
+            "values": [
+              "クリーム",
+              "チャコール"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "バスボムセット"
+      },
+      {
+        "name": "お茶の詰め合わせ",
+        "options": [
+          {
+            "name": "ブレンド",
+            "values": [
+              "緑茶",
+              "ハーブ",
+              "紅茶"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "ミニ多肉植物"
+      }
+    ],
+    "cards": [
+      {
+        "name": "サンキューカード"
+      },
+      {
+        "name": "バースデーカード"
+      },
+      {
+        "name": "ジャストビコーズカード"
+      }
+    ],
+    "fields": [
+      {
+        "label": "差出人"
+      },
+      {
+        "label": "受取人"
+      },
+      {
+        "label": "受取人のメール"
+      },
+      {
+        "label": "メッセージ"
       }
     ]
   }

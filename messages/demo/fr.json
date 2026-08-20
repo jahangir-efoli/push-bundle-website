@@ -45,7 +45,23 @@
     "percentOffCaps": "{d}% DE RÉDUC.",
     "regular": "Standard",
     "myPack": "Mon lot",
-    "addMoreToBox": "Ajoutez {n} de plus pour remplir votre box"
+    "addMoreToBox": "Ajoutez {n} de plus pour remplir votre box",
+    "chooseGiftBox": "Choisissez votre boîte cadeau",
+    "chooseProducts": "Choisir les produits",
+    "addGreetingCard": "Ajouter une carte de vœux",
+    "giftDetails": "Détails du cadeau",
+    "selectRange": "Sélectionnez {min}–{max} • {n} sélectionné(s)",
+    "boxEmpty": "Votre box est vide",
+    "totalLabel": "Total :",
+    "close": "Fermer",
+    "addAnother": "En ajouter un autre",
+    "seeOptions": "Voir les options",
+    "addToBox": "Ajouter à la box",
+    "back": "Retour",
+    "next": "Suivant",
+    "finishAddToCart": "Terminer — Ajouter au panier",
+    "fieldPlaceholder": "Votre {field}…",
+    "giftBoxAddedToCart": "Coffret cadeau ajouté au panier · {price} ({d}% économisés)"
   },
   "volume": {
     "productName": "Commode finition noyer",
@@ -147,6 +163,99 @@
       {
         "name": "Cadre photo",
         "category": "Accessoires"
+      }
+    ]
+  },
+  "byob": {
+    "title": "Créez votre propre coffret cadeau",
+    "subtitle": "Créez votre box personnalisée en quelques étapes simples, avec un message personnalisé.",
+    "cartTitle": "Composez votre box",
+    "stepLabels": {
+      "box": "Choisir la boîte",
+      "products": "Choisir les produits",
+      "card": "Choisir la carte",
+      "form": "Formulaire"
+    },
+    "boxes": [
+      {
+        "name": "Boîte cadeau kraft"
+      },
+      {
+        "name": "Boîte cadeau signature"
+      }
+    ],
+    "products": [
+      {
+        "name": "Bougie parfumée",
+        "options": [
+          {
+            "name": "Parfum",
+            "values": [
+              "Vanille",
+              "Cèdre",
+              "Agrumes"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Chocolat artisanal"
+      },
+      {
+        "name": "Mug en céramique",
+        "options": [
+          {
+            "name": "Couleur",
+            "values": [
+              "Crème",
+              "Anthracite"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Coffret de bombes de bain"
+      },
+      {
+        "name": "Coffret de thés",
+        "options": [
+          {
+            "name": "Mélange",
+            "values": [
+              "Vert",
+              "Tisane",
+              "Noir"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Mini plante grasse"
+      }
+    ],
+    "cards": [
+      {
+        "name": "Carte de remerciement"
+      },
+      {
+        "name": "Carte d'anniversaire"
+      },
+      {
+        "name": "Carte « juste comme ça »"
+      }
+    ],
+    "fields": [
+      {
+        "label": "Expéditeur"
+      },
+      {
+        "label": "Destinataire"
+      },
+      {
+        "label": "E-mail du destinataire"
+      },
+      {
+        "label": "Message"
       }
     ]
   }

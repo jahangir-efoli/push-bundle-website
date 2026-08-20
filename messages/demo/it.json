@@ -45,7 +45,23 @@
     "percentOffCaps": "{d}% DI SCONTO",
     "regular": "Standard",
     "myPack": "Il mio pacchetto",
-    "addMoreToBox": "Aggiungi altri {n} per riempire la tua box"
+    "addMoreToBox": "Aggiungi altri {n} per riempire la tua box",
+    "chooseGiftBox": "Scegli la tua scatola regalo",
+    "chooseProducts": "Scegli i prodotti",
+    "addGreetingCard": "Aggiungi un biglietto",
+    "giftDetails": "Dettagli del regalo",
+    "selectRange": "Seleziona {min}–{max} • {n} selezionati",
+    "boxEmpty": "La tua box è vuota",
+    "totalLabel": "Totale:",
+    "close": "Chiudi",
+    "addAnother": "Aggiungine un altro",
+    "seeOptions": "Vedi le opzioni",
+    "addToBox": "Aggiungi alla box",
+    "back": "Indietro",
+    "next": "Avanti",
+    "finishAddToCart": "Completa — Aggiungi al carrello",
+    "fieldPlaceholder": "Il tuo {field}…",
+    "giftBoxAddedToCart": "Scatola regalo aggiunta al carrello · {price} (risparmi {d}%)"
   },
   "volume": {
     "productName": "Cassettiera finitura noce",
@@ -147,6 +163,99 @@
       {
         "name": "Cornice portafoto",
         "category": "Accessori"
+      }
+    ]
+  },
+  "byob": {
+    "title": "Crea la tua scatola regalo",
+    "subtitle": "Crea la tua box in pochi semplici passaggi, con un messaggio personalizzato.",
+    "cartTitle": "Crea la tua box",
+    "stepLabels": {
+      "box": "Scegli la box",
+      "products": "Scegli i prodotti",
+      "card": "Scegli il biglietto",
+      "form": "Modulo"
+    },
+    "boxes": [
+      {
+        "name": "Scatola regalo kraft"
+      },
+      {
+        "name": "Scatola regalo signature"
+      }
+    ],
+    "products": [
+      {
+        "name": "Candela profumata",
+        "options": [
+          {
+            "name": "Profumo",
+            "values": [
+              "Vaniglia",
+              "Cedro",
+              "Agrumi"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Cioccolato artigianale"
+      },
+      {
+        "name": "Tazza in ceramica",
+        "options": [
+          {
+            "name": "Colore",
+            "values": [
+              "Crema",
+              "Antracite"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Set di bombe da bagno"
+      },
+      {
+        "name": "Degustazione di tè",
+        "options": [
+          {
+            "name": "Miscela",
+            "values": [
+              "Verde",
+              "Alle erbe",
+              "Nero"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Mini pianta grassa"
+      }
+    ],
+    "cards": [
+      {
+        "name": "Biglietto di ringraziamento"
+      },
+      {
+        "name": "Biglietto di compleanno"
+      },
+      {
+        "name": "Biglietto «solo perché»"
+      }
+    ],
+    "fields": [
+      {
+        "label": "Mittente"
+      },
+      {
+        "label": "Destinatario"
+      },
+      {
+        "label": "Email del destinatario"
+      },
+      {
+        "label": "Messaggio"
       }
     ]
   }

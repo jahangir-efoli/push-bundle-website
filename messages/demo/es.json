@@ -45,7 +45,23 @@
     "percentOffCaps": "{d}% DTO.",
     "regular": "Normal",
     "myPack": "Mi pack",
-    "addMoreToBox": "Añade {n} más para llenar tu caja"
+    "addMoreToBox": "Añade {n} más para llenar tu caja",
+    "chooseGiftBox": "Elige tu caja de regalo",
+    "chooseProducts": "Elige productos",
+    "addGreetingCard": "Añade una tarjeta",
+    "giftDetails": "Detalles del regalo",
+    "selectRange": "Selecciona {min}–{max} • {n} seleccionados",
+    "boxEmpty": "Tu caja está vacía",
+    "totalLabel": "Total:",
+    "close": "Cerrar",
+    "addAnother": "Añadir otro",
+    "seeOptions": "Ver opciones",
+    "addToBox": "Añadir a la caja",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "finishAddToCart": "Finalizar — Añadir al carrito",
+    "fieldPlaceholder": "Tu {field}…",
+    "giftBoxAddedToCart": "Caja de regalo añadida al carrito · {price} (ahorras {d}%)"
   },
   "volume": {
     "productName": "Cómoda con acabado en nogal",
@@ -147,6 +163,99 @@
       {
         "name": "Marco de fotos",
         "category": "Accesorios"
+      }
+    ]
+  },
+  "byob": {
+    "title": "Crea tu propia caja de regalo",
+    "subtitle": "Crea tu propia caja en unos pocos pasos sencillos con un mensaje personalizado.",
+    "cartTitle": "Arma tu propia caja",
+    "stepLabels": {
+      "box": "Elegir caja",
+      "products": "Elegir productos",
+      "card": "Elegir tarjeta",
+      "form": "Formulario"
+    },
+    "boxes": [
+      {
+        "name": "Caja de regalo kraft"
+      },
+      {
+        "name": "Caja de regalo exclusiva"
+      }
+    ],
+    "products": [
+      {
+        "name": "Vela aromática",
+        "options": [
+          {
+            "name": "Aroma",
+            "values": [
+              "Vainilla",
+              "Cedro",
+              "Cítrico"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Chocolate artesanal"
+      },
+      {
+        "name": "Taza de cerámica",
+        "options": [
+          {
+            "name": "Color",
+            "values": [
+              "Crema",
+              "Carbón"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Set de bombas de baño"
+      },
+      {
+        "name": "Set de té",
+        "options": [
+          {
+            "name": "Mezcla",
+            "values": [
+              "Verde",
+              "Herbal",
+              "Negro"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Mini suculenta"
+      }
+    ],
+    "cards": [
+      {
+        "name": "Tarjeta de agradecimiento"
+      },
+      {
+        "name": "Tarjeta de cumpleaños"
+      },
+      {
+        "name": "Tarjeta «porque sí»"
+      }
+    ],
+    "fields": [
+      {
+        "label": "Remitente"
+      },
+      {
+        "label": "Destinatario"
+      },
+      {
+        "label": "Correo del destinatario"
+      },
+      {
+        "label": "Mensaje"
       }
     ]
   }

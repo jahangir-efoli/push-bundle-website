@@ -45,7 +45,23 @@
     "percentOffCaps": "{d}% RABATT",
     "regular": "Regulär",
     "myPack": "Mein Paket",
-    "addMoreToBox": "Füge {n} weitere hinzu, um deine Box zu füllen"
+    "addMoreToBox": "Füge {n} weitere hinzu, um deine Box zu füllen",
+    "chooseGiftBox": "Wähle deine Geschenkbox",
+    "chooseProducts": "Produkte wählen",
+    "addGreetingCard": "Grußkarte hinzufügen",
+    "giftDetails": "Geschenkdetails",
+    "selectRange": "Wähle {min}–{max} • {n} ausgewählt",
+    "boxEmpty": "Deine Box ist leer",
+    "totalLabel": "Gesamt:",
+    "close": "Schließen",
+    "addAnother": "Weitere hinzufügen",
+    "seeOptions": "Optionen ansehen",
+    "addToBox": "Zur Box hinzufügen",
+    "back": "Zurück",
+    "next": "Weiter",
+    "finishAddToCart": "Fertig — In den Warenkorb",
+    "fieldPlaceholder": "Dein {field} …",
+    "giftBoxAddedToCart": "Geschenkbox zum Warenkorb hinzugefügt · {price} ({d}% gespart)"
   },
   "volume": {
     "productName": "Kommode mit Walnuss-Finish",
@@ -147,6 +163,99 @@
       {
         "name": "Bilderrahmen",
         "category": "Accessoires"
+      }
+    ]
+  },
+  "byob": {
+    "title": "Gestalte deine eigene Geschenkbox",
+    "subtitle": "Erstelle deine ganz persönliche Box in wenigen einfachen Schritten – mit einer persönlichen Nachricht.",
+    "cartTitle": "Stelle deine eigene Box zusammen",
+    "stepLabels": {
+      "box": "Box wählen",
+      "products": "Produkte wählen",
+      "card": "Karte wählen",
+      "form": "Formular"
+    },
+    "boxes": [
+      {
+        "name": "Kraft-Geschenkbox"
+      },
+      {
+        "name": "Signature-Geschenkbox"
+      }
+    ],
+    "products": [
+      {
+        "name": "Duftkerze",
+        "options": [
+          {
+            "name": "Duft",
+            "values": [
+              "Vanille",
+              "Zeder",
+              "Zitrus"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Handwerksschokolade"
+      },
+      {
+        "name": "Keramikbecher",
+        "options": [
+          {
+            "name": "Farbe",
+            "values": [
+              "Creme",
+              "Anthrazit"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Badebomben-Set"
+      },
+      {
+        "name": "Tee-Probierset",
+        "options": [
+          {
+            "name": "Mischung",
+            "values": [
+              "Grün",
+              "Kräuter",
+              "Schwarz"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Mini-Sukkulente"
+      }
+    ],
+    "cards": [
+      {
+        "name": "Dankeskarte"
+      },
+      {
+        "name": "Geburtstagskarte"
+      },
+      {
+        "name": "„Einfach so\"-Karte"
+      }
+    ],
+    "fields": [
+      {
+        "label": "Absender"
+      },
+      {
+        "label": "Empfänger"
+      },
+      {
+        "label": "E-Mail des Empfängers"
+      },
+      {
+        "label": "Nachricht"
       }
     ]
   }

@@ -45,7 +45,23 @@
     "percentOffCaps": "{d}% OFF",
     "regular": "Regular",
     "myPack": "My Pack",
-    "addMoreToBox": "Add {n} more to fill your box"
+    "addMoreToBox": "Add {n} more to fill your box",
+    "chooseGiftBox": "Choose your gift box",
+    "chooseProducts": "Choose products",
+    "addGreetingCard": "Add a greeting card",
+    "giftDetails": "Gift details",
+    "selectRange": "Select {min}–{max} • {n} selected",
+    "boxEmpty": "Your box is empty",
+    "totalLabel": "Total:",
+    "close": "Close",
+    "addAnother": "Add another",
+    "seeOptions": "See options",
+    "addToBox": "Add to box",
+    "back": "Back",
+    "next": "Next",
+    "finishAddToCart": "Finish — Add to cart",
+    "fieldPlaceholder": "Your {field}…",
+    "giftBoxAddedToCart": "Gift box added to cart · {price} (saved {d}%)"
   },
   "volume": {
     "productName": "Walnut finish dresser",
@@ -147,6 +163,99 @@
       {
         "name": "Photo Frame",
         "category": "Accessories"
+      }
+    ]
+  },
+  "byob": {
+    "title": "Create Your Own Gift Box",
+    "subtitle": "Create your very own box in just a few simple steps with a personalised message.",
+    "cartTitle": "Build Your Own Box",
+    "stepLabels": {
+      "box": "Select Box",
+      "products": "Choose Products",
+      "card": "Select Card",
+      "form": "Form Submission"
+    },
+    "boxes": [
+      {
+        "name": "Kraft Gift Box"
+      },
+      {
+        "name": "Signature Gift Box"
+      }
+    ],
+    "products": [
+      {
+        "name": "Scented Candle",
+        "options": [
+          {
+            "name": "Scent",
+            "values": [
+              "Vanilla",
+              "Cedar",
+              "Citrus"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Artisan Chocolate"
+      },
+      {
+        "name": "Ceramic Mug",
+        "options": [
+          {
+            "name": "Color",
+            "values": [
+              "Cream",
+              "Charcoal"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Bath Bomb Set"
+      },
+      {
+        "name": "Tea Sampler",
+        "options": [
+          {
+            "name": "Blend",
+            "values": [
+              "Green",
+              "Herbal",
+              "Black"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Mini Succulent"
+      }
+    ],
+    "cards": [
+      {
+        "name": "Thank You Card"
+      },
+      {
+        "name": "Birthday Card"
+      },
+      {
+        "name": "Just Because Card"
+      }
+    ],
+    "fields": [
+      {
+        "label": "Sender"
+      },
+      {
+        "label": "Recipient"
+      },
+      {
+        "label": "Recipient email"
+      },
+      {
+        "label": "Message"
       }
     ]
   }

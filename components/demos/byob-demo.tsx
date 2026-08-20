@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { ProductThumb } from "@/components/demos/product-thumb";
 import type { CartBundle } from "@/components/demos/cart-drawer";
 import { cn } from "@/lib/utils";
+import { useDemoContent, fmt } from "@/lib/content/demo-content";
 
 /**
  * Build Your Own Box (BYOB) interactive demo — models the live PushBundle
@@ -62,13 +63,6 @@ const DEFAULT_FIELDS: ByobField[] = [
   { label: "Message", type: "textarea" },
 ];
 
-const STEP_LABEL: Record<ByobStep, string> = {
-  box: "Select Box",
-  products: "Choose Products",
-  card: "Select Card",
-  form: "Form Submission",
-};
-
 type Line = {
   key: string;
   name: string;
@@ -80,17 +74,17 @@ type Line = {
 };
 
 export function ByobDemo({
-  title = "Create Your Own Gift Box",
-  subtitle = "Create your very own box in just a few simple steps with a personalised message.",
+  title: titleProp,
+  subtitle: subtitleProp,
   steps = ["box", "products", "card", "form"],
-  boxes = DEFAULT_BOXES,
-  products = DEFAULT_PRODUCTS,
+  boxes: boxesProp,
+  products: productsProp,
   productMin = 2,
   productMax = 6,
-  cards = DEFAULT_CARDS,
+  cards: cardsProp,
   cardMin = 1,
   cardMax = 2,
-  fields = DEFAULT_FIELDS,
+  fields: fieldsProp,
   discount = 10,
   onAddToCart,
   className,
@@ -110,6 +104,20 @@ export function ByobDemo({
   onAddToCart?: (bundle: CartBundle) => void;
   className?: string;
 }) {
+  const t = useDemoContent();
+  const B = t.byob;
+  const title = titleProp ?? B.title;
+  const subtitle = subtitleProp ?? B.subtitle;
+  const boxes = boxesProp ?? DEFAULT_BOXES.map((b, i) => ({ ...b, name: B.boxes[i].name }));
+  const products =
+    productsProp ??
+    DEFAULT_PRODUCTS.map((p, i) => ({
+      ...p,
+      name: B.products[i].name,
+      options: B.products[i].options,
+    }));
+  const cards = cardsProp ?? DEFAULT_CARDS.map((c, i) => ({ ...c, name: B.cards[i].name }));
+  const fields = fieldsProp ?? DEFAULT_FIELDS.map((f, i) => ({ ...f, label: B.fields[i].label }));
   const [step, setStep] = useState(0);
   const [box, setBox] = useState<number | null>(null);
   const [lines, setLines] = useState<Line[]>([]);
@@ -237,7 +245,7 @@ export function ByobDemo({
         ...cardPicks.map((i) => ({ name: cards[i].name, img: cards[i].image })),
       ];
       onAddToCart({
-        title: "Build Your Own Box",
+        title: B.cartTitle,
         id: "BYOB",
         img: selectedBox?.image ?? flatUnits[0]?.image,
         price: total,
@@ -247,7 +255,7 @@ export function ByobDemo({
       reset();
       return;
     }
-    setNotice(`Gift box added to cart · ${usd(total)} (saved ${discount}%)`);
+    setNotice(fmt(t.ui.giftBoxAddedToCart, { price: usd(total), d: discount }));
     reset();
     window.clearTimeout(noticeTimer.current);
     noticeTimer.current = window.setTimeout(() => setNotice(null), 3200);
@@ -312,7 +320,7 @@ export function ByobDemo({
                     reached ? "text-foreground" : "text-muted",
                   )}
                 >
-                  {STEP_LABEL[s]}
+                  {B.stepLabels[s]}
                 </span>
               </div>
               {i < steps.length - 1 && (
@@ -328,7 +336,7 @@ export function ByobDemo({
         {/* STEP: Select box */}
         {key === "box" && (
           <>
-            <p className="text-sm font-semibold">Choose your gift box</p>
+            <p className="text-sm font-semibold">{t.ui.chooseGiftBox}</p>
             <div className="mt-3 grid grid-cols-2 gap-3">
               {boxes.map((b, i) => {
                 const sel = box === i;
@@ -365,10 +373,10 @@ export function ByobDemo({
           <>
             <div className="flex items-baseline justify-between gap-2">
               <p className="text-sm font-semibold">
-                Choose products <span className="text-primary">*</span>
+                {t.ui.chooseProducts} <span className="text-primary">*</span>
               </p>
               <p className={cn("text-xs font-medium", canAdvance ? "text-success-foreground" : "text-muted")}>
-                Select {productMin}–{productMax} • {productCount} selected
+                {fmt(t.ui.selectRange, { min: productMin, max: productMax, n: productCount })}
               </p>
             </div>
             <div className="mt-3 grid grid-cols-2 gap-3 @md:grid-cols-3">
@@ -409,7 +417,7 @@ export function ByobDemo({
                           disabled={productsRemaining <= 0 && inBox === 0}
                           className="w-full rounded-md bg-primary-subtle py-1.5 text-[11px] font-bold uppercase tracking-wide text-primary transition-colors hover:bg-primary/15 disabled:opacity-40"
                         >
-                          {isOpen ? "Close" : inBox > 0 ? "Add another" : "See options"}
+                          {isOpen ? t.ui.close : inBox > 0 ? t.ui.addAnother : t.ui.seeOptions}
                         </button>
                       ) : (
                         <button
@@ -418,7 +426,7 @@ export function ByobDemo({
                           disabled={productsRemaining <= 0}
                           className="w-full rounded-md bg-primary-subtle py-1.5 text-[11px] font-bold uppercase tracking-wide text-primary transition-colors hover:bg-primary/15 disabled:opacity-40"
                         >
-                          Add to bundle
+                          {t.ui.addToBundle}
                         </button>
                       )}
                     </div>
@@ -454,7 +462,7 @@ export function ByobDemo({
                           disabled={productsRemaining <= 0}
                           className="h-8 w-full rounded-md bg-primary text-xs font-semibold text-primary-foreground shadow-glow disabled:opacity-40"
                         >
-                          Add to box
+                          {t.ui.addToBox}
                         </button>
                       </div>
                     )}
@@ -469,9 +477,9 @@ export function ByobDemo({
         {key === "card" && (
           <>
             <div className="flex items-baseline justify-between gap-2">
-              <p className="text-sm font-semibold">Add a greeting card</p>
+              <p className="text-sm font-semibold">{t.ui.addGreetingCard}</p>
               <p className={cn("text-xs font-medium", canAdvance ? "text-success-foreground" : "text-muted")}>
-                Select {cardMin}–{cardMax} • {cardPicks.length} selected
+                {fmt(t.ui.selectRange, { min: cardMin, max: cardMax, n: cardPicks.length })}
               </p>
             </div>
             <div className="mt-3 grid grid-cols-2 gap-3">
@@ -510,7 +518,7 @@ export function ByobDemo({
         {/* STEP: Details form */}
         {key === "form" && (
           <>
-            <p className="text-sm font-semibold">Gift details</p>
+            <p className="text-sm font-semibold">{t.ui.giftDetails}</p>
             <div className="mt-3 space-y-3">
               {fields.map((f) => {
                 const id = `byob-${f.label.replace(/\s+/g, "-").toLowerCase()}`;
@@ -528,9 +536,9 @@ export function ByobDemo({
                       {f.label} <span className="text-primary">*</span>
                     </label>
                     {f.type === "textarea" ? (
-                      <textarea rows={2} placeholder={`Your ${f.label.toLowerCase()}…`} {...common} />
+                      <textarea rows={2} placeholder={fmt(t.ui.fieldPlaceholder, { field: f.label })} {...common} />
                     ) : (
-                      <input type={f.type ?? "text"} placeholder={`Your ${f.label.toLowerCase()}…`} {...common} />
+                      <input type={f.type ?? "text"} placeholder={fmt(t.ui.fieldPlaceholder, { field: f.label })} {...common} />
                     )}
                   </div>
                 );
@@ -566,7 +574,7 @@ export function ByobDemo({
                 <button
                   type="button"
                   onClick={() => changeLineQty(l.key, -1)}
-                  aria-label={`Remove ${l.name}`}
+                  aria-label={fmt(t.ui.remove, { name: l.name })}
                   className="absolute -right-1.5 -top-1.5 grid size-4 place-items-center rounded-full bg-error text-white ring-2 ring-white"
                 >
                   <svg viewBox="0 0 24 24" className="size-2.5" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round"><path d="M18 6 6 18M6 6l12 12" /></svg>
@@ -577,11 +585,11 @@ export function ByobDemo({
               <span className="text-xs font-semibold text-muted">+{flatUnits.length - 6}</span>
             )}
             {flatUnits.length === 0 && (
-              <span className="text-xs text-muted">Your box is empty</span>
+              <span className="text-xs text-muted">{t.ui.boxEmpty}</span>
             )}
           </div>
           <span className="whitespace-nowrap text-sm">
-            <span className="mr-1 text-[11px] text-muted">Total:</span>
+            <span className="mr-1 text-[11px] text-muted">{t.ui.totalLabel}</span>
             {discount > 0 && subtotal > 0 && (
               <span className="mr-1.5 text-muted line-through">{usd(subtotal)}</span>
             )}
@@ -597,7 +605,7 @@ export function ByobDemo({
             disabled={step === 0}
             className="h-11 rounded-lg bg-surface-subtle px-5 text-sm font-semibold text-foreground transition-colors hover:bg-border/60 disabled:opacity-40"
           >
-            Back
+            {t.ui.back}
           </button>
           <button
             type="button"
@@ -611,7 +619,7 @@ export function ByobDemo({
                 : "cursor-not-allowed bg-surface-subtle text-muted",
             )}
           >
-            {isLast ? "Finish — Add to cart" : "Next"}
+            {isLast ? t.ui.finishAddToCart : t.ui.next}
           </button>
         </div>
       </div>
