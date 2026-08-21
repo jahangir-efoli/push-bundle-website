@@ -28,8 +28,9 @@ export function Footer({
   locale: Locale;
   dict: Dictionary;
 }) {
-  const footerLinks = [
+  const footerLinks: Array<{ label: string; href: string; external?: boolean }> = [
     { label: dict.nav.contact, href: localizePath("/contact-us", locale) },
+    { label: dict.nav.hireExpert, href: site.expertsUrl, external: true },
     { label: dict.nav.faq, href: localizePath("/faq", locale) },
     { label: dict.nav.privacy, href: localizePath("/privacy-policy", locale) },
     { label: dict.nav.changelog, href: localizePath("/changelog", locale) },
@@ -70,26 +71,29 @@ export function Footer({
               {dict.common.usefulLinks}
             </h2>
             <ul className="mt-4 space-y-1">
-              {footerLinks.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="flex min-h-11 items-center text-sm opacity-80 transition-opacity hover:opacity-100 hover:underline"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-              <li>
-                <a
-                  href={site.expertsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex min-h-11 items-center text-sm opacity-80 transition-opacity hover:opacity-100 hover:underline"
-                >
-                  {dict.nav.hireExpert}
-                </a>
-              </li>
+              {footerLinks.map((item) =>
+                item.external ? (
+                  <li key={item.href}>
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex min-h-11 items-center text-sm opacity-80 transition-opacity hover:opacity-100 hover:underline"
+                    >
+                      {item.label}
+                    </a>
+                  </li>
+                ) : (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      className="flex min-h-11 items-center text-sm opacity-80 transition-opacity hover:opacity-100 hover:underline"
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                ),
+              )}
             </ul>
           </nav>
 
