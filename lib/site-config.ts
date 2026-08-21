@@ -22,6 +22,9 @@ export const site = {
       (see components/integrations/calendly-link.tsx) so visitors book without
       leaving the site; falls back to a new tab if the widget can't load. */
   calendlyUrl: "https://calendly.com/whenlab-support",
+  /** Shopify Experts directory listing — the footer "Hire a PushBundle Expert"
+      link. Opens in a new tab (external directory). */
+  expertsUrl: "https://shopexperts.com/partners/pushbundle-shopify-experts",
 } as const;
 
 /**

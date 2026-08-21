@@ -80,6 +80,16 @@ export function Footer({
                   </Link>
                 </li>
               ))}
+              <li>
+                <a
+                  href={site.expertsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex min-h-11 items-center text-sm opacity-80 transition-opacity hover:opacity-100 hover:underline"
+                >
+                  {dict.nav.hireExpert}
+                </a>
+              </li>
             </ul>
           </nav>
 
