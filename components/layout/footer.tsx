@@ -30,7 +30,11 @@ export function Footer({
 }) {
   const footerLinks: Array<{ label: string; href: string; external?: boolean }> = [
     { label: dict.nav.contact, href: localizePath("/contact-us", locale) },
-    { label: dict.nav.hireExpert, href: site.expertsUrl, external: true },
+    {
+      label: dict.nav.hireExpert,
+      href: withUtm(site.expertsUrl, { campaign: "hire-expert", content: "footer" }),
+      external: true,
+    },
     { label: dict.nav.faq, href: localizePath("/faq", locale) },
     { label: dict.nav.privacy, href: localizePath("/privacy-policy", locale) },
     { label: dict.nav.changelog, href: localizePath("/changelog", locale) },
