@@ -15,7 +15,7 @@ import { breadcrumbLd } from "@/lib/seo/structured-data";
 import { blogPostingLd } from "@/lib/seo/article-data";
 import { localeAlternates } from "@/lib/seo/metadata";
 import { processArticle } from "@/lib/blog/toc";
-import { REVIEW_DISCLOSURE } from "@/lib/blog/review";
+import { getCommon, getBlogContent } from "@/i18n/content";
 import { OG_IMAGE, SITE_NAME } from "@/lib/seo/site";
 import { cn } from "@/lib/utils";
 import type { Person } from "@/lib/cms";
@@ -128,10 +128,13 @@ export default async function BlogPostPage({ params }: Props) {
     : await cms.getPost({ locale, slug });
   if (!post) notFound();
 
-  const [related, categories] = await Promise.all([
+  const [related, categories, common, blog] = await Promise.all([
     cms.listRelatedPosts({ locale, slug, limit: 3 }),
     cms.listCategories({ locale }),
+    getCommon(locale),
+    getBlogContent(locale),
   ]);
+  const ui = blog.ui;
 
   const categoryName =
     categories.find((c) => c.slug === post.category)?.name ?? post.category;
@@ -185,7 +188,7 @@ export default async function BlogPostPage({ params }: Props) {
                     href="/blog"
                     className="transition-colors hover:text-inverse-foreground hover:underline"
                   >
-                    Blog
+                    {ui.breadcrumbBlog}
                   </Link>
                 </li>
                 <li aria-hidden="true">/</li>
@@ -206,8 +209,8 @@ export default async function BlogPostPage({ params }: Props) {
                 <time dateTime={post.publishedAt}>
                   {formatDate(post.publishedAt)}
                 </time>
-                {updated && <> · updated {formatDate(post.updatedAt)}</>} ·{" "}
-                {post.readingMinutes} min read
+                {updated && <> · {ui.updated} {formatDate(post.updatedAt)}</>} ·{" "}
+                {post.readingMinutes} {ui.minRead}
               </span>
             </div>
 
@@ -225,7 +228,7 @@ export default async function BlogPostPage({ params }: Props) {
                   <p className="text-sm font-semibold">{post.author.name}</p>
                   {post.reviewedBy && (
                     <p className="text-xs text-inverse-foreground/60">
-                      Reviewed by {post.reviewedBy.name}
+                      {ui.reviewedBy.replace("{name}", post.reviewedBy.name)}
                     </p>
                   )}
                 </div>
@@ -253,14 +256,14 @@ export default async function BlogPostPage({ params }: Props) {
             <div className="flex flex-col gap-10 lg:grid lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-14">
               <aside className="hidden lg:block">
                 <div className="sticky top-24 max-h-[calc(100vh-8rem)] overflow-auto pr-2">
-                  <TableOfContents items={toc} />
+                  <TableOfContents items={toc} label={ui.tableOfContents} />
                 </div>
               </aside>
               <div className="min-w-0">
                 {/* Mobile TOC (collapsible) */}
                 <details className="mb-8 rounded-xl border border-border bg-surface p-4 lg:hidden">
                   <summary className="text-sm font-semibold">
-                    Table of contents
+                    {ui.tableOfContents}
                   </summary>
                   <ul className="mt-3 space-y-1.5 text-sm">
                     {toc.map((i) => (
@@ -313,10 +316,10 @@ export default async function BlogPostPage({ params }: Props) {
               </span>
               <div className="min-w-0">
                 <p className="text-xs font-semibold uppercase tracking-wider text-primary">
-                  Reviewed for accuracy
+                  {ui.reviewedForAccuracy}
                 </p>
                 <p className="mt-2 text-pretty text-muted">
-                  {REVIEW_DISCLOSURE}
+                  {ui.reviewDisclosure}
                 </p>
               </div>
             </div>
@@ -327,7 +330,7 @@ export default async function BlogPostPage({ params }: Props) {
         <Container className="pb-12 lg:pb-16">
           <div className="rounded-2xl border border-border bg-surface p-6 sm:p-8">
             <p className="text-xs font-semibold uppercase tracking-wider text-muted">
-              About the author
+              {ui.aboutTheAuthor}
             </p>
             <div className="mt-4 flex items-start gap-4">
               <Avatar person={post.author} size="lg" />
@@ -336,7 +339,7 @@ export default async function BlogPostPage({ params }: Props) {
                   {post.author.name}
                 </p>
                 <p className="text-xs font-semibold uppercase tracking-wide text-muted">
-                  {post.author.role ?? `${SITE_NAME} Contributor`}
+                  {post.author.role ?? ui.contributor.replace("{brand}", SITE_NAME)}
                 </p>
                 {post.author.bio && (
                   <p className="mt-3 max-w-2xl text-muted">{post.author.bio}</p>
@@ -351,11 +354,15 @@ export default async function BlogPostPage({ params }: Props) {
       {related.length > 0 && (
         <section className="border-t border-border bg-surface-subtle">
           <Container className="py-16">
-            <h2 className="text-display-sm">Related articles</h2>
+            <h2 className="text-display-sm">{ui.relatedArticles}</h2>
             <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {related.map((r) => (
                 <li key={r.slug} className="h-full">
-                  <PostCard post={r} categories={categories} />
+                  <PostCard
+                    post={r}
+                    categories={categories}
+                    minReadLabel={ui.minRead}
+                  />
                 </li>
               ))}
             </ul>
@@ -363,7 +370,7 @@ export default async function BlogPostPage({ params }: Props) {
         </section>
       )}
 
-      <TrialCta />
+      <TrialCta content={common.trialCta} />
     </>
   );
 }

@@ -19,6 +19,15 @@
     "onThisPage": "本页",
     "noMatch": "没有与您的搜索匹配的文章。请尝试其他关键词。",
     "noneYet": "暂无文章，敬请期待。",
-    "minRead": "分钟阅读"
+    "minRead": "分钟阅读",
+    "breadcrumbBlog": "博客",
+    "updated": "更新于",
+    "reviewedBy": "审核者：{name}",
+    "tableOfContents": "目录",
+    "reviewedForAccuracy": "已审核准确性",
+    "reviewDisclosure": "本文由 PushBundle 技术支持团队审核，该团队定期帮助 Shopify 商家测试捆绑设置、产品选择规则、捆绑定价、购物车行为以及与结账相关的捆绑问题。",
+    "aboutTheAuthor": "关于作者",
+    "contributor": "{brand} 贡献者",
+    "relatedArticles": "相关文章"
   }
 }

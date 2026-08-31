@@ -19,6 +19,15 @@
     "onThisPage": "auf dieser Seite",
     "noMatch": "Keine Artikel entsprechen Ihrer Suche. Versuchen Sie eine andere Suche.",
     "noneYet": "Noch keine Artikel — schauen Sie bald wieder vorbei.",
-    "minRead": "Min. Lesezeit"
+    "minRead": "Min. Lesezeit",
+    "breadcrumbBlog": "Blog",
+    "updated": "aktualisiert",
+    "reviewedBy": "Geprüft von {name}",
+    "tableOfContents": "Inhaltsverzeichnis",
+    "reviewedForAccuracy": "Auf Richtigkeit geprüft",
+    "reviewDisclosure": "Dieser Artikel wurde vom PushBundle Technical Support Team geprüft, das Shopify-Händler regelmäßig beim Testen von Bundle-Einrichtung, Produktauswahlregeln, Bundle-Preisen, Warenkorbverhalten und Checkout-bezogenen Bundle-Problemen unterstützt.",
+    "aboutTheAuthor": "Über den Autor",
+    "contributor": "{brand}-Mitwirkender",
+    "relatedArticles": "Ähnliche Artikel"
   }
 }

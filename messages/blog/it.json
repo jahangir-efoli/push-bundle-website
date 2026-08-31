@@ -19,6 +19,15 @@
     "onThisPage": "in questa pagina",
     "noMatch": "Nessun articolo corrisponde alla tua ricerca. Prova una ricerca diversa.",
     "noneYet": "Ancora nessun articolo — torna a trovarci presto.",
-    "minRead": "min di lettura"
+    "minRead": "min di lettura",
+    "breadcrumbBlog": "Blog",
+    "updated": "aggiornato",
+    "reviewedBy": "Revisionato da {name}",
+    "tableOfContents": "Indice",
+    "reviewedForAccuracy": "Verificato per accuratezza",
+    "reviewDisclosure": "Questo articolo è stato revisionato dal team di supporto tecnico di PushBundle, che aiuta regolarmente i merchant Shopify a testare la configurazione dei bundle, le regole di selezione dei prodotti, i prezzi dei bundle, il comportamento del carrello e i problemi dei bundle legati al checkout.",
+    "aboutTheAuthor": "Informazioni sull'autore",
+    "contributor": "Collaboratore {brand}",
+    "relatedArticles": "Articoli correlati"
   }
 }

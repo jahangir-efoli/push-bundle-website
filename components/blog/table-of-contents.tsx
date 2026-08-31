@@ -12,9 +12,12 @@ import type { TocItem } from "@/lib/blog/toc";
 export function TableOfContents({
   items,
   className,
+  /** Localized heading/label (defaults to English). */
+  label = "Table of contents",
 }: {
   items: TocItem[];
   className?: string;
+  label?: string;
 }) {
   const [active, setActive] = useState("");
 
@@ -41,9 +44,9 @@ export function TableOfContents({
   if (!items.length) return null;
 
   return (
-    <nav aria-label="Table of contents" className={cn("text-sm", className)}>
+    <nav aria-label={label} className={cn("text-sm", className)}>
       <p className="text-xs font-semibold uppercase tracking-wider text-muted">
-        Table of contents
+        {label}
       </p>
       <ul className="mt-4 space-y-0.5 border-l border-border">
         {items.map((item) => {

@@ -19,6 +19,15 @@
     "onThisPage": "sur cette page",
     "noMatch": "Aucun article ne correspond à votre recherche. Essayez une autre recherche.",
     "noneYet": "Aucun article pour le moment — revenez bientôt.",
-    "minRead": "min de lecture"
+    "minRead": "min de lecture",
+    "breadcrumbBlog": "Blog",
+    "updated": "mis à jour",
+    "reviewedBy": "Révisé par {name}",
+    "tableOfContents": "Table des matières",
+    "reviewedForAccuracy": "Vérifié pour son exactitude",
+    "reviewDisclosure": "Cet article a été révisé par l'équipe de support technique PushBundle, qui aide régulièrement les marchands Shopify à tester la configuration des offres groupées, les règles de sélection de produits, la tarification des bundles, le comportement du panier et les problèmes liés au paiement.",
+    "aboutTheAuthor": "À propos de l'auteur",
+    "contributor": "Contributeur {brand}",
+    "relatedArticles": "Articles similaires"
   }
 }

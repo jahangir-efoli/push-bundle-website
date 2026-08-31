@@ -19,6 +19,15 @@
     "onThisPage": "このページ",
     "noMatch": "検索に一致する記事がありません。別のキーワードをお試しください。",
     "noneYet": "まだ記事がありません。近日中に公開予定です。",
-    "minRead": "分で読めます"
+    "minRead": "分で読めます",
+    "breadcrumbBlog": "ブログ",
+    "updated": "更新",
+    "reviewedBy": "監修：{name}",
+    "tableOfContents": "目次",
+    "reviewedForAccuracy": "正確性を確認済み",
+    "reviewDisclosure": "この記事は、Shopify マーチャントのバンドル設定、商品選択ルール、バンドル価格、カート動作、チェックアウト関連のバンドル問題のテストを日常的に支援している PushBundle テクニカルサポートチームによって監修されました。",
+    "aboutTheAuthor": "著者について",
+    "contributor": "{brand} 寄稿者",
+    "relatedArticles": "関連記事"
   }
 }

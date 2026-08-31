@@ -19,6 +19,15 @@
     "onThisPage": "en esta página",
     "noMatch": "Ningún artículo coincide con tu búsqueda. Prueba con otra búsqueda.",
     "noneYet": "Todavía no hay artículos: vuelve pronto.",
-    "minRead": "min de lectura"
+    "minRead": "min de lectura",
+    "breadcrumbBlog": "Blog",
+    "updated": "actualizado",
+    "reviewedBy": "Revisado por {name}",
+    "tableOfContents": "Tabla de contenido",
+    "reviewedForAccuracy": "Revisado para verificar su exactitud",
+    "reviewDisclosure": "Este artículo fue revisado por el equipo de soporte técnico de PushBundle, que ayuda regularmente a los comerciantes de Shopify a probar la configuración de paquetes, las reglas de selección de productos, los precios de los paquetes, el comportamiento del carrito y los problemas de paquetes relacionados con el pago.",
+    "aboutTheAuthor": "Sobre el autor",
+    "contributor": "Colaborador de {brand}",
+    "relatedArticles": "Artículos relacionados"
   }
 }
