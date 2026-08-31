@@ -23,7 +23,7 @@ import {
   mapPost,
   mapReview,
 } from "./http/mappers";
-import { fixtureAdapter } from "./fixture-adapter";
+import { fixtureAdapter, DEFAULT_PER_PAGE } from "./fixture-adapter";
 import { site } from "@/lib/site-config";
 import { locales } from "@/i18n/config";
 
@@ -119,7 +119,7 @@ function refsFromPerLocale(
 
 export const httpAdapter: CmsAdapter = {
   // ---- Blog ---------------------------------------------------------------
-  async listPosts({ locale, page = 1, perPage = 10, category }: ListPostsParams) {
+  async listPosts({ locale, page = 1, perPage = DEFAULT_PER_PAGE, category }: ListPostsParams) {
     try {
       const raw = await cmsFetch<unknown>("/api/public/posts", {
         page,

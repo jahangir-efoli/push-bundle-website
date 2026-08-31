@@ -34,7 +34,8 @@ import { faqTextFor } from "./fixtures/faq-i18n";
  * HTTP adapter changes nothing at the call sites.
  */
 
-export const DEFAULT_PER_PAGE = 10;
+/** Posts per page — 12 fills the desktop 3-column grid to 4 complete rows. */
+export const DEFAULT_PER_PAGE = 12;
 
 /** Localized content is not in the fixtures yet — always serve English. */
 function withLocale<T extends { locale: Locale }>(items: T[], locale: Locale): T[] {
