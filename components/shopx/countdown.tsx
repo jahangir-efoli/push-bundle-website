@@ -37,12 +37,28 @@ function Unit({ value, label }: { value: string; label: string }) {
   return (
     <div className="flex flex-col items-center">
       <div
-        className="grid min-w-[3.75rem] place-items-center rounded-xl border border-white/10 bg-white/5 px-3 py-3 font-display text-3xl font-extrabold tabular-nums text-white shadow-soft backdrop-blur-sm sm:min-w-[4.5rem] sm:text-4xl"
-        style={{ boxShadow: "inset 0 1px 0 rgba(255,255,255,0.08)" }}
+        className="relative grid min-w-[3.75rem] place-items-center overflow-hidden rounded-xl border border-white/10 bg-white/[0.04] px-3 py-3 text-3xl font-bold tabular-nums text-white backdrop-blur-sm sm:min-w-[4.5rem] sm:text-4xl"
+        style={{
+          fontFamily: "var(--font-orbitron)",
+          boxShadow:
+            "inset 0 1px 0 rgba(255,255,255,0.08), 0 8px 24px -12px color-mix(in oklab, var(--pb-cyan-400) 60%, transparent)",
+        }}
       >
+        {/* Neon top hairline */}
+        <span
+          aria-hidden="true"
+          className="absolute inset-x-0 top-0 h-px"
+          style={{
+            background:
+              "linear-gradient(90deg, transparent, color-mix(in oklab, var(--pb-cyan-400) 80%, transparent), transparent)",
+          }}
+        />
         {value}
       </div>
-      <span className="mt-2 text-[0.65rem] font-semibold uppercase tracking-widest text-white/50">
+      <span
+        className="mt-2 text-[0.65rem] font-medium uppercase tracking-[0.2em] text-white/45"
+        style={{ fontFamily: "var(--font-jetbrains)" }}
+      >
         {label}
       </span>
     </div>
@@ -60,7 +76,10 @@ export function ShopxCountdown() {
 
   if (state === "live") {
     return (
-      <p className="inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white backdrop-blur-sm">
+      <p
+        className="inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-medium uppercase tracking-wider text-white backdrop-blur-sm"
+        style={{ fontFamily: "var(--font-jetbrains)" }}
+      >
         <span className="relative flex size-2.5">
           <span
             className="absolute inline-flex size-full animate-ping rounded-full opacity-75"
@@ -78,8 +97,11 @@ export function ShopxCountdown() {
 
   if (state === "over") {
     return (
-      <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white/80 backdrop-blur-sm">
-        Thanks for visiting us at ShopX 2026 👋
+      <p
+        className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-medium uppercase tracking-wider text-white/80 backdrop-blur-sm"
+        style={{ fontFamily: "var(--font-jetbrains)" }}
+      >
+        Thanks for visiting us at ShopX 2026
       </p>
     );
   }
