@@ -129,15 +129,6 @@ export default function ShopxPage() {
       className={cn("relative overflow-hidden", orbitron.variable, jetbrains.variable)}
       style={{ backgroundColor: "var(--pb-bg-950)", color: "var(--pb-text-100)" }}
     >
-      {/* Neon hairline at the very top */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-x-0 top-0 h-px"
-        style={{
-          background:
-            "linear-gradient(90deg, transparent, color-mix(in oklab, var(--pb-cyan-400) 70%, transparent) 30%, color-mix(in oklab, var(--pb-indigo-700) 90%, transparent) 70%, transparent)",
-        }}
-      />
       {/* Aurora + grid backdrop */}
       <div
         aria-hidden="true"
