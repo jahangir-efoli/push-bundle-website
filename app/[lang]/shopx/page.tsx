@@ -4,6 +4,7 @@ import { Container } from "@/components/ui/container";
 import { Icon, type IconName } from "@/components/ui/icon";
 import { AnimateIn } from "@/components/motion/animate-in";
 import { ShopxCountdown } from "@/components/shopx/countdown";
+import { FeatureShowcase } from "@/components/sections/feature-showcase";
 import { buttonStyles } from "@/components/ui/button";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { installUrl, site } from "@/lib/site-config";
@@ -15,8 +16,8 @@ import { cn } from "@/lib/utils";
  *
  * PushBundle is a Gold Sponsor of ShopX 2026 (Sep 17, 2026 · Ho Chi Minh City).
  * Reached via a QR code on physical banners + brochures, so it opens with a
- * "you found us" moment and drives three actions: install the app, book a booth
- * demo, and grab a ShopX ticket.
+ * "you found us" moment and drives three actions: install the app, schedule a
+ * meeting with the team, and become an efoli partner.
  *
  * Design (ui-ux-pro-max): dark futuristic + Bento-grid composition, glassmorphic
  * cards, aurora/grid backdrop, and neon cyan accents fused with PushBundle's
@@ -48,7 +49,7 @@ const CYAN = { color: "var(--pb-cyan-400)" } as const;
 const toLocale = (lang: string): Locale => (isLocale(lang) ? lang : "en");
 
 const EVENT_URL = "https://2026.shopxevent.com/";
-const TICKET_URL = "https://2026.shopxevent.com/checkout";
+const PARTNER_URL = "https://partners.efoli.com/signup";
 
 export async function generateMetadata({
   params,
@@ -87,30 +88,10 @@ function Kicker({
   );
 }
 
-const FEATURES: { icon: IconName; title: string; body: string }[] = [
-  {
-    icon: "gauge",
-    title: "Lift AOV on autopilot",
-    body: "Volume discounts, BOGO, and tiered pricing fire automatically at checkout — no theme edits, no code.",
-  },
-  {
-    icon: "sparkles",
-    title: "Built for the AI era",
-    body: "Clean, agent-friendly bundle data and native cart logic that fit the agentic checkout ShopX is all about.",
-  },
-];
-
-const BOOTH: { icon: IconName; text: string }[] = [
+const MEET: { icon: IconName; text: string }[] = [
   { icon: "wand", text: "A 5-minute live build — watch a bundle go from zero to storefront." },
-  { icon: "cart", text: "An exclusive ShopX offer for merchants we meet at the event." },
+  { icon: "cart", text: "An exclusive ShopX offer for merchants we meet during the event." },
   { icon: "shield", text: "Face-time with the team behind the app — bring your hardest use case." },
-];
-
-const STATS: { value: string; label: string }[] = [
-  { value: "250+", label: "Operators" },
-  { value: "18", label: "Speakers" },
-  { value: "17", label: "Sponsors" },
-  { value: "6", label: "Media partners" },
 ];
 
 const META = [
@@ -223,11 +204,11 @@ export default function ShopxPage() {
                 Install PushBundle — free
                 <Icon name="arrow-right" className="size-5" />
               </a>
-              <a href={TICKET_URL} target="_blank" rel="noopener noreferrer" className={buttonStyles({ variant: "inverse", size: "lg" })}>
-                Get your ShopX ticket
+              <a href={PARTNER_URL} target="_blank" rel="noopener noreferrer" className={buttonStyles({ variant: "inverse", size: "lg" })}>
+                Become a partner
               </a>
               <a href={site.calendlyUrl} target="_blank" rel="noopener noreferrer" className={buttonStyles({ variant: "inverseOutline", size: "lg" })}>
-                Book a booth demo
+                Schedule a meeting
               </a>
             </div>
             <p className="mt-5 flex items-center gap-2 text-sm text-white/50">
@@ -239,109 +220,15 @@ export default function ShopxPage() {
           </AnimateIn>
         </Container>
 
-        {/* ============ WHY PUSHBUNDLE — BENTO ============ */}
-        <Container className="pb-16 lg:pb-24">
-          <AnimateIn>
-            <Kicker style={{ color: "var(--pb-coral-400)" }}>Why merchants stop by</Kicker>
-            <h2 className="mt-3 max-w-2xl font-display text-display-sm font-bold text-balance text-white">
-              The bundling engine behind higher-AOV Shopify stores
-            </h2>
-          </AnimateIn>
+        {/* ============ LIVE DEMO SHOWCASE ============ */}
+        {/* The site's interactive bundle demo. Wrapped in `.dark` so its
+            theme-aware section always renders its dark variant, matching this
+            forced-dark page regardless of the visitor's global theme. */}
+        <div className="dark mb-16 lg:mb-24">
+          <FeatureShowcase />
+        </div>
 
-          <div className="mt-10 grid grid-flow-row-dense grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {/* Featured cell */}
-            <AnimateIn className="md:col-span-2 lg:row-span-2">
-              <div className={cn(CARD, "relative flex h-full flex-col overflow-hidden p-7 sm:p-8")}>
-                <div
-                  aria-hidden="true"
-                  className="pointer-events-none absolute inset-0"
-                  style={{
-                    backgroundImage:
-                      "radial-gradient(34rem 20rem at 8% 0%, color-mix(in oklab, var(--pb-cyan-400) 16%, transparent), transparent 60%), radial-gradient(30rem 20rem at 100% 100%, color-mix(in oklab, var(--pb-indigo-700) 40%, transparent), transparent 60%)",
-                  }}
-                />
-                <div className="relative flex h-full flex-col">
-                  <div className="flex items-center justify-between">
-                    <span className="inline-grid size-14 place-items-center rounded-2xl bg-brand-gradient text-white shadow-glow">
-                      <Icon name="layers" className="size-7" />
-                    </span>
-                    <span className="text-xs font-medium uppercase tracking-[0.2em] text-white/40" style={MONO}>
-                      01 / Core
-                    </span>
-                  </div>
-                  <h3 className="mt-6 font-display text-2xl font-bold text-white sm:text-3xl">
-                    Mix &amp; Match bundles
-                  </h3>
-                  <p className="mt-3 max-w-md text-pretty text-white/65">
-                    Let shoppers build their own packs and curated sets — the buying
-                    experience that turns browsers into bigger carts, live in minutes.
-                  </p>
-                  {/* Mini bundle motif */}
-                  <div className="mt-auto flex items-center gap-2 pt-8" aria-hidden="true">
-                    {["Build a box", "3 for 2", "+ Add-on", "Bundle & save"].map((chip, i) => (
-                      <span
-                        key={chip}
-                        className={cn(
-                          "rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-white/70 backdrop-blur-sm",
-                          i > 2 && "hidden sm:inline-block",
-                        )}
-                        style={MONO}
-                      >
-                        {chip}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </AnimateIn>
-
-            {/* Two standard cells */}
-            {FEATURES.map((f, i) => (
-              <AnimateIn key={f.title} delay={0.06 + i * 0.06} className="h-full">
-                <div className={cn(CARD, "h-full p-6")}>
-                  <span className="inline-grid size-12 place-items-center rounded-xl bg-brand-gradient text-white shadow-glow">
-                    <Icon name={f.icon} className="size-6" />
-                  </span>
-                  <h3 className="mt-5 font-display text-lg font-bold text-white">{f.title}</h3>
-                  <p className="mt-2 text-sm text-pretty text-white/65">{f.body}</p>
-                </div>
-              </AnimateIn>
-            ))}
-
-            {/* Wide cell */}
-            <AnimateIn delay={0.18} className="md:col-span-2 lg:col-span-2">
-              <div className={cn(CARD, "flex h-full items-start gap-5 p-6")}>
-                <span className="inline-grid size-12 shrink-0 place-items-center rounded-xl bg-brand-gradient text-white shadow-glow">
-                  <Icon name="globe" className="size-6" />
-                </span>
-                <div>
-                  <h3 className="font-display text-lg font-bold text-white">Native Shopify, ready for APAC</h3>
-                  <p className="mt-2 max-w-xl text-sm text-pretty text-white/65">
-                    Fast, multi-currency, and Online Store 2.0-native — bundles that feel
-                    instant for shoppers across the region, with no performance tax.
-                  </p>
-                </div>
-              </div>
-            </AnimateIn>
-
-            {/* Stat tile (sourced: real Shopify App Store rating) */}
-            <AnimateIn delay={0.24} className="h-full">
-              <div className={cn(CARD, "flex h-full flex-col justify-center p-6 text-center")}>
-                <p className="text-4xl font-bold tabular-nums text-white" style={HEAD}>
-                  {site.rating.score}
-                </p>
-                <p className="mt-1 text-sm" style={CYAN} aria-hidden="true">
-                  ★★★★★
-                </p>
-                <p className="mt-2 text-xs font-medium uppercase tracking-wider text-white/55" style={MONO}>
-                  Shopify App Store rating
-                </p>
-              </div>
-            </AnimateIn>
-          </div>
-        </Container>
-
-        {/* ============ AT THE BOOTH ============ */}
+        {/* ============ SCHEDULE A MEETING ============ */}
         <Container className="pb-16 lg:pb-24">
           <AnimateIn>
             <div className="relative overflow-hidden rounded-3xl border border-white/10 p-8 sm:p-12">
@@ -355,17 +242,18 @@ export default function ShopxPage() {
               />
               <div className="relative grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-center">
                 <div>
-                  <Kicker>Booth · ShopX 2026</Kicker>
+                  <Kicker>Let&apos;s meet · ShopX 2026</Kicker>
                   <h2 className="mt-3 font-display text-display-sm font-bold text-balance text-white">
-                    Meet us on the floor
+                    Book a 1:1 with the team
                   </h2>
                   <p className="mt-4 max-w-lg text-pretty text-white/70">
-                    Find the PushBundle stand at New World Saigon on September 17. Bring
-                    your store — we&apos;ll show you the fastest path to a bigger cart.
+                    In Ho Chi Minh City for ShopX — or anywhere in APAC? Grab a slot with
+                    the PushBundle team. Bring your store and we&apos;ll map the fastest
+                    path to a bigger cart.
                   </p>
                   <div className="mt-8 flex flex-wrap gap-3">
                     <a href={site.calendlyUrl} target="_blank" rel="noopener noreferrer" className={buttonStyles({ variant: "inverse", size: "lg" })}>
-                      Book a demo slot
+                      Schedule a meeting
                     </a>
                     <a href={EVENT_URL} target="_blank" rel="noopener noreferrer" className={buttonStyles({ variant: "inverseOutline", size: "lg" })}>
                       View the agenda
@@ -374,7 +262,7 @@ export default function ShopxPage() {
                 </div>
 
                 <ul className="space-y-4">
-                  {BOOTH.map((b, i) => (
+                  {MEET.map((b, i) => (
                     <AnimateIn key={b.text} delay={0.06 + i * 0.06}>
                       <li className={cn(CARD, "flex items-start gap-3.5 p-4")}>
                         <span className="grid size-10 shrink-0 place-items-center rounded-lg border border-white/10 bg-white/5" style={CYAN}>
@@ -386,35 +274,6 @@ export default function ShopxPage() {
                   ))}
                 </ul>
               </div>
-            </div>
-          </AnimateIn>
-        </Container>
-
-        {/* ============ STATS ============ */}
-        <Container className="pb-16 lg:pb-24">
-          <AnimateIn>
-            <Kicker className="text-center text-white/45">ShopX 2025, in numbers</Kicker>
-            <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
-              {STATS.map((s, i) => (
-                <AnimateIn key={s.label} delay={i * 0.06}>
-                  <div className={cn(CARD, "relative overflow-hidden p-6 text-center")}>
-                    <span
-                      aria-hidden="true"
-                      className="absolute inset-x-0 top-0 h-px"
-                      style={{
-                        background:
-                          "linear-gradient(90deg, transparent, color-mix(in oklab, var(--pb-cyan-400) 70%, transparent), transparent)",
-                      }}
-                    />
-                    <p className="bg-brand-gradient bg-clip-text text-4xl font-bold tabular-nums text-transparent" style={HEAD}>
-                      {s.value}
-                    </p>
-                    <p className="mt-2 text-xs font-medium uppercase tracking-wider text-white/55" style={MONO}>
-                      {s.label}
-                    </p>
-                  </div>
-                </AnimateIn>
-              ))}
             </div>
           </AnimateIn>
         </Container>
@@ -448,9 +307,6 @@ export default function ShopxPage() {
                   >
                     Start your 14-day free trial
                     <span className="sr-only"> (opens in a new tab)</span>
-                  </a>
-                  <a href={TICKET_URL} target="_blank" rel="noopener noreferrer" className={buttonStyles({ variant: "inverseOutline", size: "lg" })}>
-                    Get your ShopX ticket
                   </a>
                 </div>
                 <p className="mt-6 text-sm text-white/85" style={MONO}>
