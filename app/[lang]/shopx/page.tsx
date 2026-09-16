@@ -159,11 +159,7 @@ export default function ShopxPage() {
               <span className="bg-brand-gradient bg-clip-text text-transparent">×</span>{" "}
               ShopX 2026
             </h1>
-            <p className="mt-6 max-w-2xl text-xl font-medium text-pretty text-white/80">
-              Where AI × ecommerce takes shape in APAC — and where smarter Shopify
-              bundling meets you in person.
-            </p>
-            <p className="mt-4 max-w-2xl text-pretty text-white/60">
+            <p className="mt-6 max-w-2xl text-lg text-pretty text-white/70">
               We&apos;re proud to back the region&apos;s AI-native ecommerce summit.
               Come see how PushBundle turns Mix &amp; Match bundles into a bigger
               average order value — automatically, on any Shopify store.
