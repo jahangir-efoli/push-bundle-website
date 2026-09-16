@@ -3,7 +3,6 @@ import { Orbitron, JetBrains_Mono } from "next/font/google";
 import { Container } from "@/components/ui/container";
 import { Icon, type IconName } from "@/components/ui/icon";
 import { AnimateIn } from "@/components/motion/animate-in";
-import { ShopxCountdown } from "@/components/shopx/countdown";
 import { FeatureShowcase } from "@/components/sections/feature-showcase";
 import { buttonStyles } from "@/components/ui/button";
 import { pageMetadata } from "@/lib/seo/metadata";
@@ -48,7 +47,6 @@ const CYAN = { color: "var(--pb-cyan-400)" } as const;
 
 const toLocale = (lang: string): Locale => (isLocale(lang) ? lang : "en");
 
-const EVENT_URL = "https://2026.shopxevent.com/";
 const PARTNER_URL = "https://partners.efoli.com/signup";
 
 export async function generateMetadata({
@@ -88,21 +86,11 @@ function Kicker({
   );
 }
 
-const MEET: { icon: IconName; text: string }[] = [
-  { icon: "wand", text: "A 5-minute live build — watch a bundle go from zero to storefront." },
-  { icon: "cart", text: "An exclusive ShopX offer for merchants we meet during the event." },
-  { icon: "shield", text: "Face-time with the team behind the app — bring your hardest use case." },
-];
-
 const META = [
   { icon: "calendar" as IconName, text: "Thu · Sep 17, 2026" },
   { icon: "globe" as IconName, text: "New World Saigon · Ho Chi Minh City" },
   { icon: "sparkles" as IconName, text: "AI-native ecommerce summit" },
 ];
-
-/** Shared glass-card surface — one elevation scale, one hover behavior. */
-const CARD =
-  "rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-sm transition-[transform,border-color,background-color] duration-200 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.06]";
 
 export default function ShopxPage() {
   return (
@@ -180,14 +168,6 @@ export default function ShopxPage() {
             </ul>
           </AnimateIn>
 
-          {/* Countdown */}
-          <AnimateIn delay={0.15}>
-            <div className="mt-10">
-              <Kicker className="mb-3 text-white/45">Doors open in</Kicker>
-              <ShopxCountdown />
-            </div>
-          </AnimateIn>
-
           {/* CTAs */}
           <AnimateIn delay={0.2}>
             <div className="mt-10 flex flex-wrap items-center gap-3">
@@ -224,56 +204,6 @@ export default function ShopxPage() {
           <FeatureShowcase />
         </div>
 
-        {/* ============ SCHEDULE A MEETING ============ */}
-        <Container className="pb-16 lg:pb-24">
-          <AnimateIn>
-            <div className="relative overflow-hidden rounded-3xl border border-white/10 p-8 sm:p-12">
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-0"
-                style={{
-                  backgroundImage:
-                    "radial-gradient(40rem 22rem at 100% 0%, color-mix(in oklab, var(--pb-cyan-400) 18%, transparent), transparent 60%), radial-gradient(36rem 22rem at 0% 100%, color-mix(in oklab, var(--pb-indigo-700) 50%, transparent), transparent 60%)",
-                }}
-              />
-              <div className="relative grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-center">
-                <div>
-                  <Kicker>Let&apos;s meet · ShopX 2026</Kicker>
-                  <h2 className="mt-3 font-display text-display-sm font-bold text-balance text-white">
-                    Book a 1:1 with the team
-                  </h2>
-                  <p className="mt-4 max-w-lg text-pretty text-white/70">
-                    In Ho Chi Minh City for ShopX — or anywhere in APAC? Grab a slot with
-                    the PushBundle team. Bring your store and we&apos;ll map the fastest
-                    path to a bigger cart.
-                  </p>
-                  <div className="mt-8 flex flex-wrap gap-3">
-                    <a href={site.calendlyUrl} target="_blank" rel="noopener noreferrer" className={buttonStyles({ variant: "inverse", size: "lg" })}>
-                      Schedule a meeting
-                    </a>
-                    <a href={EVENT_URL} target="_blank" rel="noopener noreferrer" className={buttonStyles({ variant: "inverseOutline", size: "lg" })}>
-                      View the agenda
-                    </a>
-                  </div>
-                </div>
-
-                <ul className="space-y-4">
-                  {MEET.map((b, i) => (
-                    <AnimateIn key={b.text} delay={0.06 + i * 0.06}>
-                      <li className={cn(CARD, "flex items-start gap-3.5 p-4")}>
-                        <span className="grid size-10 shrink-0 place-items-center rounded-lg border border-white/10 bg-white/5" style={CYAN}>
-                          <Icon name={b.icon} className="size-5" />
-                        </span>
-                        <p className="text-sm text-white/80">{b.text}</p>
-                      </li>
-                    </AnimateIn>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </AnimateIn>
-        </Container>
-
         {/* ============ FINAL CTA ============ */}
         <Container className="pb-20 lg:pb-28">
           <AnimateIn>
@@ -303,6 +233,14 @@ export default function ShopxPage() {
                   >
                     Start your 14-day free trial
                     <span className="sr-only"> (opens in a new tab)</span>
+                  </a>
+                  <a
+                    href={site.calendlyUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={buttonStyles({ variant: "inverseOutline", size: "lg" })}
+                  >
+                    Schedule a meeting
                   </a>
                 </div>
                 <p className="mt-6 text-sm text-white/85" style={MONO}>
