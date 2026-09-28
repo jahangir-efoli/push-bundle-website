@@ -236,3 +236,16 @@ export const getPartnerContent = makeLoader<PartnerContent>({
   ja: () => import("@/messages/partner/ja.json"),
   zh: () => import("@/messages/partner/zh.json"),
 });
+
+// --- client showcase -------------------------------------------------------
+import type clientShowcaseEn from "@/messages/client-showcase/en.json";
+export type ClientShowcaseContent = typeof clientShowcaseEn;
+export const getClientShowcaseContent = makeLoader<ClientShowcaseContent>({
+  en: () => import("@/messages/client-showcase/en.json"),
+  de: () => import("@/messages/client-showcase/de.json"),
+  fr: () => import("@/messages/client-showcase/fr.json"),
+  es: () => import("@/messages/client-showcase/es.json"),
+  it: () => import("@/messages/client-showcase/it.json"),
+  ja: () => import("@/messages/client-showcase/ja.json"),
+  zh: () => import("@/messages/client-showcase/zh.json"),
+});

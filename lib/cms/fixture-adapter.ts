@@ -2,6 +2,7 @@ import type { CmsAdapter, ListPostsParams } from "./adapter";
 import type {
   Category,
   ChangelogEntry,
+  ClientStory,
   ContentRef,
   DocArticle,
   FaqItem,
@@ -158,6 +159,20 @@ export const fixtureAdapter: CmsAdapter = {
   async listFaqCategories({ locale }) {
     const names = faqTextFor(locale).categories as Record<string, string>;
     return faqCategories.map((c) => ({ ...c, name: names[c.slug] ?? c.name }));
+  },
+
+  // ---- Client showcase --------------------------------------------------
+  // Deliberately no demo clients: a showcase must only ever list real customers.
+  async listClients({ perPage = 12 }): Promise<Paginated<ClientStory>> {
+    return { items: [], page: 1, perPage, total: 0, totalPages: 1 };
+  },
+
+  async getClient() {
+    return null;
+  },
+
+  async getClientLocales(): Promise<Locale[]> {
+    return ["en"];
   },
 
   // ---- Changelog --------------------------------------------------------

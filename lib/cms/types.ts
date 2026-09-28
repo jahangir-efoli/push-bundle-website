@@ -120,6 +120,36 @@ export type Partner = {
   locale: Locale;
 };
 
+/**
+ * Client showcase / case study (cms.md "Clients"). Translatable like posts:
+ * `title`, `excerpt`, `body`, `coverImageAlt` and `seo` come back per locale;
+ * `name`, `logo`, `coverImage`, `link`, `tags` and `author` are shared.
+ */
+export type ClientStory = {
+  slug: string;
+  /** Card title — the store/brand (`clientName`), falling back to `title`. */
+  name: string;
+  /** Showcase headline — the detail page H1. */
+  title: string;
+  excerpt: string;
+  /** Sanitized HTML; empty on list items (only the single endpoint has it). */
+  body: string;
+  logo?: string;
+  coverImage?: string;
+  coverImageAlt?: string;
+  /** The customer's own site. */
+  link?: string;
+  tags: Array<{ slug: string; name: string }>;
+  author?: Person;
+  publishedAt: string;
+  updatedAt: string;
+  readingMinutes: number;
+  locale: Locale;
+  /** True = real translation; false/undefined = English fallback. */
+  isTranslated?: boolean;
+  seo?: Seo & { noIndex?: boolean };
+};
+
 /** Merchant review (docs/PLAN.md §5.1). Powers Review/AggregateRating JSON-LD. */
 export type Review = {
   slug: string;

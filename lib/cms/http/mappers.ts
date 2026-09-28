@@ -2,6 +2,7 @@ import sanitizeHtmlLib from "sanitize-html";
 import type {
   ChangelogCategory,
   ChangelogEntry,
+  ClientStory,
   DocArticle,
   FaqItem,
   Locale,
@@ -345,6 +346,69 @@ export function mapChangelog(c: ApiChangelog): ChangelogEntry {
     date: (c.publishedAt ?? c.date ?? "").slice(0, 10),
     image: pickImage(c.image, c.coverImage, c.featuredImage, c.thumbnail),
     locale: "en",
+  };
+}
+
+// ---- Client showcase ------------------------------------------------------
+type ApiClient = {
+  id: string;
+  title: string;
+  /** Store / brand name — the card title. Null on older entries. */
+  clientName?: string | null;
+  slug: string;
+  excerpt?: string | null;
+  content?: string | null;
+  coverImage?: unknown;
+  coverImageAlt?: string | null;
+  logoUrl?: unknown;
+  link?: string | null;
+  publishedAt: string;
+  updatedAt?: string;
+  readingTimeMinutes?: number;
+  author?: { name?: string; avatarUrl?: unknown; bio?: string | null } | null;
+  tags?: ApiCategory[] | null;
+  metaTitle?: string | null;
+  metaDescription?: string | null;
+  ogImage?: unknown;
+  noIndex?: boolean;
+  isTranslated?: boolean | null;
+};
+
+export function mapClient(c: ApiClient, locale: Locale): ClientStory {
+  const title = decodeEntities(c.title);
+  return {
+    slug: c.slug,
+    // cms.md: `clientName ?? title` — never pull the card title from the body.
+    name: decodeEntities(c.clientName).trim() || title,
+    title,
+    excerpt: decodeEntities(c.excerpt)
+      .replace(/\s*\[(?:…|\.{3})\]\s*$/u, "")
+      .trim(),
+    body: sanitizeHtml(c.content),
+    logo: pickImage(c.logoUrl),
+    coverImage: pickImage(c.coverImage),
+    coverImageAlt: decodeEntities(c.coverImageAlt).trim() || undefined,
+    link: c.link?.trim() || undefined,
+    tags: (c.tags ?? []).map((t) => ({ slug: t.slug, name: decodeEntities(t.name) })),
+    author: c.author?.name
+      ? {
+          name: c.author.name,
+          avatar: pickImage(c.author.avatarUrl),
+          bio: c.author.bio ? decodeEntities(c.author.bio) : undefined,
+        }
+      : undefined,
+    publishedAt: c.publishedAt,
+    updatedAt: c.updatedAt ?? c.publishedAt,
+    readingMinutes: c.readingTimeMinutes ?? 5,
+    locale,
+    // `null` (translation not supported for this site) counts as a fallback.
+    isTranslated: c.isTranslated === true,
+    seo: {
+      metaTitle: c.metaTitle ?? undefined,
+      metaDescription: c.metaDescription ?? undefined,
+      ogImage: pickImage(c.ogImage),
+      noIndex: c.noIndex === true,
+    },
   };
 }
 

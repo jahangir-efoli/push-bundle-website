@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "title": "Client Showcase — Shopify Stores Growing with Bundles",
+    "description": "See how Shopify merchants use PushBundle's Mix & Match, volume and BYOB bundles to raise average order value — real stores, real results."
+  },
+  "eyebrow": "Client showcase",
+  "title": "Stores growing with PushBundle",
+  "subtitle": "Real Shopify merchants, real results. Explore how brands use Mix & Match, volume, and build-your-own-box bundles to lift their average order value.",
+  "ui": {
+    "readMore": "Read the story",
+    "visitStore": "Visit store",
+    "opensNewTab": "(opens in a new tab)",
+    "prev": "Prev",
+    "next": "Next",
+    "paginationAria": "Client story pagination",
+    "emptyTitle": "Client stories are on the way",
+    "emptyBody": "We're writing up how merchants use PushBundle to grow. Check back soon — or start your own success story today.",
+    "emptyCta": "Start your free trial",
+    "breadcrumb": "Client showcase",
+    "minRead": "min read",
+    "tableOfContents": "Table of contents",
+    "moreStories": "More client stories",
+    "allStories": "All client stories"
+  }
+}

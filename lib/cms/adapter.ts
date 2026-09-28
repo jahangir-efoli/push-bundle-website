@@ -2,6 +2,7 @@ import type {
   AggregateRating,
   Category,
   ChangelogEntry,
+  ClientStory,
   ContentRef,
   DocArticle,
   FaqItem,
@@ -70,6 +71,19 @@ export interface CmsAdapter {
   listFaqCategories(params: {
     locale: Locale;
   }): Promise<Array<{ slug: string; name: string }>>;
+
+  // ---- Client showcase --------------------------------------------------
+  /** Case studies, newest first. Never padded with demo data — an empty CMS
+   * yields an empty list so the page shows its empty state, not fake clients. */
+  listClients(params: {
+    locale: Locale;
+    page?: number;
+    perPage?: number;
+    tag?: string;
+  }): Promise<Paginated<ClientStory>>;
+  getClient(params: { locale: Locale; slug: string }): Promise<ClientStory | null>;
+  /** Locales a client story is REALLY translated in (always includes `en`). */
+  getClientLocales(params: { slug: string }): Promise<Locale[]>;
 
   // ---- Changelog --------------------------------------------------------
   listChangelog(params: { locale: Locale }): Promise<ChangelogEntry[]>;

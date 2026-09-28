@@ -27,6 +27,9 @@ export async function POST(req: NextRequest) {
   // Refresh the specific path the CMS names, plus everything CMS-tagged
   // (covers listings/teasers that surface the changed item). Next 16 requires
   // a cacheLife profile as revalidateTag's second argument.
+  // The CMS sends client stories as `/clients-showcase/…`; our route is
+  // `/client-showcase/…` (see next.config redirects).
+  path = path.replace(/\/clients-showcase(?=\/|$)/, "/client-showcase");
   revalidatePath(path);
   revalidateTag("cms", "max");
 

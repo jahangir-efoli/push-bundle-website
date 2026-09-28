@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "title": "Kunden-Showcase — Shopify-Shops, die mit Bundles wachsen",
+    "description": "Sehen Sie, wie Shopify-Händler die Mix-&-Match-, Mengen- und BYOB-Bundles von PushBundle nutzen, um den durchschnittlichen Bestellwert zu steigern — echte Shops, echte Ergebnisse."
+  },
+  "eyebrow": "Kunden-Showcase",
+  "title": "Shops, die mit PushBundle wachsen",
+  "subtitle": "Echte Shopify-Händler, echte Ergebnisse. Entdecken Sie, wie Marken Mix-&-Match-, Mengen- und Build-your-own-Box-Bundles nutzen, um ihren durchschnittlichen Bestellwert zu steigern.",
+  "ui": {
+    "readMore": "Zur Erfolgsgeschichte",
+    "visitStore": "Shop besuchen",
+    "opensNewTab": "(wird in einem neuen Tab geöffnet)",
+    "prev": "Zurück",
+    "next": "Weiter",
+    "paginationAria": "Seitennavigation der Kundengeschichten",
+    "emptyTitle": "Kundengeschichten folgen in Kürze",
+    "emptyBody": "Wir dokumentieren gerade, wie Händler mit PushBundle wachsen. Schauen Sie bald wieder vorbei — oder starten Sie noch heute Ihre eigene Erfolgsgeschichte.",
+    "emptyCta": "Kostenlos testen",
+    "breadcrumb": "Kunden-Showcase",
+    "minRead": "Min. Lesezeit",
+    "tableOfContents": "Inhaltsverzeichnis",
+    "moreStories": "Weitere Kundengeschichten",
+    "allStories": "Alle Kundengeschichten"
+  }
+}

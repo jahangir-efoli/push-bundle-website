@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "title": "Vitrine clients — Des boutiques Shopify qui grandissent grâce aux bundles",
+    "description": "Découvrez comment les marchands Shopify utilisent les bundles Mix & Match, par volume et BYOB de PushBundle pour augmenter leur panier moyen — de vraies boutiques, de vrais résultats."
+  },
+  "eyebrow": "Vitrine clients",
+  "title": "Des boutiques qui grandissent avec PushBundle",
+  "subtitle": "De vrais marchands Shopify, de vrais résultats. Découvrez comment des marques utilisent les bundles Mix & Match, par volume et « compose ta box » pour augmenter leur panier moyen.",
+  "ui": {
+    "readMore": "Lire l'étude de cas",
+    "visitStore": "Visiter la boutique",
+    "opensNewTab": "(ouvre dans un nouvel onglet)",
+    "prev": "Préc.",
+    "next": "Suivant",
+    "paginationAria": "Pagination des témoignages clients",
+    "emptyTitle": "Les témoignages clients arrivent bientôt",
+    "emptyBody": "Nous rédigeons actuellement la façon dont les marchands utilisent PushBundle pour se développer. Revenez bientôt — ou lancez dès aujourd'hui votre propre réussite.",
+    "emptyCta": "Commencer l'essai gratuit",
+    "breadcrumb": "Vitrine clients",
+    "minRead": "min de lecture",
+    "tableOfContents": "Table des matières",
+    "moreStories": "Autres témoignages clients",
+    "allStories": "Tous les témoignages clients"
+  }
+}

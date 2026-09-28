@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "title": "Casi di successo — Negozi Shopify che crescono con i bundle",
+    "description": "Scopri come i merchant Shopify usano i bundle Mix & Match, a volume e BYOB di PushBundle per aumentare il valore medio dell'ordine: negozi reali, risultati reali."
+  },
+  "eyebrow": "Casi di successo",
+  "title": "Negozi che crescono con PushBundle",
+  "subtitle": "Merchant Shopify reali, risultati reali. Scopri come i brand usano i bundle Mix & Match, a volume e «componi la tua box» per aumentare il valore medio dell'ordine.",
+  "ui": {
+    "readMore": "Leggi la storia",
+    "visitStore": "Visita il negozio",
+    "opensNewTab": "(si apre in una nuova scheda)",
+    "prev": "Prec.",
+    "next": "Succ.",
+    "paginationAria": "Paginazione delle storie dei clienti",
+    "emptyTitle": "Le storie dei clienti arriveranno presto",
+    "emptyBody": "Stiamo raccontando come i merchant crescono con PushBundle. Torna presto, oppure inizia oggi la tua storia di successo.",
+    "emptyCta": "Inizia la prova gratuita",
+    "breadcrumb": "Casi di successo",
+    "minRead": "min di lettura",
+    "tableOfContents": "Indice",
+    "moreStories": "Altre storie di clienti",
+    "allStories": "Tutte le storie dei clienti"
+  }
+}

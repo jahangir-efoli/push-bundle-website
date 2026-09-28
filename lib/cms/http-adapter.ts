@@ -3,6 +3,7 @@ import type {
   AggregateRating,
   Category,
   ChangelogEntry,
+  ClientStory,
   ContentRef,
   DocArticle,
   FaqItem,
@@ -16,6 +17,7 @@ import { cmsFetch } from "./http/client";
 import {
   categoriesFromPosts,
   mapChangelog,
+  mapClient,
   mapDoc,
   mapDocs,
   mapFaqs,
@@ -282,6 +284,70 @@ export const httpAdapter: CmsAdapter = {
     }
   },
 
+  // ---- Client showcase ----------------------------------------------------
+  // Unlike the other collections these never fall back to fixtures: padding a
+  // real client showcase with demo "customers" would be misleading, so an empty
+  // or failed CMS response yields an empty list (the page shows an empty state).
+  async listClients({ locale, page = 1, perPage = 12, tag }) {
+    const empty: Paginated<ClientStory> = { items: [], page: 1, perPage, total: 0, totalPages: 1 };
+    try {
+      const raw = await cmsFetch<unknown>("/api/public/clients", {
+        page,
+        limit: perPage,
+        tag,
+        locale: apiLocale(locale),
+      });
+      const { items, total, totalPages, page: gotPage, limit } = readListEnvelope(raw, "clients");
+      if (!items.length) return empty;
+      const resolvedTotal = total ?? items.length;
+      const resolvedPerPage = limit ?? perPage;
+      return {
+        items: items.map((c) => mapClient(c as Parameters<typeof mapClient>[0], locale)),
+        page: gotPage ?? page,
+        perPage: resolvedPerPage,
+        total: resolvedTotal,
+        totalPages: totalPages ?? Math.max(1, Math.ceil(resolvedTotal / resolvedPerPage)),
+      };
+    } catch {
+      return empty;
+    }
+  },
+
+  async getClient({ locale, slug }) {
+    try {
+      const c = await cmsFetch<Parameters<typeof mapClient>[0]>(
+        `/api/public/clients/${slug}`,
+        { locale: apiLocale(locale) },
+      );
+      return mapClient(c, locale);
+    } catch {
+      return null;
+    }
+  },
+
+  async getClientLocales({ slug }): Promise<Locale[]> {
+    // Same shared-list probe as getPostLocales (Next dedupes the identical URLs).
+    const nonEn = locales.filter((l) => l !== "en");
+    const translated = await Promise.all(
+      nonEn.map(async (l): Promise<Locale | null> => {
+        try {
+          const raw = await cmsFetch<unknown>("/api/public/clients", {
+            limit: 100,
+            locale: apiLocale(l),
+          });
+          const items = readListEnvelope(raw, "clients").items as Array<{
+            slug: string;
+            isTranslated?: boolean | null;
+          }>;
+          return items.find((c) => c.slug === slug)?.isTranslated === true ? l : null;
+        } catch {
+          return null;
+        }
+      }),
+    );
+    return ["en", ...translated.filter((l): l is Locale => l !== null)];
+  },
+
   // ---- Changelog ----------------------------------------------------------
   async listChangelog({ locale }): Promise<ChangelogEntry[]> {
     try {
@@ -380,9 +446,39 @@ export const httpAdapter: CmsAdapter = {
         this.listCategories({ locale }),
       ]);
 
+      // Client stories, translation-aware like posts/docs. A separate await so a
+      // clients hiccup can never drop the posts/docs refs gathered above.
+      const perLocaleClients = await Promise.all(
+        locales.map(async (l): Promise<readonly [Locale, Translatable[]]> => {
+          try {
+            const raw = await cmsFetch<unknown>("/api/public/clients", {
+              limit: 100,
+              locale: apiLocale(l),
+            });
+            const items = readListEnvelope(raw, "clients").items as Array<{
+              slug: string;
+              updatedAt?: string;
+              publishedAt: string;
+              isTranslated?: boolean | null;
+            }>;
+            return [
+              l,
+              items.map((c) => ({
+                slug: c.slug,
+                updatedAt: c.updatedAt ?? c.publishedAt,
+                isTranslated: c.isTranslated === true,
+              })),
+            ];
+          } catch {
+            return [l, []];
+          }
+        }),
+      );
+
       const refs: ContentRef[] = [
         ...refsFromPerLocale(perLocalePosts, (s) => `/blog/${s}`),
         ...refsFromPerLocale(perLocaleDocs, (s) => `/docs/${s}`),
+        ...refsFromPerLocale(perLocaleClients, (s) => `/client-showcase/${s}`),
       ];
       // Blog category archives are localized list pages → all locales (default).
       for (const c of categories) refs.push({ path: `/blog/category/${c.slug}`, updatedAt: "" });

@@ -1,4 +1,8 @@
 import type { NextConfig } from "next";
+import { defaultLocale, locales } from "./i18n/config";
+
+// Non-default locale prefixes, e.g. "de|fr|es|it|ja|zh" (one source: i18n/config).
+const LOCALE_RE = locales.filter((l) => l !== defaultLocale).join("|");
 
 const nextConfig: NextConfig = {
   // The URL scheme is no-trailing-slash (docs/PLAN.md §8). Next's built-in
@@ -46,6 +50,12 @@ const nextConfig: NextConfig = {
       // Defensive: plural partners → the canonical singular slug.
       { source: "/partners", destination: "/partner", permanent: true },
       { source: "/partners/:path*", destination: "/partner", permanent: true },
+      // The CMS links client stories as `/clients-showcase/{slug}` (cms.md); the
+      // site's route is `/client-showcase`. Redirect the CMS spelling, per locale.
+      { source: "/clients-showcase", destination: "/client-showcase", permanent: true },
+      { source: "/clients-showcase/:path*", destination: "/client-showcase/:path*", permanent: true },
+      { source: `/:locale(${LOCALE_RE})/clients-showcase`, destination: "/:locale/client-showcase", permanent: true },
+      { source: `/:locale(${LOCALE_RE})/clients-showcase/:path*`, destination: "/:locale/client-showcase/:path*", permanent: true },
     ];
   },
 };

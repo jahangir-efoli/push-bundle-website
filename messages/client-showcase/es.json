@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "title": "Casos de clientes — Tiendas Shopify que crecen con paquetes",
+    "description": "Descubre cómo los comerciantes de Shopify usan los paquetes Mix & Match, por volumen y BYOB de PushBundle para aumentar el valor medio del pedido: tiendas reales, resultados reales."
+  },
+  "eyebrow": "Casos de clientes",
+  "title": "Tiendas que crecen con PushBundle",
+  "subtitle": "Comerciantes reales de Shopify, resultados reales. Descubre cómo las marcas usan paquetes Mix & Match, por volumen y de «arma tu caja» para aumentar el valor medio de sus pedidos.",
+  "ui": {
+    "readMore": "Leer el caso",
+    "visitStore": "Visitar tienda",
+    "opensNewTab": "(se abre en una pestaña nueva)",
+    "prev": "Anterior",
+    "next": "Siguiente",
+    "paginationAria": "Paginación de casos de clientes",
+    "emptyTitle": "Pronto publicaremos casos de clientes",
+    "emptyBody": "Estamos documentando cómo los comerciantes crecen con PushBundle. Vuelve pronto, o empieza hoy tu propia historia de éxito.",
+    "emptyCta": "Empieza tu prueba gratuita",
+    "breadcrumb": "Casos de clientes",
+    "minRead": "min de lectura",
+    "tableOfContents": "Tabla de contenido",
+    "moreStories": "Más casos de clientes",
+    "allStories": "Todos los casos de clientes"
+  }
+}

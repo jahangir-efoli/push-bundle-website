@@ -41,7 +41,7 @@ Pages, and where their data comes from:
 | Knowledge base index | `GET /api/public/docs` |
 | Doc article | `GET /api/public/docs/{slug}` |
 | FAQ page | `GET /api/public/faqs` |
-| Case-study grid + detail | `GET /api/public/clients`, `/clients/{slug}` |
+| Case-study grid + detail | `GET /api/public/clients` (`?tag=` to filter), `/clients/{slug}` |
 | Changelog timeline | `GET /api/public/changelogs` |
 | Partners section | `GET /api/public/partners` |
 | Testimonials | `GET /api/public/opinions` |
@@ -172,8 +172,10 @@ Same as a list item plus `content` (full HTML), `metaTitle`, `metaDescription`,
 
 ## Multi-language
 
-Blog posts can be published in seven languages. English is the base and needs no
-`locale` parameter.
+Blog posts, help docs, changelog entries and client showcases can be published in
+several languages. English is the base and needs no `locale` parameter. The same
+`?locale=` parameter, fallback and `isTranslated` field work on all four (FAQs,
+partners and opinions are English-only for now).
 
 | Code | Language | English name | Storefront path |
 | --- | --- | --- | --- |
@@ -184,6 +186,9 @@ Blog posts can be published in seven languages. English is the base and needs no
 | `es` | Español | Spanish | `/es/blog/...` |
 | `zh` | 简体中文 | Chinese (Simplified) | `/zh/blog/...` |
 | `it` | Italiano | Italian | `/it/blog/...` |
+
+Localised paths per type: `/{locale}/blog/{slug}`, `/{locale}/academy/{slug}`,
+`/{locale}/changelog/{slug}`, `/{locale}/clients-showcase/{slug}`.
 
 ### Fallback behaviour
 
@@ -208,6 +213,10 @@ Two extra fields appear on each item (and `locale` on the list envelope):
 | metaTitle, metaDescription | author, publishedAt |
 | coverImageAlt | readingTime is recalculated per language |
 
+Client showcases follow the same table, and additionally share the store name
+(`clientName`), logo and website link. Changelog has no excerpt or cover, so only
+its title, content and meta fields are translated.
+
 Because the slug never changes, a language switcher only has to swap the path
 prefix.
 
@@ -227,8 +236,9 @@ Also emit `hreflang="x-default"` pointing at the English URL.
 
 ## Other content types
 
-All English-only for now — a `locale` parameter is accepted but ignored.
-Every endpoint needs `?site=<slug>`.
+Help docs, changelog and clients accept `?locale=` exactly like posts (see
+Multi-language above). FAQs, partners and opinions are English-only for now — a
+`locale` parameter is accepted but ignored there. Every endpoint needs `?site=<slug>`.
 
 ### Help docs
 
@@ -311,6 +321,7 @@ Good candidate for `FAQPage` structured data on the page that renders it.
 
 ```
 GET https://efoli-cms.vercel.app/api/public/clients?site=discountray&page=1&limit=12
+GET https://efoli-cms.vercel.app/api/public/clients?site=discountray&tag=wholesale
 GET https://efoli-cms.vercel.app/api/public/clients/{slug}?site=discountray
 ```
 
@@ -318,14 +329,16 @@ GET https://efoli-cms.vercel.app/api/public/clients/{slug}?site=discountray
 {
   "clients": [
     {
-      "id": "clx…", "title": "Keystone Meats", "slug": "keystone-meats",
+      "id": "clx…", "title": "How Keystone Cut Order Errors by 80%",
+      "clientName": "Keystone Meats", "slug": "keystone-meats",
       "excerpt": "How Keystone cut order errors…",
       "coverImage": "https://…/cover.webp", "coverImageAlt": "Keystone storefront",
       "logoUrl": "https://…/logo.webp",
       "link": "https://keystonemeats.com",
       "publishedAt": "2026-03-31T11:39:44.000Z",
       "readingTimeMinutes": 6,
-      "author": { "name": "Mehedi Hasan", "avatarUrl": "https://…" }
+      "author": { "name": "Mehedi Hasan", "avatarUrl": "https://…" },
+      "tags": [ { "name": "Wholesale", "slug": "wholesale" } ]
     }
   ],
   "total": 14, "page": 1, "limit": 12, "totalPages": 2
@@ -333,7 +346,25 @@ GET https://efoli-cms.vercel.app/api/public/clients/{slug}?site=discountray
 ```
 
 Single client adds `content` (HTML), `metaTitle`, `metaDescription`, `ogImage`,
-`canonicalUrl`, `noIndex` and `updatedAt`.
+`canonicalUrl`, `noIndex` and `updatedAt`, and the author gains `bio`:
+`"author": { "name": "…", "avatarUrl": "…", "bio": "…" }` (`bio` can be null).
+
+**Card title vs. headline.** `clientName` is the store / brand name — use it
+as the card title on the Clients grid. `title` is the showcase headline — use
+it as the page H1. They are edited separately in the CMS, so changing the
+headline never renames the card. `clientName` can be null on older entries,
+so fall back to `title`. Never pull the card title from an `<h1>` in `content`.
+
+```js
+const cardTitle = client.clientName ?? client.title
+```
+
+`tags` share the site's tag pool with posts; filter the grid with `?tag={slug}`.
+
+Translatable: add `?locale=ja` to either endpoint. The headline, excerpt, content,
+cover alt text, meta fields and reading time come back translated (or English,
+with `isTranslated: false`). `clientName`, logo, cover image, link, tags and
+author are shared. Page path: `/{locale}/clients-showcase/{slug}`.
 
 `logoUrl` is the brand mark for the grid; `coverImage` is the hero on the
 detail page; `link` is the customer's own site. Any of them can be null.
@@ -629,7 +660,8 @@ Paths the CMS sends for a blog post change:
 ```
 
 Other types use `/academy` (docs), `/clients-showcase`, `/changelog`,
-`/partners`, `/faq` and `/opinions`.
+`/partners`, `/faq` and `/opinions`. Translatable types (docs, changelog, clients)
+also get their `/{locale}/…` versions, like the blog example above.
 
 ---
 

@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "title": "客户案例 — 借助捆绑销售实现增长的 Shopify 店铺",
+    "description": "了解 Shopify 商家如何使用 PushBundle 的 Mix & Match、批量折扣和自选礼盒捆绑提升平均订单价值——真实店铺，真实成果。"
+  },
+  "eyebrow": "客户案例",
+  "title": "借助 PushBundle 实现增长的店铺",
+  "subtitle": "真实的 Shopify 商家，真实的成果。探索品牌如何使用 Mix & Match、批量折扣和自选礼盒捆绑来提升平均订单价值。",
+  "ui": {
+    "readMore": "阅读案例",
+    "visitStore": "访问店铺",
+    "opensNewTab": "（在新标签页中打开）",
+    "prev": "上一页",
+    "next": "下一页",
+    "paginationAria": "客户案例分页",
+    "emptyTitle": "客户案例即将上线",
+    "emptyBody": "我们正在整理商家如何借助 PushBundle 实现增长。敬请期待——或者今天就开启您自己的成功故事。",
+    "emptyCta": "开始免费试用",
+    "breadcrumb": "客户案例",
+    "minRead": "分钟阅读",
+    "tableOfContents": "目录",
+    "moreStories": "更多客户案例",
+    "allStories": "全部客户案例"
+  }
+}

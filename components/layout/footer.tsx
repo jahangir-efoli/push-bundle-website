@@ -43,6 +43,7 @@ export function Footer({
     { label: dict.nav.docs, href: localizePath("/docs", locale) },
     { label: dict.nav.blog, href: localizePath("/blog", locale) },
     { label: dict.nav.partners, href: localizePath("/partner", locale) },
+    { label: dict.nav.clientShowcase, href: localizePath("/client-showcase", locale) },
   ];
 
   return (
