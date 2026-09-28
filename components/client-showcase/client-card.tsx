@@ -14,36 +14,6 @@ export function formatStoryDate(iso: string, locale: Locale) {
   }).format(new Date(iso));
 }
 
-/** Brand logo on a neutral tile; initials fallback when the CMS has none. */
-export function ClientLogo({
-  client,
-  className,
-}: {
-  client: Pick<ClientStory, "name" | "logo">;
-  className?: string;
-}) {
-  return (
-    <div
-      className={cn(
-        "grid h-24 place-items-center rounded-xl border border-border bg-surface-subtle px-6",
-        className,
-      )}
-    >
-      {client.logo ? (
-        /* eslint-disable-next-line @next/next/no-img-element */
-        <img
-          src={client.logo}
-          alt={`${client.name} logo`}
-          className="max-h-14 max-w-full object-contain"
-          loading="lazy"
-        />
-      ) : (
-        <LogoHolder name={client.name} className="size-14 text-xl" />
-      )}
-    </div>
-  );
-}
-
 /** Just what a listing card renders — keeps tags/author/SEO out of the
  * serialized props of the client-side grid (tags belong to the story page). */
 export type ClientCardData = Pick<ClientStory, "slug" | "name" | "excerpt" | "logo">;

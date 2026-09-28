@@ -8,11 +8,7 @@ import { TableOfContents } from "@/components/blog/table-of-contents";
 import { TrialCta } from "@/components/sections/trial-cta";
 import { JsonLd } from "@/components/seo/json-ld";
 import { buttonStyles } from "@/components/ui/button";
-import {
-  ClientCard,
-  ClientLogo,
-  formatStoryDate,
-} from "@/components/client-showcase/client-card";
+import { ClientCard, formatStoryDate } from "@/components/client-showcase/client-card";
 import { breadcrumbLd } from "@/lib/seo/structured-data";
 import { localeAlternates } from "@/lib/seo/metadata";
 import { processArticle } from "@/lib/blog/toc";
@@ -143,24 +139,9 @@ export default async function ClientStoryPage({ params }: Props) {
               </ol>
             </nav>
 
-            <div className="mt-8 flex flex-wrap items-center gap-4">
-              <ClientLogo
-                client={client}
-                className="h-16 w-auto min-w-28 border-white/10 bg-white px-4"
-              />
-              {/* Brand label only when the CMS has a real `clientName` — older
-                  entries fall back to the headline, which the H1 already shows. */}
-              {client.name !== client.title && (
-                <p className="font-display text-lg font-bold">{client.name}</p>
-              )}
-            </div>
-
-            <h1 className="mt-6 max-w-4xl text-display-lg text-balance">{client.title}</h1>
-            {client.excerpt && (
-              <p className="mt-5 max-w-3xl text-lg text-pretty text-inverse-foreground/80">
-                {client.excerpt}
-              </p>
-            )}
+            {/* Title only — logo, client name and excerpt are intentionally not
+                shown here (the excerpt still feeds meta description / OG). */}
+            <h1 className="mt-8 max-w-4xl text-display-lg text-balance">{client.title}</h1>
 
             <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
               <p className="text-sm text-inverse-foreground/65">
