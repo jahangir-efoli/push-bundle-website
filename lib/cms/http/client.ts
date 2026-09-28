@@ -12,8 +12,11 @@ import "server-only";
  * If CMS_SITE_URL is unset, the adapter serves the local fixtures instead of
  * hitting the network (CMS_ENABLED is false).
  *
- * Caching: cache indefinitely + tag "cms"; the CMS pushes updates via
- * /api/revalidate (revalidateTag). Never caches forever without that route.
+ * Caching: tag "cms" + a time-based safety net. The CMS webhook
+ * (/api/revalidate → revalidateTag) is the instant path; CMS_REVALIDATE_SECONDS
+ * bounds staleness if a webhook is missed or misconfigured. Without it a
+ * response cached before content existed (e.g. an empty list) would persist
+ * indefinitely — Vercel's Data Cache even survives redeploys.
  */
 export const CMS_BASE = (process.env.CMS_SITE_URL ?? "").trim().replace(/\/+$/, "");
 
@@ -26,6 +29,9 @@ export const CMS_SITE = (process.env.CMS_SITE ?? "").trim();
  */
 const FORCE_FIXTURES = /^(1|true)$/i.test(process.env.CMS_USE_FIXTURES ?? "");
 export const CMS_ENABLED = Boolean(CMS_BASE) && !FORCE_FIXTURES;
+
+/** Upper bound on CMS staleness when the revalidate webhook is missed. */
+const CMS_REVALIDATE_SECONDS = 300;
 
 /** Retries for transient upstream failures (network error / 5xx). A 4xx is
  * definitive and never retried — a real 404 must stay a 404. One retry with a
@@ -47,7 +53,7 @@ export async function cmsFetch<T>(
     let res: Response;
     try {
       res = await fetch(url, {
-        next: { tags: ["cms"] },
+        next: { tags: ["cms"], revalidate: CMS_REVALIDATE_SECONDS },
         headers: { Accept: "application/json" },
       });
     } catch (err) {

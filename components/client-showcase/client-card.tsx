@@ -87,7 +87,7 @@ export function ClientCard({
 
       <div className="mt-auto pt-6">
         <Link
-          href={`/client-showcase/${client.slug}`}
+          href={`/clients-showcase/${client.slug}`}
           className={buttonStyles({
             variant: "secondary",
             size: "sm",

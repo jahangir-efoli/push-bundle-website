@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // cms.md SEO rule: a real translation self-canonicalizes and joins hreflang;
   // an English fallback canonicals to the English URL and is left out.
   const availableLocales = await cms.getClientLocales({ slug: client.slug });
-  const alternates = localeAlternates(`/client-showcase/${client.slug}`, locale, availableLocales);
+  const alternates = localeAlternates(`/clients-showcase/${client.slug}`, locale, availableLocales);
   const description = client.seo?.metaDescription ?? client.excerpt;
   const ogImage = client.seo?.ogImage ?? client.coverImage ?? OG_IMAGE;
 
@@ -65,7 +65,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 function articleLd(client: ClientStory, locale: Locale) {
-  const url = `${SITE_URL}${localizePath(`/client-showcase/${client.slug}`, locale)}`;
+  const url = `${SITE_URL}${localizePath(`/clients-showcase/${client.slug}`, locale)}`;
   return {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -111,8 +111,8 @@ export default async function ClientStoryPage({ params }: Props) {
       <JsonLd
         data={breadcrumbLd([
           { name: "Home", path: "/" },
-          { name: "Client showcase", path: "/client-showcase" },
-          { name: client.title, path: `/client-showcase/${client.slug}` },
+          { name: "Client showcase", path: "/clients-showcase" },
+          { name: client.title, path: `/clients-showcase/${client.slug}` },
         ])}
       />
 
@@ -132,7 +132,7 @@ export default async function ClientStoryPage({ params }: Props) {
               <ol className="flex flex-wrap items-center gap-2">
                 <li>
                   <Link
-                    href="/client-showcase"
+                    href="/clients-showcase"
                     className="transition-colors hover:text-inverse-foreground hover:underline"
                   >
                     {ui.breadcrumb}
@@ -247,7 +247,7 @@ export default async function ClientStoryPage({ params }: Props) {
             <div className="flex flex-wrap items-end justify-between gap-4">
               <h2 className="text-display-sm">{ui.moreStories}</h2>
               <Link
-                href="/client-showcase"
+                href="/clients-showcase"
                 className="inline-flex min-h-11 items-center font-semibold text-primary underline underline-offset-4"
               >
                 {ui.allStories} <span aria-hidden="true" className="ml-1">→</span>

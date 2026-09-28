@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return pageMetadata({
     title: meta.title,
     description: meta.description,
-    path: "/client-showcase",
+    path: "/clients-showcase",
     locale,
   });
 }
@@ -42,7 +42,7 @@ function collectionLd(clients: ClientStory[], locale: Locale, name: string) {
         "@type": "ListItem",
         position: i + 1,
         name: c.name,
-        url: `${SITE_URL}${localizePath(`/client-showcase/${c.slug}`, locale)}`,
+        url: `${SITE_URL}${localizePath(`/clients-showcase/${c.slug}`, locale)}`,
       })),
     },
   };
@@ -66,7 +66,7 @@ export default async function ClientShowcasePage({ params }: Props) {
       <JsonLd
         data={breadcrumbLd([
           { name: "Home", path: "/" },
-          { name: "Client showcase", path: "/client-showcase" },
+          { name: "Client showcase", path: "/clients-showcase" },
         ])}
       />
 
@@ -82,7 +82,7 @@ export default async function ClientShowcasePage({ params }: Props) {
             <h2 className="mt-6 font-display text-display-sm text-balance">{ui.emptyTitle}</h2>
             <p className="mt-3 text-pretty text-muted">{ui.emptyBody}</p>
             <a
-              href={installUrl("client-showcase-empty")}
+              href={installUrl("clients-showcase-empty")}
               target="_blank"
               rel="noopener noreferrer"
               className={buttonStyles({ variant: "gradient", className: "mt-8" })}

@@ -31,7 +31,7 @@ const STATIC_PATHS: Array<{
   { path: "/contact-us", priority: 0.6, changeFrequency: "monthly" },
   { path: "/faq", priority: 0.7, changeFrequency: "monthly" },
   { path: "/partner", priority: 0.5, changeFrequency: "monthly" },
-  { path: "/client-showcase", priority: 0.6, changeFrequency: "weekly" },
+  { path: "/clients-showcase", priority: 0.6, changeFrequency: "weekly" },
   { path: "/blog", priority: 0.8, changeFrequency: "weekly" },
   { path: "/docs", priority: 0.7, changeFrequency: "weekly" },
   { path: "/changelog", priority: 0.5, changeFrequency: "weekly" },

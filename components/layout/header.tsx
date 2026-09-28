@@ -65,7 +65,7 @@ export function Header({
   ];
   const resourcesNav = [
     { label: dict.nav.partners, href: localizePath("/partner", locale), bare: "/partner" },
-    { label: dict.nav.clientShowcase, href: localizePath("/client-showcase", locale), bare: "/client-showcase" },
+    { label: dict.nav.clientShowcase, href: localizePath("/clients-showcase", locale), bare: "/clients-showcase" },
     { label: dict.nav.docs, href: localizePath("/docs", locale), bare: "/docs" },
     { label: dict.nav.blog, href: localizePath("/blog", locale), bare: "/blog" },
     { label: dict.nav.changelog, href: localizePath("/changelog", locale), bare: "/changelog" },

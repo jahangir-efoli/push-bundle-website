@@ -50,12 +50,12 @@ const nextConfig: NextConfig = {
       // Defensive: plural partners → the canonical singular slug.
       { source: "/partners", destination: "/partner", permanent: true },
       { source: "/partners/:path*", destination: "/partner", permanent: true },
-      // The CMS links client stories as `/clients-showcase/{slug}` (cms.md); the
-      // site's route is `/client-showcase`. Redirect the CMS spelling, per locale.
-      { source: "/clients-showcase", destination: "/client-showcase", permanent: true },
-      { source: "/clients-showcase/:path*", destination: "/client-showcase/:path*", permanent: true },
-      { source: `/:locale(${LOCALE_RE})/clients-showcase`, destination: "/:locale/client-showcase", permanent: true },
-      { source: `/:locale(${LOCALE_RE})/clients-showcase/:path*`, destination: "/:locale/client-showcase/:path*", permanent: true },
+      // The route briefly shipped as the singular `/client-showcase`; send any
+      // stray links to the canonical `/clients-showcase` (the CMS's own path).
+      { source: "/client-showcase", destination: "/clients-showcase", permanent: true },
+      { source: "/client-showcase/:path*", destination: "/clients-showcase/:path*", permanent: true },
+      { source: `/:locale(${LOCALE_RE})/client-showcase`, destination: "/:locale/clients-showcase", permanent: true },
+      { source: `/:locale(${LOCALE_RE})/client-showcase/:path*`, destination: "/:locale/clients-showcase/:path*", permanent: true },
     ];
   },
 };

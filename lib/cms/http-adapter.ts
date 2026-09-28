@@ -478,7 +478,7 @@ export const httpAdapter: CmsAdapter = {
       const refs: ContentRef[] = [
         ...refsFromPerLocale(perLocalePosts, (s) => `/blog/${s}`),
         ...refsFromPerLocale(perLocaleDocs, (s) => `/docs/${s}`),
-        ...refsFromPerLocale(perLocaleClients, (s) => `/client-showcase/${s}`),
+        ...refsFromPerLocale(perLocaleClients, (s) => `/clients-showcase/${s}`),
       ];
       // Blog category archives are localized list pages → all locales (default).
       for (const c of categories) refs.push({ path: `/blog/category/${c.slug}`, updatedAt: "" });
