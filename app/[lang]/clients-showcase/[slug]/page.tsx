@@ -150,17 +150,8 @@ export default async function ClientStoryPage({ params }: Props) {
               />
               {/* Brand label only when the CMS has a real `clientName` — older
                   entries fall back to the headline, which the H1 already shows. */}
-              {(client.name !== client.title || client.tags.length > 0) && (
-                <div>
-                  {client.name !== client.title && (
-                    <p className="font-display text-lg font-bold">{client.name}</p>
-                  )}
-                  {client.tags.length > 0 && (
-                    <p className="mt-0.5 text-xs font-semibold uppercase tracking-wide text-accent">
-                      {client.tags.map((t) => t.name).join(" · ")}
-                    </p>
-                  )}
-                </div>
+              {client.name !== client.title && (
+                <p className="font-display text-lg font-bold">{client.name}</p>
               )}
             </div>
 
