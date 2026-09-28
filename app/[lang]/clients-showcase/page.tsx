@@ -74,7 +74,10 @@ export default async function ClientShowcasePage({ params }: Props) {
 
       <Container className="py-16">
         {clients.length > 0 ? (
-          <ClientGrid clients={clients} ui={ui} />
+          <ClientGrid
+            clients={clients.map(({ slug, name, excerpt, logo }) => ({ slug, name, excerpt, logo }))}
+            ui={ui}
+          />
         ) : (
           // No stories published yet — an honest empty state, never demo clients.
           <div className="mx-auto max-w-xl rounded-2xl border border-border bg-surface p-10 text-center shadow-soft">

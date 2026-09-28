@@ -253,9 +253,9 @@ export default async function ClientStoryPage({ params }: Props) {
                 {ui.allStories} <span aria-hidden="true" className="ml-1">→</span>
               </Link>
             </div>
-            <ul className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <ul className="mt-8 grid grid-cols-1 items-start gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {more.map((c) => (
-                <li key={c.slug} className="h-full min-w-0">
+                <li key={c.slug} className="min-w-0">
                   <ClientCard client={c} readMore={ui.readMore} titleAs="h3" />
                 </li>
               ))}

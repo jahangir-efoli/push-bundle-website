@@ -1,7 +1,5 @@
 import { LocaleLink as Link } from "@/components/ui/locale-link";
-import { Card } from "@/components/ui/card";
 import { LogoHolder } from "@/components/media/media-holder";
-import { buttonStyles } from "@/components/ui/button";
 import { localeMeta, type Locale } from "@/i18n/config";
 import { cn } from "@/lib/utils";
 import type { ClientStory } from "@/lib/cms";
@@ -46,59 +44,79 @@ export function ClientLogo({
   );
 }
 
+/** Just what a listing card renders — keeps tags/author/SEO out of the
+ * serialized props of the client-side grid (tags belong to the story page). */
+export type ClientCardData = Pick<ClientStory, "slug" | "name" | "excerpt" | "logo">;
+
 /**
- * Client showcase card (like a partner card, plus a "read the story" CTA). One
- * real link — the CTA — whose `::after` stretches over the card, so the whole
- * card is clickable while screen readers hear a single, named link.
+ * Client showcase card — outlined glass card with a small logo tile, bold title,
+ * 3-line excerpt and a compact "Read More" ghost button; lifts with a blue glow
+ * on hover. Heights follow content (the grid top-aligns cards).
+ *
+ * One real link — the CTA — whose `::after` stretches over the card, so the
+ * whole card is the (large) hit target while screen readers hear a single,
+ * named link. That is also why the visual button can be compact.
  */
 export function ClientCard({
   client,
   readMore,
   titleAs: Tag = "h2",
 }: {
-  client: ClientStory;
+  client: ClientCardData;
   readMore: string;
   titleAs?: "h2" | "h3";
 }) {
   return (
-    <Card as="article" interactive className="relative flex h-full flex-col">
-      <ClientLogo client={client} />
+    <article
+      className={cn(
+        "group relative rounded-[14px] border p-5",
+        "border-foreground/15 bg-surface dark:border-white/75 dark:bg-white/[0.11]",
+        "transition-[transform,border-color,box-shadow] duration-200",
+        "hover:-translate-y-[3px] hover:border-primary/40",
+        "hover:shadow-[0_14px_40px_-14px_color-mix(in_oklab,var(--pb-blue-500)_75%,transparent)]",
+      )}
+    >
+      <span
+        className={cn(
+          "grid size-11 place-items-center overflow-hidden rounded-[10px] border p-[5px]",
+          "border-border bg-surface-subtle",
+          "dark:border-accent/30 dark:bg-accent/[0.08]",
+          "dark:shadow-[0_0_14px_-2px_color-mix(in_oklab,var(--pb-cyan-400)_22%,transparent)]",
+        )}
+      >
+        {client.logo ? (
+          /* eslint-disable-next-line @next/next/no-img-element */
+          <img
+            src={client.logo}
+            alt={`${client.name} logo`}
+            className="max-h-full max-w-full object-contain"
+            loading="lazy"
+          />
+        ) : (
+          <LogoHolder name={client.name} className="size-full rounded-md text-xs" />
+        )}
+      </span>
 
-      <Tag className="mt-5 font-display text-lg font-bold text-balance text-foreground">
+      <Tag className="mt-3 font-display text-[1.3rem] font-extrabold leading-7 text-balance text-foreground dark:text-white">
         {client.name}
       </Tag>
 
-      {client.tags.length > 0 && (
-        <ul className="mt-2 flex flex-wrap gap-1.5">
-          {client.tags.slice(0, 2).map((t) => (
-            <li
-              key={t.slug}
-              className="rounded-full bg-primary-subtle px-2.5 py-0.5 text-xs font-semibold text-primary"
-            >
-              {t.name}
-            </li>
-          ))}
-        </ul>
-      )}
+      <p className="mt-3 line-clamp-3 text-base leading-[1.55] text-pretty text-muted dark:text-white/70">
+        {client.excerpt}
+      </p>
 
-      {/* No flex-1 on the clamped text: a flex-grown box renders lines past the
-          clamp in Chrome. The CTA wrapper takes the remaining height instead. */}
-      <p className="mt-3 line-clamp-3 text-sm text-pretty text-muted">{client.excerpt}</p>
-
-      <div className="mt-auto pt-6">
-        <Link
-          href={`/clients-showcase/${client.slug}`}
-          className={buttonStyles({
-            variant: "secondary",
-            size: "sm",
-            className: "w-fit after:absolute after:inset-0 after:rounded-xl after:content-['']",
-          })}
-        >
-          {readMore}
-          <span className="sr-only">: {client.name}</span>
-          <span aria-hidden="true">→</span>
-        </Link>
-      </div>
-    </Card>
+      <Link
+        href={`/clients-showcase/${client.slug}`}
+        className={cn(
+          "mt-5 inline-flex h-8 items-center rounded-md border px-3 text-sm font-medium transition-colors",
+          "border-foreground/20 bg-foreground/[0.04] text-foreground group-hover:bg-foreground/[0.08]",
+          "dark:border-white/25 dark:bg-white/[0.06] dark:text-white/95 dark:group-hover:bg-white/[0.12]",
+          "after:absolute after:inset-0 after:rounded-[14px] after:content-['']",
+        )}
+      >
+        {readMore}
+        <span className="sr-only">: {client.name}</span>
+      </Link>
+    </article>
   );
 }
