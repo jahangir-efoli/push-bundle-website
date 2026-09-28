@@ -36,10 +36,10 @@ export function ClientGrid({ clients, ui }: { clients: ClientCardData[]; ui: Cli
 
   return (
     <div ref={topRef} className="scroll-mt-28">
-      <ul className="grid grid-cols-1 items-start gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {visible.map((client, i) => (
-          <li key={client.slug} className="min-w-0">
-            <AnimateIn delay={(i % 3) * 0.08}>
+          <li key={client.slug} className="h-full min-w-0">
+            <AnimateIn delay={(i % 3) * 0.08} className="h-full">
               <ClientCard client={client} readMore={ui.readMore} />
             </AnimateIn>
           </li>
