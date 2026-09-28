@@ -255,7 +255,12 @@ export default async function BlogPostPage({ params }: Props) {
           {toc.length > 0 ? (
             <div className="flex flex-col gap-10 lg:grid lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-14">
               <aside className="hidden lg:block">
-                <div className="sticky top-24 max-h-[calc(100vh-8rem)] overflow-auto pr-2">
+                {/* data-lenis-prevent: Lenis smooth-scroll otherwise swallows the
+                    wheel here and scrolls the page, so a long TOC could not scroll. */}
+                <div
+                  data-lenis-prevent
+                  className="scrollbar-brand sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto pr-2"
+                >
                   <TableOfContents items={toc} label={ui.tableOfContents} />
                 </div>
               </aside>

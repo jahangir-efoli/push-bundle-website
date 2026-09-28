@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import type { TocItem } from "@/lib/blog/toc";
 
@@ -20,6 +20,7 @@ export function TableOfContents({
   label?: string;
 }) {
   const [active, setActive] = useState("");
+  const navRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const els = items
@@ -41,10 +42,31 @@ export function TableOfContents({
     return () => observer.disconnect();
   }, [items]);
 
+  // Keep the highlighted item visible: on a long TOC the active entry would
+  // otherwise drift out of the scroll box as the reader moves down the page.
+  // Only fires when the page scroll changes the active heading, so it never
+  // fights someone scrolling the TOC itself.
+  useEffect(() => {
+    if (!active) return;
+    const nav = navRef.current;
+    const box = nav?.closest<HTMLElement>("[data-lenis-prevent]");
+    const link = nav?.querySelector<HTMLElement>(`a[href="#${CSS.escape(active)}"]`);
+    if (!box || !link) return;
+    const b = box.getBoundingClientRect();
+    const l = link.getBoundingClientRect();
+    const margin = 48;
+    if (l.top >= b.top + margin && l.bottom <= b.bottom - margin) return;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    box.scrollTo({
+      top: box.scrollTop + (l.top - b.top) - b.height / 3,
+      behavior: reduce ? "auto" : "smooth",
+    });
+  }, [active]);
+
   if (!items.length) return null;
 
   return (
-    <nav aria-label={label} className={cn("text-sm", className)}>
+    <nav ref={navRef} aria-label={label} className={cn("text-sm", className)}>
       <p className="text-xs font-semibold uppercase tracking-wider text-muted">
         {label}
       </p>
