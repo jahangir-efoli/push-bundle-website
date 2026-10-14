@@ -71,7 +71,7 @@
     "title": "由 WhenLab 在 Dubai 打造",
     "body": "PushBundle 由 WhenLab F.Z.C 打造，这是一支总部位于 Dubai 的团队，其旗下的一系列 Shopify 应用已服务全球商家。我们所打造的一切，都源自真实的商家反馈。",
     "stats": [
-      { "value": "4.9 / 5", "label": "Shopify 评分" },
+      { "value": "{rating} / 5", "label": "Shopify 评分" },
       { "value": "Built for Shopify", "label": "认证徽章" },
       { "value": "2025", "label": "上线时间" },
       { "value": "5+", "label": "Shopify 应用" }

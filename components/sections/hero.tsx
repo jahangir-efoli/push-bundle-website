@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import { buttonStyles } from "@/components/ui/button";
 import { HeroSlider } from "@/components/sections/hero-slider";
 import { ShopifyMark } from "@/components/ui/shopify-mark";
-import { site, installUrl } from "@/lib/site-config";
+import { site, installUrl, formatRating } from "@/lib/site-config";
 import { hero } from "@/lib/content/home";
 import type { AggregateRating } from "@/lib/cms";
 
@@ -147,7 +147,7 @@ export function Hero({
               href={installUrl("hero-rating")}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={`Trusted and secure — rated ${rating.score} out of 5 on the Shopify App Store (opens in a new tab)`}
+              aria-label={`Trusted and secure — rated ${formatRating(rating.score)} out of 5 on the Shopify App Store (opens in a new tab)`}
               className="group/trust inline-flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-2 text-sm font-semibold shadow-soft transition-colors hover:border-primary/40"
             >
               <ShopifyMark className="size-4" />
@@ -157,7 +157,9 @@ export function Hero({
               <span aria-hidden="true" className="h-4 w-px bg-border" />
               <span className="flex items-center gap-1">
                 <span className="text-warning">★</span>
-                <span className="font-bold text-foreground">{rating.score}</span>
+                <span className="font-bold text-foreground">
+                  {formatRating(rating.score)}
+                </span>
                 <span className="text-muted">/ 5</span>
               </span>
             </a>

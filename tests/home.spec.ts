@@ -1,5 +1,17 @@
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
+import type { Page } from "@playwright/test";
+import { formatRating, site } from "../lib/site-config";
+
+/** Every JSON-LD node on the page, with root `@graph` arrays flattened. */
+async function jsonLdNodes(page: Page) {
+  const blocks = await page
+    .locator('script[type="application/ld+json"]')
+    .allTextContents();
+  return blocks
+    .map((b) => JSON.parse(b))
+    .flatMap((p) => (Array.isArray(p["@graph"]) ? p["@graph"] : [p]));
+}
 
 /**
  * Phase 4 exit criteria (docs/PLAN.md §10):
@@ -63,7 +75,11 @@ test("CMS content renders: posts, reviews, rating, FAQ", async ({ page }) => {
   // marquee duplicates cards for a seamless loop (the copy is aria-hidden), so
   // scope to the first, real occurrence.
   await expect(page.getByText(/Great support team/).first()).toBeVisible();
-  await expect(page.getByRole("link", { name: "16 reviews" })).toBeVisible();
+  await expect(
+    page.getByRole("link", {
+      name: new RegExp(`Rated ${formatRating(site.rating.score)} out of 5`),
+    }),
+  ).toBeVisible();
 
   // FAQ teaser sourced from the same CMS as /faq.
   await expect(
@@ -76,23 +92,25 @@ test("structured data is valid and matches the visible rating", async ({
 }) => {
   await page.goto("/");
 
-  const blocks = await page
-    .locator('script[type="application/ld+json"]')
-    .allTextContents();
+  const parsed = await jsonLdNodes(page);
+  const ofType = (t: string) => parsed.filter((p) => p["@type"] === t);
+  // Exactly one of each — the layout graph and the page must not duplicate.
+  expect(ofType("Organization")).toHaveLength(1);
+  expect(ofType("SoftwareApplication")).toHaveLength(1);
+  expect(ofType("FAQPage")).toHaveLength(1);
 
-  const parsed = blocks.map((b) => JSON.parse(b));
-  const types = parsed.map((p) => p["@type"]);
-  expect(types).toEqual(
-    expect.arrayContaining(["Organization", "SoftwareApplication", "FAQPage"]),
-  );
-
-  const app = parsed.find((p) => p["@type"] === "SoftwareApplication");
-  expect(app.aggregateRating.ratingValue).toBe(4.9);
-  expect(app.aggregateRating.reviewCount).toBe(16);
+  const [app] = ofType("SoftwareApplication");
+  expect(app.aggregateRating.ratingValue).toBe(site.rating.score);
+  expect(app.aggregateRating.reviewCount).toBe(site.rating.count);
   expect(app.review.length).toBeGreaterThan(0);
+  expect(app.publisher["@id"]).toBe(ofType("Organization")[0]["@id"]);
 
   // The rating in the markup must match what users see (Google requirement).
-  await expect(page.getByText("out of 5").first()).toContainText("4.9");
+  await expect(
+    page.getByRole("link", {
+      name: new RegExp(`Rated ${formatRating(site.rating.score)} out of 5`),
+    }),
+  ).toContainText(formatRating(site.rating.score));
 
   const faq = parsed.find((p) => p["@type"] === "FAQPage");
   expect(faq.mainEntity.length).toBe(5);
@@ -303,4 +321,28 @@ test("hero slider opens an enlarged lightbox preview on click", async ({
       .getAttribute("aria-label");
   const before = await currentDot();
   await expect.poll(currentDot, { timeout: 8000 }).not.toBe(before);
+});
+
+test("rating markup appears only where the rating is visible", async ({
+  page,
+}) => {
+  // Pricing shows the rating (trust band) but no review cards.
+  await page.goto("/pricing");
+  const pricing = (await jsonLdNodes(page)).filter(
+    (p) => p["@type"] === "SoftwareApplication",
+  );
+  expect(pricing).toHaveLength(1);
+  expect(pricing[0].aggregateRating.reviewCount).toBe(site.rating.count);
+  expect(pricing[0].review).toBeUndefined();
+  await expect(
+    page.getByText(
+      `${formatRating(site.rating.score)} · ${site.rating.count} reviews`,
+    ),
+  ).toBeVisible();
+
+  // Pages that don't show the rating carry no rating markup at all.
+  await page.goto("/contact-us");
+  const contact = JSON.stringify(await jsonLdNodes(page));
+  expect(contact).not.toContain("AggregateRating");
+  expect(contact).not.toContain("SoftwareApplication");
 });

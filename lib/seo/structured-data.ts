@@ -1,5 +1,6 @@
 import { site } from "@/lib/site-config";
 import type { AggregateRating, FaqItem, Review } from "@/lib/cms";
+import { SITE_URL } from "./site";
 
 /**
  * Structured-data builders (docs/PLAN.md §7).
@@ -7,30 +8,23 @@ import type { AggregateRating, FaqItem, Review } from "@/lib/cms";
  * visible page — a Google requirement for ratings and FAQs.
  */
 
-const SITE_URL = "https://pushbundle.com";
-
-export function organizationLd() {
-  return {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: site.name,
-    legalName: site.legalEntity,
-    url: SITE_URL,
-    email: site.email,
-    address: { "@type": "PostalAddress", addressLocality: "Dubai", addressCountry: "AE" },
-  };
-}
-
+/**
+ * The app + its App Store rating. Render it ONLY on pages that visibly show
+ * the rating, and pass `reviews` only where the review cards are visible too
+ * (Google review-snippet rules). Organization comes from the layout's root
+ * graph (lib/seo/root-graph.ts) and is referenced by @id, never repeated.
+ */
 export function softwareApplicationLd({
   rating,
-  reviews,
+  reviews = [],
 }: {
   rating: AggregateRating;
-  reviews: Review[];
+  reviews?: Review[];
 }) {
   return {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
+    "@id": `${SITE_URL}/#software`,
     name: site.name,
     applicationCategory: "BusinessApplication",
     operatingSystem: "Shopify",
@@ -56,13 +50,18 @@ export function softwareApplicationLd({
       "@type": "AggregateRating",
       ratingValue: rating.score,
       reviewCount: rating.count,
+      bestRating: 5,
+      worstRating: 1,
     },
-    review: reviews.map((r) => ({
-      "@type": "Review",
-      reviewRating: { "@type": "Rating", ratingValue: r.rating, bestRating: 5 },
-      author: { "@type": "Person", name: r.author },
-      reviewBody: r.quote,
-    })),
+    ...(reviews.length > 0 && {
+      review: reviews.map((r) => ({
+        "@type": "Review",
+        reviewRating: { "@type": "Rating", ratingValue: r.rating, bestRating: 5 },
+        author: { "@type": "Person", name: r.author },
+        reviewBody: r.quote,
+      })),
+    }),
+    publisher: { "@id": `${SITE_URL}/#organization` },
   };
 }
 

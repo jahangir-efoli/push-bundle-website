@@ -1,5 +1,5 @@
 import { Section } from "@/components/ui/section";
-import { installUrl } from "@/lib/site-config";
+import { formatRating, installUrl } from "@/lib/site-config";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { reviewsSection } from "@/lib/content/home";
 import type { AggregateRating, Review } from "@/lib/cms";
@@ -70,11 +70,11 @@ export function Reviews({
           target="_blank"
           rel="noopener noreferrer"
           className="group/rating flex items-center gap-2 text-muted transition-colors hover:text-foreground"
-          aria-label={`Rated ${rating.score} out of 5 — read reviews on the Shopify App Store (opens in a new tab)`}
+          aria-label={`Rated ${formatRating(rating.score)} out of 5 — read reviews on the Shopify App Store (opens in a new tab)`}
         >
           <span className="text-2xl leading-none text-warning">★</span>
           <span className="font-display text-display-sm font-bold text-foreground">
-            {rating.score}
+            {formatRating(rating.score)}
           </span>
           <span className="text-lg group-hover/rating:underline group-hover/rating:underline-offset-4">
             / 5

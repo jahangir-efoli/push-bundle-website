@@ -71,7 +71,7 @@
     "title": "Créé par WhenLab, à Dubai",
     "body": "PushBundle est développé par WhenLab F.Z.C, une équipe basée à Dubai à l'origine d'une famille d'applications Shopify utilisées par des marchands du monde entier. Tout ce que nous créons est façonné par les retours concrets de nos marchands.",
     "stats": [
-      { "value": "4.9 / 5", "label": "Note Shopify" },
+      { "value": "{rating} / 5", "label": "Note Shopify" },
       { "value": "Built for Shopify", "label": "Badge vérifié" },
       { "value": "2025", "label": "Lancement" },
       { "value": "5+", "label": "Applications Shopify" }

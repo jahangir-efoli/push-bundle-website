@@ -14,7 +14,8 @@ import { Reviews } from "@/components/sections/reviews";
 import { TrialCta } from "@/components/sections/trial-cta";
 import { FaqSection } from "@/components/sections/faq-section";
 import { JsonLd } from "@/components/seo/json-ld";
-import { breadcrumbLd, organizationLd } from "@/lib/seo/structured-data";
+import { breadcrumbLd } from "@/lib/seo/structured-data";
+import { formatRating } from "@/lib/site-config";
 
 const toLocale = (lang: string): Locale => (isLocale(lang) ? lang : "en");
 
@@ -49,7 +50,6 @@ export default async function AboutPage({ params }: Props) {
 
   return (
     <>
-      <JsonLd data={organizationLd()} />
       <JsonLd
         data={breadcrumbLd([
           { name: "Home", path: "/" },
@@ -161,7 +161,9 @@ export default async function AboutPage({ params }: Props) {
                 <dt className="sr-only">{stat.label}</dt>
                 <dd>
                   <span className="font-display text-2xl font-extrabold text-brand-gradient">
-                    {stat.value}
+                    {/* "{rating}" in the copy is filled from site config, so
+                        the stat can't drift from the live App Store rating. */}
+                    {stat.value.replace("{rating}", formatRating(rating.score))}
                   </span>
                   <span className="mt-1 block text-sm text-muted">
                     {stat.label}

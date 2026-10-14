@@ -5,6 +5,7 @@ import type {
   Partner,
   Review,
 } from "../types";
+import { site } from "@/lib/site-config";
 
 /**
  * Demo data for docs, FAQ, changelog, partners and reviews — seeded from the
@@ -342,4 +343,4 @@ const reviewSeed: Omit<Review, "locale">[] = [
 export const reviews: Review[] = reviewSeed.map((r) => ({ ...r, locale: en }));
 
 /** From the Shopify App Store listing (§1) — source of truth. */
-export const aggregateRating = { score: 4.9, count: 16 };
+export const aggregateRating = { ...site.rating };

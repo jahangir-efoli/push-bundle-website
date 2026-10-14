@@ -6,7 +6,7 @@ import { AnimateIn } from "@/components/motion/animate-in";
 import { FeatureShowcase } from "@/components/sections/feature-showcase";
 import { buttonStyles } from "@/components/ui/button";
 import { pageMetadata } from "@/lib/seo/metadata";
-import { installUrl, site } from "@/lib/site-config";
+import { formatRating, installUrl, site } from "@/lib/site-config";
 import { isLocale, type Locale } from "@/i18n/config";
 import { cn } from "@/lib/utils";
 
@@ -244,7 +244,7 @@ export default function ShopxPage() {
                   </a>
                 </div>
                 <p className="mt-6 text-sm text-white/85" style={MONO}>
-                  Rated {site.rating.score}/5 by Shopify merchants · Gold Sponsor of ShopX 2026
+                  Rated {formatRating(site.rating.score)}/5 by Shopify merchants · Gold Sponsor of ShopX 2026
                 </p>
               </div>
             </div>

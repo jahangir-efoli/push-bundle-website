@@ -17,7 +17,10 @@ import { Reviews } from "@/components/sections/reviews";
 import { TrialCta } from "@/components/sections/trial-cta";
 import { FaqSection } from "@/components/sections/faq-section";
 import { JsonLd } from "@/components/seo/json-ld";
-import { breadcrumbLd } from "@/lib/seo/structured-data";
+import {
+  breadcrumbLd,
+  softwareApplicationLd,
+} from "@/lib/seo/structured-data";
 import { installUrl } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 
@@ -116,6 +119,7 @@ export default async function FeaturesPage({ params }: Props) {
 
   return (
     <>
+      <JsonLd data={softwareApplicationLd({ rating, reviews })} />
       <JsonLd
         data={breadcrumbLd([
           { name: "Home", path: "/" },

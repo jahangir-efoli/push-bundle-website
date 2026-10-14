@@ -1,5 +1,5 @@
 import { Container } from "@/components/ui/container";
-import { installUrl } from "@/lib/site-config";
+import { formatRating, installUrl } from "@/lib/site-config";
 import type { AggregateRating } from "@/lib/cms";
 
 /** Localized trust-strip copy (defaults are English). */
@@ -42,7 +42,7 @@ export function TrustBand({
           <span aria-hidden="true" className="text-warning-foreground">
             ★★★★★
           </span>
-          {rating.score} · {rating.count} {content.reviews}
+          {formatRating(rating.score)} · {rating.count} {content.reviews}
         </span>
         <span>{content.compatibility}</span>
         <a

@@ -87,7 +87,7 @@ export const company = {
   title: "Made by WhenLab, in Dubai",
   body: "PushBundle is built by WhenLab F.Z.C, a Dubai-based team behind a family of Shopify apps used by merchants worldwide. Everything we build is shaped by real merchant feedback.",
   stats: [
-    { value: "4.9 / 5", label: "Shopify rating" },
+    { value: "{rating} / 5", label: "Shopify rating" },
     { value: "Built for Shopify", label: "Verified badge" },
     { value: "2025", label: "Launched" },
     { value: "5+", label: "Shopify apps" },

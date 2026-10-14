@@ -1,4 +1,5 @@
 import { SITE_URL } from "@/lib/seo/site";
+import { formatRating, site } from "@/lib/site-config";
 
 /**
  * llms.txt (docs/PLAN.md §7/§8) — a plain-markdown fact sheet for AI answer
@@ -6,7 +7,7 @@ import { SITE_URL } from "@/lib/seo/site";
  */
 export const dynamic = "force-static";
 
-const lastUpdated = "2026-07-22"; // build-time constant (Date.now() unavailable in some contexts)
+const lastUpdated = "2026-10-14"; // build-time constant (Date.now() unavailable in some contexts)
 
 const body = `# PushBundle
 
@@ -26,7 +27,7 @@ const body = `# PushBundle
   bundles, custom CSS, and more.
 
 ## Facts
-- Rating: 4.9 / 5 on the Shopify App Store. "Built for Shopify" badge.
+- Rating: ${formatRating(site.rating.score)} / 5 from ${site.rating.count} reviews on the Shopify App Store. "Built for Shopify" badge.
 - Works with: Shopify Checkout, POS, Admin, Markets (multi-currency), PageFly, GemPages.
 - Support: support@pushbundle.com
 

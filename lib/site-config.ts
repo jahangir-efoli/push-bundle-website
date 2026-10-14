@@ -17,7 +17,12 @@ export const site = {
   demoUrl:
     "https://pushbundle.myshopify.com/?_bt=BAh7BkkiC19yYWlscwY6BkVUewhJIglkYXRhBjsAVEkiHXB1c2hidW5kbGUubXlzaG9waWZ5LmNvbQY7AEZJIghleHAGOwBUSSIdMjAyNi0wNy0yMVQxMToyMTo1Ny43NjJaBjsAVEkiCHB1cgY7AFRJIh5wZXJtYW5lbnRfcGFzc3dvcmRfYnlwYXNzBjsARg%3D%3D--ec16fa8d82b8ac659673ef08e754a8e0ae5754c9",
   legalEntity: "WhenLab F.Z.C",
-  rating: { score: 4.9, count: 16 },
+  /**
+   * Shopify App Store rating — the ONE place to update it (verified against
+   * apps.shopify.com/push-bundle on 2026-10-14). Every visible rating, the
+   * AggregateRating JSON-LD, the OG card and llms.txt read from here.
+   */
+  rating: { score: 5, count: 23 },
   /** Calendly scheduling link — opened in Calendly's in-page popup overlay
       (see components/integrations/calendly-link.tsx) so visitors book without
       leaving the site; falls back to a new tab if the widget can't load. */
@@ -26,6 +31,11 @@ export const site = {
       link. Opens in a new tab (external directory). */
   expertsUrl: "https://shopexperts.com/partners/pushbundle-shopify-experts",
 } as const;
+
+/** Rating as the App Store shows it — always one decimal ("5.0", "4.9"). */
+export function formatRating(score: number): string {
+  return score.toFixed(1);
+}
 
 /**
  * Add PushBundle's standard UTM attribution to any external URL — the shared

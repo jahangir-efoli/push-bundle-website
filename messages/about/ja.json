@@ -71,7 +71,7 @@
     "title": "ドバイのWhenLabがお届けします",
     "body": "PushBundleは、世界中のマーチャントに利用されているShopifyアプリ群を手がける、ドバイ拠点のチームWhenLab F.Z.Cによって開発されています。私たちが作るすべては、現場のマーチャントの声によって形づくられています。",
     "stats": [
-      { "value": "4.9 / 5", "label": "Shopify評価" },
+      { "value": "{rating} / 5", "label": "Shopify評価" },
       { "value": "Built for Shopify", "label": "認証バッジ" },
       { "value": "2025", "label": "リリース年" },
       { "value": "5+", "label": "Shopifyアプリ数" }

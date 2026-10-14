@@ -16,7 +16,7 @@ _Last updated: 2026-07-14_
 - **Company:** WhenLab F.Z.C. Sibling apps: MultiVariants, DiscountRay, Order Rules, Quotway, Embedup.
 - **Support:** support@pushbundle.com
 - **Shopify App Store:** https://apps.shopify.com/push-bundle — Install CTAs link here.
-  - **Rating: 4.9 / 5 (16 reviews)** — 94% 5-star, 6% 4-star. **"Built for Shopify"** badge.
+  - **Rating: 5.0 / 5 (23 reviews)** _(re-verified 2026-10-14; was 4.9 / 16)_ — single source: `site.rating` in `lib/site-config.ts`. **"Built for Shopify"** badge.
   - Store name/tagline: "Push Bundle ‑ Build a Box App" — "BYOB Mix and Match Bundle Builder with discounts & free gifts". Launched **Jun 23 2025**.
   - Compatibility (proof points for new site): Checkout, Shopify POS, Admin, **Markets/multi-currency**, PageFly, GemPages.
   - Categories: Product bundles · Discounts · Marketing and conversion.

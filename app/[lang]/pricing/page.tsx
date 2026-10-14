@@ -38,11 +38,10 @@ export default async function PricingPage({ params }: Props) {
   const { lang } = await params;
   const locale = toLocale(lang);
 
-  const [content, common, rating, reviews, faqs] = await Promise.all([
+  const [content, common, rating, faqs] = await Promise.all([
     getPricingContent(locale),
     getCommon(locale),
     cms.getAggregateRating(),
-    cms.listReviews({ locale, limit: 12 }),
     cms.listFaqs({ locale, category: "billing-plans" }),
   ]);
 
@@ -66,7 +65,9 @@ export default async function PricingPage({ params }: Props) {
 
   return (
     <>
-      <JsonLd data={softwareApplicationLd({ rating, reviews })} />
+      {/* Rating only — the trust band shows it, but no review cards, so no
+          Review markup here (it must be visible on the page). */}
+      <JsonLd data={softwareApplicationLd({ rating })} />
       <JsonLd
         data={breadcrumbLd([
           { name: "Home", path: "/" },

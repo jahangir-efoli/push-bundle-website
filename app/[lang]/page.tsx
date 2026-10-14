@@ -14,11 +14,7 @@ import { BlogTeaser } from "@/components/sections/blog-teaser";
 import { TrialCta } from "@/components/sections/trial-cta";
 import { FaqTeaser } from "@/components/sections/faq-teaser";
 import { JsonLd } from "@/components/seo/json-ld";
-import {
-  faqPageLd,
-  organizationLd,
-  softwareApplicationLd,
-} from "@/lib/seo/structured-data";
+import { faqPageLd, softwareApplicationLd } from "@/lib/seo/structured-data";
 import { hero, whyPushbundle, whyBeyond } from "@/lib/content/home";
 
 const toLocale = (lang: string): Locale => (isLocale(lang) ? lang : "en");
@@ -72,7 +68,6 @@ export default async function Home({ params }: Props) {
 
   return (
     <>
-      <JsonLd data={organizationLd()} />
       <JsonLd data={softwareApplicationLd({ rating, reviews })} />
       <JsonLd data={faqPageLd(faqItems)} />
 

@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { formatRating, site } from "@/lib/site-config";
 
 /**
  * Generated 1200×630 share card (docs/PLAN.md §7).
@@ -76,7 +77,7 @@ export function GET() {
         </div>
 
         <div style={{ display: "flex", marginTop: 48, fontSize: 28, fontWeight: 600 }}>
-          4.9/5 · Built for Shopify · pushbundle.com
+          {`${formatRating(site.rating.score)}/5 · Built for Shopify · pushbundle.com`}
         </div>
       </div>
     ),
