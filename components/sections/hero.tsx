@@ -75,12 +75,14 @@ export function Hero({
   content?: HeroContent;
 }) {
   return (
-    // Pull up under the floating header (-mt-24) so the hero background fills
-    // the whole top of the viewport, behind the transparent pill — no seam.
-    // pt-24 keeps the content clear of the header. `svh` (not `vh`) so mobile
-    // browser chrome doesn't push content off-screen; `min-h` (not `h`) so the
-    // hero can still grow on short screens or with longer translated copy.
-    <section className="relative isolate -mt-24 flex min-h-svh items-center overflow-hidden bg-background pt-24 text-foreground">
+    // Pull up under the floating header so the hero background fills the whole
+    // top of the viewport, behind the transparent pill — no seam. The pull-up
+    // and padding match the header's height at each breakpoint (h-16, lg:h-24):
+    // a fixed -mt-24 overshot the 64px mobile header by 32px, which covered the
+    // bottom of the promo bar above it. `svh` (not `vh`) so mobile browser
+    // chrome doesn't push content off-screen; `min-h` (not `h`) so the hero can
+    // still grow on short screens or with longer translated copy.
+    <section className="relative isolate -mt-16 flex min-h-svh items-center overflow-hidden bg-background pt-16 text-foreground lg:-mt-24 lg:pt-24">
       {/* Soft brand washes */}
       <div
         aria-hidden="true"
