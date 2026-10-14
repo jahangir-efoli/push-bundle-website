@@ -43,5 +43,12 @@
   "langSwitcher": {
     "label": "Change language",
     "current": "Current language"
+  },
+  "promo": {
+    "ariaLabel": "Black Friday Cyber Monday offer",
+    "title": "Black Friday Deal",
+    "offer": "Save {discount} for 12 months with code {code}",
+    "endsOn": "Only until {date}",
+    "cta": "Claim now"
   }
 }

@@ -43,5 +43,12 @@
   "langSwitcher": {
     "label": "切换语言",
     "current": "当前语言"
+  },
+  "promo": {
+    "ariaLabel": "黑色星期五与网络星期一优惠",
+    "title": "黑五特惠",
+    "offer": "使用优惠码 {code}，12 个月立省 {discount}",
+    "endsOn": "优惠截至 {date}",
+    "cta": "立即领取"
   }
 }

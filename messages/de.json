@@ -43,5 +43,12 @@
   "langSwitcher": {
     "label": "Sprache ändern",
     "current": "Aktuelle Sprache"
+  },
+  "promo": {
+    "ariaLabel": "Black-Friday- und Cyber-Monday-Angebot",
+    "title": "Black-Friday-Deal",
+    "offer": "Spare {discount} für 12 Monate mit dem Code {code}",
+    "endsOn": "Nur bis {date}",
+    "cta": "Jetzt sichern"
   }
 }

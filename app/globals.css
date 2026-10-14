@@ -290,6 +290,23 @@
   --shadow-glow: var(--elevation-glow);
 }
 
+/* Promo bar (components/layout/promo-banner.tsx): slow drift of a mirrored
+   gradient — 0% → 100% → 0% loops seamlessly. Used as motion-safe:animate-…;
+   the global reduced-motion rule below is a second guard. */
+@theme {
+  --animate-gradient-shift: gradient-shift 8s ease infinite;
+
+  @keyframes gradient-shift {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+}
+
 /* ==================================================================
    BASE STYLES
    ================================================================== */
@@ -993,6 +1010,13 @@ body {
 .pbfs-tab:focus-visible {
   outline-color: #fff;
   outline-offset: -3px;
+}
+/* Promo bar link (components/layout/promo-banner.tsx): its focus indicator is
+   a 2px inset white ring (Tailwind ring-inset). The unlayered global
+   :focus-visible outline above beats Tailwind's focus-visible:outline-none,
+   and would add a blue ring floating outside the full-width bar — drop it. */
+.promo-bar-link:focus-visible {
+  outline: none;
 }
 .pbfs-cue .pbfs-tab {
   animation: pbfs-pop 0.5s ease both;

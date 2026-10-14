@@ -8,12 +8,14 @@ import { ThemeScript } from "@/components/layout/theme-script";
 import { ThemeSync } from "@/components/layout/theme-sync";
 import { SkipLink } from "@/components/layout/skip-link";
 import { Header } from "@/components/layout/header";
+import { PromoBanner } from "@/components/layout/promo-banner";
 import { Footer } from "@/components/layout/footer";
 import { CookieConsent } from "@/components/layout/cookie-consent";
 import { LiveChat } from "@/components/integrations/live-chat";
 import { Analytics } from "@/components/integrations/analytics";
 import { JsonLd } from "@/components/seo/json-ld";
 import { rootGraph } from "@/lib/seo/root-graph";
+import { formatPromoEnd, isPromoLive } from "@/lib/promo";
 import { OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo/site";
 import { getDictionary } from "@/i18n/dictionaries";
 import { isLocale, locales, localeMeta, type Locale } from "@/i18n/config";
@@ -109,6 +111,17 @@ export default async function LocaleLayout({
         <LocaleProvider locale={locale}>
         <SmoothScroll>
           <SkipLink label={dict.common.skipToContent} />
+          {/* Server check drops the bar from any render after the deadline;
+              PromoGate also hides it in the browser on prerendered pages. */}
+          {isPromoLive() && (
+            <PromoBanner
+              copy={dict.promo}
+              endsLabel={dict.promo.endsOn.replace(
+                "{date}",
+                formatPromoEnd(localeMeta[locale].hreflang),
+              )}
+            />
+          )}
           <Header locale={locale} dict={dict} />
           <main id="main" className="flex-1">
             {children}

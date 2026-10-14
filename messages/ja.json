@@ -43,5 +43,12 @@
   "langSwitcher": {
     "label": "言語を変更",
     "current": "現在の言語"
+  },
+  "promo": {
+    "ariaLabel": "ブラックフライデー・サイバーマンデーのオファー",
+    "title": "ブラックフライデー特価",
+    "offer": "コード {code} で12か月間 {discount} オフ",
+    "endsOn": "{date}まで限定",
+    "cta": "今すぐ利用する"
   }
 }

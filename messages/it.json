@@ -43,5 +43,12 @@
   "langSwitcher": {
     "label": "Cambia lingua",
     "current": "Lingua attuale"
+  },
+  "promo": {
+    "ariaLabel": "Offerta Black Friday e Cyber Monday",
+    "title": "Offerta Black Friday",
+    "offer": "Risparmia il {discount} per 12 mesi con il codice {code}",
+    "endsOn": "Fino al {date}",
+    "cta": "Approfittane"
   }
 }
