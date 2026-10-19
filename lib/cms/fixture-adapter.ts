@@ -204,6 +204,10 @@ export const fixtureAdapter: CmsAdapter = {
         updatedAt: posts[0]?.updatedAt ?? "",
       })),
       ...docs.map((d) => ({ path: `/docs/${d.slug}`, updatedAt: d.updatedAt })),
+      ...[...new Set(docs.map((d) => d.category))].map((c) => ({
+        path: `/docs/category/${c}`,
+        updatedAt: "",
+      })),
     ];
     return refs;
   },

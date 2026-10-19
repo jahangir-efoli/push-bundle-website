@@ -1,18 +1,7 @@
 import { LocaleLink as Link } from "@/components/ui/locale-link";
 import { Card, CardDescription, CardTitle } from "@/components/ui/card";
 import { LogoHolder } from "@/components/media/media-holder";
-import { localeMeta, type Locale } from "@/i18n/config";
 import type { ClientStory } from "@/lib/cms";
-
-/** Locale-aware short date ("Sep 28, 2026" / "2026年9月28日" …). */
-export function formatStoryDate(iso: string, locale: Locale) {
-  return new Intl.DateTimeFormat(localeMeta[locale].hreflang, {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-    timeZone: "UTC",
-  }).format(new Date(iso));
-}
 
 /** Just what a listing card renders — keeps tags/author/SEO out of the
  * serialized props of the client-side grid (tags belong to the story page). */

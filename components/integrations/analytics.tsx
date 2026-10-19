@@ -27,6 +27,16 @@ declare global {
   }
 }
 
+/**
+ * Send a custom GA4 event. A no-op until gtag.js is loaded — i.e. off the
+ * production host or without consent — so callers never need to check.
+ */
+export function trackEvent(name: string, params: Record<string, string> = {}) {
+  if (typeof window !== "undefined" && typeof window.gtag === "function") {
+    window.gtag("event", name, params);
+  }
+}
+
 /** Send a page_view on client-side navigation (config sends the first one). */
 function GaPageviews() {
   const pathname = usePathname();

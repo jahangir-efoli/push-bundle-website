@@ -581,6 +581,72 @@ button:disabled,
   text-align: center;
 }
 
+/* Help-centre article parts — lib/docs/body.ts tags them in the CMS body. */
+.doc-body .doc-steps {
+  list-style: none;
+  padding-left: 0;
+  counter-reset: step;
+}
+.doc-body .doc-steps > li {
+  position: relative;
+  min-height: 1.75rem;
+  padding-left: 2.75rem;
+  color: var(--foreground);
+  counter-increment: step;
+}
+.doc-body .doc-steps > li + li {
+  margin-top: 0.875rem;
+}
+.doc-body .doc-steps > li::before {
+  content: counter(step);
+  position: absolute;
+  top: 0.05em;
+  left: 0;
+  display: grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.doc-body .doc-callout {
+  padding: 0.875rem 1rem;
+  border: 1px solid color-mix(in oklab, var(--warm) 35%, transparent);
+  border-radius: var(--radius-xl);
+  background: var(--warm-subtle);
+  color: var(--foreground);
+}
+.doc-body .doc-done {
+  margin-top: 2.5em;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid color-mix(in oklab, var(--success) 40%, transparent);
+  border-radius: var(--radius-2xl);
+  background: color-mix(in oklab, var(--success) 7%, var(--surface));
+}
+.doc-body .doc-done > * + * {
+  margin-top: 0.5em;
+}
+.doc-body .doc-done h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0;
+  font-size: 1.25rem;
+}
+.doc-body .doc-done h2::before {
+  content: "";
+  flex: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  background: var(--success-foreground);
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='m8 12 3 3 5-6'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+}
+
 /* Utility: the brand gradient as a background or text fill */
 @utility bg-brand-gradient {
   background-image: var(--gradient-brand);
@@ -1016,6 +1082,12 @@ body {
    :focus-visible outline above beats Tailwind's focus-visible:outline-none,
    and would add a blue ring floating outside the full-width bar — drop it. */
 .promo-bar-link:focus-visible {
+  outline: none;
+}
+/* Docs search input (components/docs/docs-search.tsx): its box already shows
+   focus (primary border + glow via focus-within), so the global outline would
+   draw a second ring inside it. */
+.docs-search-input:focus-visible {
   outline: none;
 }
 .pbfs-cue .pbfs-tab {

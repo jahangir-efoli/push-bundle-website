@@ -58,6 +58,19 @@ export type Post = {
   seo?: Seo;
 };
 
+/**
+ * A video/walkthrough embed lifted out of a doc body — the CMS's custom HTML
+ * section iframe. Exactly one of `src` (hosted player, e.g. YouTube) or
+ * `srcdoc` (inline HTML, rendered sandboxed) is set.
+ */
+export type DocEmbed = {
+  src?: string;
+  srcdoc?: string;
+  title?: string;
+  width?: number;
+  height?: number;
+};
+
 /** Documentation article (docs/PLAN.md §5.8). */
 export type DocArticle = {
   slug: string;
@@ -66,9 +79,15 @@ export type DocArticle = {
   /** Category slug; grouped on the docs home. */
   category: string;
   categoryName: string;
+  /** CMS category description, when the editor has written one. */
+  categoryDescription?: string;
   /** Sort order within its category. */
   order: number;
   updatedAt: string;
+  excerpt?: string;
+  readingTimeMinutes?: number;
+  /** First iframe in the body, shown in the article's video slot. */
+  embed?: DocEmbed;
   locale: Locale;
   /**
    * True when the CMS served a real translation for the requested locale, false

@@ -25,16 +25,4 @@ export function useDemoContent(): DemoContent {
   return DICT[useLocale()] ?? en;
 }
 
-/**
- * Interpolate `{name}` placeholders in a template string. Only placeholders
- * present in the (per-locale) template are substituted, so a locale that omits
- * an English-only token (e.g. a plural `{s}`) simply drops it.
- */
-export function fmt(
-  template: string,
-  params: Record<string, string | number>,
-): string {
-  return template.replace(/\{(\w+)\}/g, (_, key) =>
-    key in params ? String(params[key]) : `{${key}}`,
-  );
-}
+export { fmt } from "@/lib/utils";

@@ -16,16 +16,31 @@ import { site } from "@/lib/site-config";
 const en = "en" as const;
 
 // ---- Docs (§3 Page 6) -----------------------------------------------------
+// Bodies follow the eFoli help-doc format: intro → "Before you start" → one
+// numbered list of steps → "You're done" (see components/docs/doc-body.ts).
 const docBody = `
 <p>Demo documentation body. Real content arrives from the CMS.</p>
+<p><strong>Before you start:</strong> make sure the <a href="/docs/add-app-block-to-shopify-theme">PushBundle App Block is added to your theme</a>.</p>
 <h2>Steps</h2>
-<ol><li>Open the PushBundle dashboard.</li><li>Create a bundle.</li><li>Publish and preview.</li></ol>
+<ol><li>Open the PushBundle dashboard.</li><li>Click <strong>Create Bundle</strong>.</li><li>Publish and preview.</li></ol>
+<h2>You're done</h2>
+<p>Your bundle is live. Click <strong>View live</strong> to see it on your store.</p>
 `;
+
+/** A self-contained walkthrough, like the CMS's custom HTML section iframe. */
+const walkthroughEmbed = {
+  title: "Volume bundle walkthrough",
+  width: 1440,
+  height: 900,
+  srcdoc:
+    "<body style='margin:0;display:grid;place-items:center;height:100vh;font:600 18px system-ui;background:#0d1030;color:#fff'>Step 1 of 3</body>",
+};
 
 export const docs: DocArticle[] = [
   {
     slug: "installation",
     title: "Installation",
+    excerpt: "Add PushBundle to your Shopify store from the App Store in a few clicks.",
     category: "getting-started",
     categoryName: "Getting Started",
     order: 1,
@@ -33,6 +48,7 @@ export const docs: DocArticle[] = [
   {
     slug: "add-app-block-to-shopify-theme",
     title: "How to Add the PushBundle App Block to Your Shopify Theme?",
+    excerpt: "Place the PushBundle block on your product page so bundles can show.",
     category: "getting-started",
     categoryName: "Getting Started",
     order: 2,
@@ -40,6 +56,7 @@ export const docs: DocArticle[] = [
   {
     slug: "mix-and-match-single-product",
     title: "Mix and Match Single Product",
+    excerpt: "Let shoppers fill a pack with variants of one product.",
     category: "setup-process",
     categoryName: "Setup Process",
     order: 1,
@@ -47,13 +64,16 @@ export const docs: DocArticle[] = [
   {
     slug: "how-to-setup-volume-bundle",
     title: "How to setup volume bundle?",
+    excerpt: "Give shoppers a bigger discount the more units they buy.",
     category: "setup-process",
     categoryName: "Setup Process",
     order: 2,
+    embed: walkthroughEmbed,
   },
   {
     slug: "quantity-restriction-per-variant",
     title: "How to apply quantity restriction on each variants?",
+    excerpt: "Cap how many of each variant a shopper can add to a pack.",
     category: "setup-process",
     categoryName: "Setup Process",
     order: 3,
@@ -61,6 +81,7 @@ export const docs: DocArticle[] = [
   {
     slug: "discount-for-mix-and-match-bundle",
     title: "How to offer discount for Mix and Match bundle?",
+    excerpt: "Add a percentage or fixed discount to a Mix & Match pack.",
     category: "setup-process",
     categoryName: "Setup Process",
     order: 4,
@@ -68,11 +89,18 @@ export const docs: DocArticle[] = [
   {
     slug: "number-of-variants-and-quantity-limits",
     title: "What is 'Number of Variants' and 'Quantity per Variants' limit?",
+    excerpt: "What the two Mix & Match limits mean and when to use each.",
     category: "setup-process",
     categoryName: "Setup Process",
     order: 5,
   },
-].map((d) => ({ ...d, body: docBody, updatedAt: "2026-06-01", locale: en }));
+].map((d) => ({
+  ...d,
+  body: docBody,
+  readingTimeMinutes: 2,
+  updatedAt: "2026-06-01",
+  locale: en,
+}));
 
 // ---- FAQ (§3 Page 8) ------------------------------------------------------
 // NOTE: the live site's answers are placeholder-duplicated. Items flagged with

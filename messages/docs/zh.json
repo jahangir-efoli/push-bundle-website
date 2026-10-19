@@ -1,23 +1,112 @@
 {
   "meta": {
     "title": "文档 — 设置与帮助中心",
-    "description": "PushBundle Shopify 捆绑应用的文档——安装、设置和操作指南。"
+    "description": "PushBundle 每项功能的分步指南：安装应用、创建各类捆绑，并解决常见的设置问题。"
   },
-  "eyebrow": "文档",
-  "title": "文档",
-  "subtitle": "安装、设置并充分发挥 PushBundle 价值所需的一切，尽在于此。",
+  "root": "文档",
+  "hero": {
+    "eyebrow": "文档",
+    "title": "我们如何帮您",
+    "titleAccent": "玩转捆绑？",
+    "subtitle": "简明的分步指南，涵盖 PushBundle 的每项功能。"
+  },
+  "search": {
+    "label": "搜索文档",
+    "placeholder": "搜索指南，例如：免费赠品、app embed、定时…",
+    "button": "搜索",
+    "popular": "热门：",
+    "chips": ["App embed", "Volume bundle", "Mix and match", "Cross-sell", "折扣", "免费赠品"],
+    "seeAll": "查看全部结果",
+    "noQuickMatch": "暂无快速匹配。搜索全部指南",
+    "shortcut": "按 / 键搜索"
+  },
+  "stats": {
+    "guideOne": "篇指南",
+    "guideOther": "篇指南",
+    "topicOne": "个主题",
+    "topicOther": "个主题",
+    "support": "真人支持"
+  },
+  "quickStart": {
+    "eyebrow": "从这里开始",
+    "titleOne": "{n} 步上线您的第一个捆绑",
+    "titleOther": "{n} 步上线您的第一个捆绑",
+    "steps": [
+      "将应用添加到您的 Shopify 商店。",
+      "在主题中开启 PushBundle，让捆绑能够显示。",
+      "创建您的第一个捆绑并设置折扣。",
+      "确认顾客能正常使用您的捆绑。"
+    ]
+  },
+  "topics": {
+    "eyebrow": "按主题浏览",
+    "title": "找到您需要的指南",
+    "subtitle": "所有捆绑类型与设置，按您的工作方式分类整理。",
+    "guideOne": "{n} 篇指南",
+    "guideOther": "{n} 篇指南",
+    "viewAll": "查看全部 {n} 篇指南",
+    "sidebar": "主题",
+    "descriptions": {
+      "getting-started": "安装 PushBundle，开启应用并上线您的第一个捆绑。",
+      "setup-process": "设置每种捆绑类型及其折扣和限制。",
+      "volume-bundle": "多买多省：数量阶梯、赠品和免运费。",
+      "cross-sell-bundle": "在任意商品页展示“经常一起购买”优惠。",
+      "mix-match-single": "让顾客用同一商品的多个变体凑成一个组合包。",
+      "mix-match-multi": "让顾客从多款商品中自选组成组合包。",
+      "build-your-own-box": "分步式礼盒构建器，支持表单、礼品卡和礼品包装。",
+      "discounts": "了解捆绑折扣如何运作，以及如何与其他折扣叠加。",
+      "visibility-scheduling": "定向目标客户，并安排捆绑的上线时间。",
+      "text-languages": "修改店面文案并翻译您的捆绑。",
+      "managing-bundles": "查找、编辑、复制和整理您的捆绑。",
+      "cart-orders": "了解购物车、结账、订单和退货中的处理方式。",
+      "analytics": "查看捆绑的收入、订单和效果数据。",
+      "plans-billing": "套餐、试用、升级和取消。",
+      "troubleshooting": "解决最常见的设置和显示问题。"
+    }
+  },
+  "popular": {
+    "eyebrow": "推荐",
+    "title": "热门指南"
+  },
+  "faq": {
+    "eyebrow": "常见问题",
+    "title": "快速解答"
+  },
   "help": {
-    "title": "仍需帮助？",
-    "body": "找不到所需内容？我们的团队随时为您提供帮助。",
-    "cta": "联系客服"
+    "eyebrow": "仍需帮助？",
+    "title": "真人团队，24/7 随时待命",
+    "body": "与我们在线聊天，或让我们的团队免费为您设置第一个捆绑。",
+    "contact": "联系客服",
+    "setup": "预约免费设置"
   },
-  "ui": {
-    "searchLabel": "搜索文档",
-    "searchPlaceholder": "搜索文档…",
-    "resultOne": "个结果",
-    "resultOther": "个结果",
-    "forQuery": "：",
-    "noResultsTitle": "未找到结果",
-    "noResultsBody": "没有与您的搜索匹配的内容。请尝试其他关键词，或浏览各个分类。"
+  "article": {
+    "minRead": "{n} 分钟阅读",
+    "stepOne": "{n} 个步骤",
+    "stepOther": "{n} 个步骤",
+    "updated": "更新于 {date}",
+    "video": "视频演示",
+    "inTopic": "所属主题：{topic}",
+    "previous": "上一篇",
+    "next": "下一篇",
+    "helpTitle": "需要帮忙吗？",
+    "helpBody": "我们的团队 24/7 在线回复，还能免费为您设置捆绑。",
+    "helpCta": "联系客服",
+    "feedback": {
+      "question": "这篇指南对您有帮助吗？",
+      "yes": "是",
+      "no": "否",
+      "thanksYes": "谢谢！很高兴能帮到您。",
+      "thanksNo": "感谢反馈，我们会改进这篇指南。"
+    }
+  },
+  "results": {
+    "metaTitle": "搜索文档",
+    "crumb": "搜索",
+    "countOne": "找到 {n} 条关于“{q}”的结果",
+    "countOther": "找到 {n} 条关于“{q}”的结果",
+    "across": "涵盖 {n} 个主题。",
+    "prompt": "输入一两个关键词，即可搜索所有指南。",
+    "empty": "没有匹配的指南。试试减少关键词，或",
+    "askTeam": "咨询我们的团队"
   }
 }

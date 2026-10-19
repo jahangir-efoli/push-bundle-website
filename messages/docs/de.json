@@ -1,23 +1,112 @@
 {
   "meta": {
     "title": "Dokumentation — Einrichtung & Hilfecenter",
-    "description": "Dokumentation für die PushBundle Shopify-Bundle-App — Installation, Einrichtung und Anleitungen."
+    "description": "Schritt-für-Schritt-Anleitungen für jede PushBundle-Funktion: App installieren, jeden Bundle-Typ erstellen und häufige Einrichtungsprobleme beheben."
   },
-  "eyebrow": "Dokumentation",
-  "title": "Dokumentation",
-  "subtitle": "Alles, was Sie brauchen, um PushBundle zu installieren, einzurichten und optimal zu nutzen.",
+  "root": "Dokumentation",
+  "hero": {
+    "eyebrow": "Dokumentation",
+    "title": "Wie können wir",
+    "titleAccent": "Ihnen bei Bundles helfen?",
+    "subtitle": "Kurze Schritt-für-Schritt-Anleitungen für jede PushBundle-Funktion."
+  },
+  "search": {
+    "label": "Dokumentation durchsuchen",
+    "placeholder": "Anleitungen durchsuchen, z. B. Gratisgeschenk, App Embed, Zeitplan…",
+    "button": "Suchen",
+    "popular": "Beliebt:",
+    "chips": ["App embed", "Volume bundle", "Mix and match", "Cross-sell", "Rabatt", "Gratisgeschenk"],
+    "seeAll": "Alle Ergebnisse anzeigen",
+    "noQuickMatch": "Kein direkter Treffer. Alle Anleitungen durchsuchen",
+    "shortcut": "Zum Suchen / drücken"
+  },
+  "stats": {
+    "guideOne": "Anleitung",
+    "guideOther": "Anleitungen",
+    "topicOne": "Thema",
+    "topicOther": "Themen",
+    "support": "persönlicher Support"
+  },
+  "quickStart": {
+    "eyebrow": "Hier starten",
+    "titleOne": "Starten Sie Ihr erstes Bundle in {n} Schritt",
+    "titleOther": "Starten Sie Ihr erstes Bundle in {n} Schritten",
+    "steps": [
+      "Fügen Sie die App Ihrem Shopify-Shop hinzu.",
+      "Aktivieren Sie PushBundle in Ihrem Theme, damit Bundles angezeigt werden.",
+      "Erstellen Sie Ihr erstes Bundle und legen Sie den Rabatt fest.",
+      "Prüfen Sie, ob Ihr Bundle für Kunden funktioniert."
+    ]
+  },
+  "topics": {
+    "eyebrow": "Nach Thema stöbern",
+    "title": "Finden Sie die passende Anleitung",
+    "subtitle": "Jeder Bundle-Typ und jede Einstellung – so geordnet, wie Sie arbeiten.",
+    "guideOne": "{n} Anleitung",
+    "guideOther": "{n} Anleitungen",
+    "viewAll": "Alle {n} Anleitungen ansehen",
+    "sidebar": "Themen",
+    "descriptions": {
+      "getting-started": "PushBundle installieren, aktivieren und das erste Bundle starten.",
+      "setup-process": "Jeden Bundle-Typ samt Rabatten und Limits einrichten.",
+      "volume-bundle": "Mehr kaufen, mehr sparen: Mengenstaffeln, Geschenke und Gratisversand.",
+      "cross-sell-bundle": "„Häufig zusammen gekauft“-Angebote auf jeder Produktseite.",
+      "mix-match-single": "Kunden ein Paket mit Varianten eines Produkts füllen lassen.",
+      "mix-match-multi": "Kunden ein Paket aus vielen Produkten zusammenstellen lassen.",
+      "build-your-own-box": "Schritt-für-Schritt-Box-Builder mit Formularen, Geschenkkarten und Verpackung.",
+      "discounts": "Wie Bundle-Rabatte funktionieren und sich mit anderen kombinieren.",
+      "visibility-scheduling": "Kunden gezielt ansprechen und Bundle-Laufzeiten planen.",
+      "text-languages": "Shop-Texte anpassen und Ihre Bundles übersetzen.",
+      "managing-bundles": "Bundles finden, bearbeiten, duplizieren und organisieren.",
+      "cart-orders": "Was in Warenkorb, Checkout, Bestellungen und Retouren passiert.",
+      "analytics": "Bundle-Umsatz, Bestellungen und Performance auswerten.",
+      "plans-billing": "Tarife, Testphasen, Upgrades und Kündigungen.",
+      "troubleshooting": "Die häufigsten Einrichtungs- und Anzeigeprobleme beheben."
+    }
+  },
+  "popular": {
+    "eyebrow": "Empfohlen",
+    "title": "Beliebte Anleitungen"
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "title": "Schnelle Antworten"
+  },
   "help": {
-    "title": "Benötigen Sie weiterhin Hilfe?",
-    "body": "Sie finden nicht, wonach Sie suchen? Unser Team hilft Ihnen gerne weiter.",
-    "cta": "Support kontaktieren"
+    "eyebrow": "Noch Fragen?",
+    "title": "Echte Menschen, 24/7 für Sie da",
+    "body": "Chatten Sie mit uns oder lassen Sie Ihr erstes Bundle kostenlos von unserem Team einrichten.",
+    "contact": "Support kontaktieren",
+    "setup": "Kostenlose Einrichtung buchen"
   },
-  "ui": {
-    "searchLabel": "Dokumentation durchsuchen",
-    "searchPlaceholder": "Dokumentation durchsuchen…",
-    "resultOne": "Ergebnis",
-    "resultOther": "Ergebnisse",
-    "forQuery": "für",
-    "noResultsTitle": "Keine Ergebnisse gefunden",
-    "noResultsBody": "Nichts entspricht Ihrer Suche. Versuchen Sie einen anderen Begriff oder durchstöbern Sie die Kategorien."
+  "article": {
+    "minRead": "{n} Min. Lesezeit",
+    "stepOne": "{n} Schritt",
+    "stepOther": "{n} Schritte",
+    "updated": "Aktualisiert am {date}",
+    "video": "Video-Anleitung",
+    "inTopic": "In {topic}",
+    "previous": "Zurück",
+    "next": "Weiter",
+    "helpTitle": "Brauchen Sie Hilfe?",
+    "helpBody": "Unser Team antwortet 24/7 und richtet Ihr Bundle kostenlos ein.",
+    "helpCta": "Support kontaktieren",
+    "feedback": {
+      "question": "War diese Anleitung hilfreich?",
+      "yes": "Ja",
+      "no": "Nein",
+      "thanksYes": "Danke! Schön, dass es geholfen hat.",
+      "thanksNo": "Danke für Ihr Feedback. Wir verbessern diese Anleitung."
+    }
+  },
+  "results": {
+    "metaTitle": "Dokumentation durchsuchen",
+    "crumb": "Suche",
+    "countOne": "{n} Ergebnis für „{q}“",
+    "countOther": "{n} Ergebnisse für „{q}“",
+    "across": "In {n} Themen.",
+    "prompt": "Geben Sie ein oder zwei Wörter ein, um alle Anleitungen zu durchsuchen.",
+    "empty": "Keine passenden Anleitungen. Versuchen Sie weniger Wörter oder",
+    "askTeam": "fragen Sie unser Team"
   }
 }
