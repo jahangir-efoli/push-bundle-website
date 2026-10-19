@@ -4,6 +4,7 @@ import type {
   ChangelogEntry,
   ClientStory,
   DocArticle,
+  DocEmbed,
   FaqItem,
   Locale,
   Partner,
@@ -200,12 +201,56 @@ type ApiDoc = {
   slug: string;
   excerpt?: string;
   content?: string;
+  metaTitle?: string | null;
+  metaDescription?: string | null;
   updatedAt?: string;
   readingTimeMinutes?: number;
+  /** Only on the single-doc response. */
+  category?: { name: string; slug: string } | null;
   /** True when the CMS served a real translation for the requested locale. */
   isTranslated?: boolean;
 };
-type ApiDocCategory = { name: string; slug: string; order?: number; docs: ApiDoc[] };
+type ApiDocCategory = {
+  name: string;
+  slug: string;
+  description?: string | null;
+  order?: number;
+  docs: ApiDoc[];
+};
+
+/**
+ * Lift the first <iframe> out of a raw doc body — the CMS's custom HTML
+ * section that carries the article's video walkthrough. Runs BEFORE
+ * sanitizing, because the sanitizer drops iframes entirely. The page renders
+ * the embed in its own video slot with attributes we control; anything that
+ * isn't an https `src` or an inline `srcdoc` is discarded.
+ */
+export function extractDocEmbed(raw: string): { embed?: DocEmbed; html: string } {
+  const match = raw.match(/<iframe\b([^>]*?)(?:\/>|>[\s\S]*?<\/iframe>)/i);
+  if (!match) return { html: raw };
+
+  const attrs: Record<string, string> = {};
+  for (const m of match[1].matchAll(/([a-zA-Z-]+)\s*=\s*(?:"([^"]*)"|'([^']*)')/g)) {
+    attrs[m[1].toLowerCase()] = decodeEntities(m[2] ?? m[3]);
+  }
+
+  // Drop the iframe, then any wrapper it leaves empty (e.g. WordPress's
+  // <figure class="wp-block-embed"><div class="…__wrapper">).
+  const html = raw
+    .replace(match[0], "")
+    .replace(/<(figure|div)\b[^>]*>(?:\s|<div\b[^>]*>\s*<\/div>)*<\/\1>/gi, "");
+
+  const src = attrs.src?.startsWith("//") ? `https:${attrs.src}` : attrs.src;
+  const size = (v?: string) => (v && /^\d+$/.test(v) ? Number(v) : undefined);
+  const base = {
+    title: attrs.title || undefined,
+    width: size(attrs.width),
+    height: size(attrs.height),
+  };
+  if (src && /^https:\/\//i.test(src)) return { embed: { ...base, src }, html };
+  if (attrs.srcdoc?.trim()) return { embed: { ...base, srcdoc: attrs.srcdoc }, html };
+  return { html };
+}
 
 export function mapDocs(
   payload: {
@@ -223,8 +268,13 @@ export function mapDocs(
         body: sanitizeHtml(d.content),
         category: cat.slug,
         categoryName: decodeEntities(cat.name),
+        categoryDescription: cat.description
+          ? decodeEntities(cat.description)
+          : undefined,
         order: i,
         updatedAt: d.updatedAt ?? "",
+        excerpt: d.excerpt ? decodeEntities(d.excerpt) : undefined,
+        readingTimeMinutes: d.readingTimeMinutes,
         locale,
         isTranslated: d.isTranslated,
       }),
@@ -239,6 +289,8 @@ export function mapDocs(
       categoryName: "General",
       order: i,
       updatedAt: d.updatedAt ?? "",
+      excerpt: d.excerpt ? decodeEntities(d.excerpt) : undefined,
+      readingTimeMinutes: d.readingTimeMinutes,
       locale,
       isTranslated: d.isTranslated,
     }),
@@ -252,14 +304,27 @@ export function mapDoc(
   categorySlug = "general",
   locale: Locale = "en",
 ): DocArticle {
+  const { embed, html } = extractDocEmbed(d.content ?? "");
+  const seo = {
+    ...(d.metaTitle && { metaTitle: decodeEntities(d.metaTitle) }),
+    ...(d.metaDescription && {
+      metaDescription: decodeEntities(d.metaDescription),
+    }),
+  };
   return {
     slug: d.slug,
     title: decodeEntities(d.title),
-    body: sanitizeHtml(d.content),
-    category: categorySlug,
-    categoryName,
+    body: sanitizeHtml(html),
+    category: d.category?.slug ?? categorySlug,
+    categoryName: d.category?.name
+      ? decodeEntities(d.category.name)
+      : categoryName,
     order: 0,
     updatedAt: d.updatedAt ?? "",
+    excerpt: d.excerpt ? decodeEntities(d.excerpt) : undefined,
+    readingTimeMinutes: d.readingTimeMinutes,
+    embed,
+    seo: Object.keys(seo).length ? seo : undefined,
     locale,
     isTranslated: d.isTranslated,
   };

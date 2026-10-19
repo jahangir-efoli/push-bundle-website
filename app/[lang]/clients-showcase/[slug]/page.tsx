@@ -8,7 +8,8 @@ import { TableOfContents } from "@/components/blog/table-of-contents";
 import { TrialCta } from "@/components/sections/trial-cta";
 import { JsonLd } from "@/components/seo/json-ld";
 import { buttonStyles } from "@/components/ui/button";
-import { ClientCard, formatStoryDate } from "@/components/client-showcase/client-card";
+import { ClientCard } from "@/components/client-showcase/client-card";
+import { formatShortDate } from "@/lib/utils";
 import { breadcrumbLd } from "@/lib/seo/structured-data";
 import { localeAlternates } from "@/lib/seo/metadata";
 import { processArticle } from "@/lib/blog/toc";
@@ -146,7 +147,7 @@ export default async function ClientStoryPage({ params }: Props) {
             <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
               <p className="text-sm text-inverse-foreground/65">
                 <time dateTime={client.publishedAt}>
-                  {formatStoryDate(client.publishedAt, locale)}
+                  {formatShortDate(client.publishedAt, locale)}
                 </time>{" "}
                 · {client.readingMinutes} {ui.minRead}
                 {client.author && <> · {client.author.name}</>}

@@ -18,7 +18,25 @@ export type IconName =
   | "sparkles"
   | "shield"
   | "arrow-right"
-  | "file-text";
+  | "file-text"
+  // Help-centre topics + article meta
+  | "rocket"
+  | "link"
+  | "grid"
+  | "box"
+  | "percent"
+  | "eye"
+  | "list"
+  | "chart"
+  | "credit-card"
+  | "wrench"
+  | "play"
+  | "clock"
+  | "steps"
+  | "info"
+  | "check-circle"
+  | "search"
+  | "chat";
 
 const PATHS: Record<IconName, React.ReactNode> = {
   // Multiple bundling options — stacked packs
@@ -90,6 +108,98 @@ const PATHS: Record<IconName, React.ReactNode> = {
       <path d="M14 3v5h5" />
       <path d="M9 13h6M9 17h4" />
     </>
+  ),
+  rocket: (
+    <>
+      <path d="M5 15c-1.5 1.5-2 5-2 5s3.5-.5 5-2" />
+      <path d="M14 4c3-1 6-1 6-1s0 3-1 6l-7 7-5-5 7-7Z" />
+      <circle cx="15" cy="9" r="1.5" />
+    </>
+  ),
+  link: (
+    <>
+      <path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1" />
+      <path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1" />
+    </>
+  ),
+  grid: (
+    <>
+      <rect x="3" y="3" width="7" height="7" rx="1.5" />
+      <rect x="14" y="3" width="7" height="7" rx="1.5" />
+      <rect x="3" y="14" width="7" height="7" rx="1.5" />
+      <rect x="14" y="14" width="7" height="7" rx="1.5" />
+    </>
+  ),
+  box: (
+    <>
+      <path d="m3 7 9-4 9 4v10l-9 4-9-4V7Z" />
+      <path d="m3 7 9 4 9-4M12 11v10" />
+    </>
+  ),
+  percent: (
+    <>
+      <path d="M19 5 5 19" />
+      <circle cx="7" cy="7" r="2.5" />
+      <circle cx="17" cy="17" r="2.5" />
+    </>
+  ),
+  eye: (
+    <>
+      <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z" />
+      <circle cx="12" cy="12" r="3" />
+    </>
+  ),
+  list: (
+    <>
+      <path d="M8 6h13M8 12h13M8 18h13" />
+      <circle cx="4" cy="6" r="1" />
+      <circle cx="4" cy="12" r="1" />
+      <circle cx="4" cy="18" r="1" />
+    </>
+  ),
+  chart: (
+    <>
+      <path d="M3 3v18h18" />
+      <path d="m7 15 4-4 3 3 6-7" />
+    </>
+  ),
+  "credit-card": (
+    <>
+      <rect x="2" y="5" width="20" height="14" rx="2.5" />
+      <path d="M2 10h20" />
+    </>
+  ),
+  wrench: (
+    <path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4 2.6-2.6Z" />
+  ),
+  play: <path d="M8 5l11 7-11 7V5Z" fill="currentColor" />,
+  clock: (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 7v5l3 2" />
+    </>
+  ),
+  steps: <path d="M4 7h6M4 12h10M4 17h14" />,
+  info: (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 8h.01M11 12h1v5h1" />
+    </>
+  ),
+  "check-circle": (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <path d="m8 12 3 3 5-6" />
+    </>
+  ),
+  search: (
+    <>
+      <circle cx="11" cy="11" r="7" />
+      <path d="m20 20-3.5-3.5" />
+    </>
+  ),
+  chat: (
+    <path d="M21 12a8 8 0 0 1-11.6 7.1L3 21l1.9-6.4A8 8 0 1 1 21 12Z" />
   ),
 };
 

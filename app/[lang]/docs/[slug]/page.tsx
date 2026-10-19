@@ -3,13 +3,19 @@ import { LocaleLink as Link } from "@/components/ui/locale-link";
 import { notFound } from "next/navigation";
 import { cms } from "@/lib/cms";
 import { Container } from "@/components/ui/container";
-import { DocsSidebar } from "@/components/docs/docs-sidebar";
 import { Icon } from "@/components/ui/icon";
+import { buttonStyles } from "@/components/ui/button";
+import { DocEmbed } from "@/components/docs/doc-embed";
+import { DocFeedback } from "@/components/docs/doc-feedback";
 import { JsonLd } from "@/components/seo/json-ld";
 import { breadcrumbLd } from "@/lib/seo/structured-data";
 import { localeAlternates, socialCard } from "@/lib/seo/metadata";
+import { SITE_URL } from "@/lib/seo/site";
 import { isLocale, type Locale } from "@/i18n/config";
-import { site } from "@/lib/site-config";
+import { getDocsContent } from "@/i18n/content";
+import { enhanceDocBody } from "@/lib/docs/body";
+import { cn, fmt, formatShortDate } from "@/lib/utils";
+import type { DocArticle } from "@/lib/cms";
 
 type Props = { params: Promise<{ lang: string; slug: string }> };
 
@@ -26,8 +32,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // the CMS translates a doc, its localized URL auto-flows into hreflang here.
   const availableLocales = await cms.getDocLocales({ slug: doc.slug });
   const alternates = localeAlternates(`/docs/${doc.slug}`, locale, availableLocales);
-  const title = `${doc.title} | PushBundle Docs`;
-  const description = `How to ${doc.title.toLowerCase()} with PushBundle.`;
+  const title = doc.seo?.metaTitle ?? `${doc.title} | PushBundle Docs`;
+  const description =
+    doc.seo?.metaDescription ??
+    doc.excerpt ??
+    `How to ${doc.title.toLowerCase()} with PushBundle.`;
   return {
     title,
     description,
@@ -36,152 +45,200 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-function techArticleLd(title: string, slug: string, updatedAt: string) {
+function techArticleLd(doc: DocArticle) {
   return {
     "@context": "https://schema.org",
     "@type": "TechArticle",
-    headline: title,
-    dateModified: updatedAt,
-    url: `https://pushbundle.com/docs/${slug}`,
-    publisher: { "@type": "Organization", name: site.name },
+    headline: doc.title,
+    ...(doc.excerpt && { description: doc.excerpt }),
+    dateModified: doc.updatedAt,
+    url: `${SITE_URL}/docs/${doc.slug}`,
+    publisher: { "@id": `${SITE_URL}/#organization` },
   };
 }
 
-/** Doc article (docs/PLAN.md §5.8b). `params` is async (Next 16). */
+/** Help-centre article (docs/PLAN.md §5.8b). `params` is async (Next 16). */
 export default async function DocArticlePage({ params }: Props) {
   const { lang, slug } = await params;
   const locale = toLocale(lang);
 
-  const [doc, docs] = await Promise.all([
+  const [doc, docs, content] = await Promise.all([
     cms.getDoc({ locale, slug }),
     cms.listDocs({ locale }),
+    getDocsContent(locale),
   ]);
   if (!doc) notFound();
+  const t = content.article;
 
-  // The single-doc response doesn't carry a reliable category, so read the
-  // current doc's neighbours + siblings from the ordered list instead.
-  const idx = docs.findIndex((d) => d.slug === doc.slug);
-  const prev = idx > 0 ? docs[idx - 1] : null;
-  const next = idx >= 0 && idx < docs.length - 1 ? docs[idx + 1] : null;
-  const category = idx >= 0 ? docs[idx].category : doc.category;
-  const related = docs
-    .filter((d) => d.category === category && d.slug !== doc.slug)
-    .slice(0, 4);
+  // Topic, siblings and prev/next come from the ordered list, so they match
+  // the topic page's order even if the single-doc response lacks a category.
+  const listed = docs.find((d) => d.slug === doc.slug);
+  const topicSlug = listed?.category ?? doc.category;
+  const topicName = listed?.categoryName ?? doc.categoryName;
+  const siblings = docs.filter((d) => d.category === topicSlug);
+  const idx = siblings.findIndex((d) => d.slug === doc.slug);
+  const prev = idx > 0 ? siblings[idx - 1] : null;
+  const next = idx >= 0 && idx < siblings.length - 1 ? siblings[idx + 1] : null;
+
+  const body = enhanceDocBody(doc.body);
+  const minutes = doc.readingTimeMinutes ?? listed?.readingTimeMinutes;
+  const meta: Array<{ icon: "clock" | "steps" | "calendar"; text: string }> = [];
+  if (minutes) meta.push({ icon: "clock", text: fmt(t.minRead, { n: minutes }) });
+  if (body.steps)
+    meta.push({
+      icon: "steps",
+      text: fmt(body.steps === 1 ? t.stepOne : t.stepOther, { n: body.steps }),
+    });
+  if (doc.updatedAt)
+    meta.push({
+      icon: "calendar",
+      text: fmt(t.updated, { date: formatShortDate(doc.updatedAt, locale) }),
+    });
 
   return (
     <>
-      <JsonLd data={techArticleLd(doc.title, doc.slug, doc.updatedAt)} />
+      <JsonLd data={techArticleLd(doc)} />
       <JsonLd
         data={breadcrumbLd([
           { name: "Home", path: "/" },
-          { name: "Docs", path: "/docs" },
-          { name: doc.categoryName, path: "/docs" },
+          { name: content.root, path: "/docs" },
+          { name: topicName, path: `/docs/category/${topicSlug}` },
           { name: doc.title, path: `/docs/${doc.slug}` },
         ])}
       />
 
-      <Container className="py-16">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[16rem_minmax(0,1fr)]">
-          {/* Sidebar */}
-          <aside className="lg:sticky lg:top-24 lg:self-start">
-            <DocsSidebar docs={docs} currentSlug={doc.slug} />
-          </aside>
+      <Container className="pb-section pt-10">
+        <nav aria-label="Breadcrumb" className="text-sm text-muted">
+          <ol className="flex flex-wrap items-center gap-2">
+            <li>
+              <Link href="/docs" className="hover:text-primary hover:underline">
+                {content.root}
+              </Link>
+            </li>
+            <li aria-hidden="true">›</li>
+            <li>
+              <Link
+                href={`/docs/category/${topicSlug}`}
+                className="hover:text-primary hover:underline"
+              >
+                {topicName}
+              </Link>
+            </li>
+          </ol>
+        </nav>
 
-          {/* Article */}
-          <article>
-            <nav aria-label="Breadcrumb" className="text-sm text-muted">
-              <ol className="flex flex-wrap items-center gap-2">
-                <li>
-                  <Link href="/docs" className="hover:text-primary hover:underline">
-                    Docs
-                  </Link>
-                </li>
-                <li aria-hidden="true">/</li>
-                <li>{doc.categoryName}</li>
-              </ol>
-            </nav>
+        <div className="mt-6 grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_19rem] lg:gap-12">
+          <article className="min-w-0">
+            <h1 className="text-display-md text-balance">{doc.title}</h1>
+            {meta.length > 0 && (
+              <ul className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm text-muted">
+                {meta.map((m) => (
+                  <li key={m.icon} className="inline-flex items-center gap-1.5">
+                    <Icon name={m.icon} className="size-4" />
+                    {m.text}
+                  </li>
+                ))}
+              </ul>
+            )}
 
-            <h1 className="mt-4 text-display-md text-balance">{doc.title}</h1>
+            {doc.embed && (
+              <div className="mt-8">
+                <DocEmbed embed={doc.embed} title={`${t.video}: ${doc.title}`} />
+              </div>
+            )}
 
             <div
-              className="prose-pb mt-8 max-w-2xl"
-              dangerouslySetInnerHTML={{ __html: doc.body }}
+              className="prose-pb doc-body mt-8 max-w-184"
+              dangerouslySetInnerHTML={{ __html: body.html }}
             />
 
-            {/* Prev / next article navigation */}
+            <div className="mt-10 max-w-184">
+              <DocFeedback slug={doc.slug} content={t.feedback} />
+            </div>
+
             {(prev || next) && (
               <nav
-                aria-label="Article navigation"
-                className="mt-12 grid grid-cols-1 gap-4 border-t border-border pt-8 sm:grid-cols-2"
+                aria-label={`${t.previous} / ${t.next}`}
+                className="mt-6 grid max-w-184 gap-3 sm:grid-cols-2"
               >
                 {prev ? (
                   <Link
                     href={`/docs/${prev.slug}`}
-                    className="group flex flex-col rounded-xl border border-border p-4 transition-colors hover:border-primary/50 hover:bg-surface-subtle"
+                    className="group flex flex-col rounded-2xl border border-border bg-surface p-4 shadow-soft transition-colors hover:border-primary/40"
                   >
                     <span className="text-xs font-semibold uppercase tracking-wide text-muted">
-                      ← Previous
+                      ← {t.previous}
                     </span>
                     <span className="mt-1 font-semibold text-foreground transition-colors group-hover:text-primary">
                       {prev.title}
                     </span>
                   </Link>
                 ) : (
-                  <span aria-hidden="true" />
+                  <span aria-hidden="true" className="hidden sm:block" />
                 )}
-                {next ? (
+                {next && (
                   <Link
                     href={`/docs/${next.slug}`}
-                    className="group flex flex-col rounded-xl border border-border p-4 text-right transition-colors hover:border-primary/50 hover:bg-surface-subtle sm:items-end"
+                    className="group flex flex-col rounded-2xl border border-border bg-surface p-4 text-right shadow-soft transition-colors hover:border-primary/40 sm:items-end"
                   >
                     <span className="text-xs font-semibold uppercase tracking-wide text-muted">
-                      Next →
+                      {t.next} →
                     </span>
                     <span className="mt-1 font-semibold text-foreground transition-colors group-hover:text-primary">
                       {next.title}
                     </span>
                   </Link>
-                ) : (
-                  <span aria-hidden="true" />
                 )}
               </nav>
             )}
+          </article>
 
-            {/* Related articles (same category) */}
-            {related.length > 0 && (
-              <section className="mt-12">
-                <h2 className="font-display text-lg font-bold text-foreground">
-                  Related articles
-                </h2>
-                <ul className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
-                  {related.map((r) => (
-                    <li key={r.slug}>
+          <aside className="grid content-start gap-4 lg:sticky lg:top-28 lg:self-start">
+            <nav
+              aria-label={fmt(t.inTopic, { topic: topicName })}
+              className="rounded-2xl border border-border bg-surface p-5 shadow-soft"
+            >
+              <p className="text-xs font-semibold uppercase tracking-widest text-muted">
+                {fmt(t.inTopic, { topic: topicName })}
+              </p>
+              <ul
+                data-lenis-prevent
+                className="-mr-2 mt-3 max-h-[46vh] overflow-y-auto pr-2"
+              >
+                {siblings.map((d) => {
+                  const on = d.slug === doc.slug;
+                  return (
+                    <li key={d.slug} className="border-t border-border first:border-t-0">
                       <Link
-                        href={`/docs/${r.slug}`}
-                        className="flex items-center gap-2.5 rounded-lg border border-border p-3 text-sm font-medium text-foreground transition-colors hover:border-primary/50 hover:bg-surface-subtle hover:text-primary"
+                        href={`/docs/${d.slug}`}
+                        aria-current={on ? "page" : undefined}
+                        className={cn(
+                          "block py-2 text-sm leading-snug transition-colors",
+                          on ? "font-semibold text-foreground" : "text-muted hover:text-foreground",
+                        )}
                       >
-                        <Icon
-                          name="file-text"
-                          className="size-4 shrink-0 text-primary"
-                        />
-                        <span className="min-w-0 flex-1 truncate">{r.title}</span>
+                        {d.title}
                       </Link>
                     </li>
-                  ))}
-                </ul>
-              </section>
-            )}
+                  );
+                })}
+              </ul>
+            </nav>
 
-            <div className="mt-12 rounded-2xl border border-border bg-surface-subtle p-6">
-              <p className="font-semibold">Still stuck?</p>
+            <div className="rounded-2xl border border-border bg-surface p-5 shadow-soft">
+              <p className="text-xs font-semibold uppercase tracking-widest text-muted">
+                {t.helpTitle}
+              </p>
+              <p className="mt-3 text-sm text-muted">{t.helpBody}</p>
               <Link
                 href="/contact-us"
-                className="mt-1 inline-flex min-h-11 items-center text-sm font-semibold text-primary underline underline-offset-4"
+                className={buttonStyles({ variant: "gradient", size: "sm", className: "mt-4 w-full" })}
               >
-                Contact support →
+                <Icon name="chat" className="size-4" />
+                {t.helpCta}
               </Link>
             </div>
-          </article>
+          </aside>
         </div>
       </Container>
     </>

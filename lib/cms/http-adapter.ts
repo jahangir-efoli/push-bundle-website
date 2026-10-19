@@ -482,6 +482,11 @@ export const httpAdapter: CmsAdapter = {
       ];
       // Blog category archives are localized list pages → all locales (default).
       for (const c of categories) refs.push({ path: `/blog/category/${c.slug}`, updatedAt: "" });
+      // Docs topic pages, likewise (the cached English list has every doc).
+      const docTopics = new Set(
+        (await this.listDocs({ locale: "en" })).map((d) => d.category),
+      );
+      for (const c of docTopics) refs.push({ path: `/docs/category/${c}`, updatedAt: "" });
 
       return refs.length ? refs : fixtureAdapter.listAllContentRefs({ locale });
     } catch {

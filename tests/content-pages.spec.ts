@@ -14,6 +14,9 @@ const ROUTES = [
   "/blog/page/2",
   "/docs",
   "/docs/installation",
+  "/docs/how-to-setup-volume-bundle",
+  "/docs/category/setup-process",
+  "/docs/search?q=bundle",
   "/changelog",
   "/partner",
   "/faq",
@@ -132,12 +135,12 @@ test("faq questions are deep-linkable via slug anchors", async ({ page }) => {
   await expect(page.locator("#free-trial")).toHaveCount(1);
 });
 
-test("docs article shows the sidebar with the current page marked", async ({
+test("docs article lists its topic with the current page marked", async ({
   page,
 }) => {
   await page.goto("/docs/installation");
   const current = page
-    .getByRole("navigation", { name: "Documentation" })
+    .getByRole("navigation", { name: "In Getting Started" })
     .getByRole("link", { name: "Installation" });
   await expect(current).toHaveAttribute("aria-current", "page");
 });

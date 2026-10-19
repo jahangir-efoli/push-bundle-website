@@ -1,23 +1,112 @@
 {
   "meta": {
     "title": "Docs — Setup & Help Center",
-    "description": "Documentation for the PushBundle Shopify bundle app — installation, setup, and how-to guides."
+    "description": "Step-by-step guides for every PushBundle feature: install the app, build each bundle type, and fix common setup problems."
   },
-  "eyebrow": "Docs",
-  "title": "Documentation",
-  "subtitle": "Everything you need to install, set up, and get the most out of PushBundle.",
+  "root": "Docs",
+  "hero": {
+    "eyebrow": "Docs",
+    "title": "How can we",
+    "titleAccent": "help you bundle?",
+    "subtitle": "Short, step-by-step guides for every PushBundle feature."
+  },
+  "search": {
+    "label": "Search the docs",
+    "placeholder": "Search guides, e.g. free gift, app embed, schedule…",
+    "button": "Search",
+    "popular": "Popular:",
+    "chips": ["App embed", "Volume bundle", "Mix and match", "Cross-sell", "Discount", "Free gift"],
+    "seeAll": "See all results",
+    "noQuickMatch": "No quick match. Search all guides",
+    "shortcut": "Press / to search"
+  },
+  "stats": {
+    "guideOne": "guide",
+    "guideOther": "guides",
+    "topicOne": "topic",
+    "topicOther": "topics",
+    "support": "human support"
+  },
+  "quickStart": {
+    "eyebrow": "Start here",
+    "titleOne": "Launch your first bundle in {n} step",
+    "titleOther": "Launch your first bundle in {n} steps",
+    "steps": [
+      "Add the app to your Shopify store.",
+      "Switch PushBundle on in your theme so bundles can show.",
+      "Create your first bundle and set its discount.",
+      "Confirm your bundle works for shoppers."
+    ]
+  },
+  "topics": {
+    "eyebrow": "Browse by topic",
+    "title": "Find the guide you need",
+    "subtitle": "Every bundle type and setting, organised the way you work.",
+    "guideOne": "{n} guide",
+    "guideOther": "{n} guides",
+    "viewAll": "View all {n} guides",
+    "sidebar": "Topics",
+    "descriptions": {
+      "getting-started": "Install PushBundle, switch it on and launch your first bundle.",
+      "setup-process": "Set up each bundle type, its discounts and its limits.",
+      "volume-bundle": "Buy more, save more: quantity tiers, gifts and free shipping.",
+      "cross-sell-bundle": "Frequently bought together offers on any product page.",
+      "mix-match-single": "Let shoppers fill a pack with variants of one product.",
+      "mix-match-multi": "Let shoppers build a pack from many products.",
+      "build-your-own-box": "Step-by-step box builder with forms, gift cards and wrapping.",
+      "discounts": "How bundle discounts work and combine with others.",
+      "visibility-scheduling": "Target customers and schedule when bundles run.",
+      "text-languages": "Change storefront wording and translate your bundles.",
+      "managing-bundles": "Find, edit, duplicate and organise your bundles.",
+      "cart-orders": "What happens in cart, checkout, orders and returns.",
+      "analytics": "Read your bundle revenue, orders and performance.",
+      "plans-billing": "Plans, trials, upgrades and cancellations.",
+      "troubleshooting": "Fix the most common setup and display problems."
+    }
+  },
+  "popular": {
+    "eyebrow": "Recommended",
+    "title": "Popular guides"
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "title": "Quick answers"
+  },
   "help": {
-    "title": "Still need help?",
-    "body": "Can't find what you're looking for? Our team is here to help.",
-    "cta": "Contact support"
+    "eyebrow": "Still stuck?",
+    "title": "Real humans, ready 24/7",
+    "body": "Chat with us, or let our team set up your first bundle for free.",
+    "contact": "Contact support",
+    "setup": "Book free setup"
   },
-  "ui": {
-    "searchLabel": "Search documentation",
-    "searchPlaceholder": "Search the docs…",
-    "resultOne": "result",
-    "resultOther": "results",
-    "forQuery": "for",
-    "noResultsTitle": "No results found",
-    "noResultsBody": "Nothing matches your search. Try a different term or browse the categories."
+  "article": {
+    "minRead": "{n} min read",
+    "stepOne": "{n} step",
+    "stepOther": "{n} steps",
+    "updated": "Updated {date}",
+    "video": "Video walkthrough",
+    "inTopic": "In {topic}",
+    "previous": "Previous",
+    "next": "Next",
+    "helpTitle": "Need a hand?",
+    "helpBody": "Our team replies 24/7 and can set up your bundle for free.",
+    "helpCta": "Contact support",
+    "feedback": {
+      "question": "Was this guide helpful?",
+      "yes": "Yes",
+      "no": "No",
+      "thanksYes": "Thanks! Glad it helped.",
+      "thanksNo": "Thanks for telling us. We'll improve this guide."
+    }
+  },
+  "results": {
+    "metaTitle": "Search the docs",
+    "crumb": "Search",
+    "countOne": "{n} result for “{q}”",
+    "countOther": "{n} results for “{q}”",
+    "across": "Across {n} topics.",
+    "prompt": "Type a word or two to search every guide.",
+    "empty": "No guides match. Try fewer words, or",
+    "askTeam": "ask our team"
   }
 }
