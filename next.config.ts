@@ -4,6 +4,16 @@ import { defaultLocale, locales } from "./i18n/config";
 // Non-default locale prefixes, e.g. "de|fr|es|it|ja|zh" (one source: i18n/config).
 const LOCALE_RE = locales.filter((l) => l !== defaultLocale).join("|");
 
+/**
+ * Case studies that moved from the blog to the Client Showcase (Oct 2026):
+ * [old blog slug, client-story slug]. The old URLs are still linked from
+ * posts and were crawled (Ahrefs 404s), so they 301 in every locale.
+ */
+const MOVED_TO_CLIENTS: Array<[string, string]> = [
+  ["coho-with-pushbundle", "coho-online-bakery-pushbundle"],
+  ["chameleon-colors-with-pushbundle", "chameleon-colors-with-pushbundle"],
+];
+
 const nextConfig: NextConfig = {
   // The URL scheme is no-trailing-slash (docs/PLAN.md §8). Next's built-in
   // trailing-slash normalization emits a 308; we want a 301, so we disable the
@@ -56,6 +66,14 @@ const nextConfig: NextConfig = {
       { source: "/client-showcase/:path*", destination: "/clients-showcase/:path*", permanent: true },
       { source: `/:locale(${LOCALE_RE})/client-showcase`, destination: "/:locale/clients-showcase", permanent: true },
       { source: `/:locale(${LOCALE_RE})/client-showcase/:path*`, destination: "/:locale/clients-showcase/:path*", permanent: true },
+      ...MOVED_TO_CLIENTS.flatMap(([from, to]) => [
+        { source: `/blog/${from}`, destination: `/clients-showcase/${to}`, permanent: true },
+        {
+          source: `/:locale(${LOCALE_RE})/blog/${from}`,
+          destination: `/:locale/clients-showcase/${to}`,
+          permanent: true,
+        },
+      ]),
     ];
   },
 };

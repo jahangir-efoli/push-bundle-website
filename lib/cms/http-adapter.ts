@@ -86,6 +86,28 @@ function readListEnvelope(
 }
 
 /**
+ * Every item of a paginated list endpoint, not just the first page. Lists that
+ * feed the sitemap, hreflang and category archives must stay complete past
+ * one page (the API caps `limit` at 100; push-bundle had 90 posts in Oct 2026).
+ */
+async function cmsFetchAll(
+  path: string,
+  key: string,
+  params: Record<string, string | number | undefined> = {},
+): Promise<unknown[]> {
+  const page = (n: number) =>
+    cmsFetch<unknown>(path, { limit: 100, ...params, ...(n > 1 && { page: n }) });
+  const first = readListEnvelope(await page(1), key);
+  const pages = Math.min(first.totalPages ?? 1, 50);
+  const rest = await Promise.all(
+    Array.from({ length: pages - 1 }, async (_, i) =>
+      readListEnvelope(await page(i + 2), key).items,
+    ),
+  );
+  return [first.items, ...rest].flat();
+}
+
+/**
  * Fold a set of per-locale item lists into canonical sitemap refs: a slug is
  * listed in `en` (the base) plus every non-English locale where it's truly
  * translated. Shared by blog posts and docs so both stay translation-aware.
@@ -172,14 +194,9 @@ export const httpAdapter: CmsAdapter = {
     const translated = await Promise.all(
       nonEn.map(async (l): Promise<Locale | null> => {
         try {
-          const raw = await cmsFetch<unknown>("/api/public/posts", {
-            limit: 100,
+          const items = (await cmsFetchAll("/api/public/posts", "posts", {
             locale: apiLocale(l),
-          });
-          const items = readListEnvelope(raw, "posts").items as Array<{
-            slug: string;
-            isTranslated?: boolean;
-          }>;
+          })) as Array<{ slug: string; isTranslated?: boolean }>;
           return items.find((p) => p.slug === slug)?.isTranslated === true ? l : null;
         } catch {
           return null;
@@ -207,11 +224,9 @@ export const httpAdapter: CmsAdapter = {
 
   async listCategories({ locale }): Promise<Category[]> {
     try {
-      const raw = await cmsFetch<unknown>("/api/public/posts", {
-        limit: 100,
+      const items = await cmsFetchAll("/api/public/posts", "posts", {
         locale: apiLocale(locale),
       });
-      const { items } = readListEnvelope(raw, "posts");
       if (!items.length) return fixtureAdapter.listCategories({ locale });
       return categoriesFromPosts(items as Parameters<typeof categoriesFromPosts>[0]);
     } catch {
@@ -331,14 +346,9 @@ export const httpAdapter: CmsAdapter = {
     const translated = await Promise.all(
       nonEn.map(async (l): Promise<Locale | null> => {
         try {
-          const raw = await cmsFetch<unknown>("/api/public/clients", {
-            limit: 100,
+          const items = (await cmsFetchAll("/api/public/clients", "clients", {
             locale: apiLocale(l),
-          });
-          const items = readListEnvelope(raw, "clients").items as Array<{
-            slug: string;
-            isTranslated?: boolean | null;
-          }>;
+          })) as Array<{ slug: string; isTranslated?: boolean | null }>;
           return items.find((c) => c.slug === slug)?.isTranslated === true ? l : null;
         } catch {
           return null;
@@ -353,8 +363,7 @@ export const httpAdapter: CmsAdapter = {
     try {
       // Fetch the full history — the page paginates client-side, so the API
       // default page size would otherwise truncate older entries.
-      const raw = await cmsFetch<unknown>("/api/public/changelogs", { limit: 100 });
-      const { items } = readListEnvelope(raw, "changelogs");
+      const items = await cmsFetchAll("/api/public/changelogs", "changelogs");
       const entries = items.map((c) =>
         mapChangelog(c as Parameters<typeof mapChangelog>[0]),
       );
@@ -403,11 +412,9 @@ export const httpAdapter: CmsAdapter = {
         Promise.all(
           locales.map(async (l): Promise<readonly [Locale, Translatable[]]> => {
             try {
-              const raw = await cmsFetch<unknown>("/api/public/posts", {
-                limit: 100,
+              const items = (await cmsFetchAll("/api/public/posts", "posts", {
                 locale: apiLocale(l),
-              });
-              const items = readListEnvelope(raw, "posts").items as Array<{
+              })) as Array<{
                 slug: string;
                 updatedAt?: string;
                 publishedAt: string;
@@ -451,11 +458,9 @@ export const httpAdapter: CmsAdapter = {
       const perLocaleClients = await Promise.all(
         locales.map(async (l): Promise<readonly [Locale, Translatable[]]> => {
           try {
-            const raw = await cmsFetch<unknown>("/api/public/clients", {
-              limit: 100,
+            const items = (await cmsFetchAll("/api/public/clients", "clients", {
               locale: apiLocale(l),
-            });
-            const items = readListEnvelope(raw, "clients").items as Array<{
+            })) as Array<{
               slug: string;
               updatedAt?: string;
               publishedAt: string;
