@@ -60,8 +60,36 @@ const SANITIZE_OPTIONS: sanitizeHtmlLib.IOptions = {
     // string form preserves attributes, so heading `id` anchors survive and the
     // demoted headings now also feed the TOC (which reads h2/h3).
     h1: "h2",
+    a: (tagName, attribs) => ({ tagName, attribs: tidyInternalLink(attribs) }),
   },
 };
+
+/**
+ * Internal links in CMS bodies (pushbundle.com or root-relative). The CMS
+ * editor marks every link `rel="noopener noreferrer nofollow"`, and the
+ * WordPress-era content uses trailing-slash URLs. Ahrefs flagged both
+ * (Oct 2026: 351 nofollowed internal links, 817 slash URLs): `nofollow`
+ * throws away our own link equity, and each trailing slash costs a 308 hop.
+ * External links are left exactly as authored.
+ */
+function tidyInternalLink(attribs: sanitizeHtmlLib.Attributes): sanitizeHtmlLib.Attributes {
+  const m = (attribs.href ?? "").match(
+    /^(https?:\/\/(?:www\.)?pushbundle\.com|)(\/(?!\/)[^?#]*)([?#].*)?$/i,
+  );
+  if (!m) return attribs;
+  const [, origin, path, rest = ""] = m;
+  const out: sanitizeHtmlLib.Attributes = {
+    ...attribs,
+    href: origin + (path.replace(/\/+$/, "") || "/") + rest,
+  };
+  const rel = out.rel
+    ?.split(/\s+/)
+    .filter((t) => t && t.toLowerCase() !== "nofollow")
+    .join(" ");
+  if (rel) out.rel = rel;
+  else delete out.rel;
+  return out;
+}
 
 export function sanitizeHtml(html: string | undefined | null): string {
   if (!html) return "";
