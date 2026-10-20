@@ -56,6 +56,7 @@
   --pb-border-800: #282d55;
   --pb-text-100: #e9eafb;
   --pb-muted-400: #9aa1c9;
+  --pb-reading-300: #c5cfdb; /* long-form body text on dark (~13:1 on bg-950) */
 
   /* Status */
   --pb-success: #22c55e;
@@ -86,6 +87,7 @@
 
   --foreground: var(--pb-ink-900);
   --muted: var(--pb-slate-500);
+  --prose: var(--pb-slate-500); /* article body text (.prose-pb) */
   --border: var(--pb-border-300);
 
   --primary: var(--pb-blue-500);
@@ -176,6 +178,8 @@
 
   --foreground: var(--pb-text-100);
   --muted: var(--pb-muted-400);
+  /* Brighter than muted: labels can be dim, paragraphs of reading can't. */
+  --prose: var(--pb-reading-300);
   --border: var(--pb-border-800);
 
   /* Lifted for AA on dark: ~8:1 as text on bg-950, and ~8:1 for ink text on it */
@@ -404,8 +408,8 @@ button:disabled,
  * HTML rendered from the CMS — headings, paragraphs, lists, links, code.
  */
 .prose-pb {
-  color: var(--muted);
-  line-height: 1.75;
+  color: var(--prose);
+  line-height: 1.85;
 }
 .prose-pb > * + * {
   margin-top: 1.25em;
