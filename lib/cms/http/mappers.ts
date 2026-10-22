@@ -23,8 +23,25 @@ import type {
  * than DOMPurify/jsdom, which fails to run in Vercel's serverless runtime and
  * 500'd the blog/docs single pages. Preserves what our article rendering needs:
  * heading `id`s + `#` anchors (the Table of Contents), tables, lists, nav,
- * images, and inline formatting. Scripts/styles and their contents are dropped.
+ * images, inline formatting, and video embeds from trusted hosts. Scripts,
+ * styles and their contents are dropped.
  */
+
+/**
+ * Hosts whose players may be embedded from the CMS raw-HTML block (stored as
+ * `<div data-html-block><iframe …>`). An iframe from anywhere else is dropped.
+ */
+const VIDEO_HOSTS = [
+  "www.youtube.com",
+  "youtube.com",
+  "www.youtube-nocookie.com",
+  "youtube-nocookie.com",
+  "player.vimeo.com",
+  "www.loom.com",
+  "loom.com",
+  "fast.wistia.net",
+];
+
 const SANITIZE_OPTIONS: sanitizeHtmlLib.IOptions = {
   allowedTags: [
     "h1", "h2", "h3", "h4", "h5", "h6",
@@ -38,6 +55,7 @@ const SANITIZE_OPTIONS: sanitizeHtmlLib.IOptions = {
     "table", "thead", "tbody", "tfoot", "tr", "td", "th", "caption",
     "colgroup", "col",
     "img", "picture", "source",
+    "iframe",
   ],
   allowedAttributes: {
     "*": ["id", "class"],
@@ -49,7 +67,17 @@ const SANITIZE_OPTIONS: sanitizeHtmlLib.IOptions = {
     td: ["colspan", "rowspan"],
     th: ["colspan", "rowspan", "scope"],
     col: ["span"],
+    iframe: [
+      "src", "title", "width", "height", "allow", "allowfullscreen",
+      "loading", "referrerpolicy", "style",
+    ],
   },
+  allowedIframeHostnames: VIDEO_HOSTS,
+  allowIframeRelativeUrls: false,
+  // Only the player's shape survives (set from width/height in videoEmbed).
+  allowedStyles: { iframe: { "aspect-ratio": [/^\d+\s*\/\s*\d+$/] } },
+  // A non-allowed host loses its src above; drop the empty frame entirely.
+  exclusiveFilter: (frame) => frame.tag === "iframe" && !frame.attribs.src,
   // `#anchor` and relative hrefs have no scheme and are kept automatically.
   allowedSchemes: ["http", "https", "mailto", "tel"],
   allowProtocolRelative: false,
@@ -61,8 +89,28 @@ const SANITIZE_OPTIONS: sanitizeHtmlLib.IOptions = {
     // demoted headings now also feed the TOC (which reads h2/h3).
     h1: "h2",
     a: (tagName, attribs) => ({ tagName, attribs: tidyInternalLink(attribs) }),
+    iframe: (tagName, attribs) => ({ tagName, attribs: videoEmbed(attribs) }),
   },
 };
+
+/**
+ * A CMS video embed: https only, lazy-loaded, and responsive — the iframe's
+ * width/height become its aspect ratio (CSS sizes it to the column).
+ */
+function videoEmbed(attribs: sanitizeHtmlLib.Attributes): sanitizeHtmlLib.Attributes {
+  const out: sanitizeHtmlLib.Attributes = {
+    ...attribs,
+    // Screen readers name a frame by its title; pasted embeds sometimes lack one.
+    title: attribs.title || "Embedded video",
+    loading: "lazy",
+  };
+  if (!/^https:\/\//i.test(out.src ?? "")) delete out.src;
+  const w = Number(attribs.width);
+  const h = Number(attribs.height);
+  if (w > 0 && h > 0) out.style = `aspect-ratio: ${w} / ${h}`;
+  else delete out.style;
+  return out;
+}
 
 /**
  * Internal links in CMS bodies (pushbundle.com or root-relative). The CMS

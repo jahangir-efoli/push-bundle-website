@@ -575,6 +575,18 @@ button:disabled,
   border-radius: var(--radius-xl);
   border: 1px solid var(--border);
 }
+/* CMS video embeds (YouTube/Vimeo/… — see VIDEO_HOSTS in lib/cms/http/mappers.ts).
+   Full column width; the sanitizer sets the iframe's own aspect-ratio inline
+   from its width/height, else 16:9. */
+.prose-pb iframe {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: var(--radius-xl);
+  background: #000;
+}
 .prose-pb figure {
   margin-top: 1.5em;
 }
