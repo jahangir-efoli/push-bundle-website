@@ -63,3 +63,29 @@ test("doc bodies give up their first iframe to the video slot", () => {
   // Plain http is never embedded.
   expect(extractDocEmbed('<iframe src="http://x.example"></iframe>').embed).toBeUndefined();
 });
+
+test("CMS raw-HTML video embeds survive, from trusted hosts only", () => {
+  // The CMS stores a raw-HTML block as <div data-html-block>…</div>.
+  expect(
+    sanitizeHtml(
+      '<div data-html-block=""><iframe width="560" height="315" src="https://www.youtube.com/embed/_m8CyERy4ZM" title="YouTube video player" frameborder="0" allowfullscreen=""></iframe></div>',
+    ),
+  ).toBe(
+    '<div><iframe width="560" height="315" src="https://www.youtube.com/embed/_m8CyERy4ZM" title="YouTube video player" allowfullscreen loading="lazy" style="aspect-ratio:560 / 315"></iframe></div>',
+  );
+
+  // A pasted embed without a title still gets one for screen readers.
+  expect(sanitizeHtml('<iframe src="https://player.vimeo.com/video/1"></iframe>')).toBe(
+    '<iframe src="https://player.vimeo.com/video/1" title="Embedded video" loading="lazy"></iframe>',
+  );
+
+  // Unknown hosts, plain http, javascript: and inline srcdoc are all dropped.
+  for (const bad of [
+    '<iframe src="https://evil.example/x"></iframe>',
+    '<iframe src="http://www.youtube.com/embed/x"></iframe>',
+    '<iframe src="javascript:alert(1)"></iframe>',
+    '<iframe srcdoc="<script>alert(1)</script>"></iframe>',
+  ]) {
+    expect(sanitizeHtml(bad), bad).toBe("");
+  }
+});
