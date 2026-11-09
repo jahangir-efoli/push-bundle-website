@@ -124,12 +124,13 @@ export type ChangelogEntry = {
   title: string;
   body: string;
   /**
-   * The CMS label, normalised: a known label becomes its canonical
-   * `ChangelogCategory` name (so tones/order apply); any other label is kept
-   * (title-cased). Absent when the editor set no label — the page then shows
-   * no badge rather than inventing one.
+   * The CMS label exactly as entered (e.g. "NEW FEATURE" — casing kept).
+   * Absent when the editor set no label; the page then shows no badge rather
+   * than inventing one. Fixtures use the `ChangelogCategory` names.
    */
   category?: ChangelogCategory | (string & {});
+  /** The label's CMS colour (`#rgb`/`#rrggbb`), used as the badge background. */
+  labelColor?: string;
   /** Release version as entered in the CMS (e.g. "2.4.0"); absent when unset. */
   version?: string;
   date: string;

@@ -1,6 +1,6 @@
 import sanitizeHtmlLib from "sanitize-html";
+import { parseLabelColor } from "../changelog-labels";
 import type {
-  ChangelogCategory,
   ChangelogEntry,
   ClientStory,
   DocArticle,
@@ -458,8 +458,7 @@ type ApiChangelog = {
   version?: string | null;
   /**
    * The editor-picked label: `{ name: "NEW FEATURE", color: "#22c55e" }`, or
-   * null when none is set. `color` is ignored — badge tones come from the
-   * design system so contrast holds in light and dark.
+   * null when none is set. Both are shown exactly as entered.
    */
   label?: { name?: string | null; color?: string | null } | string | null;
   /** Legacy shapes, kept as fallbacks. */
@@ -473,58 +472,26 @@ type ApiChangelog = {
 };
 
 /**
- * CMS label spellings → canonical category. Keys are lowercased with
- * everything but letters stripped, so "NEW FEATURE", "New feature" and
- * "new-feature" all match.
+ * The CMS label exactly as entered (trimmed) — no re-casing or renaming.
+ * No label → undefined (no badge), never a made-up default.
  */
-const CHANGELOG_LABEL_ALIASES: Record<string, ChangelogCategory> = {
-  newfeature: "New Feature",
-  newfeatures: "New Feature",
-  new: "New Feature",
-  feature: "New Feature",
-  improved: "Improved",
-  improvement: "Improved",
-  improvements: "Improved",
-  enhancement: "Improved",
-  enhancements: "Improved",
-  enhanced: "Improved",
-  fixed: "Fixed",
-  fix: "Fixed",
-  fixes: "Fixed",
-  bugfix: "Fixed",
-  bugfixes: "Fixed",
-  recognition: "Recognition",
-  award: "Recognition",
-  launch: "Launch",
-  launched: "Launch",
-};
-
-const titleCase = (s: string) =>
-  s.toLowerCase().replace(/(^|[\s-])(\p{L})/gu, (_, sep, ch) => sep + ch.toUpperCase());
-
-/**
- * Normalise a CMS label. Known spellings map to their canonical category;
- * an unknown label is shown as entered (title-cased) rather than dropped.
- * No label → undefined (no badge) — never a made-up default.
- */
-function toChangelogCategory(value?: string | null): string | undefined {
-  const raw = value?.trim();
-  if (!raw) return undefined;
-  const key = raw.toLowerCase().replace(/[^a-z]/g, "");
-  return CHANGELOG_LABEL_ALIASES[key] ?? titleCase(raw);
-}
-
 function changelogLabelName(c: ApiChangelog): string | undefined {
   const label = typeof c.label === "string" ? c.label : c.label?.name;
-  return label ?? c.category ?? c.labels?.[0];
+  return (label ?? c.category ?? c.labels?.[0])?.trim() || undefined;
 }
 
 export function mapChangelog(c: ApiChangelog, locale: Locale): ChangelogEntry {
+  const category = changelogLabelName(c);
   return {
     slug: c.slug,
     title: decodeEntities(c.title),
     body: sanitizeHtml(c.content ?? c.description ?? ""),
-    category: toChangelogCategory(changelogLabelName(c)),
+    category,
+    // Colour only travels with a label (a colour alone has nothing to paint).
+    labelColor:
+      category && typeof c.label === "object"
+        ? parseLabelColor(c.label?.color)
+        : undefined,
     version: c.version?.trim() || undefined,
     date: (c.publishedAt ?? c.date ?? "").slice(0, 10),
     image: pickImage(c.image, c.coverImage, c.featuredImage, c.thumbnail),

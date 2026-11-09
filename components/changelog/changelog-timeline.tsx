@@ -5,23 +5,29 @@ import { MediaHolder } from "@/components/media/media-holder";
 import { Badge, changelogTone } from "@/components/ui/badge";
 import { AnimateIn } from "@/components/motion/animate-in";
 import { cn } from "@/lib/utils";
-import type { ChangelogEntry } from "@/lib/cms";
+import type { ChangelogCategory, ChangelogEntry } from "@/lib/cms";
+import { knownChangelogCategory } from "@/lib/cms/changelog-labels";
 
 /**
  * Category display order. The filter tabs are DERIVED from the entries actually
- * returned by the CMS (see `categories` below) and shown in this order — so an
- * empty category never renders a dead tab. The adapter normalizes CMS labels
- * onto this known set; any other label gets a tab after these, in the order
- * it first appears. Entries with no label show no badge and only appear
- * under "All".
+ * returned by the CMS (see `categories` below) — so an empty category never
+ * renders a dead tab. Tab and badge text is the CMS label exactly as entered;
+ * labels matching a known category (loosely: "NEW FEATURE" ≈ New Feature) sort
+ * in this order, any other label after them in the order it first appears.
+ * Entries with no label show no badge and only appear under "All".
  */
-const CATEGORY_ORDER: readonly string[] = [
+const CATEGORY_ORDER: readonly ChangelogCategory[] = [
   "New Feature",
   "Improved",
   "Fixed",
   "Recognition",
   "Launch",
 ];
+
+const categoryRank = (label: string) => {
+  const known = knownChangelogCategory(label);
+  return known ? CATEGORY_ORDER.indexOf(known) : CATEGORY_ORDER.length;
+};
 
 /** Show "2.4.0" as "v2.4.0"; leave "v2.4.0" or free text like "Beta" alone. */
 const formatVersion = (v: string) => (/^\d/.test(v) ? `v${v}` : v);
@@ -76,15 +82,14 @@ export function ChangelogTimeline({
   const [filter, setFilter] = useState<string | null>(null);
   const [page, setPage] = useState(1);
 
-  // Tabs reflect the CMS data: only the categories actually present — known
-  // ones in the canonical order, then any others in first-seen order.
+  // Tabs reflect the CMS data: only the labels actually present, exactly as
+  // entered — known ones in the canonical order, then others in first-seen
+  // order (sort is stable).
   const categories = useMemo(() => {
     const present = new Set(
       entries.flatMap((e) => (e.category ? [e.category] : [])),
     );
-    const known = CATEGORY_ORDER.filter((c) => present.has(c));
-    const other = [...present].filter((c) => !CATEGORY_ORDER.includes(c));
-    return [...known, ...other];
+    return [...present].sort((a, b) => categoryRank(a) - categoryRank(b));
   }, [entries]);
 
   const visible = useMemo(
@@ -160,7 +165,10 @@ export function ChangelogTimeline({
                 <div className="rounded-2xl border border-border bg-surface p-5 shadow-soft sm:p-6">
                   <div className="flex flex-wrap items-center gap-3">
                     {entry.category && (
-                      <Badge tone={changelogTone(entry.category)}>
+                      <Badge
+                        tone={changelogTone(entry.category)}
+                        color={entry.labelColor}
+                      >
                         {entry.category}
                       </Badge>
                     )}
