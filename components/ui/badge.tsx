@@ -36,6 +36,11 @@ export const CHANGELOG_TONE = {
   Launch: "neutral",
 } as const satisfies Record<string, BadgeTone>;
 
+/** Tone for a changelog label; labels outside the known set are neutral. */
+export function changelogTone(category: string): BadgeTone {
+  return (CHANGELOG_TONE as Record<string, BadgeTone>)[category] ?? "neutral";
+}
+
 export function Badge({
   children,
   tone = "neutral",
