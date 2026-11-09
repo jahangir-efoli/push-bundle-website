@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { MediaHolder } from "@/components/media/media-holder";
-import { Badge, CHANGELOG_TONE } from "@/components/ui/badge";
+import { Badge, changelogTone } from "@/components/ui/badge";
 import { AnimateIn } from "@/components/motion/animate-in";
 import { cn } from "@/lib/utils";
 import type { ChangelogEntry } from "@/lib/cms";
@@ -10,16 +10,21 @@ import type { ChangelogEntry } from "@/lib/cms";
 /**
  * Category display order. The filter tabs are DERIVED from the entries actually
  * returned by the CMS (see `categories` below) and shown in this order — so an
- * empty category never renders a dead tab. Each entry's category value comes
- * from the CMS; the adapter normalizes it into this known set.
+ * empty category never renders a dead tab. The adapter normalizes CMS labels
+ * onto this known set; any other label gets a tab after these, in the order
+ * it first appears. Entries with no label show no badge and only appear
+ * under "All".
  */
-const CATEGORY_ORDER = [
+const CATEGORY_ORDER: readonly string[] = [
   "New Feature",
   "Improved",
   "Fixed",
   "Recognition",
   "Launch",
-] as const;
+];
+
+/** Show "2.4.0" as "v2.4.0"; leave "v2.4.0" or free text like "Beta" alone. */
+const formatVersion = (v: string) => (/^\d/.test(v) ? `v${v}` : v);
 
 /** Entries per page before pagination kicks in. */
 const PAGE_SIZE = 15;
@@ -67,19 +72,23 @@ export function ChangelogTimeline({
   entries: ChangelogEntry[];
   ui?: ChangelogUi;
 }) {
-  // "All" is an internal sentinel (not a CMS category); its tab shows ui.all.
-  const [filter, setFilter] = useState<string>("All");
+  // null = "All" (kept out of the string space so no CMS label can collide).
+  const [filter, setFilter] = useState<string | null>(null);
   const [page, setPage] = useState(1);
 
-  // Tabs reflect the CMS data: "All" + only the categories actually present,
-  // in the canonical order.
+  // Tabs reflect the CMS data: only the categories actually present — known
+  // ones in the canonical order, then any others in first-seen order.
   const categories = useMemo(() => {
-    const present = new Set(entries.map((e) => e.category));
-    return ["All", ...CATEGORY_ORDER.filter((c) => present.has(c))];
+    const present = new Set(
+      entries.flatMap((e) => (e.category ? [e.category] : [])),
+    );
+    const known = CATEGORY_ORDER.filter((c) => present.has(c));
+    const other = [...present].filter((c) => !CATEGORY_ORDER.includes(c));
+    return [...known, ...other];
   }, [entries]);
 
   const visible = useMemo(
-    () => (filter === "All" ? entries : entries.filter((e) => e.category === filter)),
+    () => (filter === null ? entries : entries.filter((e) => e.category === filter)),
     [entries, filter],
   );
 
@@ -94,32 +103,34 @@ export function ChangelogTimeline({
     [visible, current],
   );
 
-  const selectFilter = (cat: string) => {
+  const selectFilter = (cat: string | null) => {
     setFilter(cat);
     setPage(1);
   };
 
   return (
     <div>
-      {/* Filter */}
-      <div role="group" aria-label={ui.filterAria} className="flex flex-wrap gap-2">
-        {categories.map((cat) => (
-          <button
-            key={cat}
-            type="button"
-            aria-pressed={filter === cat}
-            onClick={() => selectFilter(cat)}
-            className={cn(
-              "flex h-9 items-center rounded-full px-4 text-sm font-semibold transition-colors",
-              filter === cat
-                ? "bg-primary text-primary-foreground"
-                : "border border-border text-muted hover:bg-surface-subtle hover:text-foreground",
-            )}
-          >
-            {cat === "All" ? ui.all : cat}
-          </button>
-        ))}
-      </div>
+      {/* Filter — hidden when there's nothing to filter by (no labels set). */}
+      {categories.length > 0 && (
+        <div role="group" aria-label={ui.filterAria} className="flex flex-wrap gap-2">
+          {[null, ...categories].map((cat) => (
+            <button
+              key={cat ?? "__all"}
+              type="button"
+              aria-pressed={filter === cat}
+              onClick={() => selectFilter(cat)}
+              className={cn(
+                "flex h-9 items-center rounded-full px-4 text-sm font-semibold transition-colors",
+                filter === cat
+                  ? "bg-primary text-primary-foreground"
+                  : "border border-border text-muted hover:bg-surface-subtle hover:text-foreground",
+              )}
+            >
+              {cat ?? ui.all}
+            </button>
+          ))}
+        </div>
+      )}
 
       {/* Timeline — a connected rail of dots with a card per release. */}
       <ol className="mt-10 space-y-6">
@@ -148,9 +159,16 @@ export function ChangelogTimeline({
               <AnimateIn direction="none">
                 <div className="rounded-2xl border border-border bg-surface p-5 shadow-soft sm:p-6">
                   <div className="flex flex-wrap items-center gap-3">
-                    <Badge tone={CHANGELOG_TONE[entry.category]}>
-                      {entry.category}
-                    </Badge>
+                    {entry.category && (
+                      <Badge tone={changelogTone(entry.category)}>
+                        {entry.category}
+                      </Badge>
+                    )}
+                    {entry.version && (
+                      <span className="text-sm font-semibold text-foreground">
+                        {formatVersion(entry.version)}
+                      </span>
+                    )}
                     <time dateTime={entry.date} className="text-sm text-muted">
                       {formatDate(entry.date)}
                     </time>

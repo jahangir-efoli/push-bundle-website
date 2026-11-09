@@ -363,9 +363,12 @@ export const httpAdapter: CmsAdapter = {
     try {
       // Fetch the full history — the page paginates client-side, so the API
       // default page size would otherwise truncate older entries.
-      const items = await cmsFetchAll("/api/public/changelogs", "changelogs");
+      // `locale` returns translated entries where they exist, English otherwise.
+      const items = await cmsFetchAll("/api/public/changelogs", "changelogs", {
+        locale: apiLocale(locale),
+      });
       const entries = items.map((c) =>
-        mapChangelog(c as Parameters<typeof mapChangelog>[0]),
+        mapChangelog(c as Parameters<typeof mapChangelog>[0], locale),
       );
       return entries.length ? entries : fixtureAdapter.listChangelog({ locale });
     } catch {
