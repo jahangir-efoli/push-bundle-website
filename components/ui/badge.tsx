@@ -1,4 +1,8 @@
 import { cn } from "@/lib/utils";
+import {
+  knownChangelogCategory,
+  readableTextOn,
+} from "@/lib/cms/changelog-labels";
 
 /**
  * Badge / pill (docs/PLAN.md §6).
@@ -36,27 +40,42 @@ export const CHANGELOG_TONE = {
   Launch: "neutral",
 } as const satisfies Record<string, BadgeTone>;
 
-/** Tone for a changelog label; labels outside the known set are neutral. */
+/**
+ * Fallback tone for a changelog label with no CMS colour. Matched loosely
+ * ("NEW FEATURE" → New Feature's tone); unknown labels are neutral.
+ */
 export function changelogTone(category: string): BadgeTone {
-  return (CHANGELOG_TONE as Record<string, BadgeTone>)[category] ?? "neutral";
+  const known = knownChangelogCategory(category);
+  return known ? CHANGELOG_TONE[known] : "neutral";
 }
 
 export function Badge({
   children,
   tone = "neutral",
+  color,
   className,
 }: {
   children: React.ReactNode;
   tone?: BadgeTone;
+  /**
+   * Exact background colour (hex), e.g. from the CMS. Overrides `tone`; the
+   * text is black or white, whichever meets contrast on that colour.
+   */
+  color?: string;
   className?: string;
 }) {
   return (
     <span
       className={cn(
         "inline-flex items-center rounded-md px-2.5 py-1 text-xs font-semibold",
-        TONE[tone],
+        !color && TONE[tone],
         className,
       )}
+      style={
+        color
+          ? { backgroundColor: color, color: readableTextOn(color) }
+          : undefined
+      }
     >
       {children}
     </span>
