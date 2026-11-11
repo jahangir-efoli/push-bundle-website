@@ -13,6 +13,7 @@ import { Footer } from "@/components/layout/footer";
 import { CookieConsent } from "@/components/layout/cookie-consent";
 import { LiveChat } from "@/components/integrations/live-chat";
 import { Analytics } from "@/components/integrations/analytics";
+import { Clarity } from "@/components/integrations/clarity";
 import { JsonLd } from "@/components/seo/json-ld";
 import { rootGraph } from "@/lib/seo/root-graph";
 import { formatPromoEnd, isPromoLive } from "@/lib/promo";
@@ -132,6 +133,7 @@ export default async function LocaleLayout({
         </SmoothScroll>
         </LocaleProvider>
         <Analytics />
+        <Clarity />
       </body>
     </html>
   );
