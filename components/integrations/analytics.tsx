@@ -2,7 +2,7 @@
 
 import Script from "next/script";
 import { usePathname, useSearchParams } from "next/navigation";
-import { Suspense, useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useSyncExternalStore } from "react";
 import { getConsent } from "@/components/layout/cookie-consent";
 
 /**
@@ -25,6 +25,32 @@ declare global {
     dataLayer: unknown[];
     gtag: (...args: unknown[]) => void;
   }
+}
+
+/**
+ * The single gate for every analytics tool (GA4, Microsoft Clarity): true only
+ * on the production host AND with `pb-consent` = "granted". Re-evaluates when
+ * the banner decides (this tab) or localStorage changes (another tab). Always
+ * false during SSR/hydration, so nothing analytics-related is server-rendered.
+ */
+function subscribeConsent(onChange: () => void) {
+  window.addEventListener("pb-consent-change", onChange);
+  window.addEventListener("storage", onChange);
+  return () => {
+    window.removeEventListener("pb-consent-change", onChange);
+    window.removeEventListener("storage", onChange);
+  };
+}
+const analyticsAllowed = () =>
+  PROD_HOSTS.has(window.location.hostname) && getConsent() === "granted";
+const analyticsAllowedOnServer = () => false;
+
+export function useAnalyticsAllowed(): boolean {
+  return useSyncExternalStore(
+    subscribeConsent,
+    analyticsAllowed,
+    analyticsAllowedOnServer,
+  );
 }
 
 /**
@@ -61,22 +87,7 @@ function GaPageviews() {
 }
 
 export function Analytics() {
-  const [enabled, setEnabled] = useState(false);
-
-  useEffect(() => {
-    const evaluate = () =>
-      setEnabled(
-        PROD_HOSTS.has(window.location.hostname) &&
-          getConsent() === "granted",
-      );
-    evaluate();
-    window.addEventListener("pb-consent-change", evaluate);
-    window.addEventListener("storage", evaluate);
-    return () => {
-      window.removeEventListener("pb-consent-change", evaluate);
-      window.removeEventListener("storage", evaluate);
-    };
-  }, []);
+  const enabled = useAnalyticsAllowed();
 
   if (!enabled) return null;
 
