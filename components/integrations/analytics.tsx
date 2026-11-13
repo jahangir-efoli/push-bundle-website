@@ -4,6 +4,7 @@ import Script from "next/script";
 import { usePathname, useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useRef, useSyncExternalStore } from "react";
 import { getConsent } from "@/components/layout/cookie-consent";
+import { isProductionHost } from "@/lib/production-hosts";
 
 /**
  * Google Analytics 4 (gtag.js) — docs/PLAN.md §8, nextjs-seo-website §8.
@@ -18,7 +19,6 @@ import { getConsent } from "@/components/layout/cookie-consent";
  * `page_view` (the first is skipped — `gtag('config')` already sent one).
  */
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "G-B1LF6XE73Y";
-const PROD_HOSTS = new Set(["pushbundle.com", "www.pushbundle.com"]);
 
 declare global {
   interface Window {
@@ -28,10 +28,10 @@ declare global {
 }
 
 /**
- * The single gate for every analytics tool (GA4, Microsoft Clarity): true only
- * on the production host AND with `pb-consent` = "granted". Re-evaluates when
- * the banner decides (this tab) or localStorage changes (another tab). Always
- * false during SSR/hydration, so nothing analytics-related is server-rendered.
+ * GA4's gate: true only on the production host AND with `pb-consent` =
+ * "granted". Re-evaluates when the banner decides (this tab) or localStorage
+ * changes (another tab). Always false during SSR/hydration, so nothing
+ * analytics-related is server-rendered.
  */
 function subscribeConsent(onChange: () => void) {
   window.addEventListener("pb-consent-change", onChange);
@@ -42,7 +42,7 @@ function subscribeConsent(onChange: () => void) {
   };
 }
 const analyticsAllowed = () =>
-  PROD_HOSTS.has(window.location.hostname) && getConsent() === "granted";
+  isProductionHost(window.location.hostname) && getConsent() === "granted";
 const analyticsAllowedOnServer = () => false;
 
 export function useAnalyticsAllowed(): boolean {
