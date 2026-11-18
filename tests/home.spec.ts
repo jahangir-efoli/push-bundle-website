@@ -46,7 +46,7 @@ test("all marketing sections are present in order", async ({ page }) => {
   const headings = await page.locator("main h2").allTextContents();
   // NOTE: "A complete bundling toolkit" (FeatureTrio) and "Next-Level
   // Bundling" (StorefrontPersonalization) are intentionally hidden on the home
-  // page — see app/[lang]/page.tsx.
+  // page — see app/[lang]/(site)/page.tsx.
   const expected = [
     "Your all-in-one bundle builder",
     "Why merchants choose PushBundle",

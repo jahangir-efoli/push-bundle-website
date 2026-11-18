@@ -39,6 +39,18 @@ const CMS_REVALIDATE_SECONDS = 300;
  * pages (a chunk swap mid-redeploy, momentary CMS 5xx). */
 const CMS_RETRIES = 1;
 
+/** A non-OK CMS response. `status` lets callers treat a 404 as "not found"
+ * (e.g. an unknown landing-page slug) rather than as an outage. */
+export class CmsHttpError extends Error {
+  constructor(
+    readonly status: number,
+    path: string,
+  ) {
+    super(`CMS ${status} on ${path}`);
+    this.name = "CmsHttpError";
+  }
+}
+
 export async function cmsFetch<T>(
   path: string,
   params: Record<string, string | number | undefined> = {},
@@ -70,6 +82,6 @@ export async function cmsFetch<T>(
       await new Promise((r) => setTimeout(r, 200 * (attempt + 1)));
       continue;
     }
-    throw new Error(`CMS ${res.status} on ${path}`);
+    throw new CmsHttpError(res.status, path);
   }
 }

@@ -4,8 +4,10 @@ import { isLocale, defaultLocale } from "@/i18n/config";
 
 /**
  * Enter draft preview (docs/cmd.md — Draft preview). The CMS "Preview on site"
- * button links here with `?secret=…&slug=…[&locale=…]`. Enables draft mode
- * (sets the cookie) and redirects to the post, which then fetches the draft.
+ * button links here with `?secret=…&slug=…[&locale=…][&type=landing]`. Enables
+ * draft mode (sets the cookie) and redirects to the item, which then fetches
+ * the draft: a blog post by default, or a landing page (`type=landing`, served
+ * at the site root, English only).
  * Returns 401 without the correct PREVIEW_SECRET; locked until that env is set.
  */
 export const runtime = "nodejs";
@@ -22,6 +24,10 @@ export async function GET(req: Request) {
   if (!slug) return new Response("slug required", { status: 400 });
 
   (await draftMode()).enable();
+
+  if (searchParams.get("type") === "landing") {
+    redirect(`/${encodeURIComponent(slug)}`);
+  }
 
   const locale = searchParams.get("locale");
   const prefix =
