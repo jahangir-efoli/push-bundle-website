@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { cms, DEFAULT_LOCALE } from "@/lib/cms";
+import { listLandingPages } from "@/lib/cms/landing";
 import { SITE_URL } from "@/lib/seo/site";
 import { locales, localizePath, type Locale } from "@/i18n/config";
 
@@ -74,6 +75,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
   } catch {
     // Resilience: a CMS blip shouldn't drop the static routes.
+  }
+
+  // CMS landing pages: root URLs, English only, and never the noIndex ones.
+  try {
+    for (const p of await listLandingPages()) {
+      if (p.noIndex || !p.slug) continue;
+      entries.push({
+        path: `/${p.slug}`,
+        lastModified: new Date(p.updatedAt ?? p.publishedAt ?? now),
+        changeFrequency: "weekly",
+        priority: 0.6,
+        locales: ["en"],
+      });
+    }
+  } catch {
+    // Same resilience: a landing-page list failure keeps everything else.
   }
 
   // Expand each path into one canonical `<url>` per locale it actually exists in.

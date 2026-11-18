@@ -218,3 +218,40 @@ export type ContentRef = {
    */
   locales?: Locale[];
 };
+
+/**
+ * A CMS landing page, served at the site root (`/<slug>`), English only. The
+ * shape the API returns (`/api/public/landing-pages/{slug}`), normalized by
+ * `lib/cms/landing.ts`. `content` is the editor's HTML (Raw HTML blocks with
+ * their own sections, styles, forms, iframes and scripts) and is rendered
+ * exactly as received.
+ */
+export type LandingPage = {
+  id: string;
+  title: string;
+  slug: string;
+  content: string;
+  /** Render this site's header (and promo bar) above the content. */
+  showHeader: boolean;
+  /** Render this site's footer below the content. */
+  showFooter: boolean;
+  metaTitle: string | null;
+  metaDescription: string | null;
+  ogImage: string | null;
+  canonicalUrl: string | null;
+  noIndex: boolean;
+  publishedAt: string | null;
+  updatedAt: string | null;
+  /** Draft preview only (`x-preview-token` accepted). */
+  status?: string;
+  isPreview?: boolean;
+};
+
+/** Sitemap row from the landing-page list endpoint (no content). */
+export type LandingPageRef = {
+  title: string;
+  slug: string;
+  noIndex: boolean;
+  publishedAt: string | null;
+  updatedAt: string | null;
+};

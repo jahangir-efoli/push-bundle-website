@@ -10,6 +10,7 @@ import { MediaHolder } from "@/components/media/media-holder";
 import { TableOfContents } from "@/components/blog/table-of-contents";
 import { ShareButtons } from "@/components/blog/share-buttons";
 import { TrialCta } from "@/components/sections/trial-cta";
+import { PreviewBanner } from "@/components/layout/preview-banner";
 import { JsonLd } from "@/components/seo/json-ld";
 import { breadcrumbLd } from "@/lib/seo/structured-data";
 import { blogPostingLd } from "@/lib/seo/article-data";
@@ -146,16 +147,7 @@ export default async function BlogPostPage({ params }: Props) {
 
   return (
     <>
-      {isPreview && (
-        <div className="bg-warm px-gutter py-2.5 text-center text-sm font-semibold text-white">
-          Preview mode — showing unpublished content.{" "}
-          {/* Full navigation to the route handler (clears draft mode); not a page. */}
-          {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-          <a href="/api/preview/exit" className="underline underline-offset-2">
-            Exit preview
-          </a>
-        </div>
-      )}
+      {isPreview && <PreviewBanner />}
 
       <JsonLd data={blogPostingLd(post)} />
       <JsonLd

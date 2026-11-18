@@ -7,16 +7,12 @@ import { LocaleProvider } from "@/components/providers/locale-provider";
 import { ThemeScript } from "@/components/layout/theme-script";
 import { ThemeSync } from "@/components/layout/theme-sync";
 import { SkipLink } from "@/components/layout/skip-link";
-import { Header } from "@/components/layout/header";
-import { PromoBanner } from "@/components/layout/promo-banner";
-import { Footer } from "@/components/layout/footer";
 import { CookieConsent } from "@/components/layout/cookie-consent";
 import { LiveChat } from "@/components/integrations/live-chat";
 import { Analytics } from "@/components/integrations/analytics";
 import { Clarity } from "@/components/integrations/clarity";
 import { JsonLd } from "@/components/seo/json-ld";
 import { rootGraph } from "@/lib/seo/root-graph";
-import { formatPromoEnd, isPromoLive } from "@/lib/promo";
 import { OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo/site";
 import { getDictionary } from "@/i18n/dictionaries";
 import { isLocale, locales, localeMeta, type Locale } from "@/i18n/config";
@@ -112,22 +108,11 @@ export default async function LocaleLayout({
         <LocaleProvider locale={locale}>
         <SmoothScroll>
           <SkipLink label={dict.common.skipToContent} />
-          {/* Server check drops the bar from any render after the deadline;
-              PromoGate also hides it in the browser on prerendered pages. */}
-          {isPromoLive() && (
-            <PromoBanner
-              copy={dict.promo}
-              endsLabel={dict.promo.endsOn.replace(
-                "{date}",
-                formatPromoEnd(localeMeta[locale].hreflang),
-              )}
-            />
-          )}
-          <Header locale={locale} dict={dict} />
-          <main id="main" className="flex-1">
-            {children}
-          </main>
-          <Footer locale={locale} dict={dict} />
+          {/* Site chrome (promo bar, header, <main id="main">, footer) lives in
+              the route-group layouts: (site)/layout.tsx for every normal page,
+              (landing)/[slug]/layout.tsx for CMS landing pages, which can hide
+              the header/footer. This root keeps only <html>/<head> and globals. */}
+          {children}
           <CookieConsent />
           <LiveChat />
         </SmoothScroll>
