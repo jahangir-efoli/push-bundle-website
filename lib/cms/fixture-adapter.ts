@@ -161,6 +161,28 @@ export const fixtureAdapter: CmsAdapter = {
     return faqCategories.map((c) => ({ ...c, name: names[c.slug] ?? c.name }));
   },
 
+  // ---- Recipe Contents ----------------------------------------------------
+  // Deliberately no demo recipes: Setup Pantry only ever lists real CMS content.
+  async listRecipes({ perPage = DEFAULT_PER_PAGE }): Promise<Paginated<Post>> {
+    return { items: [], page: 1, perPage, total: 0, totalPages: 1 };
+  },
+
+  async getRecipe() {
+    return null;
+  },
+
+  async getRecipeLocales(): Promise<Locale[]> {
+    return ["en"];
+  },
+
+  async listRelatedRecipes() {
+    return [];
+  },
+
+  async listRecipeCategories() {
+    return [];
+  },
+
   // ---- Client showcase --------------------------------------------------
   // Deliberately no demo clients: a showcase must only ever list real customers.
   async listClients({ perPage = 12 }): Promise<Paginated<ClientStory>> {

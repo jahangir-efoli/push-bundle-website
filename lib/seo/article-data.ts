@@ -5,7 +5,8 @@ import type { Post } from "@/lib/cms";
 const SITE_URL = "https://pushbundle.com";
 
 /** BlogPosting JSON-LD (docs/PLAN.md §5.7c) — E-E-A-T via author + reviewer. */
-export function blogPostingLd(post: Post) {
+/** `sectionPath` = where the article lives: "/blog" (default) or RECIPES_PATH. */
+export function blogPostingLd(post: Post, sectionPath = "/blog") {
   // Every post carries the standing Technical Support Team review (matches the
   // on-page disclosure); a per-post CMS reviewer, when present, is credited too.
   const teamReviewer = {
@@ -24,7 +25,7 @@ export function blogPostingLd(post: Post) {
     description: post.excerpt,
     datePublished: post.publishedAt,
     dateModified: post.updatedAt,
-    url: `${SITE_URL}/blog/${post.slug}`,
+    url: `${SITE_URL}${sectionPath}/${post.slug}`,
     author: { "@type": "Person", name: post.author.name },
     reviewedBy,
     publisher: {

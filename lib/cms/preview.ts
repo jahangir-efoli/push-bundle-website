@@ -5,7 +5,7 @@ import type { Locale, Post } from "./types";
 
 /**
  * Draft preview (docs/cmd.md — Draft preview). Only the single-item endpoints
- * (a blog post, a landing page) support preview, so these are the only
+ * (a blog post, a recipe, a landing page) support preview, so these are the only
  * draft-aware fetches. They forward the `x-preview-token` header and disable
  * caching, so an editor sees the newest unpublished draft. Kept separate from
  * `cmsFetch` on purpose: reading draft mode there would opt the whole
@@ -45,6 +45,18 @@ export async function getPreviewPost(
 ): Promise<Post | null> {
   const raw = await previewFetch<Parameters<typeof mapPost>[0]>(
     `/api/public/posts/${slug}`,
+    { locale: apiLocale(locale) },
+  );
+  return raw ? mapPost(raw, locale) : null;
+}
+
+/** A Recipe Contents draft (Setup Pantry) — same shape as a post. */
+export async function getPreviewRecipe(
+  slug: string,
+  locale: Locale,
+): Promise<Post | null> {
+  const raw = await previewFetch<Parameters<typeof mapPost>[0]>(
+    `/api/public/recipes/${slug}`,
     { locale: apiLocale(locale) },
   );
   return raw ? mapPost(raw, locale) : null;

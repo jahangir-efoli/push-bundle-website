@@ -66,6 +66,16 @@ export function installUrl(placement: string): string {
   return withUtm(site.shopifyAppUrl, { campaign: "install", content: placement });
 }
 
+/**
+ * Recipe Contents — the CMS's second blog-style stream (setup guides, tips,
+ * copy-paste solutions), shown here as "Setup Pantry". Served at
+ * `/setup-pantry` (+ `/{locale}/setup-pantry/…`). The route folder is
+ * `app/[lang]/(site)/setup-pantry`, and this MUST match the CMS value
+ * (Sites → PushBundle → Recipe Contents URL path) so "View live", draft
+ * preview and on-demand revalidation land on these pages.
+ */
+export const RECIPES_PATH = "/setup-pantry";
+
 /** Primary nav (docs/PLAN.md §4.2 — Changelog lives under Resources). */
 export const mainNav = [
   { label: "Home", href: "/" },

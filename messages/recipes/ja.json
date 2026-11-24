@@ -1,0 +1,19 @@
+{
+  "meta": {
+    "title": "Setup Pantry — PushBundle 設定ガイド・ヒント・レシピ",
+    "description": "Shopify で PushBundle を使ってバンドルを作成するための、ステップごとの設定レシピ、ヒント、コピー＆ペーストで使えるソリューション。"
+  },
+  "eyebrow": "Setup Pantry",
+  "title": "設定レシピ",
+  "intro": "Shopify ストアで PushBundle を最大限に活用するための、すぐに使える設定ガイド、ヒント、コピー＆ペーストで使えるソリューション。",
+  "pageTitleTemplate": "設定レシピ — {n}ページ目",
+  "categoryIntroPrefix": "以下に関するレシピ：",
+  "ui": {
+    "searchLabel": "レシピを検索",
+    "searchPlaceholder": "レシピを検索…",
+    "noMatch": "検索に一致するレシピがありません。別のキーワードをお試しください。",
+    "noneYet": "まだレシピがありません。近日中に公開予定です。",
+    "breadcrumbBlog": "Setup Pantry",
+    "relatedArticles": "関連レシピ"
+  }
+}

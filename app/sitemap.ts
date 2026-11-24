@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { cms, DEFAULT_LOCALE } from "@/lib/cms";
 import { listLandingPages } from "@/lib/cms/landing";
 import { SITE_URL } from "@/lib/seo/site";
+import { RECIPES_PATH } from "@/lib/site-config";
 import { locales, localizePath, type Locale } from "@/i18n/config";
 
 /**
@@ -34,6 +35,7 @@ const STATIC_PATHS: Array<{
   { path: "/partner", priority: 0.5, changeFrequency: "monthly" },
   { path: "/clients-showcase", priority: 0.6, changeFrequency: "weekly" },
   { path: "/blog", priority: 0.8, changeFrequency: "weekly" },
+  { path: RECIPES_PATH, priority: 0.7, changeFrequency: "weekly" },
   { path: "/docs", priority: 0.7, changeFrequency: "weekly" },
   { path: "/changelog", priority: 0.5, changeFrequency: "weekly" },
   { path: "/privacy-policy", priority: 0.3, changeFrequency: "yearly" },

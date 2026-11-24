@@ -1,0 +1,19 @@
+{
+  "meta": {
+    "title": "Setup Pantry — PushBundle 设置指南、技巧与方案",
+    "description": "分步设置方案、实用技巧和可直接复制粘贴的解决方案，助您在 Shopify 上使用 PushBundle 创建捆绑销售。"
+  },
+  "eyebrow": "Setup Pantry",
+  "title": "设置方案",
+  "intro": "即用型设置指南、实用技巧和可直接复制粘贴的解决方案，助您在 Shopify 店铺中充分发挥 PushBundle 的作用。",
+  "pageTitleTemplate": "设置方案 — 第 {n} 页",
+  "categoryIntroPrefix": "关于以下主题的方案：",
+  "ui": {
+    "searchLabel": "搜索方案",
+    "searchPlaceholder": "搜索方案…",
+    "noMatch": "没有与您的搜索匹配的方案。请尝试其他关键词。",
+    "noneYet": "暂无方案，敬请期待。",
+    "breadcrumbBlog": "Setup Pantry",
+    "relatedArticles": "相关方案"
+  }
+}

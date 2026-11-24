@@ -18,6 +18,7 @@ export function BlogListing({
   categories,
   activeCategory,
   basePath,
+  sectionPath = "/blog",
   ui,
 }: {
   eyebrow?: string;
@@ -29,6 +30,8 @@ export function BlogListing({
   categories: Category[];
   activeCategory?: string;
   basePath: string;
+  /** Section root: "/blog" (default) or RECIPES_PATH (Setup Pantry). */
+  sectionPath?: string;
   ui?: BlogResultsUi;
 }) {
   return (
@@ -45,6 +48,7 @@ export function BlogListing({
         page={result.page}
         totalPages={result.totalPages}
         basePath={basePath}
+        sectionPath={sectionPath}
         ui={ui}
       />
     </Container>

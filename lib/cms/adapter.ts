@@ -51,6 +51,21 @@ export interface CmsAdapter {
   }): Promise<Post[]>;
   listCategories(params: { locale: Locale }): Promise<Category[]>;
 
+  // ---- Recipe Contents ("Setup Pantry", served at RECIPES_PATH) -----------
+  // The CMS's second blog-style stream: same shape and behaviour as posts,
+  // own data and categories. Never padded with demo fixtures — an empty CMS
+  // yields an empty list so the page shows its empty state.
+  listRecipes(params: ListPostsParams): Promise<Paginated<Post>>;
+  getRecipe(params: { locale: Locale; slug: string }): Promise<Post | null>;
+  /** Locales a recipe has a REAL translation in (always includes `en`). */
+  getRecipeLocales(params: { slug: string }): Promise<Locale[]>;
+  listRelatedRecipes(params: {
+    locale: Locale;
+    slug: string;
+    limit?: number;
+  }): Promise<Post[]>;
+  listRecipeCategories(params: { locale: Locale }): Promise<Category[]>;
+
   // ---- Docs -------------------------------------------------------------
   listDocs(params: { locale: Locale }): Promise<DocArticle[]>;
   getDoc(params: { locale: Locale; slug: string }): Promise<DocArticle | null>;

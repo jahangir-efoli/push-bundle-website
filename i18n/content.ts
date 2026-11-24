@@ -185,6 +185,27 @@ export const getBlogContent = makeLoader<BlogContent>({
   zh: () => import("@/messages/blog/zh.json"),
 });
 
+// --- recipes (Setup Pantry) ---------------------------------------------------
+// Recipe Contents reuse the blog's page UI, so only the headings, meta and the
+// handful of "articles" strings are overridden here; everything else (date and
+// review labels, TOC, author block…) comes from the blog messages.
+type RecipeOverrides = Pick<BlogContent, "meta" | "eyebrow" | "title" | "intro" | "pageTitleTemplate" | "categoryIntroPrefix"> & {
+  ui: Partial<BlogContent["ui"]>;
+};
+const loadRecipeOverrides = makeLoader<RecipeOverrides>({
+  en: () => import("@/messages/recipes/en.json"),
+  de: () => import("@/messages/recipes/de.json"),
+  fr: () => import("@/messages/recipes/fr.json"),
+  es: () => import("@/messages/recipes/es.json"),
+  it: () => import("@/messages/recipes/it.json"),
+  ja: () => import("@/messages/recipes/ja.json"),
+  zh: () => import("@/messages/recipes/zh.json"),
+});
+export async function getRecipeContent(locale: Locale): Promise<BlogContent> {
+  const [blog, recipes] = await Promise.all([getBlogContent(locale), loadRecipeOverrides(locale)]);
+  return { ...blog, ...recipes, ui: { ...blog.ui, ...recipes.ui } };
+}
+
 // --- changelog ------------------------------------------------------------
 import type changelogEn from "@/messages/changelog/en.json";
 export type ChangelogContent = typeof changelogEn;

@@ -26,7 +26,7 @@ import {
   mapReview,
 } from "./http/mappers";
 import { fixtureAdapter, DEFAULT_PER_PAGE } from "./fixture-adapter";
-import { site } from "@/lib/site-config";
+import { site, RECIPES_PATH } from "@/lib/site-config";
 import { locales } from "@/i18n/config";
 
 /**
@@ -231,6 +231,93 @@ export const httpAdapter: CmsAdapter = {
       return categoriesFromPosts(items as Parameters<typeof categoriesFromPosts>[0]);
     } catch {
       return fixtureAdapter.listCategories({ locale });
+    }
+  },
+
+  // ---- Recipe Contents ("Setup Pantry") -------------------------------------
+  // Mirrors the blog methods on /api/public/recipes, with one difference: like
+  // the client showcase these NEVER fall back to fixtures — an empty or failed
+  // CMS response yields an empty list / null, so no demo blog posts can ever
+  // appear under Setup Pantry.
+  async listRecipes({ locale, page = 1, perPage = DEFAULT_PER_PAGE, category }: ListPostsParams) {
+    const empty: Paginated<Post> = { items: [], page: 1, perPage, total: 0, totalPages: 1 };
+    try {
+      const raw = await cmsFetch<unknown>("/api/public/recipes", {
+        page,
+        limit: perPage,
+        category,
+        locale: apiLocale(locale),
+      });
+      const { items, total, totalPages, page: gotPage, limit } = readListEnvelope(raw, "recipes");
+      if (!items.length) return empty;
+      const resolvedTotal = total ?? items.length;
+      const resolvedPerPage = limit ?? perPage;
+      return {
+        items: items.map((r) => mapPost(r as Parameters<typeof mapPost>[0], locale)),
+        page: gotPage ?? page,
+        perPage: resolvedPerPage,
+        total: resolvedTotal,
+        totalPages:
+          totalPages ?? Math.max(1, Math.ceil(resolvedTotal / resolvedPerPage)),
+      } satisfies Paginated<Post>;
+    } catch {
+      return empty;
+    }
+  },
+
+  async getRecipe({ locale, slug }) {
+    try {
+      const r = await cmsFetch<Parameters<typeof mapPost>[0]>(
+        `/api/public/recipes/${slug}`,
+        { locale: apiLocale(locale) },
+      );
+      return mapPost(r, locale);
+    } catch {
+      return null;
+    }
+  },
+
+  async getRecipeLocales({ slug }): Promise<Locale[]> {
+    // Same cached per-locale list probe as getPostLocales.
+    const nonEn = locales.filter((l) => l !== "en");
+    const translated = await Promise.all(
+      nonEn.map(async (l): Promise<Locale | null> => {
+        try {
+          const items = (await cmsFetchAll("/api/public/recipes", "recipes", {
+            locale: apiLocale(l),
+          })) as Array<{ slug: string; isTranslated?: boolean }>;
+          return items.find((r) => r.slug === slug)?.isTranslated === true ? l : null;
+        } catch {
+          return null;
+        }
+      }),
+    );
+    return ["en", ...translated.filter((l): l is Locale => l !== null)];
+  },
+
+  async listRelatedRecipes({ locale, slug, limit = 3 }) {
+    try {
+      const current = await this.getRecipe({ locale, slug });
+      if (!current) return [];
+      const { items } = await this.listRecipes({
+        locale,
+        perPage: limit + 1,
+        category: current.category,
+      });
+      return items.filter((r) => r.slug !== slug).slice(0, limit);
+    } catch {
+      return [];
+    }
+  },
+
+  async listRecipeCategories({ locale }): Promise<Category[]> {
+    try {
+      const items = await cmsFetchAll("/api/public/recipes", "recipes", {
+        locale: apiLocale(locale),
+      });
+      return categoriesFromPosts(items as Parameters<typeof categoriesFromPosts>[0]);
+    } catch {
+      return [];
     }
   },
 
@@ -483,13 +570,45 @@ export const httpAdapter: CmsAdapter = {
         }),
       );
 
+      // Recipe Contents (Setup Pantry), translation-aware like posts. Its own
+      // await + catch so a recipes hiccup never drops the refs gathered above.
+      const perLocaleRecipes = await Promise.all(
+        locales.map(async (l): Promise<readonly [Locale, Translatable[]]> => {
+          try {
+            const items = (await cmsFetchAll("/api/public/recipes", "recipes", {
+              locale: apiLocale(l),
+            })) as Array<{
+              slug: string;
+              updatedAt?: string;
+              publishedAt: string;
+              isTranslated?: boolean;
+            }>;
+            return [
+              l,
+              items.map((r) => ({
+                slug: r.slug,
+                updatedAt: r.updatedAt ?? r.publishedAt,
+                isTranslated: r.isTranslated,
+              })),
+            ];
+          } catch {
+            return [l, []];
+          }
+        }),
+      );
+      const recipeCategories = await this.listRecipeCategories({ locale });
+
       const refs: ContentRef[] = [
         ...refsFromPerLocale(perLocalePosts, (s) => `/blog/${s}`),
+        ...refsFromPerLocale(perLocaleRecipes, (s) => `${RECIPES_PATH}/${s}`),
         ...refsFromPerLocale(perLocaleDocs, (s) => `/docs/${s}`),
         ...refsFromPerLocale(perLocaleClients, (s) => `/clients-showcase/${s}`),
       ];
       // Blog category archives are localized list pages → all locales (default).
       for (const c of categories) refs.push({ path: `/blog/category/${c.slug}`, updatedAt: "" });
+      for (const c of recipeCategories) {
+        refs.push({ path: `${RECIPES_PATH}/category/${c.slug}`, updatedAt: "" });
+      }
       // Docs topic pages, likewise (the cached English list has every doc).
       const docTopics = new Set(
         (await this.listDocs({ locale: "en" })).map((d) => d.category),
