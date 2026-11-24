@@ -51,11 +51,14 @@ export function PostCard({
   titleAs: Tag = "h3",
   /** Localized "min read" label (defaults to English). */
   minReadLabel = "min read",
+  /** Section the post lives in: "/blog" (default) or RECIPES_PATH. */
+  sectionPath = "/blog",
 }: {
   post: Post;
   categories: Category[];
   titleAs?: "h2" | "h3";
   minReadLabel?: string;
+  sectionPath?: string;
 }) {
   const categoryName =
     categories.find((c) => c.slug === post.category)?.name ?? post.category;
@@ -68,7 +71,7 @@ export function PostCard({
       className="group flex h-full flex-col overflow-hidden"
     >
       <Link
-        href={`/blog/${post.slug}`}
+        href={`${sectionPath}/${post.slug}`}
         tabIndex={-1}
         aria-hidden="true"
         className="relative block overflow-hidden"
@@ -91,7 +94,7 @@ export function PostCard({
       <div className="flex flex-1 flex-col p-5">
         <Tag className="font-display text-base font-bold leading-snug line-clamp-2 wrap-break-word">
           <Link
-            href={`/blog/${post.slug}`}
+            href={`${sectionPath}/${post.slug}`}
             className="transition-colors hover:text-primary"
           >
             {post.title}

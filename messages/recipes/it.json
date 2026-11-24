@@ -1,0 +1,19 @@
+{
+  "meta": {
+    "title": "Setup Pantry — Guide alla configurazione, consigli e ricette di PushBundle",
+    "description": "Ricette di configurazione passo dopo passo, consigli e soluzioni da copiare e incollare per creare bundle con PushBundle su Shopify."
+  },
+  "eyebrow": "Setup Pantry",
+  "title": "Ricette di configurazione",
+  "intro": "Guide alla configurazione pronte all'uso, consigli e soluzioni da copiare e incollare per sfruttare al meglio PushBundle nel tuo negozio Shopify.",
+  "pageTitleTemplate": "Ricette di configurazione — Pagina {n}",
+  "categoryIntroPrefix": "Ricette su",
+  "ui": {
+    "searchLabel": "Cerca ricette",
+    "searchPlaceholder": "Cerca ricette…",
+    "noMatch": "Nessuna ricetta corrisponde alla tua ricerca. Prova una ricerca diversa.",
+    "noneYet": "Ancora nessuna ricetta — torna a trovarci presto.",
+    "breadcrumbBlog": "Setup Pantry",
+    "relatedArticles": "Ricette correlate"
+  }
+}

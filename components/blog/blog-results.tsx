@@ -60,6 +60,7 @@ export function BlogResults({
   page,
   totalPages,
   basePath,
+  sectionPath = "/blog",
   ui = DEFAULT_UI,
 }: {
   pagePosts: Post[];
@@ -69,6 +70,8 @@ export function BlogResults({
   page: number;
   totalPages: number;
   basePath: string;
+  /** Section root for the "All" chip, category archives and cards: "/blog" or RECIPES_PATH. */
+  sectionPath?: string;
   ui?: BlogResultsUi;
 }) {
   const [query, setQuery] = useState("");
@@ -140,7 +143,7 @@ export function BlogResults({
 
         <nav aria-label="Blog categories" className="mt-4 flex flex-wrap gap-2">
           <Link
-            href="/blog"
+            href={sectionPath}
             aria-current={!activeCategory ? "true" : undefined}
             className={pill(!activeCategory)}
           >
@@ -149,7 +152,7 @@ export function BlogResults({
           {chipCategories.map((c) => (
             <Link
               key={c.slug}
-              href={`/blog/category/${c.slug}`}
+              href={`${sectionPath}/category/${c.slug}`}
               aria-current={c.slug === activeCategory ? "true" : undefined}
               className={pill(c.slug === activeCategory)}
             >
@@ -179,6 +182,7 @@ export function BlogResults({
                   categories={categories}
                   titleAs="h2"
                   minReadLabel={ui.minRead}
+                  sectionPath={sectionPath}
                 />
               </AnimateIn>
             </li>

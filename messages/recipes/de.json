@@ -1,0 +1,19 @@
+{
+  "meta": {
+    "title": "Setup Pantry — PushBundle Einrichtungsanleitungen, Tipps & Rezepte",
+    "description": "Schritt-für-Schritt-Einrichtungsrezepte, Tipps und Lösungen zum Kopieren für Bundles mit PushBundle auf Shopify."
+  },
+  "eyebrow": "Setup Pantry",
+  "title": "Einrichtungsrezepte",
+  "intro": "Sofort einsetzbare Einrichtungsanleitungen, Tipps und Lösungen zum Kopieren, damit Sie das Beste aus PushBundle in Ihrem Shopify-Shop herausholen.",
+  "pageTitleTemplate": "Einrichtungsrezepte — Seite {n}",
+  "categoryIntroPrefix": "Rezepte über",
+  "ui": {
+    "searchLabel": "Rezepte durchsuchen",
+    "searchPlaceholder": "Rezepte durchsuchen…",
+    "noMatch": "Keine Rezepte entsprechen Ihrer Suche. Versuchen Sie eine andere Suche.",
+    "noneYet": "Noch keine Rezepte — schauen Sie bald wieder vorbei.",
+    "breadcrumbBlog": "Setup Pantry",
+    "relatedArticles": "Ähnliche Rezepte"
+  }
+}

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
-import { installUrl } from "@/lib/site-config";
+import { installUrl, RECIPES_PATH } from "@/lib/site-config";
 import { buttonStyles } from "@/components/ui/button";
 import { LocaleSwitcher } from "./locale-switcher";
 import { localizePath, type Locale } from "@/i18n/config";
@@ -161,6 +161,15 @@ export function MobileNav({
               {item.label}
             </Link>
           ))}
+
+          {/* Recipe Contents — top-level, right after the Resources group. */}
+          <Link
+            href={localizePath(RECIPES_PATH, locale)}
+            onClick={onClose}
+            className="mt-6 flex min-h-11 items-center rounded-lg px-3 font-medium text-foreground transition-colors hover:bg-surface-subtle"
+          >
+            {dict.nav.setupPantry}
+          </Link>
         </nav>
 
         <a

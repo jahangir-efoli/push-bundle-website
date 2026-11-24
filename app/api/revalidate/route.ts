@@ -4,8 +4,8 @@ import { defaultLocale, isLocale } from "@/i18n/config";
 
 /**
  * On-demand ISR (docs/PLAN.md §7; Phase 9 brief). The CMS calls this whenever
- * content changes (publish, edit, unpublish, delete — blog posts, docs, landing
- * pages, …), so edits appear within seconds without a redeploy. Body:
+ * content changes (publish, edit, unpublish, delete — blog posts, Setup Pantry
+ * recipes, docs, landing pages, …), so edits appear within seconds without a redeploy. Body:
  * `{ "path": "/blog/x" }` or a root path like `{ "path": "/black-friday" }`;
  * when a URL changes the CMS also sends the old path. Token-gated against
  * REVALIDATE_SECRET. Without it, CMS content is stale.
