@@ -60,7 +60,9 @@ export function Header({
     { label: dict.nav.home, href: homeHref, bare: "/" },
     { label: dict.nav.features, href: localizePath("/features", locale), bare: "/features" },
     { label: dict.nav.pricing, href: localizePath("/pricing", locale), bare: "/pricing" },
-    { label: dict.nav.about, href: localizePath("/about-us", locale), bare: "/about-us" },
+    // Recipe Contents (ticket z8tvbhymz4). Takes About us' slot so the bar fits
+    // at xl widths — with one more top-level item "Home" ran into the logo.
+    { label: dict.nav.setupPantry, href: localizePath(RECIPES_PATH, locale), bare: RECIPES_PATH },
     { label: dict.nav.contact, href: localizePath("/contact-us", locale), bare: "/contact-us" },
   ];
   const resourcesNav = [
@@ -69,9 +71,8 @@ export function Header({
     { label: dict.nav.docs, href: localizePath("/docs", locale), bare: "/docs" },
     { label: dict.nav.blog, href: localizePath("/blog", locale), bare: "/blog" },
     { label: dict.nav.changelog, href: localizePath("/changelog", locale), bare: "/changelog" },
+    { label: dict.nav.about, href: localizePath("/about-us", locale), bare: "/about-us" },
   ];
-  // Recipe Contents — its own top-level item, right after Resources (ticket z8tvbhymz4).
-  const recipesNav = { label: dict.nav.setupPantry, href: localizePath(RECIPES_PATH, locale), bare: RECIPES_PATH };
 
   // usePathname may return the rewritten "/en/…" path, so compare BARE paths
   // (locale prefix stripped) rather than the localized hrefs.
@@ -178,19 +179,6 @@ export function Header({
               current: isActive(item.bare),
             }))}
           />
-
-          <Link
-            href={recipesNav.href}
-            aria-current={isActive(recipesNav.bare) ? "page" : undefined}
-            className={cn(
-              "flex h-11 shrink-0 items-center whitespace-nowrap rounded-lg px-2.5 text-[15px] font-medium transition-colors",
-              isActive(recipesNav.bare)
-                ? "text-primary"
-                : "text-foreground hover:bg-surface-subtle",
-            )}
-          >
-            {recipesNav.label}
-          </Link>
         </nav>
 
         <div className="flex flex-1 items-center justify-end gap-2">

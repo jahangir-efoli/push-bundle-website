@@ -34,7 +34,7 @@ export function MobileNav({
     { label: dict.nav.home, href: localizePath("/", locale) },
     { label: dict.nav.features, href: localizePath("/features", locale) },
     { label: dict.nav.pricing, href: localizePath("/pricing", locale) },
-    { label: dict.nav.about, href: localizePath("/about-us", locale) },
+    { label: dict.nav.setupPantry, href: localizePath(RECIPES_PATH, locale) },
     { label: dict.nav.contact, href: localizePath("/contact-us", locale) },
   ];
   const resourcesNav = [
@@ -43,6 +43,7 @@ export function MobileNav({
     { label: dict.nav.docs, href: localizePath("/docs", locale) },
     { label: dict.nav.blog, href: localizePath("/blog", locale) },
     { label: dict.nav.changelog, href: localizePath("/changelog", locale) },
+    { label: dict.nav.about, href: localizePath("/about-us", locale) },
   ];
 
   useEffect(() => {
@@ -161,15 +162,6 @@ export function MobileNav({
               {item.label}
             </Link>
           ))}
-
-          {/* Recipe Contents — top-level, right after the Resources group. */}
-          <Link
-            href={localizePath(RECIPES_PATH, locale)}
-            onClick={onClose}
-            className="mt-6 flex min-h-11 items-center rounded-lg px-3 font-medium text-foreground transition-colors hover:bg-surface-subtle"
-          >
-            {dict.nav.setupPantry}
-          </Link>
         </nav>
 
         <a
