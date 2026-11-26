@@ -16,6 +16,7 @@ import { getDocsContent } from "@/i18n/content";
 import { enhanceDocBody } from "@/lib/docs/body";
 import { cn, fmt, formatShortDate } from "@/lib/utils";
 import type { DocArticle } from "@/lib/cms";
+import { LandingHtml } from "@/components/cms/landing-html";
 
 type Props = { params: Promise<{ lang: string; slug: string }> };
 
@@ -147,10 +148,7 @@ export default async function DocArticlePage({ params }: Props) {
               </div>
             )}
 
-            <div
-              className="prose-pb doc-body mt-8 max-w-184"
-              dangerouslySetInnerHTML={{ __html: body.html }}
-            />
+            <LandingHtml className="prose-pb doc-body mt-8 max-w-184" html={body.html} />
 
             <div className="mt-10 max-w-184">
               <DocFeedback slug={doc.slug} content={t.feedback} />

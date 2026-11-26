@@ -6,6 +6,10 @@ import { useEffect, useMemo, useRef, useSyncExternalStore } from "react";
  * Renders a CMS landing page's HTML exactly as received — no sanitizing, no
  * prose wrapper, full width — and makes its `<script>` tags run exactly once.
  *
+ * Also used for CMS article bodies (blog, Setup Pantry, docs, client stories),
+ * with a `className` for their prose styles: their custom HTML blocks may carry
+ * scripts, which must run after a client-side navigation too.
+ *
  * Two ways the HTML reaches the DOM, and what each means for scripts:
  *  - Full page load: the HTML is server-rendered, so the browser's parser has
  *    ALREADY executed every script by the time React hydrates. Running them again
@@ -31,7 +35,7 @@ const subscribe = () => () => {};
  * (Strict Mode) still waits for them before running the scripts after them. */
 const pending = new WeakMap<HTMLScriptElement, Promise<unknown>>();
 
-export function LandingHtml({ html }: { html: string }) {
+export function LandingHtml({ html, className }: { html: string; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
   // getServerSnapshot (→ true) is used during SSR and hydration only; a fresh
   // client render uses getSnapshot (→ false). Captured once, at first render.
@@ -94,5 +98,5 @@ export function LandingHtml({ html }: { html: string }) {
     };
   }, [html]);
 
-  return <div ref={ref} dangerouslySetInnerHTML={inner} />;
+  return <div ref={ref} className={className} dangerouslySetInnerHTML={inner} />;
 }

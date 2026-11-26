@@ -8,6 +8,8 @@
  * injected, so the sidebar works even for posts authored without a TOC.
  */
 
+import { mapOutsideHtmlBlocks } from "@/lib/cms/html-blocks";
+
 export type TocItem = { id: string; text: string; level: 2 | 3 };
 
 function stripTags(s: string): string {
@@ -45,40 +47,53 @@ const INLINE_TOC =
   /<h2[^>]*>(?:(?!<\/h2>)[\s\S])*?<\/h2>\s*(?:<nav[^>]*>[\s\S]*?<\/nav>|<(ul|ol)[^>]*>(?:(?!<\/\1>)[\s\S])*?href=["']#[\s\S]*?<\/\1>)/i;
 
 export function processArticle(html: string): { html: string; toc: TocItem[] } {
-  let out = html.replace(INLINE_TOC, "");
-
   const toc: TocItem[] = [];
   const seen = new Set<string>();
+  let inlineTocRemoved = false;
 
-  out = out.replace(
-    /<h([23])([^>]*)>([\s\S]*?)<\/h\1>/gi,
-    (match, lvl: string, attrs: string, inner: string) => {
-      const level = Number(lvl) as 2 | 3;
-      const text = stripTags(inner);
-      // Skip empty headings and any lingering "Table of Contents" label.
-      if (!text || /^table of contents$/i.test(text)) return match;
+  // CMS custom HTML blocks pass through byte-for-byte: their headings get no ids
+  // and stay out of the TOC, and their tables are not wrapped — the author's
+  // markup is rendered exactly as written (lib/cms/html-blocks.ts).
+  const out = mapOutsideHtmlBlocks(html, (segment) => {
+    let s = segment;
 
-      let id = attrs.match(/id=["']([^"']+)["']/i)?.[1];
-      if (!id) {
-        const base = slugify(text);
-        let unique = base;
-        let n = 2;
-        while (seen.has(unique)) unique = `${base}-${n++}`;
-        id = unique;
-      }
-      seen.add(id);
-      toc.push({ id, text, level });
+    // Only the first inline TOC in the article is lifted (as before).
+    if (!inlineTocRemoved) {
+      const before = s;
+      s = s.replace(INLINE_TOC, "");
+      inlineTocRemoved = s !== before;
+    }
 
-      const attrsWithId = /id=/i.test(attrs) ? attrs : `${attrs} id="${id}"`;
-      return `<h${lvl}${attrsWithId}>${inner}</h${lvl}>`;
-    },
-  );
+    s = s.replace(
+      /<h([23])([^>]*)>([\s\S]*?)<\/h\1>/gi,
+      (match, lvl: string, attrs: string, inner: string) => {
+        const level = Number(lvl) as 2 | 3;
+        const text = stripTags(inner);
+        // Skip empty headings and any lingering "Table of Contents" label.
+        if (!text || /^table of contents$/i.test(text)) return match;
 
-  // Wrap tables so wide ones scroll horizontally instead of breaking the layout
-  // on narrow screens (styled in globals.css `.prose-table`).
-  out = out
-    .replace(/<table(\s[^>]*)?>/gi, '<div class="prose-table"><table$1>')
-    .replace(/<\/table>/gi, "</table></div>");
+        let id = attrs.match(/id=["']([^"']+)["']/i)?.[1];
+        if (!id) {
+          const base = slugify(text);
+          let unique = base;
+          let n = 2;
+          while (seen.has(unique)) unique = `${base}-${n++}`;
+          id = unique;
+        }
+        seen.add(id);
+        toc.push({ id, text, level });
+
+        const attrsWithId = /id=/i.test(attrs) ? attrs : `${attrs} id="${id}"`;
+        return `<h${lvl}${attrsWithId}>${inner}</h${lvl}>`;
+      },
+    );
+
+    // Wrap tables so wide ones scroll horizontally instead of breaking the layout
+    // on narrow screens (styled in globals.css `.prose-table`).
+    return s
+      .replace(/<table(\s[^>]*)?>/gi, '<div class="prose-table"><table$1>')
+      .replace(/<\/table>/gi, "</table></div>");
+  });
 
   return { html: out, toc };
 }

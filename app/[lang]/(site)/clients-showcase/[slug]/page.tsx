@@ -17,6 +17,7 @@ import { getClientShowcaseContent, getCommon } from "@/i18n/content";
 import { OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo/site";
 import { isLocale, localeMeta, localizePath, type Locale } from "@/i18n/config";
 import type { ClientStory } from "@/lib/cms";
+import { LandingHtml } from "@/components/cms/landing-html";
 
 type Props = { params: Promise<{ lang: string; slug: string }> };
 
@@ -207,14 +208,11 @@ export default async function ClientStoryPage({ params }: Props) {
                     ))}
                   </ul>
                 </details>
-                <div className="prose-pb max-w-none" dangerouslySetInnerHTML={{ __html: html }} />
+                <LandingHtml className="prose-pb max-w-none" html={html} />
               </div>
             </div>
           ) : (
-            <div
-              className="prose-pb mx-auto max-w-3xl"
-              dangerouslySetInnerHTML={{ __html: html }}
-            />
+            <LandingHtml className="prose-pb mx-auto max-w-3xl" html={html} />
           )}
         </Container>
       </article>
