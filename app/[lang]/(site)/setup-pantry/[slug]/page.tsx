@@ -22,6 +22,7 @@ import { cn } from "@/lib/utils";
 import type { Person } from "@/lib/cms";
 import { isLocale, type Locale } from "@/i18n/config";
 import { RECIPES_PATH } from "@/lib/site-config";
+import { LandingHtml } from "@/components/cms/landing-html";
 
 type Props = { params: Promise<{ lang: string; slug: string }> };
 
@@ -276,17 +277,11 @@ export default async function SetupPantryRecipePage({ params }: Props) {
                     ))}
                   </ul>
                 </details>
-                <div
-                  className="prose-pb max-w-none"
-                  dangerouslySetInnerHTML={{ __html: html }}
-                />
+                <LandingHtml className="prose-pb max-w-none" html={html} />
               </div>
             </div>
           ) : (
-            <div
-              className="prose-pb mx-auto max-w-3xl"
-              dangerouslySetInnerHTML={{ __html: html }}
-            />
+            <LandingHtml className="prose-pb mx-auto max-w-3xl" html={html} />
           )}
         </Container>
 

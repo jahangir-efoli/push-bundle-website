@@ -1,5 +1,6 @@
 import sanitizeHtmlLib from "sanitize-html";
 import { parseLabelColor } from "../changelog-labels";
+import { mapOutsideHtmlBlocks } from "../html-blocks";
 import type {
   ChangelogEntry,
   ClientStory,
@@ -141,7 +142,10 @@ function tidyInternalLink(attribs: sanitizeHtmlLib.Attributes): sanitizeHtmlLib.
 
 export function sanitizeHtml(html: string | undefined | null): string {
   if (!html) return "";
-  return sanitizeHtmlLib(html, SANITIZE_OPTIONS);
+  // CMS custom HTML blocks (`<div data-html-block>`) are author-written in the
+  // CMS, never migrated, so they pass through exactly as written — like landing
+  // pages. Only the content around them is sanitized. See lib/cms/html-blocks.ts.
+  return mapOutsideHtmlBlocks(html, (segment) => sanitizeHtmlLib(segment, SANITIZE_OPTIONS));
 }
 
 /**
